@@ -1,7 +1,7 @@
-import './App.css';
+import "./App.css";
 
 function App() {
-  return <div className='App'></div>;
+  return <h1 className="App text-3xl font-bold underline ">안녕</h1>;
 }
 
 export default App;
