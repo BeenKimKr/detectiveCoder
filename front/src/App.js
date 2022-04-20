@@ -1,10 +1,10 @@
-import './App.css'
+import "./App.css";
 
 function App() {
-  return <h1 className="App text-3xl font-bold underline ">안녕</h1>
+  return <h1 className="App text-3xl font-bold underline ">안녕</h1>;
 }
 
-export default App
+export default App;
 
 // import React, { useState, useEffect, useReducer, createContext } from "react";
 // import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
