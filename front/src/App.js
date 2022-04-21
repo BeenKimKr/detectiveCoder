@@ -1,7 +1,18 @@
 import './App.css'
+import React, { useState, useEffect, useReducer, createContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 function App() {
-  return <h1 className="App text-3xl font-bold underline ">안녕</h1>
+  const navigate = useNavigate()
+
+  const onClick = () => {
+    navigate('/login')
+  }
+  return (
+    <>
+      <button onClick={onClick}>로그인</button>
+    </>
+  )
 }
 
 export default App
