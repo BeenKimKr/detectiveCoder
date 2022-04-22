@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useReducer, createContext } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Home';
 import Portfolio from './Portfolio';
+// import Nav from './components/Nav.js';
 
 function App() {
   return (
