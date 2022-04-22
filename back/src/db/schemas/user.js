@@ -16,7 +16,11 @@ const UserSchema = new Schema(
         },
         birthday: {
             type: String,
-            required: false,
+            required: true,
+        },
+        provider: {
+            type: String,
+            required: true
         },
         badge: {
             type: Array,
