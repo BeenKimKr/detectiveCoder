@@ -1,7 +1,14 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const Home = () => {
+  const navigate = useNavigate();
+  const onClickBtn = () => {
+    navigate(`/cityInfo`);
+  };
   return (
     <>
-      <p class="underline underline-offset-1 ...">The quick brown fox...</p>
+      <button onClick={onClickBtn}>결과페이지로</button>
     </>
   );
 };
