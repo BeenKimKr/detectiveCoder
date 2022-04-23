@@ -1,7 +1,11 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <>
-      <p class="underline underline-offset-1 ...">The quick brown fox...</p>
+      <p>hi</p>
     </>
   );
 };
