@@ -1,1 +1,1 @@
-console.log('화이팅💪');
+console.log('hi');

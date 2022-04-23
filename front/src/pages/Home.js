@@ -1,9 +1,14 @@
+import React from 'react';
+
+import Nav from '../components/Nav';
+import Bigmac from '../components/charts/Bigmac';
+
 const Home = () => {
   return (
-    <>
-      <p class="underline underline-offset-1 ...">The quick brown fox...</p>
-    </>
+    <div>
+      <Nav />
+      <Bigmac />
+    </div>
   );
 };
-
 export default Home;
