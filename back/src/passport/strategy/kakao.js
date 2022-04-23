@@ -6,23 +6,18 @@ const kakao = () => {
     passport.use(
         new KakaoStrategy(
             {
-                clientID: process.env.KAKAO_SECRET_KEY,
+                clientID: process.env.KAKAO_CLIENT_ID,
+                clientSecret: process.env.KAKAO_CLIENT_SECRET,
                 callbackURL: '/users/kakao/callback'
             },
             async (accessToken, refreshToken, profile, done) => {
                 try {
-                    const user = await User.findOne({
-                        where: { id: profile.id, provider: 'kakao' }
-                    });
-
+                    const user = await User.findById({ id: profile.id });
                     if (user) {
                         done(null, user);
                     } else {
                         const newUser = await User.create({
                             id: profile.id,
-                            email: profile._json && profile._json.kakao_account_email,
-                            name: profile.displayName,
-                            birthday: profile.birthday,
                             provider: 'kakao',
                         });
                         done(null, newUser);
