@@ -8,6 +8,8 @@ const passportConfig = require("./passport");
 const app = express();
 passportConfig();
 
+app.use(passport.initialize());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
