@@ -22,7 +22,7 @@ userAuthRouter.get(
         failureRedirect: '/'
     }),
     (req, res) => {
-        res.status(200).send(req.user);
+        res.redirect('/');
     }
 );
 
