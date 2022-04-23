@@ -15,7 +15,7 @@ const Survey = () => {
   console.log(pages);
 
   return (
-    <div class="max-h-full">
+    <div style={{ width: '300px', height: '500px' }}>
       <SaveAnswersContext.Provider value={saveAnswers}>
         <PagesContext.Provider value={changePage}>
           {pages === 0 ? <WeatherSurvey /> : <ContinentsSurvey />}
