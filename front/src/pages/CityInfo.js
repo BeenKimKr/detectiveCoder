@@ -12,7 +12,13 @@ const CityInfo = () => {
       <div style={{ width: '500px', height: '300px' }}>
         <HPIChart />
       </div>
-      <Button text={'아무거나'} type={'main'} />
+      <Button
+        text={'아무거나'}
+        type={'main'}
+        onClick={() => {
+          alert('클릭');
+        }}
+      />
     </>
   );
 };
