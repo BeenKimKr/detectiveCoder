@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Button/Style.css';
+import '../Button/style.css';
 
 const index = ({ text, type, onClick }) => {
   const btnType = ['main', 'serve'].includes(type) ? type : 'main';
