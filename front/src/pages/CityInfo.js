@@ -7,7 +7,7 @@ import WeatherChart from '../components/charts/WeatherChart';
 import HPIChart from '../components/charts/HPIChart';
 
 const CityInfo = () => {
-  const [name, setName] = useState('김나연');
+  const [name, setName] = useState('명탐정');
   const [country, setCountry] = useState('독일');
   const [city, setCity] = useState('베를린');
 
@@ -15,7 +15,9 @@ const CityInfo = () => {
     <div className='container w-screen flex-col h-screen'>
       <Nav />
       <div>
-        {name}님께 {country}-{city}을(를) 추천합니다.
+        <span className='text-lg'>
+          {name}님께 {country}-{city}을(를) 추천합니다.
+        </span>
       </div>
       <div className='flex flex-row'>
         <Image
@@ -31,17 +33,21 @@ const CityInfo = () => {
         </div>
       </div>
       <div className='flex flex-row'>
-        <div className='basis-1/2 items-center justify-center'>
+        <div className='basis-1/2 flex items-center justify-center'>
           <WeatherChart />
         </div>
-        <div className='basis-1/2 justify-center items-center'>
+        <div className='basis-1/2 flex justify-center items-center'>
           <HPIChart />
         </div>
       </div>
-      <div className='flex flex-row'>
-        <WealChart className='basis-1/2' />
+      <div className='flex flex-row '>
         {/* 예솔님 차트 */}
-        <WealChart className='basis-1/2' />
+        <div className='basis-1/2 flex justify-center'>
+          <WealChart />
+        </div>
+        <div className='basis-1/2 flex justify-center'>
+          <WealChart />
+        </div>
       </div>
       <div className='flex space-x-4 justify-end'>
         <Button text='비슷한 나라 보기' type='serve' />

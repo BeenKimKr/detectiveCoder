@@ -28,10 +28,10 @@ const data = [
 
 const WeatherChart = () => {
   return (
-    <ResponsiveContainer width="100%" height="100%">
+    <ResponsiveContainer width={400} height={400}>
       <BarChart width={150} height={40} data={data}>
-        <Bar dataKey="value" fill="#74c0fc " />
-        <XAxis dataKey="month" />
+        <Bar dataKey='value' fill='#74c0fc ' />
+        <XAxis dataKey='month' />
         <YAxis />
       </BarChart>
     </ResponsiveContainer>
