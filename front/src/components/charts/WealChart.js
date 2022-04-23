@@ -1,13 +1,13 @@
 import React, { useCallback, useState } from 'react';
 import { PieChart, Pie, Sector } from 'recharts';
-
+import './style.css';
 const data = [
-  { name: 'GDP', value: 400 },
-  { name: '사회적 지원', value: 300 },
-  { name: '기대 수명', value: 300 },
-  { name: '자유도', value: 200 },
-  { name: '관대함', value: 200 },
-  { name: '부패에 대한 인식', value: 200 },
+  { name: 'GDP', value: 93.4, color: '#ffc9c9' },
+  { name: '사회적 지원', value: 89.5, color: '#fcc2d7' },
+  { name: '기대 수명', value: 94, color: '#eebefa' },
+  { name: '자유도', value: 90, color: '#d0bfff' },
+  { name: '관대함', value: 8.1, color: '#bac8ff' },
+  { name: '부패에 대한 인식', value: 47.1, color: '#a5d8ff' },
 ];
 
 const renderActiveShape = (props) => {
@@ -20,7 +20,7 @@ const renderActiveShape = (props) => {
     outerRadius,
     startAngle,
     endAngle,
-    fill,
+    color,
     payload,
     percent,
     value,
@@ -37,7 +37,7 @@ const renderActiveShape = (props) => {
 
   return (
     <g>
-      <text x={cx} y={cy} dy={8} textAnchor='middle' fill={fill}>
+      <text x={cx} y={cy} dy={8} textAnchor='middle' fill={color}>
         {payload.name}
       </text>
       <Sector
@@ -47,7 +47,7 @@ const renderActiveShape = (props) => {
         outerRadius={outerRadius}
         startAngle={startAngle}
         endAngle={endAngle}
-        fill={fill}
+        fill={color}
       />
       <Sector
         cx={cx}
@@ -56,14 +56,14 @@ const renderActiveShape = (props) => {
         endAngle={endAngle}
         innerRadius={outerRadius + 6}
         outerRadius={outerRadius + 10}
-        fill={fill}
+        fill={color}
       />
       <path
         d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
-        stroke={fill}
+        stroke={color}
         fill='none'
       />
-      <circle cx={ex} cy={ey} r={2} fill={fill} stroke='none' />
+      <circle cx={ex} cy={ey} r={2} fill={color} stroke='none' />
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
