@@ -1,6 +1,7 @@
 import React from 'react';
 import WeatherChart from '../components/charts/WeatherChart';
 import HPIChart from '../components/charts/HPIChart';
+import Button from '../components/Button';
 
 const CityInfo = () => {
   return (
@@ -11,6 +12,7 @@ const CityInfo = () => {
       <div style={{ width: '500px', height: '300px' }}>
         <HPIChart />
       </div>
+      <Button text={'test'} />
     </>
   );
 };
