@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import WealChart from '../components/charts/WealChart';
 import Button from '../components/Button';
 import Image from '@material-tailwind/react/Image';
-
+import WeatherAverageChart from '../components/charts/WeatherAverageChart';
 const CityInfo = () => {
   const [name, setName] = useState('김나연');
   const [country, setCountry] = useState('독일');
@@ -28,7 +28,7 @@ const CityInfo = () => {
           우리 {country}은(는)요 150여개 국가 중 행복순위는 30번째구요.
         </div>
       </div>
-      <div className='space-y-4'>{/* 나연님 차트 */}</div>
+      <div className='space-y-4' style={{ width: '700px', height: '500px' }}><WeatherAverageChart /></div>
       <div className='flex flex-row'>
         <WealChart className='basis-1/2' />
         {/* 예솔님 차트 */}

@@ -1,8 +1,15 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const Home = () => {
+  const navigate = useNavigate();
+  const f = () => {
+    navigate('/cityInfo');
+  };
   return (
-    <>
-      <p class='underline underline-offset-1 ...'>The quick brown fox...</p>
-    </>
+    <div>
+      <button onClick={f}>결과페이지 버튼</button>
+    </div>
   );
 };
 

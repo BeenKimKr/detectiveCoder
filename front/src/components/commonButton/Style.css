@@ -1,0 +1,20 @@
+.myBtn {
+  @apply font-bold py-2 px-4 rounded;
+}
+
+.btn-white {
+  @apply bg-slate-50 text-black;
+}
+.btn-blue {
+  @apply bg-blue-500 text-white;
+}
+.btn-gray {
+  @apply bg-neutral-400 text-black;
+}
+
+.btn-blue:hover {
+  @apply bg-blue-700;
+}
+.btn-gray:hover {
+  @apply bg-neutral-700;
+}
