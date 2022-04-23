@@ -30,15 +30,15 @@ const dummyData = [
 
 const HPIChart = () => {
   return (
-    <ResponsiveContainer width="80%" height="80%">
-      <BarChart data={dummyData} layout="vertical">
-        <XAxis type="number" />
-        <YAxis yAxisId={0} dataKey="factor" type="category" />
-        <YAxis dataKey="max" yAxisId={1} hide />
+    <ResponsiveContainer width={400} height={400}>
+      <BarChart data={dummyData} layout='vertical'>
+        <XAxis type='number' />
+        <YAxis yAxisId={0} dataKey='factor' type='category' />
+        <YAxis dataKey='max' yAxisId={1} hide />
         <Tooltip wrapperStyle={{ width: 100, backgroundColor: '#ccc' }} />
-        <Bar dataKey="value" minPointSize={2} barSize={32}>
+        <Bar dataKey='value' minPointSize={2} barSize={32}>
           {dummyData.map((d, idx) => {
-            return <Cell Cell type="monotone" key={d.factor} fill={d.color} />;
+            return <Cell Cell type='monotone' key={d.factor} fill={d.color} />;
           })}
         </Bar>
       </BarChart>

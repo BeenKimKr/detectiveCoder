@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-// import Nav from '../components/Nav';
+import Nav from '../components/Nav';
 import WealChart from '../components/charts/WealChart';
 import Button from '../components/Button';
 import Image from '@material-tailwind/react/Image';
 import WeatherChart from '../components/charts/WeatherChart';
 import HPIChart from '../components/charts/HPIChart';
+
 const CityInfo = () => {
   const [name, setName] = useState('김나연');
   const [country, setCountry] = useState('독일');
@@ -12,13 +13,13 @@ const CityInfo = () => {
 
   return (
     <div className='container w-screen flex-col h-screen'>
-      {/* <Nav /> */}
-      <div className='space-y-4'>
+      <Nav />
+      <div>
         {name}님께 {country}-{city}을(를) 추천합니다.
       </div>
-      <div className='space-y-4 flex flex-row '>
+      <div className='flex flex-row'>
         <Image
-          className='basis-1/2'
+          className='w-24 h-24 rounded-full shadow-lg'
           src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/383px-Flag_of_Germany.svg.png'
           rounded={true}
           raised={false}
@@ -29,11 +30,11 @@ const CityInfo = () => {
           우리 {country}은(는)요 150여개 국가 중 행복순위는 30번째구요.
         </div>
       </div>
-      <div className='space-y-4' style={{ width: '700px', height: '500px' }}>
-        <div style={{ width: '500px', height: '300px' }}>
+      <div className='flex flex-row'>
+        <div className='basis-1/2 items-center justify-center'>
           <WeatherChart />
         </div>
-        <div style={{ width: '500px', height: '300px' }}>
+        <div className='basis-1/2 justify-center items-center'>
           <HPIChart />
         </div>
       </div>
