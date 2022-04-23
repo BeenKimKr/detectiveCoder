@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const passport = require("passport");
+const { userAuthService } = require("../services/userService");
 
 const userAuthRouter = Router();
 
