@@ -1,20 +1,20 @@
 import React from 'react';
 
-const Nav = () => {
+const Navbar = () => {
   return (
-    <nav class='bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800'>
+    <nav class='bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded'>
       <div class='container flex flex-wrap justify-between items-center mx-auto'>
         <a href='#' class='flex items-center'>
           <img
             src={process.env.PUBLIC_URL + '/imgs/CountryGOGO.png'}
-            class='mr-3 h-10 sm:h-10'
+            class='mr-3 h-6 sm:h-9'
             alt=''
           />
         </a>
         <button
           data-collapse-toggle='mobile-menu'
           type='button'
-          class='inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600'
+          class='inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600'
           aria-controls='mobile-menu'
           aria-expanded='false'
         >
@@ -55,7 +55,6 @@ const Nav = () => {
                 Home
               </a>
             </li>
-
             <li>
               <a
                 href='#'
@@ -80,4 +79,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default Navbar;
