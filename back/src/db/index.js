@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 const { User } = require("./models/User");
 
-const DB_URL =
-    process.env.MONGODB_URL || "mongo_url";
+const DB_URL = process.env.MONGODB_URL || "mongo_url";
 
 mongoose.connect(DB_URL);
 const db = mongoose.connection;

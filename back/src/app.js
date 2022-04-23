@@ -13,7 +13,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// 기본 페이지 
+// 기본 페이지
 app.get("/", (req, res) => {
     res.send("main page");
 });
