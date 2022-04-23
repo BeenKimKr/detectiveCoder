@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
+
 import CityInfo from './pages/cityInfo/CityInfo';
 import './App.css';
 
@@ -9,9 +9,9 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/cityinfo" exact element={<CityInfo />} />
-          <Route path="*" element={<Home />} />
+          <Route path="/cityinfo" element={<CityInfo />} />
+
+          <Route path="*" element={<CityInfo />} />
         </Routes>
       </Router>
     </>
