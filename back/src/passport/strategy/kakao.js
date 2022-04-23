@@ -12,9 +12,9 @@ const kakao = () => {
             },
             async (accessToken, refreshToken, profile, done) => {
                 try {
-                    const user = await User.findById({ id: profile.id });
-                    if (user) {
-                        done(null, user);
+                    const exUser = await User.findById({ id: profile.id });
+                    if (exUser) {
+                        done(null, exUser);
                     } else {
                         const newUser = await User.create({
                             id: profile.id,
