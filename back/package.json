@@ -11,10 +11,12 @@
     "license": "ISC",
     "dependencies": {
         "express": "^4.17.3",
-        "mongoose": "^6.3.0",
+        "express-session": "^1.17.2",
+        "mongoose": "^6.3.1",
         "passport": "^0.5.2",
         "passport-kakao": "^1.0.1",
         "passport-naver": "^1.0.6",
+        "passport-naver-v2": "^2.0.8",
         "uuid": "^8.3.2",
         "yarn": "^1.22.18"
     },
