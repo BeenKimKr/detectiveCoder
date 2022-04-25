@@ -4,6 +4,7 @@ module.exports = {
     extend: {
       colors: {
         'custom-main': '#55b4b7',
+        'custom-main-hover': '#0b7285',
       },
     },
     screens: {

@@ -2,16 +2,18 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import CityInfo from './pages/cityInfo/CityInfo';
-import './App.css';
+import Home from './pages/Home';
+import MainSurvey from './pages/MainSurvey';
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
+          <Route path="/home" exact element={<Home />} />
           <Route path="/cityinfo" element={<CityInfo />} />
-
-          <Route path="*" element={<CityInfo />} />
+          <Route path="/mainsurvey" element={<MainSurvey />} />
+          <Route path="*" element={<Home />} />
         </Routes>
       </Router>
     </>

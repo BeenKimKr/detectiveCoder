@@ -1,7 +1,7 @@
 import React from 'react';
 import '../Button/style.css';
 
-const index = ({ text, type, onClick }) => {
+const CommonButton = ({ text, type, onClick }) => {
   const btnType = ['main', 'serve'].includes(type) ? type : 'main';
   return (
     <button className={['myBtn', `btn-${btnType}`].join(' ')} onClick={onClick}>
@@ -9,5 +9,4 @@ const index = ({ text, type, onClick }) => {
     </button>
   );
 };
-
-export default index;
+export default CommonButton;
