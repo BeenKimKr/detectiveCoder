@@ -4,8 +4,8 @@
 .btn-main {
   @apply bg-custom-main text-white;
 }
-.btn-serve {
-  @apply bg-gray-400 text-black;
+.btn-sub {
+  @apply bg-custom-sub text-black;
 }
 .btn-main:hover {
   @apply bg-custom-main-hover;

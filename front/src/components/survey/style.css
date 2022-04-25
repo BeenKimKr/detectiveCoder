@@ -1,26 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Jua&family=Nanum+Pen+Script&display=swap');
 
-.AnswerContainer {
-  @apply grid grid-cols-2 place-content-center;
-}
-
-.Weather h3 {
-  font-family: 'Gaegu', cursive;
-  font-size: 50px;
+.Weather p {
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-.WeatherCard {
+.Weather button {
   @apply p-5 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100;
 }
 
-.Weather button:focus {
-  @apply bg-gray-200;
+.WeatherCard-spring:focus {
+  @apply bg-pink-100;
+}
+
+.WeatherCard-summer:focus {
+  @apply bg-blue-200;
+}
+
+.WeatherCard-autumn:focus {
+  @apply bg-orange-100;
+}
+
+.WeatherCard-winter:focus {
+  @apply bg-sky-200;
+}
+
+.AnswerContainer {
+  /* @apply grid grid-cols-2 place-content-center; */
+  @apply mx-16;
 }
 
 .AnswerCard {
-  @apply p-6 w-3/4 h-96 mx-16 text-center  bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700;
+  @apply p-6 w-80 h-20  mx-80 mt-4 text-center   bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700;
 }
 
 .AnswerCard h5 {
