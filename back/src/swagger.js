@@ -5,17 +5,14 @@ const options = {
     swaggerDefinition: {
         openapi: '3.0.0',
         info: {
-            title: 'CountryGoGo APIs',
+            title: 'CountryGoGo API',
             version: '1.0.0',
-            description: 'CountryGoGo rest api using swagger and express'
+            description: 'CountryGoGo API with express'
         },
-        servers: [
-            {
-                url: 'http://localhost:5001',
-            },
-        ],
+        host: 'localhost:5001',
+        basePath: '/'
     },
-    apis: []
+    apis: ['./routers/*.js', './swagger/*']
 };
 
 const specs = swaggerJsdoc(options);
