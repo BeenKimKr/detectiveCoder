@@ -10,6 +10,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
+import './style.css';
 
 const dummyData = [
   { factor: 'GDP', value: 93.4, color: '#ffc9c9' },
@@ -30,19 +31,24 @@ const dummyData = [
 
 const HPIChart = () => {
   return (
-    <ResponsiveContainer width="80%" height="80%">
-      <BarChart data={dummyData} layout="vertical">
-        <XAxis type="number" />
-        <YAxis yAxisId={0} dataKey="factor" type="category" />
-        <YAxis dataKey="max" yAxisId={1} hide />
-        <Tooltip wrapperStyle={{ width: 100, backgroundColor: '#ccc' }} />
-        <Bar dataKey="value" minPointSize={2} barSize={32}>
-          {dummyData.map((d, idx) => {
-            return <Cell Cell type="monotone" key={d.factor} fill={d.color} />;
-          })}
-        </Bar>
-      </BarChart>
-    </ResponsiveContainer>
+    <div className='chart'>
+      <span className='chartTitle'>행복 수치를 결정하는 6가지 요인</span>
+      <ResponsiveContainer width={400} height={400}>
+        <BarChart data={dummyData} layout='vertical'>
+          <XAxis type='number' />
+          <YAxis yAxisId={0} dataKey='factor' type='category' />
+          <YAxis dataKey='max' yAxisId={1} hide />
+          <Tooltip wrapperStyle={{ width: 100, backgroundColor: '#ccc' }} />
+          <Bar dataKey='value' minPointSize={2} barSize={32}>
+            {dummyData.map((d, idx) => {
+              return (
+                <Cell Cell type='monotone' key={d.factor} fill={d.color} />
+              );
+            })}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 

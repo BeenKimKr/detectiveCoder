@@ -6,26 +6,13 @@ const UserSchema = new Schema(
             type: String,
             required: true,
         },
-        email: {
+        provider: {
             type: String,
             required: true,
         },
-        name: {
-            type: String,
-            required: true,
-        },
-        nickname: {
-            type: String,
-            required: true,
-        },
-        password: {
-            type: String,
+        badge: {
+            type: Array,
             required: false,
-        },
-        description: {
-            type: String,
-            required: false,
-            default: "설명이 아직 없습니다. 추가해 주세요.",
         },
     },
     {

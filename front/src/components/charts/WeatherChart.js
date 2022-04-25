@@ -28,13 +28,16 @@ const data = [
 
 const WeatherChart = () => {
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <BarChart width={150} height={40} data={data}>
-        <Bar dataKey="value" fill="#74c0fc " />
-        <XAxis dataKey="month" />
-        <YAxis />
-      </BarChart>
-    </ResponsiveContainer>
+    <div className='chart'>
+      <span className='chartTitle'>월별 평균 기온</span>
+      <ResponsiveContainer width={400} height={400}>
+        <BarChart width={150} height={40} data={data}>
+          <Bar dataKey='value' fill='#74c0fc' />
+          <XAxis dataKey='month' />
+          <YAxis />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 
