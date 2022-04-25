@@ -22,8 +22,8 @@ const MainSurvey = () => {
   const [answer, answerDispatch] = useReducer(reducer, []);
   const [pages, setPages] = useState(20);
   const [disabled, setDisabled] = useState(true);
-  const saveAnswers = { setDisabled, data, setData };
-  const changePage = { setPages };
+  const saveAnswers = { setDisabled, data, setData, answerDispatch };
+  const changePage = { pages, setPages };
 
   const onClick = () => {
     answerDispatch({ type: 'INPUT', data: data });

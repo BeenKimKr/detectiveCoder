@@ -5,7 +5,6 @@ const WeatherSurvey = () => {
   const { setDisabled, setData } = useContext(SaveAnswersContext);
 
   const clickWeather = (e) => {
-    setData(e.currentTarget.name);
     setDisabled(false);
   };
 

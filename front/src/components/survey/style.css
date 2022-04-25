@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Jua&family=Nanum+Pen+Script&display=swap');
 
+button {
+  @apply cursor-pointer;
+}
+
 .Weather p {
   font-size: 20px;
   font-weight: bold;
@@ -32,7 +36,11 @@
 }
 
 .AnswerCard {
-  @apply p-6 w-80 h-20  mx-80 mt-4 text-center   bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700;
+  @apply p-6 w-80 h-20  mx-80 mt-4 text-center   bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-100;
+}
+
+.AnswerCard:focus {
+  @apply bg-gray-300;
 }
 
 .AnswerCard h5 {

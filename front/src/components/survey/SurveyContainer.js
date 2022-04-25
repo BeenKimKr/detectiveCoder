@@ -1,25 +1,31 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import './style.css';
 import { SurveyQuestion } from './Question';
+import { SaveAnswersContext } from '../../pages/MainSurvey';
+import { PagesContext } from '../../pages/MainSurvey';
 
 const SurveyContainer = () => {
-  console.log(SurveyQuestion);
+  const [index, setIndex] = useState(0);
+  const { answerDispatch } = useContext(SaveAnswersContext);
+  const { pages, setPages } = useContext(PagesContext);
+
+  const clickOption = (e) => {
+    if (SurveyQuestion.length == index + 1) {
+      alert('1단계 테스트 종료!  2단계로 이동');
+    } else {
+      setIndex(index + 1);
+      setPages(pages + 20);
+      answerDispatch({ type: 'INPUT', data: e.target.name });
+    }
+  };
   return (
     <div className="AnswerContainer">
-      <div className="AnswerCard">
-        <button>
-          <div>
-            <h5>{SurveyQuestion[0].options[0].option}</h5>
-          </div>
-        </button>
-      </div>
-      <div className="AnswerCard">
-        <button>
-          <div>
-            <h5>{}</h5>
-          </div>
-        </button>
-      </div>
+      <button className="AnswerCard" onClick={clickOption}>
+        <h5>{SurveyQuestion[index].options[0].option}</h5>
+      </button>
+      <button className="AnswerCard" onClick={clickOption}>
+        <h5>{SurveyQuestion[index].options[1].option}</h5>
+      </button>
     </div>
   );
 };
