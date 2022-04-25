@@ -9,6 +9,16 @@
   border-radius: 50px;
 }
 
+.bigmacChart {
+  text-align: center;
+  height: 250px;
+  width: 500px;
+  padding: 30px;
+  background-color: whitesmoke;
+  border-radius: 50px;
+  margin-top: 50px;
+}
+
 .chartTitle {
   font-family: 'Jua', sans-serif;
   font-size: larger;
