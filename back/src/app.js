@@ -1,4 +1,5 @@
 const express = require("express");
+const { swaggerUi, specs } = require('./swagger');
 const passport = require("passport");
 const passportConfig = require("./passport");
 const { userAuthRouter } = require("./routers/userRouter");
@@ -12,6 +13,7 @@ app.use((req, res, next) => {
     req.accepts("application/json");
     next();
 });
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { explorer: true }));
 
 // 기본 페이지
 app.get("/", (req, res) => {
