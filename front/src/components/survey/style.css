@@ -39,9 +39,9 @@ button {
   @apply p-6 w-80 h-20  mx-80 mt-4 text-center   bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-100;
 }
 
-.AnswerCard:focus {
+/* .AnswerCard:focus {
   @apply bg-gray-300;
-}
+} */
 
 .AnswerCard h5 {
   @apply mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white;

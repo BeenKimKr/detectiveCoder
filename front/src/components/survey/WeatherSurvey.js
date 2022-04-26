@@ -2,10 +2,11 @@ import React, { useContext } from 'react';
 import { SaveAnswersContext } from '../../pages/MainSurvey';
 
 const WeatherSurvey = () => {
-  const { setDisabled, setData } = useContext(SaveAnswersContext);
+  const { setDisabled, setSelect } = useContext(SaveAnswersContext);
 
   const clickWeather = (e) => {
     setDisabled(false);
+    setSelect(e.currentTarget.name);
   };
 
   return (

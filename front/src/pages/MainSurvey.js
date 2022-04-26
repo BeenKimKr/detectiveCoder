@@ -1,5 +1,5 @@
 // 설문조사 페이지
-import React, { useState, createContext, useReducer } from 'react';
+import React, { useState, createContext, useReducer, useEffect } from 'react';
 import CommonButton from '../components/Button/CommonButton';
 import SurveyContainer from '../components/survey/SurveyContainer';
 import WeatherSurvey from '../components/survey/WeatherSurvey';
@@ -18,18 +18,29 @@ const reducer = (state, action) => {
 };
 
 const MainSurvey = () => {
-  const [data, setData] = useState('');
+  const [select, setSelect] = useState('');
   const [answer, answerDispatch] = useReducer(reducer, []);
   const [pages, setPages] = useState(20);
   const [disabled, setDisabled] = useState(true);
-  const saveAnswers = { setDisabled, data, setData, answerDispatch };
+  const saveAnswers = {
+    setDisabled,
+    select,
+    setSelect,
+    answerDispatch,
+    answer,
+  };
   const changePage = { pages, setPages };
 
   const onClick = () => {
-    answerDispatch({ type: 'INPUT', data: data });
+    console.log(select);
+    answerDispatch({ type: 'INPUT', data: select });
     setPages(40);
     setDisabled(true);
   };
+
+  useEffect(() => {
+    console.log(answer);
+  }, [answer]);
 
   return (
     <div className="container w-screen flex-col h-screen">
