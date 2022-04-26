@@ -12,8 +12,8 @@ const userAuthRouter = Router();
 
 /**
  * @swagger
- * path:
- *  /naver:
+ * paths:
+ *  /users/naver:
  *    get:
  *      summary: Register using Naver
  *      tags: [Users]
@@ -22,8 +22,8 @@ userAuthRouter.get("/naver", passport.authenticate("naver"));
 
 /**
  * @swagger
- * path:
- *  /naver/callback:
+ * paths:
+ *  /users/naver/callback:
  *    get:
  *      summary: Get user
  *      tags: [Users]
@@ -47,8 +47,8 @@ userAuthRouter.get(
 
 /**
  * @swagger
- * path:
- *  /kakao:
+ * paths:
+ *  /users/kakao:
  *    get:
  *      summary: Register using Kakao
  *      tags: [Users]
@@ -57,8 +57,8 @@ userAuthRouter.get("/kakao", passport.authenticate("kakao"));
 
 /**
  * @swagger
- * path:
- *  /kakao/callback:
+ * paths:
+ *  /users/kakao/callback:
  *    get:
  *      summary: Get user
  *      tags: [Users]
