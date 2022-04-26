@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Nav from '../../components/Nav';
+import Nav from '../../components/Nav/Nav';
 import WealChart from '../../components/charts/WealChart';
 import Button from '../../components/Button';
 import Image from '@material-tailwind/react/Image';
