@@ -5,6 +5,8 @@ import CityInfo from './pages/cityInfo/CityInfo';
 import Home from './pages/Home';
 import MainSurvey from './pages/MainSurvey';
 
+import './App.css';
+
 function App() {
   return (
     <>

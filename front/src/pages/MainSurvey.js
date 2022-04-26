@@ -5,7 +5,7 @@ import SurveyContainer from '../components/survey/SurveyContainer';
 import WeatherSurvey from '../components/survey/WeatherSurvey';
 
 export const SaveAnswersContext = createContext();
-export const PagesContext = createContext();
+export const PercentContext = createContext();
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -19,31 +19,32 @@ const reducer = (state, action) => {
 
 const MainSurvey = () => {
   const [answer, answerDispatch] = useReducer(reducer, []);
-  const [pages, setPages] = useState(20);
+  const [step, setStep] = useState(1);
+  const [percent, setPercent] = useState(0);
   const saveAnswers = {
     answerDispatch,
     answer,
   };
-  const changePage = { pages, setPages };
+  const changePercent = { percent, setPercent, step, setStep };
 
   useEffect(() => {
     console.log(answer);
   }, [answer]);
 
   return (
-    <div className="container w-screen flex-col h-screen">
+    <div className="container w-screen h-screen  flex-auto">
       <div class="w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700">
         <div
           class="h-6 bg-custom-main rounded-full dark:bg-gray-300"
-          style={{ width: `${pages}%` }}
+          style={{ width: `${percent}%` }}
         ></div>
       </div>
       <div className="mt-60 mx-0">
-        <PagesContext.Provider value={changePage}>
+        <PercentContext.Provider value={changePercent}>
           <SaveAnswersContext.Provider value={saveAnswers}>
-            {pages === 20 ? <WeatherSurvey /> : <SurveyContainer />}
+            {percent === 0 ? <WeatherSurvey /> : <SurveyContainer />}
           </SaveAnswersContext.Provider>
-        </PagesContext.Provider>
+        </PercentContext.Provider>
       </div>
     </div>
   );

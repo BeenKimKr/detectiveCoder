@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import { SaveAnswersContext } from '../../pages/MainSurvey';
-import { PagesContext } from '../../pages/MainSurvey';
+import { PercentContext } from '../../pages/MainSurvey';
 
 const WeatherSurvey = () => {
   const { answerDispatch } = useContext(SaveAnswersContext);
-  const { setPages } = useContext(PagesContext);
+  const { setPercent } = useContext(PercentContext);
 
   const clickWeather = (e) => {
     answerDispatch({ type: 'INPUT', data: e.currentTarget.name });
-    setPages(40);
+    setPercent(20);
   };
 
   return (

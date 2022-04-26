@@ -20,11 +20,11 @@ button {
 
 .AnswerContainer {
   /* @apply grid grid-cols-2 place-content-center; */
-  @apply mx-16;
+  @apply grid grid-cols-1 place-content-center;
 }
 
 .AnswerCard {
-  @apply p-6 w-80 h-20  mx-80 mt-4 text-center   bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-100;
+  @apply p-6 w-96 h-20  mt-4 mx-52 text-center   bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-100;
 }
 
 /* .AnswerCard:focus {
@@ -32,5 +32,5 @@ button {
 } */
 
 .AnswerCard h5 {
-  @apply mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white;
+  @apply mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white;
 }
