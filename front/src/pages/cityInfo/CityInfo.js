@@ -17,7 +17,7 @@ const CityInfo = () => {
   return (
     <div className='container w-screen flex-col h-screen'>
       <Nav />
-      <div className=' my-8'>
+      <div className='my-8'>
         <span className='title'>
           {name}님께
           <p className='inputCity'>
@@ -26,7 +26,7 @@ const CityInfo = () => {
           을(를) 추천합니다.
         </span>
       </div>
-      <div className='flex flex-row'>
+      <div className=' flex flex-row'>
         <div className='my-8'>
           <Image
             className='w-64 h-64 rounded-full shadow-lg'
@@ -36,7 +36,7 @@ const CityInfo = () => {
             alt='국기 사진'
           />
         </div>
-        <div className='cityInfo'>
+        <div className='basis-1/2 cityInfo'>
           우리 {country}은(는)요, 150여개 국가 중 행복순위는 30번째구요.
           <br />
           1인당 GDP 13위!

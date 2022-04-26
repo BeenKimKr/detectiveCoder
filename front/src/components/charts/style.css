@@ -5,8 +5,9 @@
   height: 500px;
   width: 500px;
   padding: 30px;
-  background-color: whitesmoke;
+  background-color: #55b4b714;
   border-radius: 50px;
+  font-weight: 800;
 }
 
 .bigmacChart {
@@ -14,9 +15,10 @@
   height: 250px;
   width: 500px;
   padding: 30px;
-  background-color: whitesmoke;
+  background-color: #55b4b714;
   border-radius: 50px;
   margin-top: 50px;
+  font-weight: 800;
 }
 
 .chartTitle {
