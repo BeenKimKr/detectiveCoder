@@ -13,7 +13,6 @@ const SurveyContainer = () => {
     if (SurveyQuestion.length == index + 1) {
       answerDispatch({ type: 'INPUT', data: e.currentTarget.value });
       alert('1단계 테스트 종료!  2단계로 이동');
-      console.log(answer);
     } else {
       setIndex(index + 1);
       setPages(pages + 20);

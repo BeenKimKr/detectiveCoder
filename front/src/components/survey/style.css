@@ -10,24 +10,12 @@ button {
   margin-bottom: 10px;
 }
 
-.Weather button {
+.WeatherCard {
   @apply p-5 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100;
 }
 
-.WeatherCard-spring:focus {
-  @apply bg-pink-100;
-}
-
-.WeatherCard-summer:focus {
-  @apply bg-blue-200;
-}
-
-.WeatherCard-autumn:focus {
-  @apply bg-orange-100;
-}
-
-.WeatherCard-winter:focus {
-  @apply bg-sky-200;
+.WeatherCard:focus {
+  @apply bg-gray-100;
 }
 
 .AnswerContainer {

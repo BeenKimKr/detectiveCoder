@@ -18,25 +18,13 @@ const reducer = (state, action) => {
 };
 
 const MainSurvey = () => {
-  const [select, setSelect] = useState('');
   const [answer, answerDispatch] = useReducer(reducer, []);
   const [pages, setPages] = useState(20);
-  const [disabled, setDisabled] = useState(true);
   const saveAnswers = {
-    setDisabled,
-    select,
-    setSelect,
     answerDispatch,
     answer,
   };
   const changePage = { pages, setPages };
-
-  const onClick = () => {
-    console.log(select);
-    answerDispatch({ type: 'INPUT', data: select });
-    setPages(40);
-    setDisabled(true);
-  };
 
   useEffect(() => {
     console.log(answer);
@@ -57,16 +45,6 @@ const MainSurvey = () => {
           </SaveAnswersContext.Provider>
         </PagesContext.Provider>
       </div>
-      {pages === 20 && (
-        <div className="mt-6 float-right">
-          <CommonButton
-            text={'확인'}
-            type={'serve'}
-            onClick={onClick}
-            disabled={disabled}
-          />
-        </div>
-      )}
     </div>
   );
 };
