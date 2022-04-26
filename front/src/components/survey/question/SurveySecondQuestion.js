@@ -5,11 +5,11 @@ export const SurveySecondQuestion = [
     options: [
       {
         id: 'a',
-        optioin: '사회복지',
+        option: '물가',
       },
       {
         id: 'd',
-        option: '물가',
+        option: '사회복지',
       },
     ],
   },
@@ -19,7 +19,7 @@ export const SurveySecondQuestion = [
     options: [
       {
         id: 'e',
-        optioin: '경제',
+        option: '경제',
       },
       {
         id: 'h',

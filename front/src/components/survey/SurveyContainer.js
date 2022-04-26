@@ -50,11 +50,17 @@ const SurveyContainer = () => {
         <div>
           <p>일단</p>
           {SurveySecondQuestion.filter((it) => it.id === display[0]).map(
-            (x) => {
-              <button className="AnswerCard">
+            (x) => (
+              <>
                 <p>{x.Q}</p>
-              </button>;
-            }
+                <button className="AnswerCard">
+                  <h5>{x.options[0].option}</h5>
+                </button>
+                <button className="AnswerCard">
+                  <h5>{x.options[1].option}</h5>
+                </button>
+              </>
+            )
           )}
         </div>
       )}
