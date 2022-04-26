@@ -9,15 +9,18 @@ const options = {
             version: '1.0.0',
             description: 'CountryGoGo API with express'
         },
-        host: 'localhost:5001',
-        basePath: '/'
+        servers: [
+            {
+                url: `http://localhost:${process.env.SERVER_PORT}`
+            },
+        ],
     },
-    apis: ['./routers/*.js', './swagger/*']
+    apis: ['./src/db/schemas/*.js', './src/routers/*.js']
 };
 
 const specs = swaggerJsdoc(options);
 
 module.exports = {
-    swaggerUi,
-    specs
+    specs,
+    swaggerUi
 };

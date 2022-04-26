@@ -13,7 +13,7 @@ app.use((req, res, next) => {
     req.accepts("application/json");
     next();
 });
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, { explorer: true }));
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(specs, { explorer: false }));
 
 // 기본 페이지
 app.get("/", (req, res) => {
