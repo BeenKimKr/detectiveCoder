@@ -15,7 +15,7 @@ const CityInfo = () => {
   const [city, setCity] = useState('베를린');
 
   return (
-    <div className='container w-screen flex-col h-screen'>
+    <div className='container flex-col p-2.5'>
       <Nav />
       <div className=' my-8'>
         <span className='title'>
@@ -61,7 +61,6 @@ const CityInfo = () => {
         </div>
       </div>
       <div className='flex flex-row '>
-        {/* 예솔님 차트 */}
         <div className='basis-1/2 flex justify-center'>
           <Bigmac />
         </div>

@@ -3,20 +3,31 @@
 .chart {
   text-align: center;
   height: 500px;
-  width: 500px;
-  padding: 30px;
+  width: 450px;
+  padding-top: 40px;
   background-color: whitesmoke;
   border-radius: 50px;
 }
 
 .bigmacChart {
   text-align: center;
-  height: 250px;
+  height: 300px;
   width: 500px;
-  padding: 30px;
+  background-color: whitesmoke;
+  padding-top: 70px;
+  border-radius: 50px;
+  margin-top: 15px;
+}
+
+.wealChart {
+  text-align: center;
+  height: 300px;
+  width: 470px;
+  padding-top: 20px;
   background-color: whitesmoke;
   border-radius: 50px;
-  margin-top: 50px;
+  margin-top: 15px;
+  margin-bottom: 50px;
 }
 
 .chartTitle {

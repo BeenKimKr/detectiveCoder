@@ -13,12 +13,8 @@ import {
 import './style.css';
 
 const dummyData = [
-  { factor: '우리나라', price: 5600, color: '#ffc9c9' },
-  {
-    factor: '독일',
-    price: 7000,
-    color: '#fcc2d7',
-  },
+  { factor: '한국', price: 5600, color: '#ffc9c9' },
+  { factor: '독일', price: 7000, color: '#fcc2d7' },
 ];
 
 const Bigmac = () => {
