@@ -12,17 +12,14 @@ import './style.css';
 const CityInfo = () => {
   const [name, setName] = useState('명탐정');
   const [country, setCountry] = useState('독일');
-  const [city, setCity] = useState('베를린');
 
   return (
-    <div className='container flex-col p-2.5'>
+    <div className='container flex-col p-2'>
       <Nav />
       <div className=' my-8'>
         <span className='title'>
           {name}님께
-          <p className='inputCity'>
-            {country}-{city}
-          </p>
+          <p className='inputCity'>{country}</p>
           을(를) 추천합니다.
         </span>
       </div>
@@ -30,6 +27,7 @@ const CityInfo = () => {
         <div className='my-8'>
           <Image
             className='w-64 h-64 rounded-full shadow-lg'
+            // https://${process.env.AWS_S3_BUCKET}.s3.${AWS_REGION}.amazonaws.com/flags_img/
             src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/383px-Flag_of_Germany.svg.png'
             rounded={true}
             raised={false}
