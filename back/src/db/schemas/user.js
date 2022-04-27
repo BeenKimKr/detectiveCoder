@@ -25,23 +25,51 @@ const { Schema, model } = require("mongoose");
  */
 
 const UserSchema = new Schema(
-    {
-        id: {
-            type: String,
-            required: true,
-        },
-        provider: {
-            type: String,
-            required: true,
-        },
-        badge: {
-            type: Array,
-            required: false,
-        },
+  {
+    id: {
+      type: String,
+      required: true,
     },
-    {
-        timestamps: true,
-    }
+    provider: {
+      type: String,
+      required: true,
+    },
+    nickname: {
+      type: String,
+      required: false,
+    },
+    email: {
+      type: String,
+      required: false,
+    },
+    gender: {
+      type: String,
+      required: false,
+    },
+    age: {
+      type: String,
+      required: false,
+    },
+    birthday: {
+      type: String,
+      required: false,
+    },
+    name: {
+      type: String,
+      required: false,
+    },
+    phoneNumber: {
+      type: String,
+      required: false,
+    },
+    badge: {
+      type: Array,
+      required: false,
+    },
+  },
+  {
+    timestamps: true,
+  }
 );
 
 const UserModel = model("User", UserSchema);
