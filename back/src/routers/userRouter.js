@@ -91,10 +91,8 @@ userAuthRouter.get(
  *      responses:
  *        "200":
  *          description: Delete user info
- *          content:
- *            application/json:
- *              schema:
- *                $ref: '#/components/schemas/User'
+ *          schema:
+ *            $ref: '#/components/schemas/User'
  */
 userAuthRouter.delete("/:id", async (req, res, next) => {
   try {
