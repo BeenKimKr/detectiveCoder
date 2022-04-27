@@ -16,15 +16,6 @@ const kakao = () => {
           if (exUser) {
             done(null, exUser);
           } else {
-            console.log({
-              id: profile.id,
-              provider: 'kakao',
-              name: profile._json.kakao_account.profile.nickname,
-              email: profile._json.kakao_account.email,
-              gender: profile._json.kakao_account.gender,
-              age: profile._json.kakao_account.age_range,
-              birthday: profile._json.kakao_account.birthday
-            });
             const newUser = await User.create({
               id: profile.id,
               provider: 'kakao',
