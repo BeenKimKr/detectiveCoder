@@ -36,13 +36,13 @@ userAuthRouter.get("/naver", passport.authenticate("naver"));
  *                $ref: '#/components/schemas/User'
  */
 userAuthRouter.get(
-    "/naver/callback",
-    passport.authenticate("naver", {
-        failureRedirect: "/",
-    }),
-    (req, res) => {
-        res.redirect("/");
-    }
+  "/naver/callback",
+  passport.authenticate("naver", {
+    failureRedirect: "/",
+  }),
+  (req, res) => {
+    res.redirect("/");
+  }
 );
 
 /**
@@ -71,13 +71,37 @@ userAuthRouter.get("/kakao", passport.authenticate("kakao"));
  *                $ref: '#/components/schemas/User'
  */
 userAuthRouter.get(
-    "/kakao/callback",
-    passport.authenticate("kakao", {
-        failureRedirect: "/",
-    }),
-    (req, res) => {
-        res.redirect("/");
-    }
+  "/kakao/callback",
+  passport.authenticate("kakao", {
+    failureRedirect: "/",
+  }),
+  (req, res) => {
+    res.redirect("/");
+  }
 );
+
+/**
+ * @swagger
+ * paths:
+ *  /users/:id:
+ *    delete:
+ *      summary: Delete user info
+ *      tags: [Users]
+ *      responses:
+ *        "200":
+ *          description: Delete user info
+ *          schema:
+ *            $ref: '#/components/schemas/User'
+ */
+userAuthRouter.delete("/:id", async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    await userAuthService.deleteUser({ id });
+    res.status(200).send();
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 module.exports = { userAuthRouter };
