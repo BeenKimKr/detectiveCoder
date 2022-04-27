@@ -2,35 +2,58 @@ body {
   padding: 0px;
   margin: 0px;
 }
+
 .bg {
+  position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   margin: 0px auto;
-  position: relative;
 }
+
 video {
   height: 100%;
   width: 100%;
+  margin: 0;
+  padding: 0;
 }
+
 .nav {
   position: absolute;
   margin: 0px auto;
   top: 0%;
 }
-.button {
-  position: relative;
+
+.TextBtnContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   width: 100%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -500%);
+  position: absolute;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  margin: 0 auto;
 }
-.text {
-  position: relative;
-  width: 100%;
+
+.TextContainer {
+  align-items: center;
   text-align: center;
-  font-size: 48px;
-  color: #080808;
+  margin-right: 300px;
+}
+
+.ButtonContainer {
+  text-align: center;
+}
+
+.text {
+  position: absolute;
+}
+
+.button {
+  position: absolute;
+  margin-top: 50px;
 }
 
 /*------------------*/

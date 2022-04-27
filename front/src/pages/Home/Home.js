@@ -6,20 +6,22 @@ import video from './Clouds.mp4';
 const Home = () => {
   // const navigate = useNavigate();
   return (
-    <div className='container flex-col '>
-      <div class='bg'>
-        <video muted autoPlay loop>
-          <source src={video} type='video/mp4' />
-        </video>
-      </div>
-      <div>
+    <div className="container flex-col ">
+      <div class="bg">
         <Navmain />
-
-        <text class='text'>
-          <p>당신과 맞는 나라를 찾아보세요!</p>
-        </text>
-
-        <button class='button'>on</button>
+        <div className="TextBtnContainer">
+          <div className="TextContainer">
+            <span className="text">당신과 맞는 나라를 찾아보세요!</span>
+          </div>
+          <div className="ButtonContainer">
+            <button class="button">on</button>
+          </div>
+        </div>
+        <div>
+          <video muted autoPlay loop>
+            <source src={video} type="video/mp4" />
+          </video>
+        </div>
       </div>
     </div>
   );
