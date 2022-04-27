@@ -41,7 +41,6 @@ userAuthRouter.get(
     failureRedirect: "/",
   }),
   (req, res) => {
-    console.log(Object.keys(res));
     res.redirect("/");
   }
 );

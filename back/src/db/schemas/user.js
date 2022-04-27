@@ -75,14 +75,6 @@ const UserSchema = new Schema(
       type: String,
       required: false,
     },
-    name: {
-      type: String,
-      required: false,
-    },
-    phoneNumber: {
-      type: String,
-      required: false,
-    },
     badge: {
       type: Array,
       required: false,
