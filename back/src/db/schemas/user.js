@@ -9,18 +9,39 @@ const { Schema, model } = require("mongoose");
  *        required:
  *          - id
  *          - provider
+ *          - name
  *        properties:
  *          id:
  *            type: String
  *          provider:
  *            type: String
  *            description: Source of data
+ *          name:
+ *            type: String
+ *            description: Name of user
+ *          email:
+ *            type: String
+ *            description: Mail address
+ *          gender:
+ *            type: String
+ *            description: Gender of user
+ *          age:
+ *            type: String
+ *            description: Age of user
+ *          birthday:
+ *            type: String
+ *            description: Birthday of user
  *          badge:
  *            type: Array
  *            description: Badges received by the user
  *        example:
- *           id: 6Ffds790H-hiOB8fdGd70F7sLg_dfFD90FI82
+ *           id: '6Ffds790H-hiOB8fdGd70F7sLg_dfFD90FI82'
  *           provider: 'naver'
+ *           name: 'HongGilDong'
+ *           email: 'none@abcdef.com'
+ *           gender: 'male'
+ *           age: '20~29'
+ *           birthday: '0101'
  *           badge: ['Germany', 'the United States']
  */
 
@@ -34,9 +55,9 @@ const UserSchema = new Schema(
       type: String,
       required: true,
     },
-    nickname: {
+    name: {
       type: String,
-      required: false,
+      required: true,
     },
     email: {
       type: String,
