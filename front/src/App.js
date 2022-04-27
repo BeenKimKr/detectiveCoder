@@ -1,15 +1,19 @@
-import React, { useState, useEffect, useReducer, createContext } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './Home';
-import Portfolio from './Portfolio';
+
+import CityInfo from './pages/cityInfo/CityInfo';
+import AllCities from './pages/allCities/AllCities';
+import './App.css';
+import Home from './pages/Home';
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
-          <Route path='/' exact element={<Home />} />
-          <Route path='/mypage' exact element={<Portfolio />} />
+          <Route path='/main' element={<Home />} />
+          <Route path='/cityinfo' element={<CityInfo />} />
+          <Route path='/allcities' element={<AllCities />} />
           <Route path='*' element={<Home />} />
         </Routes>
       </Router>

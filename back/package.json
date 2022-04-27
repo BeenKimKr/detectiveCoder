@@ -1,0 +1,31 @@
+{
+    "name": "back",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "dev_KB, dev_GM, dev_TS",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.3",
+        "express-session": "^1.17.2",
+        "mongoose": "^6.3.0",
+        "passport": "^0.5.2",
+        "passport-kakao": "^1.0.1",
+        "passport-naver": "^1.0.6",
+        "passport-naver-v2": "^2.0.8",
+        "uuid": "^8.3.2",
+        "yarn": "^1.22.18"
+    },
+    "devDependencies": {
+        "dotenv": "^16.0.0",
+        "eslint": "^8.13.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "nodemon": "^2.0.15",
+        "prettier": "2.6.2"
+    }
+}
