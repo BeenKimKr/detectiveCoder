@@ -16,7 +16,7 @@ export const SurveyFirstQuestion = [
     Q: '삶의 자유 vs 물가',
     options: [
       {
-        id: '삶의 자유',
+        id: '삶의자유',
         option: '매일 풀만 먹는 남한에서 살기. 빅맥이 귀한 음식...🍔',
       },
       {
@@ -42,7 +42,7 @@ export const SurveyFirstQuestion = [
     Q: '기대 수명 vs 관대함',
     options: [
       {
-        id: '기대 수명',
+        id: '기대수명',
         option: '100세까지 살지만, 평생 이웃 친구 하나없이 살기.',
       },
       {

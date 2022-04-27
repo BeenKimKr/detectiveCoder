@@ -12,31 +12,29 @@ const SurveyContainer = () => {
   const [display, setDisplay] = useState([]);
 
   const clickOption = (e) => {
-    if (step == 1) {
-      if (SurveyFirstQuestion.length == index + 1) {
-        answerDispatch({ type: 'INPUT', data: e.currentTarget.value });
-        setPercent(percent + 20);
-        setIndex(0);
-        setStep(2);
-      } else {
-        setIndex(index + 1);
-        setPercent(percent + 20);
-        answerDispatch({ type: 'INPUT', data: e.currentTarget.value });
-      }
-    } else if (step == 2) {
-      // step 2 일때
+    if (SurveyFirstQuestion.length == index + 1) {
+      answerDispatch({ type: 'INPUT', data: e.currentTarget.value });
+      setPercent(percent + 20);
+      setIndex(0);
+      setStep(2);
+      console.log(index);
     } else {
-      // step 3일때!
+      setIndex(index + 1);
+      setPercent(percent + 20);
+      answerDispatch({ type: 'INPUT', data: e.currentTarget.value });
     }
-  };
+  }; // index == 4
 
-  if (step == 2) {
-    console.log(display);
-    const temp = answer.slice(1, 6);
-    display.push([temp[0], temp[1]].join(''));
-    display.push([temp[2], temp[3]].join(''));
-  }
-
+  useEffect(() => {
+    if (step == 2) {
+      console.log(answer);
+      console.log(display);
+      const temp = answer.slice(1, 6);
+      setDisplay([temp[0], temp[1]].join(''));
+      setDisplay([temp[2], temp[3]].join(''));
+    }
+  }, [step, answer, display]);
+  // 로직
   return (
     <div className="AnswerContainer">
       {step === 1 ? (
