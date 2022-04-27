@@ -26,7 +26,7 @@ const CityInfo = () => {
       <div className='flex flex-row'>
         <div className='my-8'>
           <Image
-            className='w-64 h-64 rounded-full shadow-lg'
+            className='w-48 h-48 md:w-64 md:h-64 rounded-full shadow-lg'
             // https://${process.env.AWS_S3_BUCKET}.s3.${AWS_REGION}.amazonaws.com/flags_img/
             src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/383px-Flag_of_Germany.svg.png'
             rounded={true}
@@ -50,19 +50,19 @@ const CityInfo = () => {
           부패 127위
         </div>
       </div>
-      <div className='flex flex-row'>
-        <div className='basis-1/2 flex items-center justify-center'>
+      <div className='flex flex-col lg:flex-row'>
+        <div className='flex justify-center items-center lg:basis-1/2 mb-3 '>
           <WeatherChart />
         </div>
-        <div className='basis-1/2 flex justify-center items-center'>
+        <div className='flex justify-center items-center lg:basis-1/2 mb-3 '>
           <HPIChart />
         </div>
       </div>
-      <div className='flex flex-row '>
-        <div className='basis-1/2 flex justify-center'>
+      <div className='flex flex-col lg:flex-row '>
+        <div className='flex justify-center lg:basis-1/2 '>
           <Bigmac />
         </div>
-        <div className='basis-1/2 flex justify-center'>
+        <div className='flex justify-center lg:basis-1/2 '>
           <WealChart />
         </div>
       </div>
