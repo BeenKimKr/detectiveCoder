@@ -13,25 +13,21 @@ import {
 import './style.css';
 
 const dummyData = [
-  { factor: 'GDP', value: 93.4, color: '#ffc9c9' },
-  { factor: '사회적 지원', value: 89.5, color: '#fcc2d7' },
-  { factor: '기대 수명', value: 94, color: '#eebefa' },
-  { factor: '자유도', value: 90, color: '#d0bfff' },
-  { factor: '관대함', value: 8.1, color: '#bac8ff' },
-  { factor: '부패에 대한 인식', value: 47.1, color: '#a5d8ff' },
+  { factor: '한국', price: 5600, color: '#ffc9c9' },
+  { factor: '독일', price: 7000, color: '#fcc2d7' },
 ];
 
-const HPIChart = () => {
+const Bigmac = () => {
   return (
-    <div className='chart'>
-      <span className='chartTitle'>행복 수치를 결정하는 6가지 요인</span>
-      <ResponsiveContainer width={400} height={400}>
+    <div className='bigmacChart'>
+      <span className='chartTitle'>빅맥으로 알아보는 물가</span>
+      <ResponsiveContainer width={400} height={150}>
         <BarChart data={dummyData} layout='vertical'>
           <XAxis type='number' />
           <YAxis yAxisId={0} dataKey='factor' type='category' />
           <YAxis dataKey='max' yAxisId={1} hide />
           <Tooltip wrapperStyle={{ width: 100, backgroundColor: '#ccc' }} />
-          <Bar dataKey='value' minPointSize={2} barSize={32}>
+          <Bar dataKey='price' minPointSize={2} barSize={32}>
             {dummyData.map((d, idx) => {
               return (
                 <Cell Cell type='monotone' key={d.factor} fill={d.color} />
@@ -44,4 +40,4 @@ const HPIChart = () => {
   );
 };
 
-export default HPIChart;
+export default Bigmac;

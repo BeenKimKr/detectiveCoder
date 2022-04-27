@@ -5,6 +5,7 @@ import Button from '../../components/Button/CommonButton';
 import Image from '@material-tailwind/react/Image';
 import WeatherChart from '../../components/charts/WeatherChart';
 import HPIChart from '../../components/charts/HPIChart';
+import Bigmac from '../../components/charts/Bigmac';
 
 import './style.css';
 
@@ -60,9 +61,8 @@ const CityInfo = () => {
         </div>
       </div>
       <div className="flex flex-row ">
-        {/* 예솔님 차트 */}
         <div className="basis-1/2 flex justify-center">
-          <WealChart />
+          <Bigmac />
         </div>
         <div className="basis-1/2 flex justify-center">
           <WealChart />
