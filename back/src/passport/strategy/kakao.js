@@ -19,7 +19,7 @@ const kakao = () => {
             const newUser = await User.create({
               id: profile.id,
               provider: 'kakao',
-              nickname: profile._json.kakao_account.profile.nickname,
+              name: profile._json.kakao_account.profile.nickname,
               email: profile._json.kakao_account.email,
               gender: profile._json.kakao_account.gender,
               age: profile._json.kakao_account.age_range,
