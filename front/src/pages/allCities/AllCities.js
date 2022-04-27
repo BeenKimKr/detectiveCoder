@@ -9,7 +9,7 @@ import MapChart from '../../components/MapChart';
 const AllCities = () => {
   const [content, setContent] = useState('');
   return (
-    <div className='container h-screen w-screen md:flex'>
+    <div className='container h-screen w-screen'>
       <Nav />
       <MapChart setTooltipContent={setContent} />
       <ReactTooltip place='right'>
