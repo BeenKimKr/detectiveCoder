@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import './style.css';
 import { SurveyFirstQuestion } from './question/SurveyFirstQuestion';
 import { SurveySecondQuestion } from './question/SurveySecondQuestion';
@@ -12,20 +12,30 @@ const SurveyContainer = () => {
   const [display, setDisplay] = useState([]);
 
   const clickOption = (e) => {
-    console.log(SurveyFirstQuestion);
-    if (SurveyFirstQuestion.length == index + 1) {
-      answerDispatch({ type: 'INPUT', data: e.currentTarget.value });
-      setPercent(percent + 20);
-      const temp = answer.slice(1, 6);
-      display.push([temp[0], temp[1]].join(''));
-      display.push([temp[2], temp[3]].join(''));
-      setStep(2);
+    if (step == 1) {
+      if (SurveyFirstQuestion.length == index + 1) {
+        answerDispatch({ type: 'INPUT', data: e.currentTarget.value });
+        setPercent(percent + 20);
+        setIndex(0);
+        setStep(2);
+      } else {
+        setIndex(index + 1);
+        setPercent(percent + 20);
+        answerDispatch({ type: 'INPUT', data: e.currentTarget.value });
+      }
+    } else if (step == 2) {
+      // step 2 일때
     } else {
-      setIndex(index + 1);
-      setPercent(percent + 20);
-      answerDispatch({ type: 'INPUT', data: e.currentTarget.value });
+      // step 3일때!
     }
   };
+
+  if (step == 2) {
+    console.log(display);
+    const temp = answer.slice(1, 6);
+    display.push([temp[0], temp[1]].join(''));
+    display.push([temp[2], temp[3]].join(''));
+  }
 
   return (
     <div className="AnswerContainer">
@@ -48,15 +58,22 @@ const SurveyContainer = () => {
         </>
       ) : (
         <div>
-          <p>일단</p>
-          {SurveySecondQuestion.filter((it) => it.id === display[0]).map(
+          {SurveySecondQuestion.filter((it) => it.id == display[index]).map(
             (x) => (
               <>
                 <p>{x.Q}</p>
-                <button className="AnswerCard">
+                <button
+                  className="AnswerCard"
+                  onClick={clickOption}
+                  value={x.options[0].option}
+                >
                   <h5>{x.options[0].option}</h5>
                 </button>
-                <button className="AnswerCard">
+                <button
+                  className="AnswerCard"
+                  onClick={clickOption}
+                  value={x.options[1].option}
+                >
                   <h5>{x.options[1].option}</h5>
                 </button>
               </>

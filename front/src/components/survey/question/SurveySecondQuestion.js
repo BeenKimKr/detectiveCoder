@@ -1,6 +1,6 @@
 export const SurveySecondQuestion = [
   {
-    id: 'ad',
+    id: '사회복지물가',
     Q: 'a(물가) or d(사회복지)',
     options: [
       {
@@ -14,15 +14,15 @@ export const SurveySecondQuestion = [
     ],
   },
   {
-    id: 'eh',
+    id: '경제관대함',
     Q: 'e(경제) or h(관대함)',
     options: [
       {
-        id: 'e',
+        id: '경제',
         option: '경제',
       },
       {
-        id: 'h',
+        id: '관대함',
         option: '관대함',
       },
     ],
