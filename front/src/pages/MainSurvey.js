@@ -40,7 +40,12 @@ const MainSurvey = () => {
   }, [answer]);
 
   const click = () => {
-    answerDispatch({ type: 'INPUT', data: submit });
+    const result = {};
+    submit.forEach((x) => {
+      result[x] = (result[x] || 0) + 1;
+    });
+
+    answerDispatch({ type: 'INPUT', data: result });
   };
 
   return (

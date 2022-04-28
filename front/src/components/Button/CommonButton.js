@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Button/style.css';
+import './style.css';
 
 const CommonButton = ({ text, type, onClick, disabled }) => {
   const btnType = ['main', 'sub'].includes(type) ? type : 'main';
