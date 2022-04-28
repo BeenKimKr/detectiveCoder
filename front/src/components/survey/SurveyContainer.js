@@ -1,106 +1,94 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { QUESTIONS } from './question/QUESTIONS';
-import { FirstQuestion } from './question/FirstQuestion';
+import React, { useState, useEffect, useContext } from 'react';
+import { QUESTIONS } from './QUESTIONS';
 import { SaveAnswersContext } from '../../pages/MainSurvey';
 import { PercentContext } from '../../pages/MainSurvey';
-import Button from '../../components/Button/CommonButton';
-
 import './style.css';
 
 const SurveyContainer = () => {
-  const [index, setIndex] = useState(0);
+  const FirstQuestion = [
+    'socialSupport',
+    'corruption',
+    'Freedom',
+    'price',
+    'GDP',
+    'temperature',
+    'HLE',
+    'Generosity',
+  ];
   const { answer, answerDispatch } = useContext(SaveAnswersContext);
-  const { percent, setPercent } = useContext(PercentContext);
+  const { setPercent, percent, step, setStep } = useContext(PercentContext);
   const [tempArray, setTempArray] = useState([]);
-  const [finalArray, setFinalArray] = useState([]);
-  const [nextStep, setNextStep] = useState(false);
-  const [step, setStep] = useState(1);
-
-  const handleClickAnswer = (e) => {
-    if (step == 1) {
-      answerDispatch({ type: 'INPUT', data: e.currentTarget.value });
-      setIndex(index + 1);
-      setPercent(percent + 20);
-      if (FirstQuestion.length == index + 1) {
-        setPercent(percent + 20);
-        setIndex(0);
-        setTempArray(answer.slice(1, 5));
-        setStep(2);
-      }
-      //  두번째
-    } else if (step == 2) {
-      setNextStep(false);
-      console.log('step2', tempArray);
-      setFinalArray([...finalArray, e.currentTarget.value]);
-      answerDispatch({ type: 'INPUT', data: e.currentTarget.value });
-      setIndex(index + 1);
-      if (tempArray.length == index + 2) {
-        setNextStep(true);
-        setTempArray(answer.slice(5, 7));
-        setNextStep(true);
-        setIndex(0);
-      }
-    }
-    //  세번째
-    else {
-      console.log('step3', tempArray);
-    }
-  };
+  const [winner, setWinners] = useState([]);
+  const [question, setQuestion] = useState([]);
+  const [final, setFinal] = useState(false);
+  // const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setTempArray(answer.slice(5, 7));
-  }, [nextStep, answer]);
+    setQuestion(FirstQuestion);
+    setTempArray([FirstQuestion[0], FirstQuestion[1]]);
+  }, []);
+
+  const handleClickAnswer = (e) => {
+    setWinners([...winner, e.currentTarget.value]);
+    if (question.length <= 2) {
+      if (final === true) {
+        setStep((it) => it + 1);
+        setWinners([...winner, e.currentTarget.value]);
+        answerDispatch({ type: 'INPUT', data: winner });
+      } else {
+        setWinners([...winner, e.currentTarget.value]);
+        let updateStep = [...winner, e.currentTarget.value];
+        setQuestion(updateStep);
+        setTempArray([updateStep[0], updateStep[1]]);
+        setStep((it) => it + 1);
+        setFinal(true);
+      }
+    } else if (question.length > 2) {
+      setWinners([...winner, e.currentTarget.value]);
+      setTempArray([question[2], question[3]]);
+      setQuestion(question.slice(2));
+    }
+    setPercent(percent + 20);
+  };
+
+  const FINAL = (e) => {
+    setWinners([...winner, e.currentTarget.value]);
+    answerDispatch({ type: 'INPUT', data: winner });
+    console.log(answer);
+  };
 
   return (
     <>
       <div>
         <div className="AnswerContainer">
-          {step === 1 ? (
+          {QUESTIONS.filter((it) => it.id == tempArray[0]).map((x) => (
             <>
               <button
                 className="AnswerCard"
-                onClick={handleClickAnswer}
-                value={FirstQuestion[index].options[0].id}
+                value={tempArray[0]}
+                onClick={(e) => {
+                  final == true ? FINAL(e) : handleClickAnswer(e);
+                }}
               >
-                <h5>{FirstQuestion[index].options[0].option}</h5>
+                <h5>{x.descriptions[tempArray[1]]}</h5>
               </button>
+            </>
+          ))}
+          {QUESTIONS.filter((it) => it.id == tempArray[1]).map((x) => (
+            <>
               <button
                 className="AnswerCard"
-                onClick={handleClickAnswer}
-                value={FirstQuestion[index].options[1].id}
+                value={tempArray[1]}
+                onClick={(e) => {
+                  final == true ? FINAL(e) : handleClickAnswer(e);
+                }}
               >
-                <h5>{FirstQuestion[index].options[1].option}</h5>
+                <h5>{x.descriptions[tempArray[0]]}</h5>
               </button>
             </>
-          ) : (
-            <>
-              {QUESTIONS.filter((it) => it.id == tempArray[index]).map((x) => (
-                <>
-                  <button
-                    className="AnswerCard"
-                    value={[tempArray[index]]}
-                    onClick={handleClickAnswer}
-                  >
-                    <h5>{x.descriptions[tempArray[index + 1]]}</h5>
-                  </button>
-                </>
-              ))}
-              {QUESTIONS.filter((it) => it.id == tempArray[index + 1]).map(
-                (x) => (
-                  <>
-                    <button
-                      className="AnswerCard"
-                      value={[tempArray[index + 1]]}
-                      onClick={handleClickAnswer}
-                    >
-                      <h5>{x.descriptions[tempArray[index]]}</h5>
-                    </button>
-                  </>
-                )
-              )}
-            </>
-          )}
+          ))}
         </div>
+        {/* {open && <CommonButton text={'제출하기'} onClick={} />} */}
       </div>
     </>
   );

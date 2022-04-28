@@ -7,7 +7,7 @@ const WeatherSurvey = () => {
   const { setPercent } = useContext(PercentContext);
 
   const clickWeather = (e) => {
-    answerDispatch({ type: 'INPUT', data: e.currentTarget.name });
+    // answerDispatch({ type: 'INPUT', data: e.currentTarget.name });
     setPercent(20);
   };
 
