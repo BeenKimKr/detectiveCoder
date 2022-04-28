@@ -28,6 +28,21 @@ countryRouter.get("/all", async (req, res, next) => {
   }
 });
 
+/**
+ * @swagger
+ * paths:
+ *  /survey/:column:
+ *    get:
+ *      summary: Get sorted data(by column)
+ *      tags: [Country]
+ *      responses:
+ *        "200":
+ *          description: Get sorted data(by column)
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/Country'
+ */
 countryRouter.get("/:column", async (req, res, next) => {
   try {
     const column = req.params.column;
