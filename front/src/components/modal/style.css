@@ -1,15 +1,11 @@
 .modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.6);
-  text-align: center;
-  font-size: 25px;
-  font-weight: bold;
+  @apply hidden fixed inset-0  text-center text-lg  font-bold bg-black-rgba;
 }
+
+/* .modal > section {
+    @apply w-9/12  max-w-md m-auto  rounded-md bg-white overflow-hidden;
+  }
+   modal-show 부분을 테일윈드로 적용 X*/
 
 .modal > section {
   width: 90%;
@@ -22,12 +18,11 @@
 }
 
 .modal .button {
-  margin-bottom: 30px;
-  font-size: 20px;
+  @apply mb-5;
 }
 
 .modal > section > main {
-  padding: 60px;
+  @apply p-10;
 }
 
 .modal.openModal {

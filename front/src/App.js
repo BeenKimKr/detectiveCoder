@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CityInfo from './pages/cityInfo/CityInfo';
 import Home from './pages/Home';
 import MainSurvey from './pages/MainSurvey';
+import * as Api from './api';
 
 import './App.css';
 
