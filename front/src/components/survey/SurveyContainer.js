@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { QUESTIONS } from './QUESTIONS';
 import { SaveAnswersContext } from '../../pages/MainSurvey';
-import { PercentContext } from '../../pages/MainSurvey';
 import './style.css';
 
 const SurveyContainer = () => {
@@ -16,12 +15,10 @@ const SurveyContainer = () => {
     'Generosity',
   ];
   const { answer, answerDispatch } = useContext(SaveAnswersContext);
-  const { setPercent, percent, step, setStep } = useContext(PercentContext);
   const [tempArray, setTempArray] = useState([]);
   const [winner, setWinners] = useState([]);
   const [question, setQuestion] = useState([]);
   const [final, setFinal] = useState(false);
-  // const [open, setOpen] = useState(false);
 
   useEffect(() => {
     setQuestion(FirstQuestion);
@@ -29,18 +26,15 @@ const SurveyContainer = () => {
   }, []);
 
   const handleClickAnswer = (e) => {
-    setWinners([...winner, e.currentTarget.value]);
     if (question.length <= 2) {
       if (final === true) {
-        setStep((it) => it + 1);
         setWinners([...winner, e.currentTarget.value]);
-        answerDispatch({ type: 'INPUT', data: winner });
+        answerDispatch({ type: 'INPUT', data: e.currentTarget.value });
       } else {
         setWinners([...winner, e.currentTarget.value]);
         let updateStep = [...winner, e.currentTarget.value];
         setQuestion(updateStep);
         setTempArray([updateStep[0], updateStep[1]]);
-        setStep((it) => it + 1);
         setFinal(true);
       }
     } else if (question.length > 2) {
@@ -48,13 +42,10 @@ const SurveyContainer = () => {
       setTempArray([question[2], question[3]]);
       setQuestion(question.slice(2));
     }
-    setPercent(percent + 20);
   };
 
-  const FINAL = (e) => {
-    setWinners([...winner, e.currentTarget.value]);
-    answerDispatch({ type: 'INPUT', data: winner });
-    console.log(answer);
+  const onClick = () => {
+    console.log(winner);
   };
 
   return (
@@ -66,9 +57,7 @@ const SurveyContainer = () => {
               <button
                 className="AnswerCard"
                 value={tempArray[0]}
-                onClick={(e) => {
-                  final == true ? FINAL(e) : handleClickAnswer(e);
-                }}
+                onClick={handleClickAnswer}
               >
                 <h5>{x.descriptions[tempArray[1]]}</h5>
               </button>
@@ -79,16 +68,14 @@ const SurveyContainer = () => {
               <button
                 className="AnswerCard"
                 value={tempArray[1]}
-                onClick={(e) => {
-                  final == true ? FINAL(e) : handleClickAnswer(e);
-                }}
+                onClick={handleClickAnswer}
               >
                 <h5>{x.descriptions[tempArray[0]]}</h5>
               </button>
             </>
           ))}
         </div>
-        {/* {open && <CommonButton text={'제출하기'} onClick={} />} */}
+        <button onClick={onClick}>결과창으로</button>
       </div>
     </>
   );
