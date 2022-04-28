@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { QUESTIONS } from './QUESTIONS';
-import { SaveAnswersContext } from '../../pages/MainSurvey';
+import { PercentContext, SaveAnswersContext } from '../../pages/MainSurvey';
+
 import './style.css';
 
 const SurveyContainer = () => {
@@ -14,11 +15,12 @@ const SurveyContainer = () => {
     'HLE',
     'Generosity',
   ];
-  const { answer, answerDispatch } = useContext(SaveAnswersContext);
+
   const [tempArray, setTempArray] = useState([]);
-  const [winner, setWinners] = useState([]);
   const [question, setQuestion] = useState([]);
-  const [final, setFinal] = useState(false);
+  const [winner, setWinners] = useState([]);
+  const { setModalOpen, setPercent } = useContext(PercentContext);
+  const { setSubmit, submit } = useContext(SaveAnswersContext);
 
   useEffect(() => {
     setQuestion(FirstQuestion);
@@ -26,26 +28,24 @@ const SurveyContainer = () => {
   }, []);
 
   const handleClickAnswer = (e) => {
+    setPercent((it) => it + 14.5);
     if (question.length <= 2) {
-      if (final === true) {
-        setWinners([...winner, e.currentTarget.value]);
-        answerDispatch({ type: 'INPUT', data: e.currentTarget.value });
+      if (winner.length === 0) {
+        setModalOpen(true);
       } else {
-        setWinners([...winner, e.currentTarget.value]);
         let updateStep = [...winner, e.currentTarget.value];
         setQuestion(updateStep);
         setTempArray([updateStep[0], updateStep[1]]);
-        setFinal(true);
+        setWinners([...winner, e.currentTarget.value]);
+        setWinners([]);
       }
     } else if (question.length > 2) {
       setWinners([...winner, e.currentTarget.value]);
       setTempArray([question[2], question[3]]);
       setQuestion(question.slice(2));
     }
-  };
 
-  const onClick = () => {
-    console.log(winner);
+    setSubmit([...submit, e.currentTarget.value]);
   };
 
   return (
@@ -75,7 +75,6 @@ const SurveyContainer = () => {
             </>
           ))}
         </div>
-        <button onClick={onClick}>결과창으로</button>
       </div>
     </>
   );

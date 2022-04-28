@@ -1,8 +1,7 @@
 // 설문조사 페이지
 import React, { useState, createContext, useReducer, useEffect } from 'react';
-import CommonButton from '../components/Button/CommonButton';
 import SurveyContainer from '../components/survey/SurveyContainer';
-import WeatherSurvey from '../components/survey/WeatherSurvey';
+import Modal from '../components/modal/Modal';
 
 export const SaveAnswersContext = createContext();
 export const PercentContext = createContext();
@@ -19,17 +18,30 @@ const reducer = (state, action) => {
 
 const MainSurvey = () => {
   const [answer, answerDispatch] = useReducer(reducer, []);
+  const [submit, setSubmit] = useState([]);
   const [step, setStep] = useState(1);
   const [percent, setPercent] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
+
   const saveAnswers = {
+    submit,
+    setSubmit,
     answerDispatch,
     answer,
   };
-  const changePercent = { percent, setPercent, step, setStep };
+  const changePercent = { setModalOpen, percent, setPercent };
+
+  useEffect(() => {
+    console.log(submit);
+  }, [submit]);
 
   useEffect(() => {
     console.log(answer);
   }, [answer]);
+
+  const click = () => {
+    answerDispatch({ type: 'INPUT', data: submit });
+  };
 
   return (
     <div className="container w-screen h-screen  ">
@@ -39,10 +51,13 @@ const MainSurvey = () => {
           style={{ width: `${percent}%` }}
         ></div>
       </div>
-      <div className="m-auto ">
+      <div className="m-auto mt-48">
         <PercentContext.Provider value={changePercent}>
           <SaveAnswersContext.Provider value={saveAnswers}>
-            {percent === 0 ? <WeatherSurvey /> : <SurveyContainer />}
+            <SurveyContainer />
+            <Modal open={modalOpen} click={click}>
+              테스트를 완료하였습니다😊
+            </Modal>
           </SaveAnswersContext.Provider>
         </PercentContext.Provider>
       </div>
