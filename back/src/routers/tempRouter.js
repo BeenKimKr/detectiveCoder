@@ -1,26 +1,26 @@
 const { Router } = require("express");
-const { countryService } = require("../services/countryService.js");
-const countryRouter = Router();
+const { tempService } = require("../services/tempService.js");
+const tempRouter = Router();
 
 /**
  * @swagger
  * paths:
- *  /happy/all:
+ *  /temp/all:
  *    get:
  *      summary: Get data
- *      tags: [Country]
+ *      tags: [Temp]
  *      responses:
  *        "200":
  *          description: get all data
  *          content:
  *            application/json:
  *              schema:
- *                $ref: '#/components/schemas/Country'
+ *                $ref: '#/components/schemas/Temp'
  */
 
-countryRouter.get("/all", async (req, res, next) => {
+tempRouter.get("/all", async (req, res, next) => {
   try {
-    const data = await countryService.getData();
+    const data = await tempService.getData();
 
     res.status(200).json(data);
   } catch (error) {
@@ -31,23 +31,23 @@ countryRouter.get("/all", async (req, res, next) => {
 /**
  * @swagger
  * paths:
- *  /happy/:column:
+ *  /temp/:column:
  *    get:
  *      summary: Get sorted data(by column)
- *      tags: [Country]
+ *      tags: [Temp]
  *      responses:
  *        "200":
  *          description: Get sorted data(by column)
  *          content:
  *            application/json:
  *              schema:
- *                $ref: '#/components/schemas/Country'
+ *                $ref: '#/components/schemas/Temp'
  */
-countryRouter.get("/:column", async (req, res, next) => {
+tempRouter.get("/:column", async (req, res, next) => {
   try {
     const column = req.params.column;
     console.log(column);
-    const data = await countryService.sortData(column);
+    const data = await tempService.sortData(column);
 
     res.status(200).json(data);
   } catch (error) {
@@ -55,4 +55,4 @@ countryRouter.get("/:column", async (req, res, next) => {
   }
 });
 
-module.exports = { countryRouter };
+module.exports = { tempRouter };
