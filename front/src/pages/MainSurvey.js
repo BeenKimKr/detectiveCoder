@@ -19,7 +19,6 @@ const reducer = (state, action) => {
 const MainSurvey = () => {
   const [answer, answerDispatch] = useReducer(reducer, []);
   const [submit, setSubmit] = useState([]);
-  const [step, setStep] = useState(1);
   const [percent, setPercent] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -31,21 +30,25 @@ const MainSurvey = () => {
   };
   const changePercent = { setModalOpen, percent, setPercent };
 
-  useEffect(() => {
-    console.log(submit);
-  }, [submit]);
+  // useEffect(() => {
+  //   console.log(submit);
+  // }, [submit]);
 
-  useEffect(() => {
-    console.log(answer);
-  }, [answer]);
+  // useEffect(() => {
+  //   console.log(answer);
+  // }, [answer]); 코드 동작 확인하기 위한 코드입니다.
 
-  const click = () => {
+  const handleSubmit = async () => {
     const result = {};
     submit.forEach((x) => {
       result[x] = (result[x] || 0) + 1;
     });
 
     answerDispatch({ type: 'INPUT', data: result });
+
+    // await axios.post("", answer);
+    // 결과 페이지로  Post
+    // 아직 기온범위 구현  X.
   };
 
   return (
@@ -60,7 +63,7 @@ const MainSurvey = () => {
         <PercentContext.Provider value={changePercent}>
           <SaveAnswersContext.Provider value={saveAnswers}>
             <SurveyContainer />
-            <Modal open={modalOpen} click={click}>
+            <Modal open={modalOpen} click={handleSubmit}>
               테스트를 완료하였습니다😊
             </Modal>
           </SaveAnswersContext.Provider>

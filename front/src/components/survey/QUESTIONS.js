@@ -78,6 +78,7 @@ export const QUESTIONS = [
     descriptions: {
       socialSupport: '기대수명 좋고, 사회복지 X',
       Freedom: '기대수명 좋고, 삶의 자유 X',
+      corruption: '기대수명 좋고, 청렴X',
       price: '기대수명 좋고, 물가 X',
       GDP: '기대수명 좋고, 경제 안좋음',
       Generosity: '기대수명 좋고 국민성 X',
