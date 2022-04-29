@@ -1,5 +1,6 @@
 const express = require("express");
 const { swaggerUi, specs } = require("./swagger");
+const cors = require("cors");
 const passport = require("passport");
 const passportConfig = require("./passport");
 const { userAuthRouter } = require("./routers/userRouter");
