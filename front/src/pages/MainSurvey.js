@@ -2,6 +2,7 @@
 import React, { useState, createContext, useReducer, useEffect } from 'react';
 import SurveyContainer from '../components/survey/SurveyContainer';
 import Modal from '../components/modal/Modal';
+import RangeWeather from '../components/survey/RangeWeather';
 
 export const SaveAnswersContext = createContext();
 export const PercentContext = createContext();
@@ -62,6 +63,7 @@ const MainSurvey = () => {
       <div className="m-auto mt-48">
         <PercentContext.Provider value={changePercent}>
           <SaveAnswersContext.Provider value={saveAnswers}>
+            <RangeWeather />
             <SurveyContainer />
             <Modal open={modalOpen} click={handleSubmit}>
               테스트를 완료하였습니다😊
