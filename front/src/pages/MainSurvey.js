@@ -30,13 +30,14 @@ const MainSurvey = () => {
   };
   const changePercent = { setModalOpen, percent, setPercent };
 
-  // useEffect(() => {
-  //   console.log(submit);
-  // }, [submit]);
+  //코드 동작 확인하기 위한 코드입니다.
+  useEffect(() => {
+    console.log(submit);
+  }, [submit]);
 
-  // useEffect(() => {
-  //   console.log(answer);
-  // }, [answer]); 코드 동작 확인하기 위한 코드입니다.
+  useEffect(() => {
+    console.log(answer);
+  }, [answer]);
 
   const handleSubmit = async () => {
     const result = {};
