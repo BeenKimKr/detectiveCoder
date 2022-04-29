@@ -5,7 +5,7 @@ import React from "react";
 const KakaoLogin = () => {
   return (
     <div>
-      <a href="javascript:kakao();"></a>
+      <a href="javascript:kakao();"><img src="./kakao.png"></img></a>
       <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
       <div>
         window.kakao.init('4132d56d272d02315ca59735ac5cd38e');
