@@ -1,0 +1,51 @@
+.modal {
+  @apply hidden fixed inset-0  text-center text-lg  font-bold bg-black-rgba;
+}
+
+/* .modal > section {
+    @apply w-9/12  max-w-md m-auto  rounded-md bg-white overflow-hidden;
+  }
+   modal-show 부분을 테일윈드로 적용 X*/
+
+.modal > section {
+  width: 90%;
+  max-width: 450px;
+  margin: 0 auto;
+  border-radius: 0.3rem;
+  background-color: #fff;
+  animation: modal-show 0.3s;
+  overflow: hidden;
+}
+
+.modal .button {
+  @apply mb-5;
+}
+
+.modal > section > main {
+  @apply p-10;
+}
+
+.modal.openModal {
+  display: flex;
+  align-items: center;
+  animation: modal-bg-show 0.3s;
+}
+
+@keyframes modal-show {
+  from {
+    opacity: 0;
+    margin-top: -50px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+@keyframes modal-bg-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,12 @@
+.myBtn {
+  @apply font-bold py-3 px-8 rounded;
+}
+.btn-main {
+  @apply bg-custom-main text-white;
+}
+.btn-sub {
+  @apply bg-custom-sub text-black;
+}
+.btn-main:hover {
+  @apply bg-custom-main-hover;
+}

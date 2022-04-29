@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Jua&family=Nanum+Pen+Script&display=swap');
+
+.chart {
+  text-align: center;
+  height: 500px;
+  width: 450px;
+  padding-top: 40px;
+  background-color: whitesmoke;
+  border-radius: 50px;
+}
+
+.bigmacChart {
+  text-align: center;
+  height: 300px;
+  width: 500px;
+  background-color: whitesmoke;
+  padding-top: 70px;
+  border-radius: 50px;
+  margin-top: 15px;
+}
+
+.wealChart {
+  text-align: center;
+  height: 300px;
+  width: 470px;
+  padding-top: 20px;
+  background-color: whitesmoke;
+  border-radius: 50px;
+  margin-top: 15px;
+  margin-bottom: 50px;
+}
+
+.chartTitle {
+  font-family: 'Jua', sans-serif;
+  font-size: larger;
+  margin-bottom: 10px;
+}
