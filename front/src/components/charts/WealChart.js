@@ -93,13 +93,13 @@ export default function App() {
   );
 
   return (
-    <PieChart width={400} height={400}>
+    <PieChart className='wealChart' width={500} height={300}>
       <Pie
         activeIndex={activeIndex}
         activeShape={renderActiveShape}
         data={data}
-        cx={200}
-        cy={200}
+        cx={250}
+        cy={130}
         innerRadius={60}
         outerRadius={80}
         fill='#8884d8'

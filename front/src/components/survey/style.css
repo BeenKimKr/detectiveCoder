@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Jua&family=Nanum+Pen+Script&display=swap');
+
+button {
+  @apply cursor-pointer;
+}
+
+.Weather p {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.WeatherCard {
+  @apply p-5 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100;
+}
+
+.WeatherCard:focus {
+  @apply bg-gray-100;
+}
+
+.AnswerContainer {
+  /* @apply grid grid-cols-2 place-content-center; */
+  @apply grid place-content-center;
+}
+
+.AnswerCard {
+  @apply p-6 w-96 h-20  mt-4 mx-52 text-center   bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-100;
+}
+
+.AnswerCard:focus {
+  @apply bg-gray-100;
+}
+
+.AnswerCard h5 {
+  @apply mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white;
+}
