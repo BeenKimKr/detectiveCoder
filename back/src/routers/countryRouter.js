@@ -31,23 +31,23 @@ countryRouter.get("/all", async (req, res, next) => {
 /**
  * @swagger
  * paths:
- *  /happy/:column:
+ *  /happy/:columns:
  *    get:
- *      summary: Get sorted data(by column)
+ *      summary: Get sorted data(by columns)
  *      tags: [Country]
  *      responses:
  *        "200":
- *          description: Get sorted data(by column)
+ *          description: Get sorted data(by columns)
  *          content:
  *            application/json:
  *              schema:
  *                $ref: '#/components/schemas/Country'
  */
-countryRouter.get("/:column", async (req, res, next) => {
+countryRouter.get("/:columns", async (req, res, next) => {
   try {
-    const column = req.params.column;
-    console.log(column);
-    const data = await countryService.sortData(column);
+    const columns = req.params.columns;
+    console.log(columns);
+    const data = await countryService.sortData(columns);
 
     res.status(200).json(data);
   } catch (error) {

@@ -6,7 +6,8 @@ const countryService = {
     return data;
   },
   sortData: async (column) => {
-    const data = await Country.sortAll(column);
+    const columns = column.split(",");
+    const data = await Country.sortAll(columns);
     return data;
   },
 };
