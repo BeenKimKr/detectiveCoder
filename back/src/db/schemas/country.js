@@ -10,12 +10,6 @@ const { Schema, model } = require("mongoose");
  *          - Country
  *          - City
  *          - Ab
- *          - mean
- *          - min
- *          - low
- *          - middle
- *          - high
- *          - max
  *          - price
  *          - score
  *          - GDP
@@ -35,24 +29,6 @@ const { Schema, model } = require("mongoose");
  *          Ab:
  *            type: String
  *            description: 약자
- *          mean:
- *            type: Number
- *            description: 도시별 기온의 평균
- *          min:
- *            type: Number
- *            description: 도시별 기온의 최저값
- *          low:
- *            type: Number
- *            description: 도시별 기온의 하위 25%
- *          middle:
- *            type: Number
- *            description: 도시별 기온의 중앙값
- *          high:
- *            type: Number
- *            description: 도시별 기온의 상위 25%
- *          max:
- *            type: Number
- *            description: 도시별 기온의 최대값
  *          price:
  *            type: Number
  *            description: 국가별 빅맥지수
@@ -86,11 +62,6 @@ const { Schema, model } = require("mongoose");
  *           Generosity: 0.098
  *           HLE: 68.2
  *           corruption: 0.698
- *           high: 12.525925925925929
- *           max: 19.02962962962965
- *           mean: -1.3343436979053467
- *           middle: -0.4740740740740751
- *           min: -24.711111111111112
  *           price: 5.67
  *           score: 6.951
  *           socialSupport: 0.92
@@ -98,18 +69,6 @@ const { Schema, model } = require("mongoose");
 
 const CountrySchema = new Schema(
   {
-    low: {
-      type: Number,
-      required: true,
-    },
-    middle: {
-      type: Number,
-      required: true,
-    },
-    high: {
-      type: Number,
-      required: true,
-    },
     Ab: {
       type: String,
       required: true,
@@ -139,18 +98,6 @@ const CountrySchema = new Schema(
       required: true,
     },
     GDP: {
-      type: Number,
-      required: true,
-    },
-    max: {
-      type: Number,
-      required: true,
-    },
-    mean: {
-      type: Number,
-      required: true,
-    },
-    min: {
       type: Number,
       required: true,
     },

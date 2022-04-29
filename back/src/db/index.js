@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { User } = require("./models/User");
 const { Country } = require("./models/Country");
+const { Temp } = require("./models/Temp");
 
 const DB_URL = process.env.MONGODB_URL || "mongo_url";
 
@@ -14,4 +15,4 @@ db.on("error", (error) =>
   console.error("MongoDB 연결에 실패하였습니다...\n" + DB_URL + "\n" + error)
 );
 
-module.exports = { User, Country };
+module.exports = { User, Country, Temp };
