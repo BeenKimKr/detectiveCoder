@@ -1,4 +1,4 @@
-const { User } = require('../../db');
+const { userAuthService } = require("../../services/userService");
 const passport = require("passport");
 const KakaoStrategy = require("passport-kakao").Strategy;
 
@@ -12,11 +12,11 @@ const kakao = () => {
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
-          const exUser = await User.findById({ id: profile.id });
+          const exUser = await userAuthService.getUser({ id: profile.id });
           if (exUser) {
             done(null, exUser);
           } else {
-            const newUser = await User.create({
+            const newUser = await userAuthService.addUser({
               id: profile.id,
               provider: 'kakao',
               name: profile._json.kakao_account.profile.nickname,
