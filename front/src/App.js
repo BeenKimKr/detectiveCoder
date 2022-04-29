@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CityInfo from './pages/cityInfo/CityInfo';
 import Home from './pages/Home';
 import MainSurvey from './pages/MainSurvey';
+import Kakao from './components/Kakao/Login';
 import * as Api from './api';
 
 import './App.css';
@@ -28,10 +29,11 @@ function App() {
       <ModalStateContext.Provider value={changeModal}>
         <Router>
           <Routes>
-            <Route path="/home" exact element={<Home />} />
-            <Route path="/cityinfo" element={<CityInfo />} />
-            <Route path="/mainsurvey" element={<MainSurvey />} />
-            <Route path="*" element={<Home />} />
+            <Route path='/home' exact element={<Home />} />
+            <Route path='/cityinfo' element={<CityInfo />} />
+            <Route path='/mainsurvey' element={<MainSurvey />} />
+            <Route path='/login' exact component={<Kakao />} />
+            <Route path='*' element={<Home />} />
           </Routes>
         </Router>
       </ModalStateContext.Provider>
