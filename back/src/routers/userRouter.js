@@ -53,7 +53,7 @@ userAuthRouter.get(
  *      summary: Register using Kakao
  *      tags: [Users]
  */
-userAuthRouter.get('/kakao', passport.authenticate('kakao'));
+userAuthRouter.get('kakao', passport.authenticate('kakao'));
 
 /**
  * @swagger
