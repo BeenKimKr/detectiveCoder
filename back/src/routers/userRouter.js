@@ -1,6 +1,6 @@
-const { Router } = require("express");
-const passport = require("passport");
-const { userAuthService } = require("../services/userService");
+const { Router } = require('express');
+const passport = require('passport');
+const { userAuthService } = require('../services/userService');
 
 /**
  * @swagger
@@ -18,7 +18,7 @@ const userAuthRouter = Router();
  *      summary: Register using Naver
  *      tags: [Users]
  */
-userAuthRouter.get("/naver", passport.authenticate("naver"));
+userAuthRouter.get('/naver', passport.authenticate('naver'));
 
 /**
  * @swagger
@@ -36,12 +36,12 @@ userAuthRouter.get("/naver", passport.authenticate("naver"));
  *                $ref: '#/components/schemas/User'
  */
 userAuthRouter.get(
-  "/naver/callback",
-  passport.authenticate("naver", {
-    failureRedirect: "/",
+  '/naver/callback',
+  passport.authenticate('naver', {
+    failureRedirect: '/',
   }),
   (req, res) => {
-    res.redirect("/");
+    res.redirect('/');
   }
 );
 
@@ -53,7 +53,7 @@ userAuthRouter.get(
  *      summary: Register using Kakao
  *      tags: [Users]
  */
-userAuthRouter.get("/kakao", passport.authenticate("kakao"));
+userAuthRouter.get('/kakao', passport.authenticate('kakao'));
 
 /**
  * @swagger
@@ -71,12 +71,12 @@ userAuthRouter.get("/kakao", passport.authenticate("kakao"));
  *                $ref: '#/components/schemas/User'
  */
 userAuthRouter.get(
-  "/kakao/callback",
-  passport.authenticate("kakao", {
-    failureRedirect: "/",
+  '/kakao/callback',
+  passport.authenticate('kakao', {
+    failureRedirect: '/',
   }),
   (req, res) => {
-    res.redirect("/");
+    res.redirect('/');
   }
 );
 
@@ -93,7 +93,7 @@ userAuthRouter.get(
  *          schema:
  *            $ref: '#/components/schemas/User'
  */
-userAuthRouter.delete("/:id", async (req, res, next) => {
+userAuthRouter.delete('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
     await userAuthService.deleteUser({ id });
@@ -102,6 +102,5 @@ userAuthRouter.delete("/:id", async (req, res, next) => {
     next(error);
   }
 });
-
 
 module.exports = { userAuthRouter };
