@@ -1,4 +1,4 @@
-const { User } = require("../../db");
+const { userAuthService } = require("../../services/userService");
 const passport = require("passport");
 const {
   Strategy: NaverStrategy,
@@ -15,12 +15,11 @@ const naver = () => {
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
-          const exUser = await User.findById({ id: profile.id });
-          // 이미 가입된 네이버 프로필이면 성공
+          const exUser = await userAuthService.getUser({ id: profile.id });
           if (exUser) {
             done(null, exUser);
           } else {
-            const newUser = await User.create({
+            const newUser = await userAuthService.addUser({
               id: profile.id,
               provider: 'naver',
               name: profile.name,
