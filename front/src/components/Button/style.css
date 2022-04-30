@@ -4,6 +4,11 @@
 .btn-main {
   @apply bg-custom-main text-white;
 }
+
+.btn-temp {
+  @apply mt-8 mr-96 text-custom-main;
+}
+
 .btn-sub {
   @apply bg-custom-sub text-black;
 }

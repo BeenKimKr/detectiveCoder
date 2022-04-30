@@ -22,6 +22,7 @@ const SurveyTemp = () => {
     <>
       <div className="RangeContainer">
         <CommonButton
+          type={'temp'}
           text={'기온별 옷차림이 궁금하다면? 🔎'}
           onClick={() => {
             setOpen(!open);
@@ -46,10 +47,10 @@ const SurveyTemp = () => {
           )}
         </div>
         <div className="TextContainer">
-          <div className="ExplainText">선호하는 평균기온을 선택해주세요.😊</div>
-          <div className="TempText">
-            <p>{temp}</p>
-          </div>
+          <span className="ExplainText">
+            선호하는 평균기온을 선택해주세요.😊 <br /> 선호하는 평균기온을
+            고려하여 어울리는 나라를 추천해드립니다.
+          </span>
         </div>
         <input
           type="range"
@@ -60,7 +61,7 @@ const SurveyTemp = () => {
           onChange={onTempChange}
         />
         <div className="TextBtn">
-          <CommonButton text={'시작하기!'} onClick={onClick} />
+          <CommonButton text={`${temp}도 선택`} onClick={onClick} />
         </div>
       </div>
     </>

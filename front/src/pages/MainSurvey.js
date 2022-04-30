@@ -32,7 +32,15 @@ const MainSurvey = () => {
     answerDispatch,
     answer,
   };
-  const changePercent = { setModalOpen, percent, setPercent, step, setStep };
+  const changePercent = {
+    setModalOpen,
+    percent,
+    setPercent,
+    step,
+    setStep,
+    setLoading,
+    loading,
+  };
 
   useEffect(() => {
     console.log(submit);
@@ -43,19 +51,20 @@ const MainSurvey = () => {
   }, [answer]); //코드 동작 확인하기 위한 코드입니다.
 
   const handleSubmit = async () => {
-    const result = {};
-    submit.forEach((x) => {
-      result[x] = (result[x] || 0) + 1;
-    });
+    // const result = {};
+    // submit.forEach((x) => {
+    //   result[x] = (result[x] || 0) + 1;
+    // });
 
+    answerDispatch({ type: 'INPUT', data: submit });
     setLoading(true);
-
-    answerDispatch({ type: 'INPUT', data: result });
 
     // await axios.post("", answer);
     // 결과 페이지로  Post
     // 아직 기온범위 구현  X.
   };
+
+  console.log(loading);
 
   return (
     <div className="container w-screen h-screen  ">
@@ -73,12 +82,9 @@ const MainSurvey = () => {
             ) : (
               <>
                 <SurveyContainer />
-                <Modal open={modalOpen} click={handleSubmit}>
-                  테스트를 완료하였습니다😊
-                </Modal>
+                <Modal open={modalOpen} click={handleSubmit} />
               </>
             )}
-            <div>{loading ? <Spinner loading={loading} /> : ' '}</div>
           </SaveAnswersContext.Provider>
         </PercentContext.Provider>
       </div>

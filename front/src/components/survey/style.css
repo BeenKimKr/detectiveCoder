@@ -6,7 +6,7 @@ button {
 
 /* Info */
 .InfoContainer {
-  @apply grid grid-cols-2 rounded-lg bg-slate-50  my-10;
+  @apply grid grid-cols-2 rounded-lg bg-slate-50 my-5;
 }
 
 .InfoCard {
@@ -30,11 +30,11 @@ input {
 }
 
 .RangeContainer {
-  @apply flex flex-col  w-auto  items-center relative pt-1 mb-96;
+  @apply flex flex-col  w-auto  items-center relative pt-1 m-auto mt-32;
 }
 
 .TextContainer {
-  @apply flex;
+  @apply flex mr-32 mb-3;
 }
 
 .TempText {
@@ -42,7 +42,7 @@ input {
 }
 
 .ExplainText {
-  @apply font-bold text-lg font-bold;
+  @apply font-bold text-lg;
 }
 
 .TextBtn {
@@ -53,19 +53,14 @@ input {
   @apply appearance-none  w-3/4 h-3 mb-10  p-0   bg-slate-100  focus:outline-none ring-0 shadow-none;
 }
 
-.Weather p {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.WeatherCard {
-  @apply p-5 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100;
+/* loding */
+.loding {
+  @apply bg-black-rgba;
 }
 
 .AnswerContainer {
   /* @apply grid grid-cols-2 place-content-center; */
-  @apply grid place-content-center;
+  @apply grid place-content-center mt-32;
 }
 
 .AnswerCard {
