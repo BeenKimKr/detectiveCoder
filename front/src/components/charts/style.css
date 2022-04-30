@@ -3,31 +3,22 @@
 .chart {
   text-align: center;
   height: 500px;
-  width: 450px;
-  padding-top: 40px;
-  background-color: whitesmoke;
+  width: 500px;
+  padding: 30px;
+  background-color: #55b4b714;
   border-radius: 50px;
+  font-weight: 800;
 }
 
 .bigmacChart {
   text-align: center;
   height: 300px;
   width: 500px;
-  background-color: whitesmoke;
-  padding-top: 70px;
+  padding: 30px;
+  background-color: #55b4b714;
   border-radius: 50px;
-  margin-top: 15px;
-}
-
-.wealChart {
-  text-align: center;
-  height: 300px;
-  width: 470px;
-  padding-top: 20px;
-  background-color: whitesmoke;
-  border-radius: 50px;
-  margin-top: 15px;
-  margin-bottom: 50px;
+  margin-top: 50px;
+  font-weight: 800;
 }
 
 .chartTitle {
