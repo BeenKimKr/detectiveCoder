@@ -5,7 +5,6 @@ const passport = require("passport");
 const passportConfig = require("./passport");
 const { userAuthRouter } = require("./routers/userRouter");
 const { countryRouter } = require("./routers/countryRouter");
-const { tempRouter } = require("./routers/tempRouter");
 
 const { errorMiddleware } = require("./middlewares/errorMiddleware");
 
@@ -28,8 +27,7 @@ app.get("/", (req, res) => {
 passportConfig();
 app.use(passport.initialize());
 app.use("/users", userAuthRouter);
-app.use("/happy", countryRouter);
-app.use("/temp", tempRouter);
+app.use("/country", countryRouter);
 app.use(errorMiddleware);
 
 module.exports = { app };
