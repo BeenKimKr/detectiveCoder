@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CityInfo from './pages/cityInfo/CityInfo';
 import Home from './pages/Home';
 import MainSurvey from './pages/MainSurvey';
+import AllCities from './pages/allCities/AllCities';
 import * as Api from './api';
-
 import './App.css';
 
 export const ModalStateContext = createContext(null);
@@ -28,8 +28,9 @@ function App() {
       <ModalStateContext.Provider value={changeModal}>
         <Router>
           <Routes>
-            <Route path="/home" exact element={<Home />} />
+            <Route path="/main" element={<Home />} />
             <Route path="/cityinfo" element={<CityInfo />} />
+            <Route path="/allcities" element={<AllCities />} />
             <Route path="/mainsurvey" element={<MainSurvey />} />
             <Route path="*" element={<Home />} />
           </Routes>
