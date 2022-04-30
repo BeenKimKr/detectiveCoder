@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Navmain from '../../components/Nav/Navmain';
 import WealChart from '../../components/charts/WealChart';
-import Button from '../../components/Button/CommonButton';
+import Button from '../../components/button/CommonButton';
 import Image from '@material-tailwind/react/Image';
 import WeatherChart from '../../components/charts/WeatherChart';
 import HPIChart from '../../components/charts/HPIChart';

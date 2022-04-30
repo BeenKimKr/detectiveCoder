@@ -8,8 +8,7 @@ const CommonButton = ({ text, type, onClick, disabled }) => {
     <button
       className={['myBtn', `btn-${btnType}`].join(' ')}
       onClick={onClick}
-      disabled={disabled}
-    >
+      disabled={disabled}>
       {text}
     </button>
   );
