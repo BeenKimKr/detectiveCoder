@@ -4,8 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CityInfo from './pages/cityInfo/CityInfo';
 import Home from './pages/Home';
 import MainSurvey from './pages/MainSurvey';
-import Kakao from './components/Kakao/Login';
-import RedirectKakao from './components/Kakao/RedirectKakao';
+import KakaoLogin from './components/Kakao_login';
 
 import * as Api from './api';
 
@@ -34,7 +33,7 @@ function App() {
             <Route path='/home' exact element={<Home />} />
             <Route path='/cityinfo' element={<CityInfo />} />
             <Route path='/mainsurvey' element={<MainSurvey />} />
-            <Route path='/users/kakao/callback' element={<RedirectKakao />} />
+            <Route path='/users/kakao/callback' element={<KakaoLogin />} />
             <Route path='*' element={<Home />} />
           </Routes>
         </Router>
