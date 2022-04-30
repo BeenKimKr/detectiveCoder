@@ -5,7 +5,7 @@ const { naver } = require("./strategy/naver");
 
 module.exports = () => {
   passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user._doc.id);
   });
 
   passport.deserializeUser(async (id, done) => {
