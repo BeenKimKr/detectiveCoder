@@ -2,11 +2,11 @@
   @apply font-bold p-2 rounded;
 }
 .btn-main {
-  @apply bg-custom-main text-white;
+  @apply bg-cyan-300 text-white;
 }
 
 .btn-temp {
-  @apply mt-8 mr-96 bg-white text-custom-main;
+  @apply mt-8 mr-96 text-custom-main;
 }
 
 .btn-sub {
