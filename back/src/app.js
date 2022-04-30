@@ -1,6 +1,7 @@
 const express = require("express");
-const { swaggerUi, specs } = require("./swagger");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const { swaggerUi, specs } = require("./swagger");
 const passport = require("passport");
 const passportConfig = require("./passport");
 const { userAuthRouter } = require("./routers/userRouter");
@@ -11,6 +12,7 @@ const { errorMiddleware } = require("./middlewares/errorMiddleware");
 const app = express();
 
 app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use((req, res, next) => {
