@@ -1,4 +1,4 @@
-export const QUESTIONS = [
+export const HPIQUESTIONS = [
   {
     id: 'socialSupport',
     descriptions: {

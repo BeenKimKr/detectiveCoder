@@ -2,6 +2,8 @@
 import React, { useState, createContext, useReducer, useEffect } from 'react';
 import SurveyContainer from '../components/survey/SurveyContainer';
 import Modal from '../components/modal/Modal';
+import Spinner from '../components/Spinner';
+import SurveyTemp from '../components/survey/SurveyTemp';
 
 export const SaveAnswersContext = createContext();
 export const PercentContext = createContext();
@@ -20,7 +22,9 @@ const MainSurvey = () => {
   const [answer, answerDispatch] = useReducer(reducer, []);
   const [submit, setSubmit] = useState([]);
   const [percent, setPercent] = useState(0);
+  const [step, setStep] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const saveAnswers = {
     submit,
@@ -28,21 +32,23 @@ const MainSurvey = () => {
     answerDispatch,
     answer,
   };
-  const changePercent = { setModalOpen, percent, setPercent };
+  const changePercent = { setModalOpen, percent, setPercent, step, setStep };
 
-  // useEffect(() => {
-  //   console.log(submit);
-  // }, [submit]);
+  useEffect(() => {
+    console.log(submit);
+  }, [submit]);
 
-  // useEffect(() => {
-  //   console.log(answer);
-  // }, [answer]); 코드 동작 확인하기 위한 코드입니다.
+  useEffect(() => {
+    console.log(answer);
+  }, [answer]); //코드 동작 확인하기 위한 코드입니다.
 
   const handleSubmit = async () => {
     const result = {};
     submit.forEach((x) => {
       result[x] = (result[x] || 0) + 1;
     });
+
+    setLoading(true);
 
     answerDispatch({ type: 'INPUT', data: result });
 
@@ -59,13 +65,20 @@ const MainSurvey = () => {
           style={{ width: `${percent}%` }}
         ></div>
       </div>
-      <div className="m-auto mt-48">
+      <div className="m-auto">
         <PercentContext.Provider value={changePercent}>
           <SaveAnswersContext.Provider value={saveAnswers}>
-            <SurveyContainer />
-            <Modal open={modalOpen} click={handleSubmit}>
-              테스트를 완료하였습니다😊
-            </Modal>
+            {step == 0 ? (
+              <SurveyTemp />
+            ) : (
+              <>
+                <SurveyContainer />
+                <Modal open={modalOpen} click={handleSubmit}>
+                  테스트를 완료하였습니다😊
+                </Modal>
+              </>
+            )}
+            <div>{loading ? <Spinner loading={loading} /> : ' '}</div>
           </SaveAnswersContext.Provider>
         </PercentContext.Provider>
       </div>
