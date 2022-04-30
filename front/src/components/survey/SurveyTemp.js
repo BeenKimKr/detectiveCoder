@@ -33,7 +33,7 @@ const SurveyTemp = () => {
             <>
               {WEATHER.map((it, index) => (
                 <>
-                  <div className="InfoCard" key={index}>
+                  <div className={`InfoCard ${it.color}`} key={index}>
                     <div className="InfoTempContainer">
                       <p className="InfoTempText">{it.name}</p>
                     </div>
