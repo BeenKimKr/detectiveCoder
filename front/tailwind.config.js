@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'custom-main': '#55b4b7',
+        'custom-main': '#55B4B7',
         'custom-main-hover': '#0b7285',
         'custom-sub': '#c4c4c4',
         'custom-sub-hover': '#868e96',

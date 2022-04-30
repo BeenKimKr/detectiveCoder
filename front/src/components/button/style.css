@@ -1,0 +1,17 @@
+.myBtn {
+  @apply font-bold p-2 rounded;
+}
+.btn-main {
+  @apply bg-custom-main text-white;
+}
+
+.btn-temp {
+  @apply mt-8 mr-96 bg-white text-custom-main;
+}
+
+.btn-sub {
+  @apply bg-custom-sub text-black;
+}
+.btn-main:hover {
+  @apply bg-custom-main-hover;
+}
