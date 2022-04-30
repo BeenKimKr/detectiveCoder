@@ -15,7 +15,7 @@ const User = {
     const deleteUser = await UserModel.deleteOne({ id });
     const isDeleted = deleteUser.deletedCount === 1;
     return isDeleted;
-  }
+  },
 };
 
 module.exports = { User };
