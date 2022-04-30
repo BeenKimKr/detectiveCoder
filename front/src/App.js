@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import CityInfo from './pages/cityInfo/CityInfo';
 import MainSurvey from './pages/MainSurvey';
-import KakaoLogin from './components/Kakao_login';
+import Kakao from './components/Kakao/Login';
 
+import AllCities from './pages/allCities/AllCities';
 import * as Api from './api';
-
 import './App.css';
 
 export const ModalStateContext = createContext(null);
@@ -29,10 +29,11 @@ function App() {
       <ModalStateContext.Provider value={changeModal}>
         <Router>
           <Routes>
-            <Route path='/home' exact element={<Home />} />
+            <Route path='/main' element={<Home />} />
             <Route path='/cityinfo' element={<CityInfo />} />
+            <Route path='/allcities' element={<AllCities />} />
             <Route path='/mainsurvey' element={<MainSurvey />} />
-            <Route path='/users/kakao/callback' element={<KakaoLogin />} />
+            <Route path='/KakaoHome' element={<Kakao />} />
             <Route path='*' element={<Home />} />
           </Routes>
         </Router>

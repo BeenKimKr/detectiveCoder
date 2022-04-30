@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { QUESTIONS } from './QUESTIONS';
 import { PercentContext, SaveAnswersContext } from '../../pages/MainSurvey';
-
+import { HPIQUESTIONS } from './text/HPIQUESTIONS';
 import './style.css';
 
 const SurveyContainer = () => {
@@ -52,7 +51,7 @@ const SurveyContainer = () => {
     <>
       <div>
         <div className="AnswerContainer">
-          {QUESTIONS.filter((it) => it.id == tempArray[0]).map((x) => (
+          {HPIQUESTIONS.filter((it) => it.id == tempArray[0]).map((x) => (
             <>
               <button
                 className="AnswerCard"
@@ -63,7 +62,7 @@ const SurveyContainer = () => {
               </button>
             </>
           ))}
-          {QUESTIONS.filter((it) => it.id == tempArray[1]).map((x) => (
+          {HPIQUESTIONS.filter((it) => it.id == tempArray[1]).map((x) => (
             <>
               <button
                 className="AnswerCard"
