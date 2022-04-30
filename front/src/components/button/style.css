@@ -15,3 +15,5 @@
 .btn-main:hover {
   @apply bg-custom-main-hover;
 }
+
+}
