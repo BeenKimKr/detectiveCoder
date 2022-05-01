@@ -4,6 +4,7 @@ import Home from './pages/Home/Home';
 import CityInfo from './pages/cityInfo/CityInfo';
 import MainSurvey from './pages/MainSurvey';
 import Kakao from './components/Kakao/Login';
+import Home2 from './components/Nav/Home2';
 
 import AllCities from './pages/allCities/AllCities';
 import * as Api from './api';
@@ -35,6 +36,7 @@ function App() {
           <Route path='/mainsurvey' element={<MainSurvey />} />
           <Route path='/KakaoHome' element={<Kakao />} />
           <Route path='*' element={<Home />} />
+          <Route path='/home2' element={<Home2 />} />
         </Routes>
       </Router>
       {/* </ModalStateContext.Provider> */}

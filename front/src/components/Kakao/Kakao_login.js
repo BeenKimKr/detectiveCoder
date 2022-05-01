@@ -1,17 +1,13 @@
 import React from 'react';
 import KakaoLogin from 'react-kakao-login';
 
+<a href='kakaoLogin();'>
+  <img src='./kakao_login.png' alt='카카오계정 로그인' style='height: 100px;' />
+</a>;
+
 const Kakao_login = () => {
   return (
     <div>
-      <a href='javascript:kakaoLogin();'>
-        <img
-          src='./kakao_login.png'
-          alt='카카오계정 로그인'
-          style='height: 100px;'
-        />
-      </a>
-
       <div>
         window.Kakao.init('4db0ceddd72b85015bb53fc2b6c81918'); function
         kakaoLogin(){' '}
