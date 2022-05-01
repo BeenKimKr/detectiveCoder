@@ -2,8 +2,8 @@
 import React, { useState, createContext, useReducer, useEffect } from 'react';
 import SurveyContainer from '../components/survey/SurveyContainer';
 import Modal from '../components/modal/Modal';
-import Spinner from '../components/Spinner';
 import SurveyTemp from '../components/survey/SurveyTemp';
+import * as Api from '../api';
 
 export const SaveAnswersContext = createContext();
 export const PercentContext = createContext();
@@ -59,9 +59,17 @@ const MainSurvey = () => {
     answerDispatch({ type: 'INPUT', data: submit });
     setLoading(true);
 
-    // await axios.post("", answer);
-    // 결과 페이지로  Post
-    // 아직 기온범위 구현  X.
+    try {
+      await Api.post('survey/create', {
+        answer,
+      });
+    } catch (error) {
+      console.log(error);
+      if (error.response) {
+        const { data } = error.response;
+        console.error('data : ', data);
+      }
+    }
   };
 
   console.log(loading);
