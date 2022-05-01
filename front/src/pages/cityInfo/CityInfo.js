@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import Navmain from '../../components/Nav/Navmain';
+import Nav from '../../components/Nav/Nav';
 import WealChart from '../../components/charts/WealChart';
 import Button from '../../components/btn/CommonButton';
 import Image from '@material-tailwind/react/Image';
 import WeatherChart from '../../components/charts/WeatherChart';
 import HPIChart from '../../components/charts/HPIChart';
 import Bigmac from '../../components/charts/Bigmac';
-import KakaoShare from '../../components/KakaoShare';
 
 import './style.css';
 
@@ -16,7 +15,7 @@ const CityInfo = () => {
 
   return (
     <div className='container flex-col p-2'>
-      <Navmain />
+      <Nav />
       <div className=' my-8'>
         <span className='title'>
           {name}님께
@@ -70,7 +69,6 @@ const CityInfo = () => {
       <div className='flex space-x-4 justify-end'>
         <Button text='비슷한 나라 보기' type='serve' />
         <Button text='저장하기' type='main' />
-        <KakaoShare />
       </div>
     </div>
   );

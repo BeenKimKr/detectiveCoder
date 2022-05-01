@@ -75,14 +75,13 @@ const MainSurvey = () => {
   console.log(loading);
 
   return (
-    <div className="container w-screen h-screen  ">
-      <div class="w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700">
+    <div className='container w-screen h-screen'>
+      <div className='w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700'>
         <div
-          class="h-6 bg-custom-main rounded-full dark:bg-gray-300"
-          style={{ width: `${percent}%` }}
-        ></div>
+          class='h-6 bg-custom-main rounded-full dark:bg-gray-300'
+          style={{ width: `${percent}%` }}></div>
       </div>
-      <div className="m-auto">
+      <div className='m-auto'>
         <PercentContext.Provider value={changePercent}>
           <SaveAnswersContext.Provider value={saveAnswers}>
             {step == 0 ? (
