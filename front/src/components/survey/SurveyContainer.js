@@ -27,23 +27,21 @@ const SurveyContainer = () => {
   }, []);
 
   const handleClickAnswer = (e) => {
-    setPercent((it) => it + 14.5);
+    if (winner.length == 6) {
+      setWinners([...winner, e.currentTarget.value]);
+      setModalOpen(true);
+    }
     if (question.length <= 2) {
-      if (winner.length === 0) {
-        setModalOpen(true);
-      } else {
-        let updateStep = [...winner, e.currentTarget.value];
-        setQuestion(updateStep);
-        setTempArray([updateStep[0], updateStep[1]]);
-        setWinners([...winner, e.currentTarget.value]);
-        setWinners([]);
-      }
-    } else if (question.length > 2) {
+      let updateStep = [...winner, e.currentTarget.value];
+      setQuestion(updateStep);
+      setTempArray([updateStep[0], updateStep[1]]);
+      setWinners([...winner, e.currentTarget.value]);
+    } else {
       setWinners([...winner, e.currentTarget.value]);
       setTempArray([question[2], question[3]]);
       setQuestion(question.slice(2));
     }
-
+    setPercent((it) => it + 14.5); // winner -> percent 커스텀 훅 사용해보자~
     setSubmit([...submit, e.currentTarget.value]);
   };
 

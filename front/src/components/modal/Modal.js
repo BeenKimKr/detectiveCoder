@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { PercentContext } from '../../pages/MainSurvey';
-import CommonButton from '../button/CommonButton';
+import CommonButton from '../btn/CommonButton';
 import Spinner from '../Spinner';
 import './style.css';
 const Modal = (props) => {

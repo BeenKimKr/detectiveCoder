@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import CommonButton from '../button/CommonButton';
+import CommonButton from '../btn/CommonButton';
 import { SaveAnswersContext, PercentContext } from '../../pages/MainSurvey';
 import { WEATHER } from './text/WEATHER';
 
