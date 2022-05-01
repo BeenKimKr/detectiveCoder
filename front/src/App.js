@@ -4,12 +4,17 @@ import Home from './pages/Home/Home';
 import CityInfo from './pages/cityInfo/CityInfo';
 import MainSurvey from './pages/MainSurvey';
 import Kakao from './components/Kakao/Login';
+import initialize from './initialize';
 
 import AllCities from './pages/allCities/AllCities';
 import * as Api from './api';
 import './App.css';
 
 // export const ModalStateContext = createContext(null);
+const App = () => {
+  useEffect(() => {
+    initialize();
+  }, []);
 
 function App() {
   // // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)

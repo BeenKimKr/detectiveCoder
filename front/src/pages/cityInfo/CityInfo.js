@@ -6,6 +6,7 @@ import Image from '@material-tailwind/react/Image';
 import WeatherChart from '../../components/charts/WeatherChart';
 import HPIChart from '../../components/charts/HPIChart';
 import Bigmac from '../../components/charts/Bigmac';
+import KakaoShare from '../../components/KakaoShare';
 
 import './style.css';
 
@@ -69,6 +70,7 @@ const CityInfo = () => {
       <div className='flex space-x-4 justify-end'>
         <Button text='비슷한 나라 보기' type='serve' />
         <Button text='저장하기' type='main' />
+        <KakaoShare />
       </div>
     </div>
   );
