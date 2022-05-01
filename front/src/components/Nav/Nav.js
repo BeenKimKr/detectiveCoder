@@ -2,9 +2,6 @@
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
-import { Link } from 'react-router-dom';
-
-import './Nav.css';
 
 const navigation = [
   { name: 'Home', href: '/Home', current: true },
@@ -17,7 +14,7 @@ function classNames(...classes) {
 
 export default function Nav() {
   return (
-    <Disclosure as='nav' className='bg-gray-800/20 absolute container w-screen'>
+    <Disclosure as='nav' className='bg-gray-800'>
       {({ open }) => (
         <>
           <div className='max-w-7xl mx-auto px-2 sm:px-6 lg:px-8'>
@@ -95,14 +92,14 @@ export default function Nav() {
                     <Menu.Items className='origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none'>
                       <Menu.Item>
                         {({ active }) => (
-                          <Link
+                          <a
                             to='/KakaoHome'
                             className={classNames(
                               active ? 'bg-gray-100' : '',
                               'block px-4 py-2 text-sm text-gray-700'
                             )}>
                             Kakao Login
-                          </Link>
+                          </a>
                         )}
                       </Menu.Item>
                       <Menu.Item>
