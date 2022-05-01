@@ -45,7 +45,7 @@ countryRouter.get("/all", async (req, res, next) => {
 
 countryRouter.get("/one/:City", async (req, res, next) => {
   try {
-    const City = req.params.City;
+    const City = req.body;
     console.log(City);
     const data = await countryService.getOne(City);
 
@@ -71,7 +71,7 @@ countryRouter.get("/one/:City", async (req, res, next) => {
  */
 countryRouter.get("/rank/:Country", async (req, res, next) => {
   try {
-    const Country = req.params.Country;
+    const Country = req.body;
     console.log(Country);
     const data = await countryService.getRank(Country);
 
