@@ -2,6 +2,8 @@
 import React, { useState, createContext, useReducer, useEffect } from 'react';
 import SurveyContainer from '../components/survey/SurveyContainer';
 import Modal from '../components/modal/Modal';
+import SurveyTemp from '../components/survey/SurveyTemp';
+import * as Api from '../api';
 
 export const SaveAnswersContext = createContext();
 export const PercentContext = createContext();
@@ -20,7 +22,9 @@ const MainSurvey = () => {
   const [answer, answerDispatch] = useReducer(reducer, []);
   const [submit, setSubmit] = useState([]);
   const [percent, setPercent] = useState(0);
+  const [step, setStep] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const saveAnswers = {
     submit,
@@ -28,29 +32,47 @@ const MainSurvey = () => {
     answerDispatch,
     answer,
   };
-  const changePercent = { setModalOpen, percent, setPercent };
+  const changePercent = {
+    setModalOpen,
+    percent,
+    setPercent,
+    step,
+    setStep,
+    setLoading,
+    loading,
+  };
 
-  //코드 동작 확인하기 위한 코드입니다.
   useEffect(() => {
     console.log(submit);
   }, [submit]);
 
   useEffect(() => {
     console.log(answer);
-  }, [answer]);
+  }, [answer]); //코드 동작 확인하기 위한 코드입니다.
 
   const handleSubmit = async () => {
-    const result = {};
-    submit.forEach((x) => {
-      result[x] = (result[x] || 0) + 1;
-    });
+    // const result = {};
+    // submit.forEach((x) => {
+    //   result[x] = (result[x] || 0) + 1;
+    // });
 
-    answerDispatch({ type: 'INPUT', data: result });
+    answerDispatch({ type: 'INPUT', data: submit });
+    setLoading(true);
 
-    // await axios.post("", answer);
-    // 결과 페이지로  Post
-    // 아직 기온범위 구현  X.
+    try {
+      await Api.post('survey/create', {
+        answer,
+      });
+    } catch (error) {
+      console.log(error);
+      if (error.response) {
+        const { data } = error.response;
+        console.error('data : ', data);
+      }
+    }
   };
+
+  console.log(loading);
 
   return (
     <div className="container w-screen h-screen  ">
@@ -60,13 +82,17 @@ const MainSurvey = () => {
           style={{ width: `${percent}%` }}
         ></div>
       </div>
-      <div className="m-auto mt-48">
+      <div className="m-auto">
         <PercentContext.Provider value={changePercent}>
           <SaveAnswersContext.Provider value={saveAnswers}>
-            <SurveyContainer />
-            <Modal open={modalOpen} click={handleSubmit}>
-              테스트를 완료하였습니다😊
-            </Modal>
+            {step == 0 ? (
+              <SurveyTemp />
+            ) : (
+              <>
+                <SurveyContainer />
+                <Modal open={modalOpen} click={handleSubmit} />
+              </>
+            )}
           </SaveAnswersContext.Provider>
         </PercentContext.Provider>
       </div>
