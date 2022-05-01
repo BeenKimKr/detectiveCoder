@@ -84,38 +84,36 @@ countryRouter.get("/rank/:Country", async (req, res, next) => {
 /**
  * @swagger
  * paths:
- *  /country/sort/:columns
+ *  /country/sort/:answer
  *    get:
- *      summary: Get sorted data(by columns)
+ *      summary: Get sorted data(by answer)
  *      tags: [Country]
  *      responses:
  *        "200":
- *          description: Get sorted data(by columns)
+ *          description: Get sorted data(by answer)
  *          content:
  *            application/json:
  *              schema:
  *                $ref: '#/components/schemas/Country'
  */
-// 개발용 path ('/sort'로 변경 예정, columns는 req.body로 넘겨받는다.)
-countryRouter.get("/sort/:columns", async (req, res, next) => {
+// 개발용 path ('/sort'로 변경 예정, answer는 req.body로 넘겨받는다.)
+countryRouter.get("/sort", async (req, res, next) => {
   try {
-    // const columns = req.body; (@권민님)
-    const columns = req.params.columns;
-    const countryData = req.cookies.countryData ?? 0;
-    let data;
+    // const answer = req.body; (@권민님)
+    const answer = req.body;
+    console.log(answer);
 
-    if (countryData === 0) {
-      data = await countryService.sortData(columns);
-      res.cookie(
-        'countryData',
-        data,
-        { maxAge: 3600 }
-      );
-    } else {
-      data = { ...countryData };
-    }
+    // const countryData = req.cookies.countryData ?? 0;
+    // let data;
 
-    res.status(200).json(data);
+    // if (countryData === 0) {
+    //   data = await countryService.sortData(answer);
+    //   res.cookie("countryData", data, { maxAge: 3600 });
+    // } else {
+    //   data = { ...countryData };
+    // }
+
+    // res.status(200).json(data);
   } catch (error) {
     next(error);
   }

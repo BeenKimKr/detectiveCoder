@@ -1,17 +1,9 @@
 .myBtn {
-<<<<<<< HEAD:front/src/components/Button/style.css
-  @apply font-bold py-2 px-4 rounded;
-=======
   @apply font-bold p-2 rounded;
->>>>>>> 21d7ade427e3882620611ef52a1e972e67a246c5:front/src/components/btn/style.css
 }
 .btn-main {
   @apply bg-cyan-300 text-white;
 }
-<<<<<<< HEAD:front/src/components/Button/style.css
-.btn-serve {
-  @apply bg-gray-400 text-black;
-=======
 
 .btn-temp {
   @apply mt-8 mr-96 text-custom-main;
@@ -22,5 +14,4 @@
 }
 .btn-main:hover {
   @apply bg-custom-main-hover;
->>>>>>> 21d7ade427e3882620611ef52a1e972e67a246c5:front/src/components/btn/style.css
 }
