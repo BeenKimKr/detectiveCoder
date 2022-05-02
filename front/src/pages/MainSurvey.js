@@ -45,12 +45,14 @@ const MainSurvey = () => {
   console.log(id);
 
   const handleSubmit = async () => {
+    console.log(answer);
+    const submitAnswer = answer.filter((it) => it != 'temperature');
     setLoading(true);
     try {
       await Api.post('survey/create', {
         id,
         temp,
-        answer,
+        submitAnswer,
       });
       // const res = await Api.get(`survey/${}`);
       // navigate(`/cityInfo`);
