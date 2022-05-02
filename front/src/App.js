@@ -1,66 +1,73 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, useEffect, useReducer, createContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import CityInfo from './pages/cityInfo/CityInfo';
 import MainSurvey from './pages/MainSurvey';
-import Login from './components/Kakao/KakaoLogin';
+import { loginReducer } from './reducer';
+import RedirectKakao from './components/Kakao/RedirectKakao';
 
 import AllCities from './pages/allCities/AllCities';
 import * as Api from './api';
 import './App.css';
 
-// export const ModalStateContext = createContext(null);
-// const kakaoLogin = (code) => {
-//   return function (dispatch, getState, { history }) {
-//     axios({
-//       method: "GET",
-//       url: `http://localhost:3000/users/kakao/callback?code=${code}`,
-//     })
-//       .then((res) => {
-//         console.log(res); // 토큰이 넘어올 것임
-
-//         const ACCESS_TOKEN = res.data.accessToken;
-
-//         localStorage.setItem("token", ACCESS_TOKEN);    //예시로 로컬에 저장함
-
-//         history.replace("/home2") // 토큰 받았았고 로그인됐으니 화면 전환시켜줌(메인으로)
-
-//         })
-//         .catch((err) => {
-//         console.log("소셜로그인 에러", err);
-//         window.alert("로그인에 실패하였습니다.");
-//         history.replace("/"); // 로그인 실패하면 로그인화면으로 돌려보냄
-//         }
-
-//         )};
+export const UserStateContext = createContext(null);
+export const DispatchContext = createContext(null);
 
 function App() {
-  // // useState를 사용하여 open상태를 변경한다. (open일때 true로 만들어 열리는 방식)
-  // const [modalOpen, setModalOpen] = useState(false);
+  // useReducer 훅을 통해 userState 상태와 dispatch함수를 생성함.
+  const [userState, dispatch] = useReducer(loginReducer, {
+    user: null,
+  });
 
-  // const openModal = () => {
-  //   setModalOpen(true);
-  // };
-  // const closeModal = () => {
-  //   setModalOpen(false);
-  // };
+  // 아래의 fetchCurrentUser 함수가 실행된 다음에 컴포넌트가 구현되도록 함.
+  // 아래 코드를 보면 isFetchCompleted 가 true여야 컴포넌트가 구현됨.
+  const [isFetchCompleted, setIsFetchCompleted] = useState(false);
 
-  // const changeModal = { modalOpen, setModalOpen, openModal, closeModal };
+  const fetchCurrentUser = async () => {
+    try {
+      // 이전에 발급받은 토큰이 있다면, 이를 가지고 유저 정보를 받아옴.
+      const res = await Api.get('user/current');
+      const currentUser = res.data;
+
+      // dispatch 함수를 통해 로그인 성공 상태로 만듦.
+      dispatch({
+        type: 'LOGIN_SUCCESS',
+        payload: currentUser,
+      });
+
+      console.log('%c sessionStorage에 토큰 있음.', 'color: #d93d1a;');
+    } catch {
+      console.log('%c SessionStorage에 토큰 없음.', 'color: #d93d1a;');
+    }
+    // fetchCurrentUser 과정이 끝났으므로, isFetchCompleted 상태를 true로 바꿔줌
+    setIsFetchCompleted(true);
+  };
+
+  // useEffect함수를 통해 fetchCurrentUser 함수를 실행함.
+  useEffect(() => {
+    fetchCurrentUser();
+  }, []);
+
+  if (!isFetchCompleted) {
+    return 'loading...';
+  }
 
   return (
     <>
-      {/* <ModalStateContext.Provider value={changeModal}> */}
-      <Router>
-        <Routes>
-          <Route path="/main" element={<Home />} />
-          <Route path="/cityinfo" element={<CityInfo />} />
-          <Route path="/allcities" element={<AllCities />} />
-          <Route path="/mainsurvey" element={<MainSurvey />} />
-          <Route path="/users/kakao/callback" element={<Login />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
-      </Router>
-      {/* </ModalStateContext.Provider> */}
+      <DispatchContext.Provider value={dispatch}>
+        <UserStateContext.Provider value={userState}>
+          <Router>
+            <Routes>
+              <Route path="/main" element={<Home />} />
+              <Route path="/cityinfo" element={<CityInfo />} />
+              <Route path="/allcities" element={<AllCities />} />
+              <Route path="/mainsurvey" element={<MainSurvey />} />
+              <Route path="/users/kakao/callback" element={<RedirectKakao />} />
+              <Route path="*" element={<Home />} />
+            </Routes>
+          </Router>
+        </UserStateContext.Provider>
+      </DispatchContext.Provider>
     </>
   );
 }

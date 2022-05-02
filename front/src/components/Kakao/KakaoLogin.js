@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import KaKaoLogin from 'react-kakao-login';
+import { KAKAO_AUTH_URL } from '../Kakao/OAuth';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-const token = 'f3ab80f45ba58775ef31fcf61bd1031f';
+const KakaoLogin = () => {
+  console.log('KakaoLogin');
+  return (
+    <a href={KAKAO_AUTH_URL}>
+      <img src="/imgs/kakao_login.png"></img>
+    </a>
+  );
+};
 
-const Login = () => (
-  <KaKaoLogin
-    token={token}
-    onSuccess={console.log}
-    onFail={console.error}
-    onLogout={console.info}
-  />
-);
-
-export default Login;
+export default KakaoLogin;

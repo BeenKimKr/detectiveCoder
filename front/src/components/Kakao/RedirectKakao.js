@@ -1,19 +1,34 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { actionCreators as userActions } from '../redux/modules/user';
-import Spinner from './Spinner';
+import React, { useContext, useEffect } from 'react';
+import { DispatchContext } from '../../App';
+import { useNavigate } from 'react-router-dom';
+import * as Api from '../../api';
 
-const RedirectKakao = (props) => {
-  const dispatch = useDispatch();
+const RedirectKakao = () => {
+  const navigate = useNavigate();
+  const dispatch = useContext(DispatchContext);
 
-  // 인가코드
   let code = new URL(window.location.href).searchParams.get('code');
 
-  React.useEffect(async () => {
-    await dispatch(userActions.kakaoLogin(code));
+  React.useEffect(() => {
+    dispatch(kakaoLogin(code));
   }, []);
 
-  return Spinner;
+  const kakaoLogin = async (code) => {
+    console.log('리다이렉트');
+    try {
+      const res = await Api.get(
+        `http://localhost:3000/users/kakao/callback?code=${code}`
+      );
+      console.log(res);
+      // dispatch({
+      //   type: 'LOGIN_SUCCESS',
+      //   payload: user,
+      // });
+      navigate('/home');
+    } catch (err) {
+      console.log('로그인실패!');
+    }
+  };
 };
 
 export default RedirectKakao;

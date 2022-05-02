@@ -2,20 +2,9 @@
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
-import Login from '../Kakao/KakaoLogin';
+import KakaoLogin from '../Kakao/KakaoLogin';
 
 import './Nav.css';
-
-const navigation = [
-  { name: 'Home', href: '/Home', current: false },
-  { name: 'All cities', href: '/allcities', current: false },
-  { name: <Login /> },
-  { name: 'Naver Login', href: '#', current: false },
-];
-
-function classNames(...classes) {
-  return classes.filter(Boolean).join(' ');
-}
 
 export default function Nav() {
   return (
@@ -38,23 +27,7 @@ export default function Nav() {
         </div>
         <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
           <div className="hidden sm:block sm:ml-6">
-            <div className="flex space-x-4">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={classNames(
-                    item.current
-                      ? 'bg-gray-900 text-white'
-                      : 'text-gray-300 hover:bg-gray-700/5 hover:text-black ',
-                    'px-3 py-1 rounded-md text-sm font-medium items-center justify-center'
-                  )}
-                  aria-current={item.current ? 'page' : undefined}
-                >
-                  {item.name}
-                </a>
-              ))}
-            </div>
+            <KakaoLogin />
           </div>
         </div>
       </div>
