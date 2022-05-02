@@ -4,9 +4,8 @@ import { SaveAnswersContext, PercentContext } from '../../pages/MainSurvey';
 import { WEATHER } from './text/WEATHER';
 
 const SurveyTemp = () => {
-  const [temp, setTemp] = useState(24);
   const [open, setOpen] = useState(false);
-  const { answerDispatch } = useContext(SaveAnswersContext);
+  const { setTemp, temp } = useContext(SaveAnswersContext);
   const { setStep } = useContext(PercentContext);
 
   const onTempChange = (e) => {
@@ -14,7 +13,6 @@ const SurveyTemp = () => {
   };
 
   const onClick = () => {
-    answerDispatch({ type: 'INPUT', data: temp });
     setStep(1);
   };
 

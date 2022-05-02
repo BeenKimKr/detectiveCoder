@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import { get } from '../../api';
 
 const RedirectKakao = () => {
   useEffect(() => {
