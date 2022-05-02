@@ -44,9 +44,9 @@ countryRouter.get("/all", async (req, res, next) => {
  *                $ref: '#/components/schemas/Country'
  */
 
-countryRouter.get("/one", async (req, res, next) => {
+countryRouter.get("/one/:City", async (req, res, next) => {
   try {
-    const City = req.body.City;
+    const City = req.params.City;
     console.log(City);
     const data = await countryService.getOne(City);
 
@@ -70,9 +70,9 @@ countryRouter.get("/one", async (req, res, next) => {
  *            application/json:
  *                schemas:
  */
-countryRouter.get("/rank", async (req, res, next) => {
+countryRouter.get("/rank/:Country", async (req, res, next) => {
   try {
-    const Country = req.body.Country;
+    const Country = req.params.Country;
     console.log(Country);
     const data = await countryService.getRank(Country);
 
