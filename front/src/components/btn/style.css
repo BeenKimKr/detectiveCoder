@@ -3,7 +3,7 @@
 }
 
 .btn-main {
-  @apply bg-custom-main text-white;
+  @apply bg-cyan-300 text-white;
 }
 
 .btn-temp {

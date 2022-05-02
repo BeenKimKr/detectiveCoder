@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const { countryService } = require("../services/countryService.js");
+const { surveyService } = require("../services/surveyService.js");
 const countryRouter = Router();
 
 /**
@@ -43,9 +44,9 @@ countryRouter.get("/all", async (req, res, next) => {
  *                $ref: '#/components/schemas/Country'
  */
 
-countryRouter.get("/one/:City", async (req, res, next) => {
+countryRouter.get("/one", async (req, res, next) => {
   try {
-    const City = req.body;
+    const City = req.body.City;
     console.log(City);
     const data = await countryService.getOne(City);
 
@@ -69,9 +70,9 @@ countryRouter.get("/one/:City", async (req, res, next) => {
  *            application/json:
  *                schemas:
  */
-countryRouter.get("/rank/:Country", async (req, res, next) => {
+countryRouter.get("/rank", async (req, res, next) => {
   try {
-    const Country = req.body;
+    const Country = req.body.Country;
     console.log(Country);
     const data = await countryService.getRank(Country);
 
@@ -84,37 +85,56 @@ countryRouter.get("/rank/:Country", async (req, res, next) => {
 /**
  * @swagger
  * paths:
- *  /country/sort/:columns
+ *  /country/sort/:answer
  *    get:
- *      summary: Get sorted data(by columns)
+ *      summary: Get sorted data(by answer)
  *      tags: [Country]
  *      responses:
  *        "200":
- *          description: Get sorted data(by columns)
+ *          description: Get sorted data(by answer)
  *          content:
  *            application/json:
  *              schema:
  *                $ref: '#/components/schemas/Country'
  */
-// 개발용 path ('/sort'로 변경 예정, columns는 req.body로 넘겨받는다.)
-countryRouter.get("/sort/:columns", async (req, res, next) => {
+countryRouter.post("/sort", async (req, res, next) => {
   try {
-    // const columns = req.body; (@권민님)
-    const columns = req.params.columns;
+    res.header("Content-Type: application/json");
+
+    const id = req.body.id;
+    const temp = req.body.temp;
+    const answer = req.body.answer;
+
+    const result = await surveyService.addSurvey({ id, temp, answer });
+    if (answer.errorMessage) {
+      throw new Error(result.errorMessage);
+    }
+
+    res.status(201).json(result);
+  } catch (e) {
+    next(e);
+  }
+});
+
+// 개발용 path ('/sort'로 변경 예정, answer는 req.body로 넘겨받는다.)
+countryRouter.get("/sort/:id", async (req, res, next) => {
+  try {
+    // // const answer = req.body; (@권민님)
+    const id = req.params.id;
+    let survey = await surveyService.getSurvey({ id });
+
+    const temp = survey.temp;
+    const answer = survey.answer;
+
     const countryData = req.cookies.countryData ?? 0;
     let data;
 
     if (countryData === 0) {
-      data = await countryService.sortData(columns);
-      res.cookie(
-        'countryData',
-        data,
-        { maxAge: 3600 }
-      );
+      data = await countryService.sortData({ temp, answer });
+      res.cookie("countryData", data, { maxAge: 3600 });
     } else {
       data = { ...countryData };
     }
-
     res.status(200).json(data);
   } catch (error) {
     next(error);
