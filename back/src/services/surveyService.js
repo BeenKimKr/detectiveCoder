@@ -9,6 +9,10 @@ const surveyService = {
 
     return createdNewSurvey;
   },
+  getSurvey: async ({ id }) => {
+    const survey = await Survey.findById({ id });
+    return survey;
+  },
 };
 
 module.exports = { surveyService };

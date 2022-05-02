@@ -1,5 +1,5 @@
 // 설문조사 페이지
-import React, { useState, createContext, useReducer, useEffect } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import SurveyContainer from "../components/survey/SurveyContainer";
 import Modal from "../components/modal/Modal";
 import SurveyTemp from "../components/survey/SurveyTemp";
@@ -8,29 +8,25 @@ import * as Api from "../api";
 export const SaveAnswersContext = createContext();
 export const PercentContext = createContext();
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "INPUT": {
-      return [...state, action.data];
-    }
-    default:
-      return state;
-  }
-};
+// const useUpdatePercent = () => {
+
+// };
 
 const MainSurvey = () => {
-  const [answer, answerDispatch] = useReducer(reducer, []);
+  // const navigate = useNavigate();
   const [submit, setSubmit] = useState([]);
+  const [temp, setTemp] = useState(24);
   const [percent, setPercent] = useState(0);
   const [step, setStep] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [id, setId] = useState(0);
 
   const saveAnswers = {
-    submit,
     setSubmit,
-    answerDispatch,
-    answer,
+    submit,
+    temp,
+    setTemp,
   };
   const changePercent = {
     setModalOpen,
@@ -43,25 +39,23 @@ const MainSurvey = () => {
   };
 
   useEffect(() => {
-    console.log(submit);
-  }, [submit]);
+    setId(Math.floor(Math.random() * 101));
+  }, []);
 
-  useEffect(() => {
-    console.log(answer);
-  }, [answer]); //코드 동작 확인하기 위한 코드입니다.
+  console.log(id);
 
   const handleSubmit = async () => {
-    // const result = {};
-    // submit.forEach((x) => {
-    //   result[x] = (result[x] || 0) + 1;
-    // });
-
-    answerDispatch({ type: "INPUT", data: submit });
+    const answer = submit.filter((it) => it != "temperature");
     setLoading(true);
     try {
-      await Api.get("country/sort", {
+      await Api.post("country/sort", {
+        id,
+        temp,
         answer,
       });
+      const res = await Api.get(`country/sort/${id}`);
+      // navigate(`/cityInfo`);
+      console.log(res);
     } catch (error) {
       console.log(error);
       if (error.response) {
@@ -70,8 +64,6 @@ const MainSurvey = () => {
       }
     }
   };
-
-  console.log(loading);
 
   return (
     <div className="container w-screen h-screen  ">
