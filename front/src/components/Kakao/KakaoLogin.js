@@ -1,29 +1,15 @@
-import React from 'react';
-import { CLIENT_ID } from './OAuth';
+import React, { Component } from 'react';
 import KaKaoLogin from 'react-kakao-login';
 
-const Login = () => {
-  return (
-    <KaKaoLogin
-      token={CLIENT_ID}
-      onSuccess={console.log}
-      onFail={console.error}
-      onLogout={console.info}
-      render={({ onClick }) => {
-        return (
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              onClick();
-            }}
-          >
-            카카오로 로그인하기
-          </a>
-        );
-      }}
-    />
-  );
-};
+const token = 'f3ab80f45ba58775ef31fcf61bd1031f';
+
+const Login = () => (
+  <KaKaoLogin
+    token={token}
+    onSuccess={console.log}
+    onFail={console.error}
+    onLogout={console.info}
+  />
+);
 
 export default Login;
