@@ -19,7 +19,7 @@ const SurveyContainer = () => {
   const [question, setQuestion] = useState([]);
   const [winner, setWinners] = useState([]);
   const { setModalOpen, setPercent } = useContext(PercentContext);
-  const { setAnswer, answer } = useContext(SaveAnswersContext);
+  const { setSubmit, submit } = useContext(SaveAnswersContext);
 
   useEffect(() => {
     setQuestion(FirstQuestion);
@@ -43,7 +43,7 @@ const SurveyContainer = () => {
       setTempArray([question[2], question[3]]);
       setQuestion(question.slice(2));
     }
-    setAnswer([...answer, e.currentTarget.value]);
+    setSubmit([...submit, e.currentTarget.value]);
   };
 
   return (

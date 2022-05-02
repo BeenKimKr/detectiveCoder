@@ -45,7 +45,7 @@ const MainSurvey = () => {
   console.log(id);
 
   const handleSubmit = async () => {
-    const answer = submit.filter((it) => it != "temperature");
+    const answer = submit.filter((it) => it != 'temperature');
     setLoading(true);
     try {
       await Api.post("country/sort", {
