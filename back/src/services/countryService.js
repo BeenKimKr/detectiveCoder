@@ -14,8 +14,9 @@ const countryService = {
     const data = await Country.findRankByCountry(_Country);
     return data;
   },
-  sortData: async (column) => {
-    const columns = column.split(",");
+  sortData: async ({ temp, answer }) => {
+    //temp는 온도, answer는 설문 array
+    const columns = [temp, ...answer];
     const data = await Country.sortAll(columns);
     return data;
   },
