@@ -13,7 +13,7 @@ const RedirectKakao = (props) => {
     await dispatch(userActions.kakaoLogin(code));
   }, []);
 
-  return <h1>로그인 성공!</h1>;
+  return Spinner;
 };
 
 export default RedirectKakao;
