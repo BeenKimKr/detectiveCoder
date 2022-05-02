@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { PercentContext, SaveAnswersContext } from '../../pages/MainSurvey';
-import { HPIQUESTIONS } from './text/HPIQUESTIONS';
-import './style.css';
+import React, { useState, useEffect, useContext } from "react";
+import { PercentContext, SaveAnswersContext } from "../../pages/MainSurvey";
+import { HPIQUESTIONS } from "./text/HPIQUESTIONS";
+import "./style.css";
 
 const SurveyContainer = () => {
   const FirstQuestion = [
-    'socialSupport',
-    'corruption',
-    'Freedom',
-    'price',
-    'GDP',
-    'temperature',
-    'HLE',
-    'Generosity',
+    "socialSupport",
+    "corruption",
+    "Freedom",
+    "price",
+    "GDP",
+    "temperature",
+    "HLE",
+    "Generosity",
   ];
 
   const [tempArray, setTempArray] = useState([]);

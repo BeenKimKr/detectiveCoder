@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
-import CommonButton from '../btn/CommonButton';
-import { SaveAnswersContext, PercentContext } from '../../pages/MainSurvey';
-import { WEATHER } from './text/WEATHER';
+import React, { useState, useContext } from "react";
+import CommonButton from "../btn/CommonButton";
+import { SaveAnswersContext, PercentContext } from "../../pages/MainSurvey";
+import { WEATHER } from "./text/WEATHER";
 
 const SurveyTemp = () => {
   const [open, setOpen] = useState(false);
@@ -20,8 +20,8 @@ const SurveyTemp = () => {
     <>
       <div className="RangeContainer">
         <CommonButton
-          type={'temp'}
-          text={'기온별 옷차림이 궁금하다면? 🔎'}
+          type={"temp"}
+          text={"기온별 옷차림이 궁금하다면? 🔎"}
           onClick={() => {
             setOpen(!open);
           }}
