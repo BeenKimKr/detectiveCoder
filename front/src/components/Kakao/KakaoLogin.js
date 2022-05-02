@@ -1,11 +1,28 @@
 import React from 'react';
-import { KAKAO_AUTH_URL } from './OAuth';
+import { CLIENT_ID } from './OAuth';
+import KaKaoLogin from 'react-kakao-login';
 
 const Login = () => {
   return (
-    <a href={KAKAO_AUTH_URL}>
-      <img src='/imgs/kakao_login.png'></img>
-    </a>
+    <KaKaoLogin
+      token={CLIENT_ID}
+      onSuccess={console.log}
+      onFail={console.error}
+      onLogout={console.info}
+      render={({ onClick }) => {
+        return (
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              onClick();
+            }}
+          >
+            카카오로 로그인하기
+          </a>
+        );
+      }}
+    />
   );
 };
 
