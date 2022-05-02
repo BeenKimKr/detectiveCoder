@@ -1,11 +1,11 @@
 // 설문조사 페이지
-import React, { useState, createContext, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import SurveyContainer from '../components/survey/SurveyContainer';
-import Modal from '../components/modal/Modal';
-import SurveyTemp from '../components/survey/SurveyTemp';
-import * as Api from '../api';
-import { ResultContext } from '../App';
+import React, { useState, createContext, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import SurveyContainer from "../components/survey/SurveyContainer";
+import Modal from "../components/modal/Modal";
+import SurveyTemp from "../components/survey/SurveyTemp";
+import * as Api from "../api";
+import { ResultContext } from "../App";
 
 export const SaveAnswersContext = createContext();
 export const PercentContext = createContext();
@@ -48,12 +48,12 @@ const MainSurvey = () => {
   }, []);
 
   const handleSubmit = async () => {
-    const answer = submit.filter((it) => it != 'temperature');
+    const answer = submit.filter((it) => it != "temperature");
 
     setLoading(true);
 
     try {
-      await Api.post('country/sort', {
+      await Api.post("country/sort", {
         id,
         temp,
         answer,
@@ -72,7 +72,7 @@ const MainSurvey = () => {
       console.log(error);
       if (error.response) {
         const { data } = error.response;
-        console.error('data : ', data);
+        console.error("data : ", data);
       }
     }
   };

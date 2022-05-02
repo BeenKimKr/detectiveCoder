@@ -101,7 +101,7 @@ const Country = {
       return b.value - a.value;
     });
 
-    const result = scoreArr[0];
+    const result = [scoreArr[0], scoreArr[1], scoreArr[2]];
     return result;
   },
 };
