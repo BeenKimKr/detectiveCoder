@@ -1,15 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import Kakao from '../components/Kakao/Login';
+// import { useNavigate } from 'react-router-dom';
+import KakaoLogin from '../components/Kakao/KakaoLogin';
 
-const Home = () => {
-  const navigate = useNavigate();
-
+const KakaoHome = () => {
   return (
     <div className='container flex-col h-screen w-screen '>
-      <Kakao />
+      <KakaoLogin />
     </div>
   );
 };
 
-export default Home;
+export default KakaoHome;

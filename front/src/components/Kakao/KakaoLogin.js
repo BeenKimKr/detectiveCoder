@@ -1,7 +1,7 @@
 import React from 'react';
-import { KAKAO_AUTH_URL } from '../Kakao/OAuth';
+import { KAKAO_AUTH_URL } from './OAuth';
 
-const Kakao = () => {
+const Login = () => {
   return (
     <a href={KAKAO_AUTH_URL}>
       <img src='/imgs/kakao_login.png'></img>
@@ -9,4 +9,4 @@ const Kakao = () => {
   );
 };
 
-export default Kakao;
+export default Login;

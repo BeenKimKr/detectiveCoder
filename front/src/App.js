@@ -1,10 +1,9 @@
 import React, { useState, createContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home/Home';
+import Home2 from './pages/Home/Home2';
 import CityInfo from './pages/cityInfo/CityInfo';
 import MainSurvey from './pages/MainSurvey';
-import Kakao from './components/Kakao/Login';
-import Home2 from './components/Nav/Home2';
+import Login from './components/Kakao/KakaoLogin';
 
 import AllCities from './pages/allCities/AllCities';
 import * as Api from './api';
@@ -30,13 +29,12 @@ function App() {
       {/* <ModalStateContext.Provider value={changeModal}> */}
       <Router>
         <Routes>
-          <Route path='/main' element={<Home />} />
+          <Route path='/main' element={<Home2 />} />
           <Route path='/cityinfo' element={<CityInfo />} />
           <Route path='/allcities' element={<AllCities />} />
           <Route path='/mainsurvey' element={<MainSurvey />} />
-          <Route path='/KakaoHome' element={<Kakao />} />
-          <Route path='*' element={<Home />} />
-          <Route path='/home2' element={<Home2 />} />
+          <Route path='/users/kakao/callback' element={<Login />} />
+          <Route path='*' element={<Home2 />} />
         </Routes>
       </Router>
       {/* </ModalStateContext.Provider> */}
