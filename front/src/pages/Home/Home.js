@@ -2,18 +2,23 @@ import React, { useState } from 'react';
 import Navmain from '../../components/Nav/Navmain';
 // import { useNavigate } from 'react-router-dom';
 import './Home.css';
-import Badge from '../../components/Badge';
+import Badge from '../../components/badge/Badge';
 import video from './Clouds.mp4';
 const Home = () => {
   // const navigate = useNavigate();
   const [login, setLogin] = useState(true);
 
+  // get  : ex ) Save
+
   return (
-    <div className="container flex-col ">
+    <div className="container flex-col  ">
       <div class="bg">
         <Navmain />
         {login ? (
-          <Badge />
+          <div className="mt-32 ml-32">
+            {/* Save.map((it) => <Badge>) */}
+            <Badge />
+          </div>
         ) : (
           <>
             <div className="TextBtnContainer">

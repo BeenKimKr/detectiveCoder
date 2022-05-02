@@ -14,7 +14,7 @@ export const PercentContext = createContext();
 
 const MainSurvey = () => {
   // const navigate = useNavigate();
-  const [answer, setAnswer] = useState([]);
+  const [submit, setSubmit] = useState([]);
   const [temp, setTemp] = useState(24);
   const [percent, setPercent] = useState(0);
   const [step, setStep] = useState(0);
@@ -23,8 +23,8 @@ const MainSurvey = () => {
   const [id, setId] = useState(0);
 
   const saveAnswers = {
-    setAnswer,
-    answer,
+    setSubmit,
+    submit,
     temp,
     setTemp,
   };
@@ -45,14 +45,13 @@ const MainSurvey = () => {
   console.log(id);
 
   const handleSubmit = async () => {
-    console.log(answer);
-    const submitAnswer = answer.filter((it) => it != 'temperature');
+    const answer = submit.filter((it) => it != 'temperature');
     setLoading(true);
     try {
       await Api.post('survey/create', {
         id,
         temp,
-        submitAnswer,
+        answer,
       });
       // const res = await Api.get(`survey/${}`);
       // navigate(`/cityInfo`);
