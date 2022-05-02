@@ -6,7 +6,7 @@ const Badge = (fileName) => {
     <div className="badgeCard">
       <div>
         <img
-          src="https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/BR-flag.gif"
+          src="https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/HK-flag.gif"
           className="badgeImage"
         />
         <div className="textContainer">
