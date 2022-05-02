@@ -54,8 +54,14 @@ const MainSurvey = () => {
         answer,
       });
       const res = await Api.get(`country/sort/${id}`);
+      const country = res.data.Country;
+      const city = res.data.City;
+      const rank = await Api.get(`country/rank/${country}`);
+      const one = await Api.get(`country/one/${city}`);
       // navigate(`/cityInfo`);
       console.log(res);
+      console.log(rank);
+      console.log(one);
     } catch (error) {
       console.log(error);
       if (error.response) {
