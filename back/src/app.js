@@ -23,7 +23,7 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(specs));
 
 // 기본 페이지
 app.get('/', (req, res) => {
-  res.send('main page');
+  res.send('로그인 성공!');
 });
 
 passportConfig();
