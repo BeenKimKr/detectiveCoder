@@ -1,36 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { CLIENT_ID } from './OAuth';
-import KaKaoLogin from 'react-kakao-login';
+import { DispatchContext } from '../../App';
+// import KaKaoLogin from 'react-kakao-login';
+import * as Api from '../../api';
 
 const Login = () => {
-  const onSuccess = (e) => {
-    alert(`${e.profile.properties.nickname}😊 로그인에 성공하였습니다.`);
+  const dispatch = useContext(DispatchContext);
+  const onClick = async () => {
+    try {
+      // "user/login" 엔드포인트로 post요청함.
+      const res = await Api.get('users/current');
+      const currentUser = res.data;
+      console.log(currentUser);
+      dispatch({
+        type: 'LOGIN_SUCCESS',
+        // payload: user,
+      });
+    } catch (err) {
+      // if (err.response) {
+      //   console.log(error);
+      // }
+      console.log('실패');
+    }
   };
-
-  const onFail = (e) => {
-    alert('로그인에 실패아였습니다.');
-    console.log(e);
-  };
-
   return (
-    <KaKaoLogin
-      token={CLIENT_ID}
-      onSuccess={onSuccess}
-      onFail={onFail}
-      onLogout={console.info}
-      render={({ onClick }) => {
-        return (
-          <a
-            href='#'
-            onClick={(e) => {
-              e.preventDefault();
-              onClick();
-            }}>
-            카카오로 로그인하기
-          </a>
-        );
-      }}
-    />
+    <a href='http://localhost:5001/users/kakao/callback' onClick={onClick()}>
+      {' '}
+      <img src='//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg' />
+    </a>
   );
 };
 
