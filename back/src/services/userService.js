@@ -32,7 +32,26 @@ const userAuthService = {
       );
     }
     return { status: "ok" };
-  }
+  },
+
+  addBadge: async ({ id, country }) => {
+    const user = await User.findById({ id });
+    if (!user) {
+      throw new Error('유저 정보가 존재하지 않습니다.');
+    }
+    const badge = user.badge;
+  },
+
+  getBadge: async ({ id }) => {
+    const user = await User.findById({ id });
+    if (!user) {
+      throw new Error('유저 정보가 존재하지 않습니다.');
+    }
+    const badge = user.badge;
+
+    return badge;
+  },
+
 };
 
 module.exports = { userAuthService };

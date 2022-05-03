@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const login_required = require('../middlewares/login_required');
 const passport = require("passport");
 const { userAuthService } = require("../services/userService");
 
@@ -93,9 +94,9 @@ userAuthRouter.get(
  *          schema:
  *            $ref: '#/components/schemas/User'
  */
-userAuthRouter.delete("/:id", async (req, res, next) => {
+userAuthRouter.delete("/:id", login_required, async (req, res, next) => {
   try {
-    const id = req.params.id;
+    const userId = req.currentUserId;
     await userAuthService.deleteUser({ id });
     res.status(200).send();
   } catch (error) {
@@ -103,5 +104,14 @@ userAuthRouter.delete("/:id", async (req, res, next) => {
   }
 });
 
+userAuthRouter.get('/badge', login_required, (req, res, next) => {
+  try {
+    const id = req.currentUserId;
+    const badge = await userAuthService.getBadge({ id });
+    res.status(200).send(badge);
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = { userAuthRouter };
