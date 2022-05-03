@@ -6,9 +6,11 @@ import axios from 'axios';
 const KakaoLogin = () => {
   console.log('KakaoLogin');
   return (
-    <a href={KAKAO_AUTH_URL}>
-      <img src="/imgs/kakao_login.png"></img>
-    </a>
+    <>
+      <a href="http://localhost:5001/users/kakao">
+        <img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" />{' '}
+      </a>
+    </>
   );
 };
 

@@ -16,10 +16,9 @@ const RedirectKakao = () => {
   const kakaoLogin = async (code) => {
     console.log('aa');
     try {
-      const res = await Api.get(
-        `http://localhost:5001/users/kakao/callback?code=${code}`
-      );
+      const res = await Api.get(`users/kakao/${code}`);
       console.log(res);
+
       // dispatch({
       //   type: 'LOGIN_SUCCESS',
       //   payload: user,
