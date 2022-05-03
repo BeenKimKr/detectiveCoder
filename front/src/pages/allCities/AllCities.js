@@ -8,22 +8,7 @@ import MapChart from '../../components/MapChart';
 
 const AllCities = () => {
   const [content, setContent] = useState('');
-  return (
-    <div className='container h-screen w-screen'>
-      <Navmain />
-      <MapChart setTooltipContent={setContent} />
-      <ReactTooltip place='right'>
-        {content}
-        <Image
-          className='w-64 h-64 rounded-full shadow-lg'
-          src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/383px-Flag_of_Germany.svg.png'
-          rounded={true}
-          raised={false}
-          alt='국기 사진'
-        />
-      </ReactTooltip>
-    </div>
-  );
+  return <div className="container h-screen w-screen"></div>;
 };
 
 export default AllCities;

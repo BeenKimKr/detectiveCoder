@@ -67,7 +67,7 @@ const MainSurvey = () => {
       setResultCountries(res.data);
       setResultHPIRank(rank.data);
       setResultAmount(amount.data);
-      setTimeout(navigate(`/cityInfo`), 6000);
+      setTimeout(() => navigate(`/cityInfo`), 3000);
     } catch (error) {
       console.log(error);
       if (error.response) {
