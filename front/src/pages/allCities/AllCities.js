@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navmain from '../../components/Nav/Navmain';
+import Nav from '../../components/Nav/Nav';
 import ReactTooltip from 'react-tooltip'; // yarn add react-tooltip
 import Image from '@material-tailwind/react/Image';
 import './style.css';
@@ -10,7 +10,7 @@ const AllCities = () => {
   const [content, setContent] = useState('');
   return (
     <div className='container h-screen w-screen'>
-      <Navmain />
+      <Nav />
       <MapChart setTooltipContent={setContent} />
       <ReactTooltip place='right'>
         {content}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navmain from '../../components/Nav/Navmain';
+import Nav from '../../components/Nav/Nav';
 import WealChart from '../../components/charts/WealChart';
 import Button from '../../components/btn/CommonButton';
 import Image from '@material-tailwind/react/Image';
@@ -15,7 +15,7 @@ const CityInfo = () => {
 
   return (
     <div className='container flex-col p-2'>
-      <Navmain />
+      <Nav />
       <div className=' my-8'>
         <span className='title'>
           {name}님께
