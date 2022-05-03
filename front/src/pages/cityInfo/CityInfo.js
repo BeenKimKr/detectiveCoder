@@ -23,16 +23,28 @@ const CityInfo = () => {
           을(를) 추천합니다.
         </span>
       </div>
-      <div className='flex flex-row'>
-        <div className=''>
-          <Image
-            className='w-64 h-64 rounded-full shadow-lg'
-            // https://${process.env.AWS_S3_BUCKET}.s3.${AWS_REGION}.amazonaws.com/flags_img/
+      <div className='flex flex-col'>
+        <div className='flex flex-row justify-center'>
+          <img
+            className='w-24 h-24 rounded-full'
             src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/383px-Flag_of_Germany.svg.png'
-            rounded={true}
-            raised={false}
-            alt='국기 사진'
+            alt='2등 국기'
           />
+          <img
+            className='w-24 h-24 rounded-full'
+            src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/383px-Flag_of_Germany.svg.png'
+            alt='1등 국기'
+          />
+          <img
+            className='w-24 h-24 rounded-full'
+            src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/383px-Flag_of_Germany.svg.png'
+            alt='3등 국기'
+          />
+        </div>
+        <div className='w-9/12'>
+          <div className='flex justify-center'>
+            <img src='/imgs/victoryStand.png' alt='시상대' />
+          </div>
         </div>
       </div>
       <div className='flex flex-col lg:flex-row'>
