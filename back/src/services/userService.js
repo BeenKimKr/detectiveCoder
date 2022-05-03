@@ -23,6 +23,11 @@ const userAuthService = {
     return loginUser;
   },
 
+  getUserInfo: async ({ userId }) => {
+    const user = await User.findById({ id: userId });
+    return user;
+  },
+
   deleteUser: async ({ id }) => {
     const isDataDeleted = await User.deleteById({ id });
 

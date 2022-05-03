@@ -1,6 +1,7 @@
 const { Router } = require('express');
-const passport = require('passport');
+const { login_required } = require('../middlewares/login_required');
 const { userAuthService } = require('../services/userService');
+const passport = require('passport');
 
 /**
  * @swagger
@@ -9,6 +10,29 @@ const { userAuthService } = require('../services/userService');
  *   description: API to manage users
  */
 const userAuthRouter = Router();
+
+// userAuthRouter.post('/auth/kakao', async (req, res, next) => {
+//   accessToken = req.body.token;
+//   userProfile = request.get(
+//     'https://kapi.kakao.com/v2/user/me',
+//     headers = { "Authorization": `Bearer ${accessToken}` },
+//   );
+// });
+
+userAuthRouter.get("/current", async (req, res, next) => {
+  try {
+    const userId = req.session.userId;
+    const currentUserInfo = await userAuthService.getUserInfo({
+      userId,
+    });
+    console.log(currentUserInfo);
+    console.log(req.ip);
+    console.log(req.hostname);
+    res.status(200).send(currentUserInfo);
+  } catch (error) {
+    next(error);
+  }
+});
 
 /**
  * @swagger
@@ -53,7 +77,8 @@ userAuthRouter.get(
  *      summary: Register using Kakao
  *      tags: [Users]
  */
-userAuthRouter.get('/kakao', passport.authenticate('kakao'));
+userAuthRouter.get('/kakao',
+  passport.authenticate('kakao'));
 
 /**
  * @swagger
@@ -70,14 +95,15 @@ userAuthRouter.get('/kakao', passport.authenticate('kakao'));
  *              schema:
  *                $ref: '#/components/schemas/User'
  */
-userAuthRouter.get(
-  '/kakao/callback',
+userAuthRouter.get('/kakao/callback',
   passport.authenticate('kakao', {
     failureRedirect: '/',
   }),
   (req, res) => {
     const userInfo = req.user._doc;
-    res.status(200).json({ userInfo });
+    req.session.userId = userInfo.id;
+    res.redirect('/users/current');
+    // res.send(userInfo);
   }
 );
 

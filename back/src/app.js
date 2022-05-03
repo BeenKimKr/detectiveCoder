@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const session = require('express-session');
 const { swaggerUi, specs } = require("./swagger");
 const passport = require("passport");
 const passportConfig = require("./passport");
@@ -19,6 +20,17 @@ app.use((req, res, next) => {
   req.accepts("application/json");
   next();
 });
+app.use(session({
+  httpOnly: true,
+  secure: true,
+  secret: 'secret key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    Secure: true
+  }
+}));
 app.use("/swagger", swaggerUi.serve, swaggerUi.setup(specs));
 
 // 기본 페이지
