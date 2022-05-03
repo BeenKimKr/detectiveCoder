@@ -14,10 +14,10 @@ const RedirectKakao = () => {
   }, []);
 
   const kakaoLogin = async (code) => {
-    console.log('리다이렉트');
+    console.log('aa');
     try {
       const res = await Api.get(
-        `http://localhost:3000/users/kakao/callback?code=${code}`
+        `http://localhost:5001/users/kakao/callback?code=${code}`
       );
       console.log(res);
       // dispatch({
