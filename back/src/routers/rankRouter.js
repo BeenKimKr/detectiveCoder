@@ -1,6 +1,4 @@
 const { Router } = require("express");
-const { countryService } = require("../services/countryService.js");
-const { surveyService } = require("../services/surveyService.js");
 const { rankService } = require("../services/rankService");
 const rankRouter = Router();
 
