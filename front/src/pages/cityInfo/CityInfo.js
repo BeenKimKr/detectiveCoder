@@ -11,7 +11,7 @@ import { ResultContext } from '../../App';
 
 const CityInfo = () => {
   const [name, setName] = useState('명탐정');
-
+  const [idx, setIdx] = useState(0);
   const {
     resultCountries,
     setResultCountries,
@@ -25,13 +25,31 @@ const CityInfo = () => {
   const flagUrl2nd = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[1].Ab}-flag.gif`;
   const flagUrl3rd = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[2].Ab}-flag.gif`;
 
+  const handleClick1st = () => {
+    setIdx(0);
+    // setResultCountries(resultCountries[0]);
+    // setResultHPIRank(resultCountries[0]);
+    // setResultAmount(resultCountries[0]);
+  };
+  const handleClick2nd = () => {
+    setIdx(1);
+    // setResultCountries(resultCountries[1]);
+    // setResultHPIRank(resultCountries[1]);
+    // setResultAmount(resultCountries[1]);
+  };
+  const handleClick3rd = () => {
+    setIdx(2);
+    // setResultCountries(resultCountries[2]);
+    // setResultHPIRank(resultCountries[2]);
+    // setResultAmount(resultCountries[2]);
+  };
   return (
     <div className='container flex-col p-2.5'>
       <Navmain />
       <div className=' my-8'>
         <span className='title'>
           {name}님께
-          <p className='inputCity'>{resultCountries[0].Country}</p>
+          <p className='inputCity'>{resultCountries[idx].Country}</p>
           을(를) 추천합니다.
         </span>
       </div>
@@ -49,18 +67,21 @@ const CityInfo = () => {
             style={{ left: '-90px', top: '-400px' }}
             src={flagUrl2nd}
             alt='2등 국기'
+            onClick={handleClick2nd}
           />
           <img
-            className='w-40 h-40  rounded-full relative'
+            className='w-40 h-40 rounded-full relative'
             style={{ left: '-5px', top: '-470px' }}
             src={flagUrl1st}
             alt='1등 국기'
+            onClick={handleClick1st}
           />
           <img
             className='w-40 h-40 rounded-full relative'
             style={{ left: '60px', top: '-350px' }}
             src={flagUrl3rd}
             alt='3등 국기'
+            onClick={handleClick3rd}
           />
         </div>
       </div>

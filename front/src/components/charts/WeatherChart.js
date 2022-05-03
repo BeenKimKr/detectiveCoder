@@ -16,7 +16,7 @@ const WeatherChart = ({ resultAmount }) => {
     { month: '11월', value: resultAmount.nov },
     { month: '12월', value: resultAmount.dec },
   ];
-
+  console.log(resultAmount);
   return (
     <div className='chart'>
       <span className='chartTitle'>월별 평균 기온</span>
