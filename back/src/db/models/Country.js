@@ -50,11 +50,24 @@ const Country = {
   },
 
   sortAll: async (columns) => {
-    const temp = Number(columns[0]);
-    const first = columns[1];
-    const second = columns[2];
-    const third = columns[3];
-    const third_ = columns[4];
+    let temp = 0;
+    let first = "";
+    let second = "";
+    let third = "";
+    let third_ = "";
+
+    if (columns.length == 4) {
+      temp = Number(columns[0]);
+      first = columns[1];
+      second = columns[2];
+      third = columns[3];
+    } else {
+      temp = Number(columns[0]);
+      first = columns[1];
+      second = columns[2];
+      third = columns[3];
+      third_ = columns[4];
+    }
 
     const dataFrame = await CountryModel.find({})
       .where("mean")
@@ -67,7 +80,12 @@ const Country = {
     for (let i = 0; i < dataFrame.length; i++) {
       const f_score = dataFrame[i][first] * 2;
       const s_score = dataFrame[i][second] * 1.8;
-      const t_score = (dataFrame[i][third] + dataFrame[i][third_]) * 1.6;
+      let t_score = 0;
+      if (columns.length == 4) {
+        t_score = dataFrame[i][third] * 1.6;
+      } else {
+        t_score = (dataFrame[i][third] + dataFrame[i][third_]) * 1.6;
+      }
 
       scoreMap = {};
       scoreMap["Ab"] = dataFrame[i]["Ab"];
@@ -83,7 +101,6 @@ const Country = {
       return b.value - a.value;
     });
 
-    console.log(scoreArr);
     const result = scoreArr[0];
     return result;
   },
