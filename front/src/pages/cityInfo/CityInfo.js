@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import Navmain from '../../components/Nav/Navmain';
 import WealChart from '../../components/charts/WealChart';
 import Button from '../../components/btn/CommonButton';
-import Image from '@material-tailwind/react/Image';
 import WeatherChart from '../../components/charts/WeatherChart';
 import HPIChart from '../../components/charts/HPIChart';
 import Bigmac from '../../components/charts/Bigmac';
@@ -56,7 +55,7 @@ const CityInfo = () => {
             alt='3등 국기'
           />
         </div>
-        <div className='w-9/12'>
+        <div className='flex ml-3 w-9/12'>
           <div className='flex justify-center'>
             <img src='/imgs/victoryStand.png' alt='시상대' />
           </div>
