@@ -15,10 +15,7 @@ const Home = () => {
       <div class="bg">
         <Navmain />
         {login ? (
-          <div className="mt-32 ml-32">
-            {/* Save.map((it) => <Badge>) */}
-            <Badge />
-          </div>
+          <div className="mt-32 ml-32">{/* Save.map((it) => <Badge>) */}</div>
         ) : (
           <>
             <div className="TextBtnContainer">
