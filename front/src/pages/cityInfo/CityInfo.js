@@ -14,7 +14,7 @@ const CityInfo = () => {
   const [country, setCountry] = useState('독일');
 
   return (
-    <div className='container flex-col p-2'>
+    <div className='container flex-col p-2.5'>
       <Navmain />
       <div className=' my-8'>
         <span className='title'>
@@ -23,8 +23,8 @@ const CityInfo = () => {
           을(를) 추천합니다.
         </span>
       </div>
-      <div className=' flex flex-row'>
-        <div className='my-8'>
+      <div className='flex flex-row'>
+        <div className=''>
           <Image
             className='w-64 h-64 rounded-full shadow-lg'
             // https://${process.env.AWS_S3_BUCKET}.s3.${AWS_REGION}.amazonaws.com/flags_img/
@@ -34,35 +34,20 @@ const CityInfo = () => {
             alt='국기 사진'
           />
         </div>
-        <div className='basis-1/2 cityInfo'>
-          우리 {country}은(는)요, 150여개 국가 중 행복순위는 30번째구요.
-          <br />
-          1인당 GDP 13위!
-          <br />
-          사회적 지원 49위
-          <br />
-          건강수명 20위
-          <br />
-          선택자유 54위
-          <br />
-          관용 54위
-          <br />
-          부패 127위
-        </div>
       </div>
-      <div className='flex flex-row'>
-        <div className='basis-1/2 flex items-center justify-center'>
+      <div className='flex flex-col lg:flex-row'>
+        <div className='mb-3 lg:basis-1/2 flex items-center justify-center'>
           <WeatherChart />
         </div>
-        <div className='basis-1/2 flex justify-center items-center'>
+        <div className='lg:basis-1/2 flex justify-center items-center'>
           <HPIChart />
         </div>
       </div>
-      <div className='flex flex-row '>
-        <div className='basis-1/2 flex justify-center'>
+      <div className='flex flex-col lg:flex-row '>
+        <div className='lg:basis-1/2 flex justify-center'>
           <Bigmac />
         </div>
-        <div className='basis-1/2 flex justify-center'>
+        <div className='lg:basis-1/2 flex justify-center'>
           <WealChart />
         </div>
       </div>
