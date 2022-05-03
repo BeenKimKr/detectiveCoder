@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const { countryService } = require("../services/countryService.js");
 const { surveyService } = require("../services/surveyService.js");
+const { rankService } = require("../services/rankService");
 const countryRouter = Router();
 
 /**
@@ -18,6 +19,7 @@ const countryRouter = Router();
  *              schema:
  *                $ref: '#/components/schemas/Country'
  */
+
 countryRouter.get("/all", async (req, res, next) => {
   try {
     const data = await countryService.getAll();
@@ -70,11 +72,12 @@ countryRouter.get("/one/:City", async (req, res, next) => {
  *            application/json:
  *                schemas:
  */
+
 countryRouter.get("/rank/:Country", async (req, res, next) => {
   try {
     const Country = req.params.Country;
     console.log(Country);
-    const data = await countryService.getRank(Country);
+    const data = await rankService.getOne(Country);
 
     res.status(200).json(data);
   } catch (error) {
@@ -82,21 +85,6 @@ countryRouter.get("/rank/:Country", async (req, res, next) => {
   }
 });
 
-/**
- * @swagger
- * paths:
- *  /country/sort/:answer
- *    get:
- *      summary: Get sorted data(by answer)
- *      tags: [Country]
- *      responses:
- *        "200":
- *          description: Get sorted data(by answer)
- *          content:
- *            application/json:
- *              schema:
- *                $ref: '#/components/schemas/Country'
- */
 countryRouter.post("/sort", async (req, res, next) => {
   try {
     res.header("Content-Type: application/json");
@@ -115,6 +103,22 @@ countryRouter.post("/sort", async (req, res, next) => {
     next(e);
   }
 });
+
+/**
+ * @swagger
+ * paths:
+ *  /country/sort/:id
+ *    get:
+ *      summary: Get sorted data(by id)
+ *      tags: [Country]
+ *      responses:
+ *        "200":
+ *          description: Get sorted data(by id)
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/Country'
+ */
 
 // 개발용 path ('/sort'로 변경 예정, answer는 req.body로 넘겨받는다.)
 countryRouter.get("/sort/:id", async (req, res, next) => {
