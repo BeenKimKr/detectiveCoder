@@ -53,7 +53,7 @@ userAuthRouter.get(
  *      summary: Register using Kakao
  *      tags: [Users]
  */
-userAuthRouter.get('kakao', passport.authenticate('kakao'));
+userAuthRouter.get('/kakao', passport.authenticate('kakao'));
 
 /**
  * @swagger
@@ -76,7 +76,8 @@ userAuthRouter.get(
     failureRedirect: '/',
   }),
   (req, res) => {
-    res.redirect('/');
+    const userInfo = req.user._doc;
+    res.status(200).json({ userInfo });
   }
 );
 
