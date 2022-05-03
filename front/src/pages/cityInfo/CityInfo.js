@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Navmain from '../../components/Nav/Navmain';
 import WealChart from '../../components/charts/WealChart';
 import Button from '../../components/btn/CommonButton';
@@ -8,10 +8,25 @@ import HPIChart from '../../components/charts/HPIChart';
 import Bigmac from '../../components/charts/Bigmac';
 
 import './style.css';
+import { ResultContext } from '../../App';
 
 const CityInfo = () => {
   const [name, setName] = useState('명탐정');
   const [country, setCountry] = useState('독일');
+
+  const {
+    resultCountries,
+    setResultCountries,
+    resultHPIRank,
+    setResultHPIRank,
+    resultAmount,
+    setResultAmount,
+  } = useContext(ResultContext);
+
+  console.log('cityInfo');
+  console.log(resultCountries);
+  console.log(resultHPIRank);
+  console.log(resultAmount);
 
   return (
     <div className='container flex-col p-2.5'>
