@@ -1,25 +1,25 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { PercentContext, SaveAnswersContext } from '../../pages/MainSurvey';
-import { HPIQUESTIONS } from './text/HPIQUESTIONS';
-import './style.css';
+import React, { useState, useEffect, useContext } from "react";
+import { PercentContext, SaveAnswersContext } from "../../pages/MainSurvey";
+import { HPIQUESTIONS } from "./text/HPIQUESTIONS";
+import "./style.css";
 
 const SurveyContainer = () => {
   const FirstQuestion = [
-    'socialSupport',
-    'corruption',
-    'Freedom',
-    'price',
-    'GDP',
-    'temperature',
-    'HLE',
-    'Generosity',
+    "socialSupport",
+    "corruption",
+    "Freedom",
+    "price",
+    "GDP",
+    "temperature",
+    "HLE",
+    "Generosity",
   ];
 
   const [tempArray, setTempArray] = useState([]);
   const [question, setQuestion] = useState([]);
   const [winner, setWinners] = useState([]);
   const { setModalOpen, setPercent } = useContext(PercentContext);
-  const { setSubmit, submit } = useContext(SaveAnswersContext);
+  const { setAnswer, answer } = useContext(SaveAnswersContext);
 
   useEffect(() => {
     setQuestion(FirstQuestion);
@@ -27,22 +27,23 @@ const SurveyContainer = () => {
   }, []);
 
   const handleClickAnswer = (e) => {
-    if (winner.length == 6) {
-      setWinners([...winner, e.currentTarget.value]);
-      setModalOpen(true);
-    }
+    setPercent((it) => it + 14.5);
     if (question.length <= 2) {
-      let updateStep = [...winner, e.currentTarget.value];
-      setQuestion(updateStep);
-      setTempArray([updateStep[0], updateStep[1]]);
-      setWinners([...winner, e.currentTarget.value]);
-    } else {
+      if (winner.length === 0) {
+        setModalOpen(true);
+      } else {
+        let updateStep = [...winner, e.currentTarget.value];
+        setQuestion(updateStep);
+        setTempArray([updateStep[0], updateStep[1]]);
+        setWinners([...winner, e.currentTarget.value]);
+        setWinners([]);
+      }
+    } else if (question.length > 2) {
       setWinners([...winner, e.currentTarget.value]);
       setTempArray([question[2], question[3]]);
       setQuestion(question.slice(2));
     }
-    setPercent((it) => it + 14.5); // winner -> percent 커스텀 훅 사용해보자~
-    setSubmit([...submit, e.currentTarget.value]);
+    setAnswer([...answer, e.currentTarget.value]);
   };
 
   return (
