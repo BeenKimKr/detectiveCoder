@@ -17,12 +17,12 @@ const RedirectKakao = () => {
     console.log('aa');
     try {
       const res = await Api.get(
-        `http://localhost:5001/users/kakao/callback?code=${code}`
+        `http://localhost:3000/users/kakao/callback?code=${code}`
       );
       console.log(res);
       // dispatch({
       //   type: 'LOGIN_SUCCESS',
-      //   payload: user,
+      //   // payload: user,
       // });
       navigate('/home');
     } catch (err) {

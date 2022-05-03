@@ -1,15 +1,37 @@
-import React, { Component } from 'react';
-import { KAKAO_AUTH_URL } from '../Kakao/OAuth';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React from 'react';
+import { CLIENT_ID } from './OAuth';
+import KaKaoLogin from 'react-kakao-login';
 
-const KakaoLogin = () => {
-  console.log('KakaoLogin');
+const Login = () => {
+  const onSuccess = (e) => {
+    alert(`${e.profile.properties.nickname}😊 로그인에 성공하였습니다.`);
+  };
+
+  const onFail = (e) => {
+    alert('로그인에 실패아였습니다.');
+    console.log(e);
+  };
+
   return (
-    <a href={KAKAO_AUTH_URL}>
-      <img src="/imgs/kakao_login.png"></img>
-    </a>
+    <KaKaoLogin
+      token={CLIENT_ID}
+      onSuccess={onSuccess}
+      onFail={onFail}
+      onLogout={console.info}
+      render={({ onClick }) => {
+        return (
+          <a
+            href='#'
+            onClick={(e) => {
+              e.preventDefault();
+              onClick();
+            }}>
+            카카오로 로그인하기
+          </a>
+        );
+      }}
+    />
   );
 };
 
-export default KakaoLogin;
+export default Login;
