@@ -10,7 +10,7 @@ const userAuthService = {
   getUser: async ({ id }) => {
     const user = await User.findById({ id });
     if (!user) {
-      return false;
+      throw new Error('유저 정보가 없습니다. 다시 시도해주세요.');
     }
 
     const secretKey = process.env.JWT_SECRET_KEY || "jwt-secret-key";
@@ -20,7 +20,7 @@ const userAuthService = {
       ...user,
       token
     };
-    return loginUser;
+    return { loginUser };
   },
 
   deleteUser: async ({ id }) => {
@@ -34,12 +34,21 @@ const userAuthService = {
     return { status: "ok" };
   },
 
-  addBadge: async ({ id, country }) => {
+  addBadge: async ({ id, countryData }) => {
     const user = await User.findById({ id });
     if (!user) {
-      throw new Error('유저 정보가 존재하지 않습니다.');
+      throw new Error('유저 정보가 존재하지 않습니다. 로그인을 진행해주세요.');
     }
-    const badge = user.badge;
+    if (countryData === null) {
+      throw new Error('저장된 설문 결과가 없습니다. 설문을 먼저 진행해주세요.');
+    }
+
+    const countryAb = countryData.Ab;
+    const badge = [...user.badge, countryAb];
+    const updateObject = { badge };
+    const updatedUser = await User.update({ id, updateObject });
+    const updatedBadge = updatedUser.badge;
+    return updatedBadge;
   },
 
   getBadge: async ({ id }) => {
@@ -47,8 +56,8 @@ const userAuthService = {
     if (!user) {
       throw new Error('유저 정보가 존재하지 않습니다.');
     }
-    const badge = user.badge;
 
+    const badge = user.badge;
     return badge;
   },
 
