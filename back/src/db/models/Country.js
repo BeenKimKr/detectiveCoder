@@ -3,12 +3,10 @@ const { CountryModel } = require("../schemas/country");
 const Country = {
   findAll: async () => {
     const country = await CountryModel.find({});
-    console.log(country);
     return country;
   },
   findByCity: async (City) => {
     const result = await CountryModel.findOne({ City: City });
-    console.log(result);
     return result;
   },
   findBySurvey: async (columns) => {

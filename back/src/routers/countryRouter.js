@@ -7,7 +7,7 @@ const countryRouter = Router();
 /**
  * @swagger
  * paths:
- *  /country/all
+ *  /country/all:
  *    get:
  *      summary: Get data
  *      tags: [Country]
@@ -19,7 +19,6 @@ const countryRouter = Router();
  *              schema:
  *                $ref: '#/components/schemas/Country'
  */
-
 countryRouter.get("/all", async (req, res, next) => {
   try {
     const data = await countryService.getAll();
@@ -33,7 +32,7 @@ countryRouter.get("/all", async (req, res, next) => {
 /**
  * @swagger
  * paths:
- *  /country/one/:City
+ *  /country/one/:City:
  *    get:
  *      summary: Get one data
  *      tags: [Country]
@@ -49,7 +48,6 @@ countryRouter.get("/all", async (req, res, next) => {
 countryRouter.get("/one/:City", async (req, res, next) => {
   try {
     const City = req.params.City;
-    console.log(City);
     const data = await countryService.getOne(City);
 
     res.status(200).json(data);
@@ -61,7 +59,7 @@ countryRouter.get("/one/:City", async (req, res, next) => {
 /**
  * @swagger
  * paths:
- *  /country/rank/:Country
+ *  /country/rank/:Country:
  *    get:
  *      summary: Get rank
  *      tags: [Country]
@@ -72,11 +70,10 @@ countryRouter.get("/one/:City", async (req, res, next) => {
  *            application/json:
  *                schemas:
  */
-
+//rankRouter에 /one 주소랑 중복기능
 countryRouter.get("/rank/:Country", async (req, res, next) => {
   try {
     const Country = req.params.Country;
-    console.log(Country);
     const data = await rankService.getOne(Country);
 
     res.status(200).json(data);
@@ -107,7 +104,7 @@ countryRouter.post("/sort", async (req, res, next) => {
 /**
  * @swagger
  * paths:
- *  /country/sort/:id
+ *  /country/sort/:id:
  *    get:
  *      summary: Get sorted data(by id)
  *      tags: [Country]

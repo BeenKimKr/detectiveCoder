@@ -7,7 +7,6 @@ const countryService = {
   },
   getOne: async (City) => {
     const data = await Country.findByCity(City);
-    console.log(data);
     return data;
   },
   sortData: async ({ temp, answer }) => {

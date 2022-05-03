@@ -7,17 +7,17 @@ const rankRouter = Router();
 /**
  * @swagger
  * paths:
- *  /country/all
+ *  /rank/all:
  *    get:
- *      summary: Get data
- *      tags: [Country]
+ *      summary: Get all data
+ *      tags: [Rank]
  *      responses:
  *        "200":
  *          description: get all data
  *          content:
  *            application/json:
  *              schema:
- *                $ref: '#/components/schemas/Country'
+ *                $ref: '#/components/schemas/Rank'
  */
 
 rankRouter.get("/all", async (req, res, next) => {
@@ -30,6 +30,22 @@ rankRouter.get("/all", async (req, res, next) => {
   }
 });
 
+/**
+ * @swagger
+ * paths:
+ *  /rank/one/:Country:
+ *    get:
+ *      summary: Get rank
+ *      tags: [Rank]
+ *      responses:
+ *        "200":
+ *          description: get rank selected by Country
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/Rank'
+ */
+
 rankRouter.get("/one/:Country", async (req, res, next) => {
   try {
     const Country = req.params.Country;
@@ -40,6 +56,22 @@ rankRouter.get("/one/:Country", async (req, res, next) => {
     next(error);
   }
 });
+
+/**
+ * @swagger
+ * paths:
+ *  /rank/sort/:column:
+ *    get:
+ *      summary: Get rank
+ *      tags: [Rank]
+ *      responses:
+ *        "200":
+ *          description: get all rank data sorted by column
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/Rank'
+ */
 
 rankRouter.get("/sort/:column", async (req, res, next) => {
   try {
