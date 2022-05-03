@@ -11,6 +11,19 @@ const User = {
     return user;
   },
 
+  update: async ({ id, updateObject }) => {
+    const filter = { id };
+    const update = { $set: updateObject };
+    const option = { returnOriginal: false };
+
+    const updatedUser = await UserModel.findOneAndUpdate(
+      filter,
+      update,
+      option
+    );
+    return updatedUser;
+  },
+
   deleteById: async ({ id }) => {
     const deleteUser = await UserModel.deleteOne({ id });
     const isDeleted = deleteUser.deletedCount === 1;
