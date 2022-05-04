@@ -40,7 +40,7 @@ const countryService = {
     let tempArr = [];
     if (columns.includes("mean")) {
       for (let i = 0; i < dataFrame.length; i++) {
-        let absTemp = abs(temp - dataFrame[i]["mean"]);
+        let absTemp = Math.abs(temp - dataFrame[i]["mean"]);
         tempDifArr.push(absTemp);
       }
 
