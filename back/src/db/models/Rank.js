@@ -10,18 +10,18 @@ const Rank = {
     return result;
   },
   findByColumn: async (column, offset) => {
-    if (offset === 12) {
+    if (Number(offset) === 12) {
       const result = await RankModel.find({})
         .select(`Ab Country ${column}`)
         .limit(12);
       return result;
+    } else {
+      const result = await RankModel.find({})
+        .skip(Number(offset))
+        .select(`Ab Country ${column}`)
+        .limit(3);
+      return result;
     }
-
-    const result = await RankModel.find({})
-      .skip(offset)
-      .select(`Ab Country ${column}`)
-      .limit(3);
-    return result;
   },
 };
 
