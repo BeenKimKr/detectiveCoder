@@ -1,9 +1,10 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, useEffect, useReducer, createContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import CityInfo from './pages/cityInfo/CityInfo';
 import MainSurvey from './pages/MainSurvey';
-import Kakao from './components/Kakao/Login';
+import { loginReducer } from './reducer';
+import RedirectKakao from './components/Kakao/RedirectKakao';
 
 import AllCities from './pages/allCities/AllCities';
 import * as Api from './api';
@@ -16,13 +17,17 @@ function App() {
   const [resultHPIRank, setResultHPIRank] = useState([]); //  HPI 등수
   const [resultAmount, setResultAmount] = useState([]); //  수치
 
+  const [user, setUser] = useState([]);
+
   const saveResult = {
-    resultCountries,
-    setResultCountries,
-    resultHPIRank,
-    setResultHPIRank,
-    resultAmount,
-    setResultAmount,
+    // resultCountries,
+    // setResultCountries,
+    // resultHPIRank,
+    // setResultHPIRank,
+    // resultAmount,
+    // setResultAmount,
+    user,
+    setUser,
   };
 
   return (
@@ -34,7 +39,6 @@ function App() {
             <Route path="/cityinfo" element={<CityInfo />} />
             <Route path="/allcities" element={<AllCities />} />
             <Route path="/mainsurvey" element={<MainSurvey />} />
-            <Route path="/KakaoHome" element={<Kakao />} />
             <Route path="*" element={<Home />} />
           </Routes>
         </Router>
