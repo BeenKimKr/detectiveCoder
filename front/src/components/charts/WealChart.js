@@ -61,7 +61,7 @@ const renderActiveShape = (props) => {
         y={ey}
         textAnchor={textAnchor}
         fill='#333'
-      >{`PV ${value}`}</text>
+      >{`${value} 위`}</text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
@@ -84,19 +84,41 @@ export default function App({ resultHPIRank }) {
     [setActiveIndex]
   );
   const data = [
-    { name: 'GDP', value: resultHPIRank.GDP, color: '#ffc9c9' },
+    {
+      name: 'GDP',
+      value: resultHPIRank.GDP,
+      color: '#ffc9c9',
+      a: 70 - resultHPIRank.GDP,
+    },
     {
       name: '사회적 지원',
       value: resultHPIRank.socialSupport,
       color: '#fcc2d7',
+      a: 70 - resultHPIRank.socialSupport,
     },
-    { name: '기대 수명', value: resultHPIRank.HLE, color: '#eebefa' },
-    { name: '자유도', value: resultHPIRank.Freedom, color: '#d0bfff' },
-    { name: '관대함', value: resultHPIRank.Generosity, color: '#bac8ff' },
+    {
+      name: '기대 수명',
+      value: resultHPIRank.HLE,
+      color: '#eebefa',
+      a: 70 - resultHPIRank.HLE,
+    },
+    {
+      name: '자유도',
+      value: resultHPIRank.Freedom,
+      color: '#d0bfff',
+      a: 70 - resultHPIRank.Freedom,
+    },
+    {
+      name: '관대함',
+      value: resultHPIRank.Generosity,
+      color: '#bac8ff',
+      a: 70 - resultHPIRank.Generosity,
+    },
     {
       name: '부패에 대한 인식',
       value: resultHPIRank.corruption,
       color: '#a5d8ff',
+      a: 70 - resultHPIRank.corruption,
     },
   ];
   return (
@@ -110,7 +132,8 @@ export default function App({ resultHPIRank }) {
         innerRadius={60}
         outerRadius={80}
         fill='#8884d8'
-        dataKey='value'
+        // dataKey='a'
+        datakey='value'
         onMouseEnter={onPieEnter}
       />
     </PieChart>

@@ -46,7 +46,7 @@ const HPIChart = ({ resultAmount }) => {
       <ResponsiveContainer width={400} height={400}>
         <BarChart data={data} layout='vertical'>
           <XAxis type='number' />
-          <YAxis yAxisId={0} dataKey='factor' type='category' />
+          <YAxis width={130} yAxisId={0} dataKey='factor' type='category' />
           <YAxis dataKey='max' yAxisId={1} hide />
           <Tooltip wrapperStyle={{ width: 200, backgroundColor: '#ccc' }} />
           <Bar dataKey='value' minPointSize={2} barSize={32}>

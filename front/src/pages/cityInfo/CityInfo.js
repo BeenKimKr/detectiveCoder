@@ -5,7 +5,7 @@ import Button from '../../components/btn/CommonButton';
 import WeatherChart from '../../components/charts/WeatherChart';
 import HPIChart from '../../components/charts/HPIChart';
 import Bigmac from '../../components/charts/Bigmac';
-
+import * as Api from '../../api';
 import './style.css';
 import { ResultContext } from '../../App';
 
@@ -25,34 +25,43 @@ const CityInfo = () => {
   const flagUrl2nd = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[1].Ab}-flag.gif`;
   const flagUrl3rd = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[2].Ab}-flag.gif`;
 
-  const handleClick1st = () => {
-    setIdx(0);
-    // setResultCountries(resultCountries[0]);
-    // setResultHPIRank(resultCountries[0]);
-    // setResultAmount(resultCountries[0]);
+  const handleClick = async (e) => {
+    setIdx(e.target.name);
+
+    const country = resultCountries[e.target.name].Country;
+    const city = resultCountries[e.target.name].City;
+    const rank = await Api.get(`country/rank/${country}`);
+    const amount = await Api.get(`country/one/${city}`);
+
+    setResultHPIRank(rank.data);
+    setResultAmount(amount.data);
   };
-  const handleClick2nd = () => {
-    setIdx(1);
-    // setResultCountries(resultCountries[1]);
-    // setResultHPIRank(resultCountries[1]);
-    // setResultAmount(resultCountries[1]);
+
+  const handleClickHome = () => {
+    // 뱃지로 저장하는 코드 들어올 자리
+    window.location.href = '/main';
   };
-  const handleClick3rd = () => {
-    setIdx(2);
-    // setResultCountries(resultCountries[2]);
-    // setResultHPIRank(resultCountries[2]);
-    // setResultAmount(resultCountries[2]);
-  };
+
   return (
     <div className='container flex-col p-2.5'>
       <Navmain />
-      <div className=' my-8'>
-        <span className='title'>
-          {name}님께
-          <p className='inputCity'>{resultCountries[idx].Country}</p>
-          을(를) 추천합니다.
-        </span>
-      </div>
+      {true ? (
+        <div>
+          <span className='title'>
+            {name}님께
+            {resultCountries[idx].Country === resultCountries[idx].City ? (
+              <p className='inputCity'>{resultCountries[idx].Country}</p>
+            ) : (
+              <p className='inputCity'>
+                {resultCountries[idx].Country} {resultCountries[idx].City}
+              </p>
+            )}
+            을(를) 추천합니다.
+          </span>
+        </div>
+      ) : (
+        <></>
+      )}
       <div>
         <div className='flex mt-40 flex-col'>
           <div className='flex w-full'>
@@ -61,27 +70,30 @@ const CityInfo = () => {
             </div>
           </div>
         </div>
-        <div className='flex flex-row justify-center'>
+        <div className='flex justify-center'>
           <img
+            name='1'
             className='w-40 h-40 rounded-full relative'
-            style={{ left: '-90px', top: '-400px' }}
+            style={{ left: '-80px', top: '-400px' }}
             src={flagUrl2nd}
             alt='2등 국기'
-            onClick={handleClick2nd}
+            onClick={handleClick}
           />
           <img
+            name='0'
             className='w-40 h-40 rounded-full relative'
             style={{ left: '-5px', top: '-470px' }}
             src={flagUrl1st}
             alt='1등 국기'
-            onClick={handleClick1st}
+            onClick={handleClick}
           />
           <img
+            name='2'
             className='w-40 h-40 rounded-full relative'
             style={{ left: '60px', top: '-350px' }}
             src={flagUrl3rd}
             alt='3등 국기'
-            onClick={handleClick3rd}
+            onClick={handleClick}
           />
         </div>
       </div>
@@ -103,8 +115,7 @@ const CityInfo = () => {
         </div>
       </div>
       <div className='flex space-x-4 justify-end'>
-        <Button text='비슷한 나라 보기' type='serve' />
-        <Button text='저장하기' type='main' />
+        <Button text='저장하기' type='main' onClick={handleClickHome} />
       </div>
     </div>
   );
