@@ -13,8 +13,8 @@ const HPI = [
 ];
 
 const AllCities = () => {
+  const [title, setTitle] = useState('행복지수');
   const [select, setSelect] = useState('score');
-  const [page, setPage] = useState(0);
   const [offset, setOffset] = useState(12);
   const [sort, setSort] = useState([]); // 결과 저장
 
@@ -27,11 +27,13 @@ const AllCities = () => {
 
   useEffect(() => {
     getData();
-  }, [offset]);
+  }, [select, offset]);
 
   const handleSelect = (e) => {
     setSelect(e.target.value);
-    getData(e.target.value);
+    setTitle(e.target.name);
+    setSort([]);
+    setOffset(12);
   };
 
   const handleScroll = () => {
@@ -43,8 +45,10 @@ const AllCities = () => {
     }
   };
 
+  const clickCard = (e) => {};
+
   const getData = async () => {
-    if (sort.length < 100) {
+    if (sort.length < 70) {
       try {
         const res = await Api.get(`rank/sort/${select}/${offset}`); // 미국의 등수
         const result = res.data;
@@ -60,15 +64,14 @@ const AllCities = () => {
   }, [sort]);
 
   return (
-    <div className="container bg-white w-screen flex-row">
-      <div>
-        <div>
-          <h1>{`${select} 순으로 보기.`}</h1>
-        </div>
-        <div className="bg-amber-100 w-full h-32 items-center  justify-center flex ">
+    <div className="container bg-white w-screen flex-row text-center">
+      <div className="titleButtonContainer">
+        <span className="titleText">{`${title} 순으로 보기.`}</span>
+        <div className="mt-5">
           {HPI.map((it, index) => {
             return (
               <button
+                disabled={select === it.value}
                 name={it.name}
                 key={index}
                 value={it.value}
@@ -85,13 +88,13 @@ const AllCities = () => {
         {/* 이미지 카드 */}
         {sort.map((it, index) => {
           return (
-            <div className="countryCard" key={index}>
+            <button className="countryCard" key={index} onClick={clickCard}>
               <img
                 class="imgCard"
                 src={`https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${it.Ab}-flag.gif`}
               />
               <div className="p-4">
-                <h1 className="countryCardText">
+                <span className="countryCardText">
                   {index === 0
                     ? `${it.Country}🥇`
                     : index === 1
@@ -99,9 +102,9 @@ const AllCities = () => {
                     : index === 2
                     ? `${it.Country}🥉`
                     : `${it.Country}`}
-                </h1>
+                </span>
               </div>
-            </div>
+            </button>
           );
         })}
       </div>

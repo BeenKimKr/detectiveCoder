@@ -6,8 +6,16 @@
   @apply h-auto aspect-video  rounded-t-2xl object-cover object-center;
 }
 
+.titleButtonContainer {
+  @apply bg-amber-100 w-full h-32  items-center   justify-center flex-col  mt-12;
+}
+
 .countryCardText {
-  @apply text-2xl font-medium text-slate-600 pb-2;
+  @apply text-xl  font-medium text-slate-600 pb-2;
+}
+
+.titleText {
+  @apply mt-20 font-mono text-xl mt-6  text-orange-400;
 }
 
 .btn {
