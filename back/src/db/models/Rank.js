@@ -15,6 +15,12 @@ const Rank = {
         .select(`Ab Country ${column}`)
         .limit(12);
       return result;
+    } else if (Number(offset) === 66) {
+      const result = await RankModel.find({})
+        .skip(Number(offset))
+        .select(`Ab Country ${column}`)
+        .limit(2);
+      return result;
     } else {
       const result = await RankModel.find({})
         .skip(Number(offset))
