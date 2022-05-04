@@ -4,7 +4,7 @@ import Home from './pages/Home/Home';
 import CityInfo from './pages/cityInfo/CityInfo';
 import MainSurvey from './pages/MainSurvey';
 import { loginReducer } from './reducer';
-import RedirectKakao from './components/Kakao/RedirectKakao';
+// import RedirectKakao from './components/Kakao/RedirectKakao';
 
 import AllCities from './pages/allCities/AllCities';
 import * as Api from './api';

@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const passport = require('passport');
 const { userAuthService } = require('../services/userService');
+const { login_required } = require('../middlewares/login_required');
 
 /**
  * @swagger
@@ -13,77 +13,30 @@ const userAuthRouter = Router();
 /**
  * @swagger
  * paths:
- *  /users/naver:
- *    get:
- *      summary: Register using Naver
- *      tags: [Users]
- */
-userAuthRouter.get('/naver', passport.authenticate('naver'));
-
-/**
- * @swagger
- * paths:
- *  /users/naver/callback:
- *    get:
- *      summary: Get user
+ *  /auth/kakao:
+ *    post:
+ *      summary: Authorize user
  *      tags: [Users]
  *      responses:
- *        "200":
- *          description: Callback for users logged in to Naver
- *          content:
- *            application/json:
- *              schema:
- *                $ref: '#/components/schemas/User'
+ *        "201":
+ *          description: Create or Get user info by using Kakao authorization server
+ *          schema:
+ *            $ref: '#/components/schemas/User'
  */
-userAuthRouter.get(
-  '/naver/callback',
-  passport.authenticate('naver', {
-    failureRedirect: '/',
-  }),
-  (req, res) => {
-    res.redirect('/');
+userAuthRouter.post("/auth/kakao", async (req, res, next) => {
+  try {
+    const { accessToken } = req.body;
+    const user = await userAuthService.getKakaoUser({ accessToken });
+    res.status(201).json(user);
+  } catch (error) {
+    next(error);
   }
-);
+});
 
 /**
  * @swagger
  * paths:
- *  /users/kakao:
- *    get:
- *      summary: Register using Kakao
- *      tags: [Users]
- */
-userAuthRouter.get('kakao', passport.authenticate('kakao'));
-
-/**
- * @swagger
- * paths:
- *  /users/kakao/callback:
- *    get:
- *      summary: Get user
- *      tags: [Users]
- *      responses:
- *        "200":
- *          description: Callback for users logged in to Kakao
- *          content:
- *            application/json:
- *              schema:
- *                $ref: '#/components/schemas/User'
- */
-userAuthRouter.get(
-  '/kakao/callback',
-  passport.authenticate('kakao', {
-    failureRedirect: '/',
-  }),
-  (req, res) => {
-    res.redirect('/');
-  }
-);
-
-/**
- * @swagger
- * paths:
- *  /users/:id:
+ *  /users:
  *    delete:
  *      summary: Delete user info
  *      tags: [Users]
@@ -96,8 +49,8 @@ userAuthRouter.get(
 userAuthRouter.delete('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
-    await userAuthService.deleteUser({ id });
-    res.status(200).send();
+    const deletionStatus = await userAuthService.deleteUser({ id });
+    res.status(200).json(deletionStatus);
   } catch (error) {
     next(error);
   }
