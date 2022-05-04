@@ -1,15 +1,13 @@
 /* This example requires Tailwind CSS v2.0+ */
 import React, { Fragment } from 'react';
 // s
-import Nav from '../../components/Nav/Nav';
+// import Nav from '../../components/Nav/Nav';
 import video from '../../pages/Home/Clouds.mp4';
 
 const Home = () => {
   return (
     <div className="container relative flex-col items-center justify-center h-screen w-screen mb-12 overflow-hidden">
-      <div className="#">
-        <Nav />
-      </div>
+      <div className="#"></div>
 
       <div className="relative z-30 p-5 text-2xl rounded-xl">
         <main className="lg:px-8  mx-auto max-w-7xl px-4 sm:mt-0 sm:px-6 md:mt-0 lg:mt-0 lg:px-8">

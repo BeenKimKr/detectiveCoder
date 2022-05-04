@@ -35,7 +35,6 @@ function App() {
             <Route path="/cityinfo" element={<CityInfo />} />
             <Route path="/allcities" element={<AllCities />} />
             <Route path="/mainsurvey" element={<MainSurvey />} />
-            <Route path="/KakaoHome" element={<Kakao />} />
             <Route path="*" element={<Home />} />
           </Routes>
         </Router>

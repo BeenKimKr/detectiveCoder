@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/Nav/Navbar';
 import { dummy } from './dummy';
+import * as Api from '../../api';
 import './style.css';
 
 const HPI = [
@@ -15,8 +15,8 @@ const HPI = [
 
 const AllCities = () => {
   const [select, setSelect] = useState('');
-  const [preItems, setPreItems] = useState(0);
-  const [items, setItems] = useState(12);
+  const [preItems, setPreItems] = useState();
+  const [offset, setOffset] = useState(12);
   const [sort, setSort] = useState([]); // 결과 저장
 
   useEffect(() => {
@@ -26,8 +26,9 @@ const AllCities = () => {
     };
   }, []);
 
-  const handleSelect = (e) => {
-    setSelect(e.target.name);
+  const handleSelect = async (e) => {
+    setSelect(e.target.value);
+    getData();
   };
 
   const handleScroll = () => {
@@ -35,21 +36,21 @@ const AllCities = () => {
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
     if (scrollTop + clientHeight >= scrollHeight) {
-      console.log('Asd');
-      setPreItems(items);
-      setItems((prev) => prev + 12);
       getData();
     }
   };
 
-  const getData = () => {
-    console.log('Asdf');
-    const result = dummy.slice(preItems, items);
-    setSort([...sort, ...result]);
+  const getData = async () => {
+    try {
+      const res = await Api.get(`sort/rank/${offset}/${select}`); // 미국의 등수
+      const result = res.data;
+      setSort([...sort, ...result]);
+      setOffset(3);
+    } catch {}
   };
 
   useEffect(() => {
-    getData();
+    setSort(dummy.slice(0, 12));
   }, []);
 
   return (
