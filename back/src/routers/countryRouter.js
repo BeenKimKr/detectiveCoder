@@ -126,7 +126,6 @@ countryRouter.get("/sort/:id", async (req, res, next) => {
 
     const temp = survey.temp;
     const answer = survey.answer;
-
     const countryData = req.cookies.countryData ?? 0;
     let data;
 
