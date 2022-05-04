@@ -4,19 +4,20 @@ const jwt = require("jsonwebtoken");
 
 const userAuthService = {
   getKakaoUser: async ({ accessToken }) => {
-    const userProfile = await getProfile(accessToken);
+    const user = await getProfile(accessToken);
+    const userProfile = JSON.parse(user);
     const userId = userProfile.id;
-    const exUser = await User.findById({ id });
+    const exUser = await User.findById({ id: userId });
 
     const secretKey = process.env.JWT_SECRET_KEY || "jwt-secret-key";
     const token = jwt.sign({ userId }, secretKey);
 
     if (exUser) {
-      return { token, exUser };
+      return { token, userInfo: exUser };
     } else {
-      const userInfo = JSON.parse(userProfile.kakao_account);
+      const userInfo = userProfile.kakao_account;
       const newUser = await User.create(userInfo);
-      return { token, newUser };
+      return { token, userInfo: newUser };
     }
   },
 
