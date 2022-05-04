@@ -71,10 +71,11 @@ rankRouter.get("/one/:Country", async (req, res, next) => {
  *                $ref: '#/components/schemas/Rank'
  */
 
-rankRouter.get("/sort/:column", async (req, res, next) => {
+rankRouter.get("/sort/:column/:offset", async (req, res, next) => {
   try {
     const column = req.params.column;
-    const data = await rankService.sortAll(column);
+    const offset = req.params.offset;
+    const data = await rankService.sortAll(column, offset);
 
     res.status(200).json(data);
   } catch (error) {
