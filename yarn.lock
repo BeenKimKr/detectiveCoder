@@ -2,3 +2,48 @@
 # yarn lockfile v1
 
 
+<<<<<<< HEAD
+=======
+"async@0.1.15":
+  "integrity" "sha1-IYDqyizypspSgNQcBYW+ybPkm9M="
+  "resolved" "https://registry.npmjs.org/async/-/async-0.1.15.tgz"
+  "version" "0.1.15"
+
+"async@0.1.x":
+  "integrity" "sha1-D8GqoIig4+8Ovi2IMbqw3PiEUGE="
+  "resolved" "https://registry.npmjs.org/async/-/async-0.1.22.tgz"
+  "version" "0.1.22"
+
+"ctxobj@0.2.x":
+  "integrity" "sha1-L8lMIa3K6pxS43z6CzxTXVQXcMg="
+  "resolved" "https://registry.npmjs.org/ctxobj/-/ctxobj-0.2.1.tgz"
+  "version" "0.2.1"
+
+"fsmjs@0.2.x":
+  "integrity" "sha1-+y1hIJFOxoSsG/AMXwRctA2ZNiI="
+  "resolved" "https://registry.npmjs.org/fsmjs/-/fsmjs-0.2.1.tgz"
+  "version" "0.2.1"
+
+"node-uuid@1.3.3":
+  "integrity" "sha1-09tNe1aBDZ5AMjQnZigq8HORcps="
+  "resolved" "https://registry.npmjs.org/node-uuid/-/node-uuid-1.3.3.tgz"
+  "version" "1.3.3"
+
+"portscanner@0.1.x":
+  "integrity" "sha1-zww4oNEvzXFqEcblmWOrrKavKbE="
+  "resolved" "https://registry.npmjs.org/portscanner/-/portscanner-0.1.3.tgz"
+  "version" "0.1.3"
+  dependencies:
+    "async" "0.1.15"
+
+"spinner@^0.3.4":
+  "integrity" "sha1-oMVBO5sKuLZ+PgmU9s7wr6C/bDw="
+  "resolved" "https://registry.npmjs.org/spinner/-/spinner-0.3.4.tgz"
+  "version" "0.3.4"
+  dependencies:
+    "async" "0.1.x"
+    "ctxobj" "0.2.x"
+    "fsmjs" "0.2.x"
+    "node-uuid" "1.3.3"
+    "portscanner" "0.1.x"
+>>>>>>> fe_cityinfoShare_ys

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import Navmain from '../../components/Nav/Navmain';
+import Nav from '../../components/Nav/Nav';
 import WealChart from '../../components/charts/WealChart';
 import Button from '../../components/btn/CommonButton';
 import WeatherChart from '../../components/charts/WeatherChart';
@@ -49,7 +49,7 @@ const CityInfo = () => {
 
   return (
     <div className='container flex-col p-2.5'>
-      <Navmain />
+      <Nav />
       {true ? (
         <div>
           <span className='title'>
@@ -106,16 +106,14 @@ const CityInfo = () => {
           className={
             'flex justify-center items-center mb-3 lg:basis-1/2' +
             (false ? ' blur-sm' : '')
-          }
-        >
+          }>
           <WeatherChart resultAmount={resultAmount} />
         </div>
         <div
           className={
             'flex justify-center items-center lg:basis-1/2' +
             (false ? ' blur-sm' : '')
-          }
-        >
+          }>
           <HPIChart resultAmount={resultAmount} />
         </div>
       </div>
