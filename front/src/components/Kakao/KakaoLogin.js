@@ -22,11 +22,9 @@ const Login = (props) => {
       code: code,
       client_secret: 'vxS2rzKh5KlmNaH1J3aZeumA93mTTmUI',
     };
-    console.log(data);
     const queryString = Object.keys(data)
       .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
       .join('&');
-    // console.log(queryString);
     axios
       .post('https://kauth.kakao.com/oauth/token', queryString, {
         headers: {
@@ -51,7 +49,7 @@ const Login = (props) => {
             })
           );
           console.log(window.localStorage.getItem('token'));
-          console.log(user);
+          window.alert(`${user.userInfo.age.split('~')[0]}대 ${user.userInfo.name}님 환영합니당~!^^*`);
         } else {
           window.alert('로그인에 실패하였습니다.');
         }
