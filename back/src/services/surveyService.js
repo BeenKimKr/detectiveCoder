@@ -10,7 +10,7 @@ const surveyService = {
     return createdNewSurvey;
   },
   getSurvey: async ({ id }) => {
-    const survey = await Survey.findById({ id });
+    const survey = await Survey.findById({ id: id });
     return survey;
   },
 };
