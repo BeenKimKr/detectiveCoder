@@ -1,21 +1,18 @@
 /* This example requires Tailwind CSS v2.0+ */
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 // s
-import Nav from '../../components/Nav/Nav';
-import video from '../../pages/Home/Clouds.mp4';
+import video from "../../pages/Home/Clouds.mp4";
 
 const Home = () => {
   return (
     <div className="container relative flex-col items-center justify-center h-screen w-screen mb-12 overflow-hidden">
-      <div className="#">
-        <Nav />
-      </div>
+      <div className="#"></div>
 
       <div className="relative z-30 p-5 text-2xl rounded-xl">
         <main className="lg:px-8  mx-auto max-w-7xl px-4 sm:mt-0 sm:px-6 md:mt-0 lg:mt-0 lg:px-8">
           <div className="sm:text-center lg:text-left">
             <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-              <span className=" xl:inline">나의 소울시티를 찾아보세요!</span>{' '}
+              <span className=" xl:inline">나의 소울시티를 찾아보세요!</span>{" "}
               <span className="block text-indigo-600 xl:inline">
                 COUNTRY GOGO
               </span>
