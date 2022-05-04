@@ -102,7 +102,8 @@ userAuthRouter.get('/kakao/callback',
   (req, res) => {
     const userInfo = req.user._doc;
     req.session.userId = userInfo.id;
-    res.redirect('/users/current');
+    console.log(req.session);
+    res.redirect('http://localhost:3000/mainsurvey');
     // res.send(userInfo);
   }
 );
