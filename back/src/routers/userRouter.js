@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const { login_required } = require('../middlewares/login_required');
 const { userAuthService } = require('../services/userService');
+const { login_required } = require('../middlewares/login_required');
 
 /**
  * @swagger
@@ -10,24 +10,27 @@ const { userAuthService } = require('../services/userService');
  */
 const userAuthRouter = Router();
 
-// userAuthRouter.post('/auth/kakao', async (req, res, next) => {
-//   accessToken = req.body.token;
-//   userProfile = request.get(
-//     'https://kapi.kakao.com/v2/user/me',
-//     headers = { "Authorization": `Bearer ${accessToken}` },
-//   );
+// userAuthRouter.get("/current", async (req, res, next) => {
+//   try {
+//     const userId = req.session.userId;
+//     const currentUserInfo = await userAuthService.getUserInfo({
+//       userId,
+//     });
+//     console.log(currentUserInfo);
+//     console.log(req.ip);
+//     console.log(req.hostname);
+//     res.status(200).send(currentUserInfo);
+//   } catch (error) {
+//     next(error);
+//   }
 // });
 
-userAuthRouter.get("/current", async (req, res, next) => {
+userAuthRouter.post("/auth/kakao", async (req, res, next) => {
   try {
-    const userId = req.session.userId;
-    const currentUserInfo = await userAuthService.getUserInfo({
-      userId,
-    });
-    console.log(currentUserInfo);
-    console.log(req.ip);
-    console.log(req.hostname);
-    res.status(200).send(currentUserInfo);
+    const { accessToken } = req.body;
+    console.log(accessToken);
+    const user = await userAuthService.addUser({ accessToken });
+    res.status(201).json(user);
   } catch (error) {
     next(error);
   }
@@ -36,7 +39,7 @@ userAuthRouter.get("/current", async (req, res, next) => {
 /**
  * @swagger
  * paths:
- *  /users/:id:
+ *  /users:
  *    delete:
  *      summary: Delete user info
  *      tags: [Users]

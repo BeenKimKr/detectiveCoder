@@ -1,17 +1,20 @@
 const { User } = require("../db");
+const { getProfile } = require('../utils/kakaoAuth');
 const jwt = require("jsonwebtoken");
 
 const userAuthService = {
-  addUser: async (user) => {
-    const createdNewUser = await User.create(user);
-    return createdNewUser;
+  addUser: async ({ accessToken }) => {
+    const userProfile = await getProfile(accessToken);
+    const result = JSON.parse(userProfile);
+    // const createdNewUser = await User.create(userProfile);
+    // return createdNewUser;
+    return result;
   },
 
   getUser: async ({ id }) => {
+    // const getProfile;
     const user = await User.findById({ id });
-    if (!user) {
-      return false;
-    }
+    if (!user) return false;
 
     const secretKey = process.env.JWT_SECRET_KEY || "jwt-secret-key";
     const token = jwt.sign({ userId: user.id }, secretKey);
