@@ -10,26 +10,23 @@ const { login_required } = require('../middlewares/login_required');
  */
 const userAuthRouter = Router();
 
-// userAuthRouter.get("/current", async (req, res, next) => {
-//   try {
-//     const userId = req.session.userId;
-//     const currentUserInfo = await userAuthService.getUserInfo({
-//       userId,
-//     });
-//     console.log(currentUserInfo);
-//     console.log(req.ip);
-//     console.log(req.hostname);
-//     res.status(200).send(currentUserInfo);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
+/**
+ * @swagger
+ * paths:
+ *  /auth/kakao:
+ *    post:
+ *      summary: Authorize user
+ *      tags: [Users]
+ *      responses:
+ *        "201":
+ *          description: Create or Get user info by using Kakao authorization server
+ *          schema:
+ *            $ref: '#/components/schemas/User'
+ */
 userAuthRouter.post("/auth/kakao", async (req, res, next) => {
   try {
     const { accessToken } = req.body;
-    console.log(accessToken);
-    const user = await userAuthService.addUser({ accessToken });
+    const user = await userAuthService.getKakaoUser({ accessToken });
     res.status(201).json(user);
   } catch (error) {
     next(error);
@@ -52,8 +49,8 @@ userAuthRouter.post("/auth/kakao", async (req, res, next) => {
 userAuthRouter.delete('/:id', async (req, res, next) => {
   try {
     const id = req.params.id;
-    await userAuthService.deleteUser({ id });
-    res.status(200).send();
+    const deletionStatus = await userAuthService.deleteUser({ id });
+    res.status(200).json(deletionStatus);
   } catch (error) {
     next(error);
   }
