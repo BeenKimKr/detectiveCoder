@@ -15,7 +15,7 @@
 }
 
 .titleText {
-  @apply mt-20 font-mono text-xl mt-6  text-orange-400;
+  @apply mt-20 font-mono text-xl mt-6  text-orange-400 font-bold;
 }
 
 .btn {
