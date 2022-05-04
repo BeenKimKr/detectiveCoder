@@ -120,7 +120,6 @@ countryRouter.post("/sort", async (req, res, next) => {
 // 개발용 path ('/sort'로 변경 예정, answer는 req.body로 넘겨받는다.)
 countryRouter.get("/sort/:id", async (req, res, next) => {
   try {
-    // // const answer = req.body; (@권민님)
     const id = req.params.id;
     let survey = await surveyService.getSurvey({ id });
 

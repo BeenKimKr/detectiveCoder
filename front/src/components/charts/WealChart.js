@@ -1,14 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { PieChart, Pie, Sector } from 'recharts';
 import './style.css';
-const data = [
-  { name: 'GDP', value: 93.4, color: '#ffc9c9' },
-  { name: '사회적 지원', value: 89.5, color: '#fcc2d7' },
-  { name: '기대 수명', value: 94, color: '#eebefa' },
-  { name: '자유도', value: 90, color: '#d0bfff' },
-  { name: '관대함', value: 8.1, color: '#bac8ff' },
-  { name: '부패에 대한 인식', value: 47.1, color: '#a5d8ff' },
-];
 
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -69,7 +61,7 @@ const renderActiveShape = (props) => {
         y={ey}
         textAnchor={textAnchor}
         fill='#333'
-      >{`PV ${value}`}</text>
+      >{`${value} 위`}</text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
@@ -83,7 +75,7 @@ const renderActiveShape = (props) => {
   );
 };
 
-export default function App() {
+export default function App({ resultHPIRank }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const onPieEnter = useCallback(
     (_, index) => {
@@ -91,7 +83,44 @@ export default function App() {
     },
     [setActiveIndex]
   );
-
+  const data = [
+    {
+      name: 'GDP',
+      value: resultHPIRank.GDP,
+      color: '#ffc9c9',
+      a: 70 - resultHPIRank.GDP,
+    },
+    {
+      name: '사회적 지원',
+      value: resultHPIRank.socialSupport,
+      color: '#fcc2d7',
+      a: 70 - resultHPIRank.socialSupport,
+    },
+    {
+      name: '기대 수명',
+      value: resultHPIRank.HLE,
+      color: '#eebefa',
+      a: 70 - resultHPIRank.HLE,
+    },
+    {
+      name: '자유도',
+      value: resultHPIRank.Freedom,
+      color: '#d0bfff',
+      a: 70 - resultHPIRank.Freedom,
+    },
+    {
+      name: '관대함',
+      value: resultHPIRank.Generosity,
+      color: '#bac8ff',
+      a: 70 - resultHPIRank.Generosity,
+    },
+    {
+      name: '부패에 대한 인식',
+      value: resultHPIRank.corruption,
+      color: '#a5d8ff',
+      a: 70 - resultHPIRank.corruption,
+    },
+  ];
   return (
     <PieChart className='wealChart' width={500} height={300}>
       <Pie
@@ -103,7 +132,8 @@ export default function App() {
         innerRadius={60}
         outerRadius={80}
         fill='#8884d8'
-        dataKey='value'
+        // dataKey='a'
+        datakey='value'
         onMouseEnter={onPieEnter}
       />
     </PieChart>
