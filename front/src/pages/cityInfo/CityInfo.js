@@ -1,18 +1,17 @@
-import React, { useState, useContext } from 'react';
-import Navmain from '../../components/Nav/Navmain';
-import WealChart from '../../components/charts/WealChart';
-import Button from '../../components/btn/CommonButton';
-import Image from '@material-tailwind/react/Image';
-import WeatherChart from '../../components/charts/WeatherChart';
-import HPIChart from '../../components/charts/HPIChart';
-import Bigmac from '../../components/charts/Bigmac';
+import React, { useState, useContext } from "react";
+import WealChart from "../../components/charts/WealChart";
+import Button from "../../components/btn/CommonButton";
+import Image from "@material-tailwind/react/Image";
+import WeatherChart from "../../components/charts/WeatherChart";
+import HPIChart from "../../components/charts/HPIChart";
+import Bigmac from "../../components/charts/Bigmac";
 
-import './style.css';
-import { ResultContext } from '../../App';
+import "./style.css";
+import { ResultContext } from "../../App";
 
 const CityInfo = () => {
-  const [name, setName] = useState('명탐정');
-  const [country, setCountry] = useState('독일');
+  const [name, setName] = useState("명탐정");
+  const [country, setCountry] = useState("독일");
 
   const {
     resultCountries,
@@ -23,14 +22,13 @@ const CityInfo = () => {
     setResultAmount,
   } = useContext(ResultContext);
 
-  console.log('cityInfo');
+  console.log("cityInfo");
   console.log(resultCountries);
   console.log(resultHPIRank);
   console.log(resultAmount);
 
   return (
     <div className="container flex-col p-2">
-      <Navmain />
       <div className=" my-8">
         <span className="title">
           {name}님께

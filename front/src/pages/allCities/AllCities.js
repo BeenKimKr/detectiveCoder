@@ -1,28 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/Nav/Navbar';
-import { dummy } from './dummy';
-import './style.css';
+import React, { useEffect, useState } from "react";
+import { dummy } from "./dummy";
+import "./style.css";
 
 const HPI = [
-  { value: 'socialSupport', name: '사회복지' },
-  { value: 'corruption', name: '청렴도' },
-  { value: 'Freedom', name: '자유' },
-  { value: 'price', name: '물가' },
-  { value: 'GDP', name: 'GDP' },
-  { value: 'Generosity', name: '관대함' },
-  { value: 'HLE', name: '기대수명' },
+  { value: "socialSupport", name: "사회복지" },
+  { value: "corruption", name: "청렴도" },
+  { value: "Freedom", name: "자유" },
+  { value: "price", name: "물가" },
+  { value: "GDP", name: "GDP" },
+  { value: "Generosity", name: "관대함" },
+  { value: "HLE", name: "기대수명" },
 ];
 
 const AllCities = () => {
-  const [select, setSelect] = useState('');
+  const [select, setSelect] = useState("");
   const [preItems, setPreItems] = useState(0);
   const [items, setItems] = useState(12);
   const [sort, setSort] = useState([]); // 결과 저장
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -35,7 +34,7 @@ const AllCities = () => {
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
     if (scrollTop + clientHeight >= scrollHeight) {
-      console.log('Asd');
+      console.log("Asd");
       setPreItems(items);
       setItems((prev) => prev + 12);
       getData();
@@ -43,7 +42,7 @@ const AllCities = () => {
   };
 
   const getData = () => {
-    console.log('Asdf');
+    console.log("Asdf");
     const result = dummy.slice(preItems, items);
     setSort([...sort, ...result]);
   };
