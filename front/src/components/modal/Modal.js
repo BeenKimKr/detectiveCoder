@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { PercentContext } from '../../pages/MainSurvey';
-import CommonButton from '../button/CommonButton';
+import CommonButton from '../btn/CommonButton';
 import Spinner from '../Spinner';
 import './style.css';
 const Modal = (props) => {
@@ -20,12 +20,10 @@ const Modal = (props) => {
             </div>
           </div>
         ) : (
-          <>
+          <div className="p-8">
             <main>테스트를 완료하였습니다😊</main>
-            <div className="button">
-              <CommonButton text={'결과 확인'} onClick={click} />
-            </div>
-          </>
+            <CommonButton text={'결과 확인'} onClick={click} />
+          </div>
         )}
       </section>
     </div>

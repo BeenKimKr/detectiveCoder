@@ -1,8 +1,8 @@
 const { UserModel } = require("../schemas/user");
 
 const User = {
-  create: async (newUser) => {
-    const createdNewUser = await UserModel.create(newUser);
+  create: async (userInfo) => {
+    const createdNewUser = await UserModel.create(userInfo);
     return createdNewUser;
   },
 

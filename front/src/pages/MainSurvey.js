@@ -1,36 +1,32 @@
 // 설문조사 페이지
-import React, { useState, createContext, useReducer, useEffect } from 'react';
-import SurveyContainer from '../components/survey/SurveyContainer';
-import Modal from '../components/modal/Modal';
-import Spinner from '../components/Spinner';
-import SurveyTemp from '../components/survey/SurveyTemp';
+import React, { useState, createContext, useEffect } from "react";
+import SurveyContainer from "../components/survey/SurveyContainer";
+import Modal from "../components/modal/Modal";
+import SurveyTemp from "../components/survey/SurveyTemp";
+import * as Api from "../api";
 
 export const SaveAnswersContext = createContext();
 export const PercentContext = createContext();
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'INPUT': {
-      return [...state, action.data];
-    }
-    default:
-      return state;
-  }
-};
+// const useUpdatePercent = () => {
+
+// };
 
 const MainSurvey = () => {
-  const [answer, answerDispatch] = useReducer(reducer, []);
+  // const navigate = useNavigate();
   const [submit, setSubmit] = useState([]);
+  const [temp, setTemp] = useState(24);
   const [percent, setPercent] = useState(0);
   const [step, setStep] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [id, setId] = useState(0);
 
   const saveAnswers = {
-    submit,
     setSubmit,
-    answerDispatch,
-    answer,
+    submit,
+    temp,
+    setTemp,
   };
   const changePercent = {
     setModalOpen,
@@ -43,38 +39,46 @@ const MainSurvey = () => {
   };
 
   useEffect(() => {
-    console.log(submit);
-  }, [submit]);
+    setId(Math.floor(Math.random() * 101));
+  }, []);
 
-  useEffect(() => {
-    console.log(answer);
-  }, [answer]); //코드 동작 확인하기 위한 코드입니다.
+  console.log(id);
 
   const handleSubmit = async () => {
-    // const result = {};
-    // submit.forEach((x) => {
-    //   result[x] = (result[x] || 0) + 1;
-    // });
-
-    answerDispatch({ type: 'INPUT', data: submit });
+    const answer = submit.filter((it) => it != "temperature");
     setLoading(true);
-
-    // await axios.post("", answer);
-    // 결과 페이지로  Post
-    // 아직 기온범위 구현  X.
+    try {
+      await Api.post("country/sort", {
+        id,
+        temp,
+        answer,
+      });
+      const res = await Api.get(`country/sort/${id}`);
+      const country = res.data.Country;
+      const city = res.data.City;
+      const rank = await Api.get(`country/rank/${country}`);
+      const one = await Api.get(`country/one/${city}`);
+      // navigate(`/cityInfo`);
+      console.log(res);
+      console.log(rank);
+      console.log(one);
+    } catch (error) {
+      console.log(error);
+      if (error.response) {
+        const { data } = error.response;
+        console.error("data : ", data);
+      }
+    }
   };
 
-  console.log(loading);
-
   return (
-    <div className="container w-screen h-screen  ">
-      <div class="w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700">
+    <div className='container w-screen h-screen'>
+      <div className='w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700'>
         <div
-          class="h-6 bg-custom-main rounded-full dark:bg-gray-300"
-          style={{ width: `${percent}%` }}
-        ></div>
+          class='h-6 bg-custom-main rounded-full dark:bg-gray-300'
+          style={{ width: `${percent}%` }}></div>
       </div>
-      <div className="m-auto">
+      <div className='m-auto'>
         <PercentContext.Provider value={changePercent}>
           <SaveAnswersContext.Provider value={saveAnswers}>
             {step == 0 ? (

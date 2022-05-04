@@ -7,14 +7,14 @@
   padding: 0;
 }
 
-/* html {
+html {
 }
 
 body {
   background-color: #f6f6f6;
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   min-height: 100vh;
   margin: 0px;
 }
@@ -28,4 +28,4 @@ body {
   min-height: 100vh;
   padding-left: 20px;
   padding-right: 20px;
-} */
+}

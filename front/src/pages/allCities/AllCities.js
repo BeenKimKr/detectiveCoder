@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Nav from '../../components/Nav';
+import Nav from '../../components/Nav/Nav';
 import ReactTooltip from 'react-tooltip'; // yarn add react-tooltip
 import Image from '@material-tailwind/react/Image';
 import './style.css';
