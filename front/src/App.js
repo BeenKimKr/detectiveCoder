@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useReducer, createContext } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home/Home';
-import CityInfo from './pages/cityInfo/CityInfo';
-import MainSurvey from './pages/MainSurvey';
-import { loginReducer } from './reducer';
-import RedirectKakao from './components/Kakao/RedirectKakao';
+import React, { useState, useEffect, useReducer, createContext } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home/Home";
+import CityInfo from "./pages/cityInfo/CityInfo";
+import MainSurvey from "./pages/MainSurvey";
+import { loginReducer } from "./reducer";
+// import RedirectKakao from './components/Kakao/RedirectKakao';
 
-import AllCities from './pages/allCities/AllCities';
-import * as Api from './api';
-import './App.css';
+import AllCities from "./pages/allCities/AllCities";
+import * as Api from "./api";
+import "./App.css";
 
 export const ResultContext = createContext();
 

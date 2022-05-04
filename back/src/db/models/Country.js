@@ -10,24 +10,11 @@ const Country = {
     return result;
   },
   findBySurvey: async (columns) => {
-    let temp = 0;
-    let first = "";
-    let second = "";
-    let third = "";
-    let third_ = "";
-
-    if (columns.length == 4) {
-      temp = Number(columns[0]);
-      first = columns[1];
-      second = columns[2];
-      third = columns[3];
-    } else {
-      temp = Number(columns[0]);
-      first = columns[1];
-      second = columns[2];
-      third = columns[3];
-      third_ = columns[4];
-    }
+    let temp = Number(columns[0]);
+    const first = columns[1];
+    const second = columns[2];
+    const third = columns[3];
+    const third_ = columns[4];
 
     const dataFrame = await CountryModel.find({})
       .where("mean")
