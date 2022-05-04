@@ -18,9 +18,6 @@ font-family: 'Nanum Pen Script', cursive; */
   font-size: 45px;
 }
 
-.cityInfo {
-  font-family: 'Jua', sans-serif;
-  font-size: 30px;
-  flex-basis: 70%;
-  margin-left: 20px;
+.victoryStand {
+  size: 80px;
 }
