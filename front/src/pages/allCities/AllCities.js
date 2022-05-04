@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ResultModal from './ResultModal';
 import * as Api from '../../api';
 import './style.css';
 
@@ -16,7 +17,9 @@ const AllCities = () => {
   const [title, setTitle] = useState('행복지수');
   const [select, setSelect] = useState('score');
   const [offset, setOffset] = useState(12);
+  const [modalOpen, setModalOpen] = useState(false); // Modal
   const [sort, setSort] = useState([]); // 결과 저장
+  const [rank, setRank] = useState([]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -45,8 +48,6 @@ const AllCities = () => {
     }
   };
 
-  const clickCard = (e) => {};
-
   const getData = async () => {
     if (sort.length < 70) {
       try {
@@ -57,6 +58,13 @@ const AllCities = () => {
         console.log('error');
       }
     }
+  };
+
+  const clickCard = async (e) => {
+    const res = await Api.get(`country/rank/${e.currentTarget.value}`);
+    console.log(res.data);
+    setRank(res.data);
+    setModalOpen(true);
   };
 
   useEffect(() => {
@@ -88,7 +96,12 @@ const AllCities = () => {
         {/* 이미지 카드 */}
         {sort.map((it, index) => {
           return (
-            <button className="countryCard" key={index} onClick={clickCard}>
+            <button
+              className="countryCard"
+              key={index}
+              onClick={clickCard}
+              value={it.Country}
+            >
               <img
                 class="imgCard"
                 src={`https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${it.Ab}-flag.gif`}
@@ -108,6 +121,7 @@ const AllCities = () => {
           );
         })}
       </div>
+      {modalOpen && <ResultModal open={modalOpen} rank={rank} />}
     </div>
   );
 };

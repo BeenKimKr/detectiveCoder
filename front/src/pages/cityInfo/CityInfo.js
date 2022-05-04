@@ -48,16 +48,15 @@ const CityInfo = () => {
   };
 
   return (
-    <div className='container flex-col p-2.5'>
-      <Navmain />
+    <div className="container flex-col p-2.5">
       {true ? (
         <div>
-          <span className='title'>
+          <span className="title">
             {name}님께
             {resultCountries[idx].Country === resultCountries[idx].City ? (
-              <p className='inputCity'>{resultCountries[idx].Country}</p>
+              <p className="inputCity">{resultCountries[idx].Country}</p>
             ) : (
-              <p className='inputCity'>
+              <p className="inputCity">
                 {resultCountries[idx].Country} {resultCountries[idx].City}
               </p>
             )}
@@ -68,40 +67,40 @@ const CityInfo = () => {
         <></>
       )}
       <div>
-        <div className='flex m-28 mx-auto justify-center'>
+        <div className="flex m-28 mx-auto justify-center">
           <img
-            className='absolute w-96'
-            src='/imgs/victoryStand.png'
-            alt='시상대'
+            className="absolute w-96"
+            src="/imgs/victoryStand.png"
+            alt="시상대"
           />
           <img
-            name='1'
-            className='w-28 h-28 rounded-full relative'
+            name="1"
+            className="w-28 h-28 rounded-full relative"
             style={{ left: '-20px', top: '-40px' }}
             src={flagUrl2nd}
-            alt='2등 국기'
+            alt="2등 국기"
             onClick={handleClick}
           />
           <img
-            name='0'
-            className='w-28 h-28 rounded-full relative'
+            name="0"
+            className="w-28 h-28 rounded-full relative"
             style={{ left: '-5px', top: '-75px' }}
             src={flagUrl1st}
-            alt='1등 국기'
+            alt="1등 국기"
             onClick={handleClick}
           />
           <img
-            name='2'
-            className='w-28 h-28 rounded-full relative'
+            name="2"
+            className="w-28 h-28 rounded-full relative"
             style={{ left: '0px', top: '-20px' }}
             src={flagUrl3rd}
-            alt='3등 국기'
+            alt="3등 국기"
             onClick={handleClick}
           />
         </div>
       </div>
 
-      <div className='flex flex-col lg:flex-row'>
+      <div className="flex flex-col lg:flex-row">
         <div
           className={
             'flex justify-center items-center mb-3 lg:basis-1/2' +
@@ -120,15 +119,15 @@ const CityInfo = () => {
         </div>
       </div>
       <div className={'flex flex-col lg:flex-row' + (false ? ' blur-sm' : '')}>
-        <div className='lg:basis-1/2 flex justify-center'>
+        <div className="lg:basis-1/2 flex justify-center">
           <Bigmac resultAmount={resultAmount} />
         </div>
-        <div className='lg:basis-1/2 flex justify-center'>
+        <div className="lg:basis-1/2 flex justify-center">
           <WealChart resultHPIRank={resultHPIRank} />
         </div>
       </div>
-      <div className='flex space-x-4 justify-end'>
-        <Button text='저장하기' type='main' onClick={handleClickHome} />
+      <div className="flex space-x-4 justify-end">
+        <Button text="저장하기" type="main" onClick={handleClickHome} />
       </div>
     </div>
   );

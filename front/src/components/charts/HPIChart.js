@@ -41,18 +41,18 @@ const HPIChart = ({ resultAmount }) => {
   ];
 
   return (
-    <div className='chart'>
-      <span className='chartTitle'>행복 수치를 결정하는 6가지 요인</span>
-      <ResponsiveContainer width={400} height={400}>
-        <BarChart data={data} layout='vertical'>
-          <XAxis type='number' />
-          <YAxis width={130} yAxisId={0} dataKey='factor' type='category' />
-          <YAxis dataKey='max' yAxisId={1} hide />
+    <div className="chart">
+      <span className="chartTitle">행복 수치를 결정하는 6가지 요인</span>
+      <ResponsiveContainer width={300} height={400}>
+        <BarChart data={data} layout="vertical">
+          <XAxis type="number" />
+          <YAxis width={130} yAxisId={0} dataKey="factor" type="category" />
+          <YAxis dataKey="max" yAxisId={1} hide />
           <Tooltip wrapperStyle={{ width: 200, backgroundColor: '#ccc' }} />
-          <Bar dataKey='value' minPointSize={2} barSize={32}>
+          <Bar dataKey="value" minPointSize={2} barSize={32}>
             {data.map((d, idx) => {
               return (
-                <Cell Cell type='monotone' key={d.factor} fill={d.color} />
+                <Cell Cell type="monotone" key={d.factor} fill={d.color} />
               );
             })}
           </Bar>
