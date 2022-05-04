@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const passport = require('passport');
+const { login_required } = require('../middlewares/login_required');
 const { userAuthService } = require('../services/userService');
 
 /**
@@ -10,75 +10,28 @@ const { userAuthService } = require('../services/userService');
  */
 const userAuthRouter = Router();
 
-/**
- * @swagger
- * paths:
- *  /users/naver:
- *    get:
- *      summary: Register using Naver
- *      tags: [Users]
- */
-userAuthRouter.get('/naver', passport.authenticate('naver'));
+// userAuthRouter.post('/auth/kakao', async (req, res, next) => {
+//   accessToken = req.body.token;
+//   userProfile = request.get(
+//     'https://kapi.kakao.com/v2/user/me',
+//     headers = { "Authorization": `Bearer ${accessToken}` },
+//   );
+// });
 
-/**
- * @swagger
- * paths:
- *  /users/naver/callback:
- *    get:
- *      summary: Get user
- *      tags: [Users]
- *      responses:
- *        "200":
- *          description: Callback for users logged in to Naver
- *          content:
- *            application/json:
- *              schema:
- *                $ref: '#/components/schemas/User'
- */
-userAuthRouter.get(
-  '/naver/callback',
-  passport.authenticate('naver', {
-    failureRedirect: '/',
-  }),
-  (req, res) => {
-    res.redirect('/');
+userAuthRouter.get("/current", async (req, res, next) => {
+  try {
+    const userId = req.session.userId;
+    const currentUserInfo = await userAuthService.getUserInfo({
+      userId,
+    });
+    console.log(currentUserInfo);
+    console.log(req.ip);
+    console.log(req.hostname);
+    res.status(200).send(currentUserInfo);
+  } catch (error) {
+    next(error);
   }
-);
-
-/**
- * @swagger
- * paths:
- *  /users/kakao:
- *    get:
- *      summary: Register using Kakao
- *      tags: [Users]
- */
-userAuthRouter.get('kakao', passport.authenticate('kakao'));
-
-/**
- * @swagger
- * paths:
- *  /users/kakao/callback:
- *    get:
- *      summary: Get user
- *      tags: [Users]
- *      responses:
- *        "200":
- *          description: Callback for users logged in to Kakao
- *          content:
- *            application/json:
- *              schema:
- *                $ref: '#/components/schemas/User'
- */
-userAuthRouter.get(
-  '/kakao/callback',
-  passport.authenticate('kakao', {
-    failureRedirect: '/',
-  }),
-  (req, res) => {
-    res.redirect('/');
-  }
-);
+});
 
 /**
  * @swagger
