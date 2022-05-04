@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import Navmain from '../../components/Nav/Navmain';
+// import Navmain from '../../components/Nav/Navmain';
 import WealChart from '../../components/charts/WealChart';
 import Button from '../../components/btn/CommonButton';
 import WeatherChart from '../../components/charts/WeatherChart';

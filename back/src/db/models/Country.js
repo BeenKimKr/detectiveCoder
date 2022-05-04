@@ -3,53 +3,13 @@ const { CountryModel } = require("../schemas/country");
 const Country = {
   findAll: async () => {
     const country = await CountryModel.find({});
-    console.log(country);
     return country;
   },
   findByCity: async (City) => {
     const result = await CountryModel.findOne({ City: City });
-    console.log(result);
     return result;
   },
-  findRankByCountry: async (Country) => {
-    let dataFrame = await CountryModel.find({});
-    let colArr = [
-      "price",
-      "GDP",
-      "socialSupport",
-      "HLE",
-      "Freedom",
-      "Generosity",
-      "corruption",
-      "score",
-    ];
-
-    rankMap = {};
-    for (let i = 0; i < colArr.length; i++) {
-      col = colArr[i];
-
-      // column 기준 내림차순 정렬
-      dataFrame.sort((a, b) => {
-        return b[col] - a[col];
-      });
-
-      let dataSet = new Set();
-
-      for (let j = 0; j < dataFrame.length; j++) {
-        otherCountry = dataFrame[j]["Country"];
-        dataSet.add(otherCountry);
-        if (Country === otherCountry) {
-          rankMap[col] = dataSet.size;
-
-          console.log(rankMap);
-          break;
-        }
-      }
-    }
-    return rankMap;
-  },
-
-  sortAll: async (columns) => {
+  findBySurvey: async (columns) => {
     let temp = 0;
     let first = "";
     let second = "";
