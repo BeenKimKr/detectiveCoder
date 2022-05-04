@@ -35,6 +35,11 @@ const CityInfo = () => {
 
     setResultHPIRank(rank.data);
     setResultAmount(amount.data);
+
+    window.scrollTo({
+      top: 450,
+      behavior: 'smooth',
+    });
   };
 
   const handleClickHome = () => {
@@ -63,34 +68,32 @@ const CityInfo = () => {
         <></>
       )}
       <div>
-        <div className='flex mt-40 flex-col'>
-          <div className='flex w-full'>
-            <div className='flex mx-auto justify-center w-9/12'>
-              <img src='/imgs/victoryStand.png' alt='시상대' />
-            </div>
-          </div>
-        </div>
-        <div className='flex justify-center'>
+        <div className='flex m-28 mx-auto justify-center'>
+          <img
+            className='absolute w-96'
+            src='/imgs/victoryStand.png'
+            alt='시상대'
+          />
           <img
             name='1'
-            className='w-40 h-40 rounded-full relative'
-            style={{ left: '-80px', top: '-400px' }}
+            className='w-28 h-28 rounded-full relative'
+            style={{ left: '-20px', top: '-40px' }}
             src={flagUrl2nd}
             alt='2등 국기'
             onClick={handleClick}
           />
           <img
             name='0'
-            className='w-40 h-40 rounded-full relative'
-            style={{ left: '-5px', top: '-470px' }}
+            className='w-28 h-28 rounded-full relative'
+            style={{ left: '-5px', top: '-75px' }}
             src={flagUrl1st}
             alt='1등 국기'
             onClick={handleClick}
           />
           <img
             name='2'
-            className='w-40 h-40 rounded-full relative'
-            style={{ left: '60px', top: '-350px' }}
+            className='w-28 h-28 rounded-full relative'
+            style={{ left: '0px', top: '-20px' }}
             src={flagUrl3rd}
             alt='3등 국기'
             onClick={handleClick}
@@ -99,14 +102,24 @@ const CityInfo = () => {
       </div>
 
       <div className='flex flex-col lg:flex-row'>
-        <div className='mb-3 lg:basis-1/2 flex items-center justify-center'>
+        <div
+          className={
+            'flex justify-center items-center mb-3 lg:basis-1/2' +
+            (false ? ' blur-sm' : '')
+          }
+        >
           <WeatherChart resultAmount={resultAmount} />
         </div>
-        <div className='lg:basis-1/2 flex justify-center items-center'>
+        <div
+          className={
+            'flex justify-center items-center lg:basis-1/2' +
+            (false ? ' blur-sm' : '')
+          }
+        >
           <HPIChart resultAmount={resultAmount} />
         </div>
       </div>
-      <div className='flex flex-col lg:flex-row '>
+      <div className={'flex flex-col lg:flex-row' + (false ? ' blur-sm' : '')}>
         <div className='lg:basis-1/2 flex justify-center'>
           <Bigmac resultAmount={resultAmount} />
         </div>
