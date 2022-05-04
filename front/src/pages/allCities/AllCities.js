@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { dummy } from './dummy';
 import * as Api from '../../api';
 import './style.css';
 
@@ -14,8 +13,8 @@ const HPI = [
 ];
 
 const AllCities = () => {
-  const [select, setSelect] = useState('');
-  const [preItems, setPreItems] = useState();
+  const [select, setSelect] = useState('score');
+  const [page, setPage] = useState(0);
   const [offset, setOffset] = useState(12);
   const [sort, setSort] = useState([]); // 결과 저장
 
@@ -26,9 +25,13 @@ const AllCities = () => {
     };
   }, []);
 
-  const handleSelect = async (e) => {
-    setSelect(e.target.value);
+  useEffect(() => {
     getData();
+  }, [offset]);
+
+  const handleSelect = (e) => {
+    setSelect(e.target.value);
+    getData(e.target.value);
   };
 
   const handleScroll = () => {
@@ -36,22 +39,25 @@ const AllCities = () => {
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
     if (scrollTop + clientHeight >= scrollHeight) {
-      getData();
+      setOffset((prev) => prev + 3);
     }
   };
 
   const getData = async () => {
-    try {
-      const res = await Api.get(`sort/rank/${offset}/${select}`); // 미국의 등수
-      const result = res.data;
-      setSort([...sort, ...result]);
-      setOffset(3);
-    } catch {}
+    if (sort.length < 100) {
+      try {
+        const res = await Api.get(`rank/sort/${select}/${offset}`); // 미국의 등수
+        const result = res.data;
+        setSort([...sort, ...result]);
+      } catch {
+        console.log('error');
+      }
+    }
   };
 
   useEffect(() => {
-    setSort(dummy.slice(0, 12));
-  }, []);
+    console.log(sort);
+  }, [sort]);
 
   return (
     <div className="container bg-white w-screen flex-row">
@@ -82,17 +88,17 @@ const AllCities = () => {
             <div className="countryCard" key={index}>
               <img
                 class="imgCard"
-                src={`https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${it}-flag.gif`}
+                src={`https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${it.Ab}-flag.gif`}
               />
               <div className="p-4">
                 <h1 className="countryCardText">
                   {index === 0
-                    ? `${it}🥇`
+                    ? `${it.Country}🥇`
                     : index === 1
-                    ? `${it}🥈`
+                    ? `${it.Country}🥈`
                     : index === 2
-                    ? `${it}🥉`
-                    : `${it}`}
+                    ? `${it.Country}🥉`
+                    : `${it.Country}`}
                 </h1>
               </div>
             </div>

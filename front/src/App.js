@@ -17,13 +17,17 @@ function App() {
   const [resultHPIRank, setResultHPIRank] = useState([]); //  HPI 등수
   const [resultAmount, setResultAmount] = useState([]); //  수치
 
+  const [user, setUser] = useState([]);
+
   const saveResult = {
-    resultCountries,
-    setResultCountries,
-    resultHPIRank,
-    setResultHPIRank,
-    resultAmount,
-    setResultAmount,
+    // resultCountries,
+    // setResultCountries,
+    // resultHPIRank,
+    // setResultHPIRank,
+    // resultAmount,
+    // setResultAmount,
+    user,
+    setUser,
   };
 
   return (

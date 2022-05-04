@@ -1,13 +1,18 @@
 import React, { useContext, useEffect } from 'react';
-// import { DispatchContext } from '../../App';
+// import { saveResult } from '../../App';
 import { useNavigate } from 'react-router-dom';
 import * as Api from '../../api';
+import { ResultContext } from '../../App';
+
 
 const RedirectKakao = () => {
   const navigate = useNavigate();
   // const dispatch = useContext(DispatchContext);
 
   let code = new URL(window.location.href).searchParams.get('code');
+  const { user, setUser } =
+    useContext(ResultContext);
+
 
   // // React.useEffect(() => {
   // //   dispatch(kakaoLogin(code));

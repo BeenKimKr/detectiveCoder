@@ -1,4 +1,4 @@
-const { Rank } = require("../db");
+const { Rank } = require('../db');
 
 const rankService = {
   getAll: async () => {
@@ -9,8 +9,8 @@ const rankService = {
     const data = await Rank.findByCountry(Country);
     return data;
   },
-  sortAll: async (column) => {
-    const data = await Rank.findByColumn(column);
+  sortAll: async (column, offset) => {
+    const data = await Rank.findByColumn(column, offset);
 
     // column 기준 오름차순 정렬
     data.sort((a, b) => {
