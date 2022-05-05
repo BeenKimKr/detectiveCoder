@@ -1,15 +1,10 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useContext } from 'react';
 import Nav from '../../components/Nav/Nav';
 import WealChart from '../../components/charts/WealChart';
 import Button from '../../components/btn/CommonButton';
 import WeatherChart from '../../components/charts/WeatherChart';
 import HPIChart from '../../components/charts/HPIChart';
 import Bigmac from '../../components/charts/Bigmac';
-
-import KakaoShareButton from '../../components/KakaoShare';
-import domtoimage from 'dom-to-image';
-import { saveAs } from 'file-saver';
-
 import * as Api from '../../api';
 import './style.css';
 import { ResultContext } from '../../App';
@@ -150,6 +145,10 @@ const CityInfo = () => {
             <HPIChart resultAmount={resultAmount} />
           </div>
         </div>
+      </div>
+
+      <div className='flex flex-col lg:flex-row'>
+        {/* 삼항연산자 false 자리에 쿠키 확인 조건 넣으면 됨 */}
         <div
           className={'flex flex-col lg:flex-row' + (false ? ' blur-sm' : '')}
         >
