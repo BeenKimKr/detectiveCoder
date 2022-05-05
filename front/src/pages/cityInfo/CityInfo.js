@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import Navmain from '../../components/Nav/Navmain';
+import Nav from '../../components/Nav/Nav';
 import WealChart from '../../components/charts/WealChart';
 import Button from '../../components/btn/CommonButton';
 import WeatherChart from '../../components/charts/WeatherChart';
@@ -48,7 +48,7 @@ const CityInfo = () => {
 
   return (
     <div className='container flex-col p-2.5'>
-      <Navmain />
+      <Nav />
       {true ? (
         <div>
           <span className='flex text-xl lg:text-3xl font-irop'>
