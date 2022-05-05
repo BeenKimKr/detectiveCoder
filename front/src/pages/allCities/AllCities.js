@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import ResultModal from "./ResultModal";
-import * as Api from "../../api";
-import "./style.css";
+import React, { useEffect, useState } from 'react';
+import ResultModal from './ResultModal';
+import Nav from '../../components/Nav/Nav';
+import * as Api from '../../api';
+import './style.css';
 
 const useClickBtn = () => {
-  const [title, setTitle] = useState("행복지수");
-  const [select, setSelect] = useState("score");
+  const [title, setTitle] = useState('행복지수');
+  const [select, setSelect] = useState('score');
   const [offset, setOffset] = useState(12);
   const [sort, setSort] = useState([]); // 결과 저장
 
@@ -20,13 +21,13 @@ const useClickBtn = () => {
 };
 
 const HPI = [
-  { value: "socialSupport", name: "사회복지" },
-  { value: "corruption", name: "청렴도" },
-  { value: "Freedom", name: "자유" },
-  { value: "price", name: "물가" },
-  { value: "GDP", name: "GDP" },
-  { value: "Generosity", name: "관대함" },
-  { value: "HLE", name: "기대수명" },
+  { value: 'socialSupport', name: '사회복지' },
+  { value: 'corruption', name: '청렴도' },
+  { value: 'Freedom', name: '자유' },
+  { value: 'price', name: '물가' },
+  { value: 'GDP', name: 'GDP' },
+  { value: 'Generosity', name: '관대함' },
+  { value: 'HLE', name: '기대수명' },
 ];
 
 const AllCities = () => {
@@ -36,9 +37,9 @@ const AllCities = () => {
     useClickBtn();
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -62,7 +63,7 @@ const AllCities = () => {
         const result = res.data;
         setSort([...sort, ...result]);
       } catch {
-        console.log("error");
+        console.log('error');
       }
     }
   };
@@ -79,10 +80,11 @@ const AllCities = () => {
   }, [sort]);
 
   return (
-    <div className="container bg-white w-screen flex-row text-center">
-      <div className="titleButtonContainer">
-        <span className="titleText">{`${title} 순으로 보기.`}</span>
-        <div className="mt-5">
+    <div className='container bg-white w-screen flex-row text-center'>
+      <Nav />
+      <div className='titleButtonContainer'>
+        <span className='titleText'>{`${title} 순으로 보기.`}</span>
+        <div className='mt-5 '>
           {HPI.map((it, index) => {
             return (
               <button
@@ -91,7 +93,7 @@ const AllCities = () => {
                 key={index}
                 value={it.value}
                 onClick={handleClick}
-                class="btn"
+                class='btn'
               >
                 {it.name}
               </button>
@@ -100,22 +102,22 @@ const AllCities = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-4 mt-11" onScroll={handleScroll}>
+      <div className='grid grid-cols-3 gap-4 mt-11' onScroll={handleScroll}>
         {/* 이미지 카드 */}
         {sort.map((it, index) => {
           return (
             <button
-              className="countryCard"
+              className='countryCard'
               key={index}
               onClick={clickCard}
               value={it.Country}
             >
               <img
-                class="imgCard"
+                class='imgCard'
                 src={`https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${it.Ab}-flag.gif`}
               />
-              <div className="p-4">
-                <span className="countryCardText">
+              <div className='p-4'>
+                <span className='countryCardText'>
                   {index === 0
                     ? `${it.Country}🥇`
                     : index === 1

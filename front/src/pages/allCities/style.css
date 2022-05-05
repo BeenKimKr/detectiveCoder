@@ -11,7 +11,7 @@
 }
 
 .countryCardText {
-  @apply text-xl  font-medium text-slate-600 pb-2;
+  @apply text-xl  font-medium text-slate-600 pb-2 font-fred;
 }
 
 .titleText {
@@ -19,7 +19,7 @@
 }
 
 .btn {
-  @apply px-6  h-11 mr-2  bg-white  rounded-full  text-custom-main  font-bold cursor-pointer;
+  @apply px-6  h-11 mr-2  bg-white  rounded-full  text-custom-main  font-bold font-noto cursor-pointer;
 }
 
 section {
