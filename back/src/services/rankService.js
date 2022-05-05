@@ -1,4 +1,4 @@
-const { Rank } = require("../db");
+const { Rank } = require('../db');
 
 const rankService = {
   getAll: async () => {
