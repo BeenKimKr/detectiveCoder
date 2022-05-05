@@ -146,9 +146,9 @@ countryRouter.get("/sort", async (req, res, next) => {
     const data = await countryService.sortData({ temp, answer });
 
     if (req.cookies.countryData) {
-      res.clearCookie(countryData);
+      res.clearCookie('countryData');
     }
-    res.cookie("countryData", data, {
+    res.cookie('countryData', data, {
       maxAge: 3600000
     });
     res.status(200).json(data);
