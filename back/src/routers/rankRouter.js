@@ -74,7 +74,7 @@ rankRouter.get("/one/:Country", async (req, res, next) => {
 rankRouter.get("/sort/:column/:offset", async (req, res, next) => {
   try {
     const column = req.params.column;
-    const offset = req.params.offset;
+    const offset = Number(req.params.offset);
     const data = await rankService.sortAll(column, offset);
 
     res.status(200).json(data);
