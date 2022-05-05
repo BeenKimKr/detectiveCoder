@@ -77,7 +77,7 @@ userAuthRouter.put('/badge', login_required, async (req, res, next) => {
     const { countryData } = req.cookies;
     const newBadge = await userAuthService.addBadge({ id, countryData });
 
-    res.status(200).send(newBadge);
+    res.status(200).json(newBadge);
   } catch (error) {
     next(error);
   }
@@ -102,7 +102,7 @@ userAuthRouter.get('/badge', login_required, async (req, res, next) => {
 
     const badge = await userAuthService.getBadge({ id });
 
-    res.status(200).send(badge);
+    res.status(200).json(badge);
   } catch (error) {
     next(error);
   }
