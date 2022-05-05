@@ -1,7 +1,8 @@
 import React from 'react';
 import './style.css';
 
-const Badge = (fileName) => {
+const Badge = () => {
+  const fileName = 'CH';
   return (
     <div className='badgeCard'>
       <div>

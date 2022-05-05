@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 // s
 import Nav from '../../components/Nav/Nav';
 import video from './Clouds.mp4';
