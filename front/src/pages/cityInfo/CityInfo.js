@@ -42,9 +42,8 @@ const CityInfo = () => {
     });
   };
 
-  const handleClickHome = () => {
+  const handleSaveCountry = () => {
     // 뱃지로 저장하는 코드 들어올 자리
-    window.location.href = '/main';
   };
 
   return (
@@ -119,6 +118,7 @@ const CityInfo = () => {
       </div>
 
       <div className='flex flex-col lg:flex-row'>
+        {/* 삼항연산자 false 자리에 쿠키 확인 조건 넣으면 됨 */}
         <div
           className={
             'flex justify-center items-center mb-3 lg:basis-1/2' +
@@ -145,7 +145,7 @@ const CityInfo = () => {
         </div>
       </div>
       <div className='flex space-x-4 justify-end'>
-        <Button text='저장하기' type='main' onClick={handleClickHome} />
+        <Button text='저장하기' type='main' onClick={handleSaveCountry} />
       </div>
     </div>
   );
