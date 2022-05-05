@@ -15,7 +15,7 @@
 }
 
 .rankText {
-  @apply text-sm inline-block py-2.5 px-2.5  ml-3  leading-none text-center whitespace-nowrap align-baseline font-bold bg-gray-200 text-gray-700  rounded-full;
+  @apply text-sm inline-block py-2.5 px-2.5  ml-3  leading-none text-center whitespace-nowrap align-baseline font-bold bg-white drop-shadow-lg text-custom-main rounded-full;
 }
 
 .titleText {
@@ -24,6 +24,11 @@
 
 .btn {
   @apply px-6  h-11 mr-2  bg-white  rounded-full  text-custom-main  font-bold cursor-pointer;
+}
+
+/* Select */
+.selectContainer {
+  @apply w-36 h-16 p-2  rounded-full text-center font-bold text-xl;
 }
 
 @keyframes modal-show {

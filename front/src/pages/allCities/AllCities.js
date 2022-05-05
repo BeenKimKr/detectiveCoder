@@ -9,14 +9,14 @@ const useClickBtn = () => {
   const [offset, setOffset] = useState(12);
   const [sort, setSort] = useState([]); // 결과 저장
 
-  const handleClick = (e) => {
+  const handleChange = (e) => {
     setSelect(e.target.value);
     setTitle(e.target.name);
     setSort([]);
     setOffset(12);
   };
 
-  return { title, select, offset, sort, setSort, setOffset, handleClick };
+  return { title, select, offset, sort, setSort, setOffset, handleChange };
 };
 
 const HPI = [
@@ -32,7 +32,7 @@ const HPI = [
 const AllCities = () => {
   const [modalOpen, setModalOpen] = useState(false); // Modal
   const [data, setData] = useState([]);
-  const { title, select, offset, sort, handleClick, setSort, setOffset } =
+  const { title, select, offset, sort, handleChange, setSort, setOffset } =
     useClickBtn();
 
   useEffect(() => {
@@ -83,25 +83,28 @@ const AllCities = () => {
 
   return (
     <div className="container bg-white w-screen flex-row text-center">
-      <div className="titleButtonContainer">
-        <span className="titleText">{`${title} 순으로 보기.`}</span>
-        <div className="mt-5">
-          {HPI.map((it, index) => {
-            return (
-              <button
-                disabled={select === it.value}
-                name={it.name}
-                key={index}
-                value={it.value}
-                onClick={handleClick}
-                class="btn"
-              >
-                {it.name}
-              </button>
-            );
-          })}
+      <div className="bg-sky-50  p-10 flex">
+        <div className="ml-5">
+          <select className="selectContainer" disabled>
+            <option>행복지수</option>
+          </select>
+        </div>
+        <div className="ml-5">
+          <select class="selectContainer" onChange={handleChange}>
+            <option disabled selected>
+              종합
+            </option>
+            {HPI.map((it, index) => {
+              return (
+                <option name={it.name} key={index} value={it.value}>
+                  {it.name}
+                </option>
+              );
+            })}
+          </select>
         </div>
       </div>
+
       <div className="grid grid-cols-3 gap-4 mt-11" onScroll={handleScroll}>
         {/* 이미지 카드 */}
         {sort.map((it, index) => {
