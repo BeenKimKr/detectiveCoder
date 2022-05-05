@@ -4,9 +4,9 @@ import Home from './pages/Home/Home';
 import CityInfo from './pages/cityInfo/CityInfo';
 import MainSurvey from './pages/MainSurvey';
 
-import AllCities from './pages/allCities/AllCities';
-import * as Api from './api';
-import './App.css';
+import AllCities from "./pages/allCities/AllCities";
+import * as Api from "./api";
+import "./App.css";
 
 export const ResultContext = createContext();
 

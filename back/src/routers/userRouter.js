@@ -56,4 +56,56 @@ userAuthRouter.delete('/:id', async (req, res, next) => {
   }
 });
 
+/**
+ * @swagger
+ * paths:
+ *  /badge:
+ *    put:
+ *      summary: Fix Badge Array
+ *      tags: [Users]
+ *      responses:
+ *        "200":
+ *          description: Put country name in Badge Array
+ *          schema:
+ *            $ref: '#/components/schemas/User'
+ */
+userAuthRouter.put('/badge', login_required, async (req, res, next) => {
+  try {
+    // 쿠키에 나라데이터 확인
+    // 있으면 검색 후 저장, 없으면 설문 먼저 진행하세요 띄우기
+    const id = req.currentUserId;
+    const { countryData } = req.cookies;
+
+    const newBadge = await userAuthService.addBadge({ id, countryData });
+
+    res.status(200).send(newBadge);
+  } catch (error) {
+    next(error);
+  }
+});
+
+/**
+ * @swagger
+ * paths:
+ *  /badge:
+ *    get:
+ *      summary: Get Badge Array
+ *      tags: [Users]
+ *      responses:
+ *        "200":
+ *          description: Get Badge Array of User Info
+ *          schema:
+ *            $ref: '#/components/schemas/User'
+ */
+userAuthRouter.get('/badge', login_required, async (req, res, next) => {
+  try {
+    const id = req.currentUserId;
+    const badge = await userAuthService.getBadge({ id });
+
+    res.status(200).send(badge);
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = { userAuthRouter };
