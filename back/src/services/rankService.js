@@ -1,4 +1,4 @@
-const { Rank } = require("../db");
+const { Rank } = require('../db');
 
 const rankService = {
   getAll: async () => {
@@ -15,7 +15,11 @@ const rankService = {
     data.sort((a, b) => {
       return a[column] - b[column];
     });
-    return data.slice(0, offset);
+    if (offset === 12) {
+      return data.slice(0, 15);
+    } else {
+      return data.slice(offset, offset + 3);
+    }
   },
 };
 

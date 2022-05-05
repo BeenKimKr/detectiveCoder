@@ -12,7 +12,7 @@ const Modal = (props) => {
     // 모달이 열릴때 openModal 클래스가 생성된다.
     <div className={open ? 'openModal modal' : 'modal'}>
       <section>
-        {loading == true ? (
+        {loading ? (
           <div className="p-8">
             <span className="mb-2">결과를 분석중입니다.🔎</span>
             <div>
