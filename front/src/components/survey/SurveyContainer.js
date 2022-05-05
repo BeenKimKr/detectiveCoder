@@ -1,26 +1,25 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { QUESTIONS } from './QUESTIONS';
-import { PercentContext, SaveAnswersContext } from '../../pages/MainSurvey';
-
-import './style.css';
+import React, { useState, useEffect, useContext } from "react";
+import { PercentContext, SaveAnswersContext } from "../../pages/MainSurvey";
+import { HPIQUESTIONS } from "./text/HPIQUESTIONS";
+import "./style.css";
 
 const SurveyContainer = () => {
   const FirstQuestion = [
-    'socialSupport',
-    'corruption',
-    'Freedom',
-    'price',
-    'GDP',
-    'temperature',
-    'HLE',
-    'Generosity',
+    "socialSupport",
+    "corruption",
+    "Freedom",
+    "price",
+    "GDP",
+    "mean",
+    "HLE",
+    "Generosity",
   ];
 
   const [tempArray, setTempArray] = useState([]);
   const [question, setQuestion] = useState([]);
   const [winner, setWinners] = useState([]);
   const { setModalOpen, setPercent } = useContext(PercentContext);
-  const { setSubmit, submit } = useContext(SaveAnswersContext);
+  const { setAnswer, answer } = useContext(SaveAnswersContext);
 
   useEffect(() => {
     setQuestion(FirstQuestion);
@@ -44,15 +43,14 @@ const SurveyContainer = () => {
       setTempArray([question[2], question[3]]);
       setQuestion(question.slice(2));
     }
-
-    setSubmit([...submit, e.currentTarget.value]);
+    setAnswer([...answer, e.currentTarget.value]);
   };
 
   return (
     <>
       <div>
         <div className="AnswerContainer">
-          {QUESTIONS.filter((it) => it.id == tempArray[0]).map((x) => (
+          {HPIQUESTIONS.filter((it) => it.id == tempArray[0]).map((x) => (
             <>
               <button
                 className="AnswerCard"
@@ -63,7 +61,7 @@ const SurveyContainer = () => {
               </button>
             </>
           ))}
-          {QUESTIONS.filter((it) => it.id == tempArray[1]).map((x) => (
+          {HPIQUESTIONS.filter((it) => it.id == tempArray[1]).map((x) => (
             <>
               <button
                 className="AnswerCard"
