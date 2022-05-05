@@ -7,12 +7,9 @@ const { Schema, model } = require("mongoose");
  *      Survey:
  *        type: object
  *        required:
- *          - id
  *          - temp
  *          - answer
  *        properties:
- *          id:
- *            type: String
  *          temp:
  *            type: Number
  *            description: temperature
@@ -27,10 +24,6 @@ const { Schema, model } = require("mongoose");
 
 const SurveySchema = new Schema(
   {
-    id: {
-      type: Number,
-      required: true,
-    },
     temp: {
       type: Number,
       required: true,

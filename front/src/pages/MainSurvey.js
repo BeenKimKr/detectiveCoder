@@ -22,7 +22,6 @@ const MainSurvey = () => {
   const [step, setStep] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [id, setId] = useState(0);
   const { setResultCountries, setResultHPIRank, setResultAmount } =
     useContext(ResultContext);
 
@@ -43,21 +42,16 @@ const MainSurvey = () => {
     loading,
   };
 
-  useEffect(() => {
-    setId(Math.floor(Math.random() * 101));
-  }, []);
-
   const handleSubmit = async () => {
     setLoading(true);
 
     try {
       await Api.post("country/sort", {
-        id,
         temp,
         answer,
       });
 
-      const res = await Api.get(`country/sort/${id}`); // 설문조사 결과 -> 미국
+      const res = await Api.get(`country/sort`); // 설문조사 결과 -> 미국
       const country = res.data[0].Country;
       const city = res.data[0].City;
       const rank = await Api.get(`country/rank/${country}`); // 미국의 등수
