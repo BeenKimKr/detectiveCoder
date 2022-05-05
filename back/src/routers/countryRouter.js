@@ -119,9 +119,15 @@ countryRouter.get("/sort", async (req, res, next) => {
     let survey = await surveyService.getSurvey();
     const temp = Number(survey.temp);
     const answer = survey.answer;
-    const countryData = req.cookies.countryData;
+    let countryData = req.cookies.countryData ?? 0;
+    let data;
 
-    res.cookie("countryData", countryData, { maxAge: 3600000 });
+    if (countryData === 0) {
+      data = await countryService.sortData({ temp, answer });
+      res.cookie("countryData", data, { maxAge: 3600 });
+    } else {
+      data = { ...countryData };
+    }
     res.status(200).json(data);
   } catch (error) {
     next(error);
