@@ -1,6 +1,6 @@
-import React, { useCallback, useState } from "react";
-import { PieChart, Pie, Sector } from "recharts";
-import "./style.css";
+import React, { useCallback, useState } from 'react';
+import { PieChart, Pie, Sector } from 'recharts';
+import './style.css';
 
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -25,11 +25,18 @@ const renderActiveShape = (props) => {
   const my = cy + (outerRadius + 30) * sin;
   const ex = mx + (cos >= 0 ? 1 : -1) * 22;
   const ey = my;
-  const textAnchor = cos >= 0 ? "start" : "end";
+  const textAnchor = cos >= 0 ? 'start' : 'end';
 
   return (
     <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={color}>
+      <text
+        x={cx}
+        y={cy}
+        dy={8}
+        textAnchor="middle"
+        fill={color}
+        className="font-irop"
+      >
         {payload.name}
       </text>
       <Sector
@@ -61,6 +68,7 @@ const renderActiveShape = (props) => {
         y={ey}
         textAnchor={textAnchor}
         fill="#333"
+        className="font-noto"
       >{`${value} 위`}</text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
@@ -68,6 +76,7 @@ const renderActiveShape = (props) => {
         dy={18}
         textAnchor={textAnchor}
         fill="#999"
+        className="font-noto"
       >
         {`(Rate ${(percent * 100).toFixed(2)}%)`}
       </text>
@@ -85,39 +94,39 @@ export default function App({ resultHPIRank }) {
   );
   const data = [
     {
-      name: "GDP",
+      name: 'GDP',
       value: resultHPIRank.GDP,
-      color: "#ffc9c9",
+      color: '#ffc9c9',
       a: 70 - resultHPIRank.GDP,
     },
     {
-      name: "사회적 지원",
+      name: '사회적 지원',
       value: resultHPIRank.socialSupport,
-      color: "#fcc2d7",
+      color: '#fcc2d7',
       a: 70 - resultHPIRank.socialSupport,
     },
     {
-      name: "기대 수명",
+      name: '기대 수명',
       value: resultHPIRank.HLE,
-      color: "#eebefa",
+      color: '#eebefa',
       a: 70 - resultHPIRank.HLE,
     },
     {
-      name: "자유도",
+      name: '자유도',
       value: resultHPIRank.Freedom,
-      color: "#d0bfff",
+      color: '#d0bfff',
       a: 70 - resultHPIRank.Freedom,
     },
     {
-      name: "관대함",
+      name: '관대함',
       value: resultHPIRank.Generosity,
-      color: "#bac8ff",
+      color: '#bac8ff',
       a: 70 - resultHPIRank.Generosity,
     },
     {
-      name: "부패에 대한 인식",
+      name: '부패에 대한 인식',
       value: resultHPIRank.corruption,
-      color: "#a5d8ff",
+      color: '#a5d8ff',
       a: 70 - resultHPIRank.corruption,
     },
   ];
