@@ -26,6 +26,7 @@ const CityInfo = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div className='container flex-col p-2'>
       <Nav />
       <div ref={cardRef} className='card my-8'>
@@ -78,6 +79,43 @@ const CityInfo = () => {
           <div className='basis-1/2 flex justify-center'>
             <WealChart />
           </div>
+=======
+    <div className='container flex-col p-2.5'>
+      <Navmain />
+      <div className=' my-8'>
+        <span className='title'>
+          {name}님께
+          <p className='inputCity'>{country}</p>
+          을(를) 추천합니다.
+        </span>
+      </div>
+      <div className='flex flex-row'>
+        <div className=''>
+          <Image
+            className='w-64 h-64 rounded-full shadow-lg'
+            // https://${process.env.AWS_S3_BUCKET}.s3.${AWS_REGION}.amazonaws.com/flags_img/
+            src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/383px-Flag_of_Germany.svg.png'
+            rounded={true}
+            raised={false}
+            alt='국기 사진'
+          />
+        </div>
+      </div>
+      <div className='flex flex-col lg:flex-row'>
+        <div className='mb-3 lg:basis-1/2 flex items-center justify-center'>
+          <WeatherChart />
+        </div>
+        <div className='lg:basis-1/2 flex justify-center items-center'>
+          <HPIChart />
+        </div>
+      </div>
+      <div className='flex flex-col lg:flex-row '>
+        <div className='lg:basis-1/2 flex justify-center'>
+          <Bigmac />
+        </div>
+        <div className='lg:basis-1/2 flex justify-center'>
+          <WealChart />
+>>>>>>> fe_AllCountries_sw
         </div>
       </div>
 
