@@ -4,7 +4,6 @@
   text-align: center;
   height: 500px;
   width: 450px;
-  padding-top: 30px;
   border-radius: 50px;
   font-weight: 800;
 }
@@ -14,20 +13,13 @@
   height: 300px;
   width: 500px;
   border-radius: 50px;
-  margin-top: 15px;
-  padding-top: 50px;
   font-weight: 800;
 }
 
-.wealChart {
+.radarChart {
   text-align: center;
-  height: 300px;
-  width: 500px;
   border-radius: 50px;
-  margin-top: 15px;
-  margin-bottom: 15px;
   font-weight: 800;
-  padding-top: 10px;
 }
 
 .chartTitle {

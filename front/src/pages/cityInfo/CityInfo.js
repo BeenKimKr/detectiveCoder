@@ -5,7 +5,7 @@ import Button from '../../components/btn/CommonButton';
 import WeatherChart from '../../components/charts/WeatherChart';
 import HPIChart from '../../components/charts/HPIChart';
 import Bigmac from '../../components/charts/Bigmac';
-
+import RadarChart from '../../components/charts/RadarChart';
 import KakaoShareButton from '../../components/KakaoShare';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
@@ -276,20 +276,11 @@ const CityInfo = () => {
         <div className='lg:basis-1/2 flex justify-center'>
           <WeatherChart resultAmount={resultAmount} />
         </div>
-
-        <div className='lg:basis-1/2 flex justify-center'>
-          <HPIChart resultAmount={resultAmount} />
-        </div>
-      </div>
-      <div className={'flex flex-col lg:flex-row' + (false ? ' blur-sm' : '')}>
         <div className='lg:basis-1/2 flex justify-center'>
           <Bigmac resultAmount={resultAmount} />
         </div>
-        <div className='lg:basis-1/2 flex justify-center'>
-          <WealChart resultHPIRank={resultHPIRank} />
-        </div>
       </div>
-      ;
+      <RadarChart />
       <div className='flex space-x-4 justify-end'>
         <Button text='저장하기' type='main' onClick={handleSaveCountry} />
 
