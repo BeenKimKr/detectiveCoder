@@ -41,16 +41,14 @@ const Login = (props) => {
       .post('http://localhost:5001/users/auth/kakao', { accessToken: token })
       .then((res) => {
         if (res.status === 201 || res.status === 200) {
-          const { data } = res;
+          const { data } = res; // 받아온 데이터({token: {}, userInfo: {}})
           setUser(data.userInfo);
-          window.localStorage.setItem(
+          window.sessionStorage.setItem(
             'token',
             JSON.stringify(
               data.token
             )
           );
-          console.log(window.localStorage.getItem('token'));
-          console.log(data.userInfo);
           window.alert(`${data.userInfo.name}님 환영합니당~!^^*`);
         } else {
           window.alert('로그인에 실패하였습니다.');
