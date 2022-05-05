@@ -21,3 +21,11 @@ font-family: 'Nanum Pen Script', cursive; */
 .victoryStand {
   size: 80px;
 }
+
+.flagHover {
+  transition: all 0.2s linear;
+}
+
+.flagHover:hover {
+  transform: scale(1.2);
+}

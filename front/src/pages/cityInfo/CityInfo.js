@@ -76,7 +76,7 @@ const CityInfo = () => {
           />
           <img
             name='1'
-            className='w-28 h-28 rounded-full relative'
+            className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
             style={{ left: '-20px', top: '-40px' }}
             src={flagUrl2nd}
             alt='2등 국기'
@@ -84,7 +84,7 @@ const CityInfo = () => {
           />
           <img
             name='0'
-            className='w-28 h-28 rounded-full relative'
+            className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
             style={{ left: '-5px', top: '-75px' }}
             src={flagUrl1st}
             alt='1등 국기'
@@ -92,7 +92,7 @@ const CityInfo = () => {
           />
           <img
             name='2'
-            className='w-28 h-28 rounded-full relative'
+            className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
             style={{ left: '0px', top: '-20px' }}
             src={flagUrl3rd}
             alt='3등 국기'
