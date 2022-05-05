@@ -1,7 +1,8 @@
 import React from 'react';
 import './style.css';
 
-const Badge = () => {
+const Badge = (props) => {
+  const { badges } = props; // badges 받아옴!
   const fileName = 'CH';
   return (
     <div>
