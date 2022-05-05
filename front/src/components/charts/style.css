@@ -4,7 +4,6 @@
   text-align: center;
   height: 500px;
   width: 450px;
-  border-radius: 50px;
   font-weight: 800;
 }
 
@@ -12,13 +11,13 @@
   text-align: center;
   height: 300px;
   width: 500px;
-  border-radius: 50px;
   font-weight: 800;
 }
 
 .radarChart {
   text-align: center;
-  border-radius: 50px;
+  height: 500px;
+  width: 450px;
   font-weight: 800;
 }
 

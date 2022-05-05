@@ -1,8 +1,8 @@
-import React, { useState, createContext } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import CityInfo from "./pages/cityInfo/CityInfo";
-import MainSurvey from "./pages/MainSurvey";
+import React, { useState, createContext } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home/Home';
+import CityInfo from './pages/cityInfo/CityInfo';
+import MainSurvey from './pages/MainSurvey';
 
 import AllCities from './pages/allCities/AllCities';
 import * as Api from './api';
@@ -14,6 +14,7 @@ function App() {
   const [resultCountries, setResultCountries] = useState([]); //  필터링된 나라
   const [resultHPIRank, setResultHPIRank] = useState([]); //  HPI 등수
   const [resultAmount, setResultAmount] = useState([]); //  수치
+  const [resultBigmacPrice, setResultBigmacPrice] = useState([]); //
   const [user, setUser] = useState([]);
 
   const saveResult = {
@@ -23,6 +24,8 @@ function App() {
     setResultHPIRank,
     resultAmount,
     setResultAmount,
+    resultBigmacPrice,
+    setResultBigmacPrice,
     user,
     setUser,
   };
@@ -88,11 +91,11 @@ function App() {
       <ResultContext.Provider value={saveResult}>
         <Router>
           <Routes>
-            <Route path="/main" element={<Home />} />
-            <Route path="/cityinfo" element={<CityInfo />} />
-            <Route path="/allcities" element={<AllCities />} />
-            <Route path="/mainsurvey" element={<MainSurvey />} />
-            <Route path="*" element={<Home />} />
+            <Route path='/main' element={<Home />} />
+            <Route path='/cityinfo' element={<CityInfo />} />
+            <Route path='/allcities' element={<AllCities />} />
+            <Route path='/mainsurvey' element={<MainSurvey />} />
+            <Route path='*' element={<Home />} />
           </Routes>
         </Router>
       </ResultContext.Provider>
