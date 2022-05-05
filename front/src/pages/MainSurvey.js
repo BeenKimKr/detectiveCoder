@@ -16,7 +16,7 @@ export const PercentContext = createContext();
 
 const MainSurvey = () => {
   const navigate = useNavigate();
-  const [submit, setSubmit] = useState([]);
+  const [answer, setAnswer] = useState([]);
   const [temp, setTemp] = useState(24);
   const [percent, setPercent] = useState(0);
   const [step, setStep] = useState(0);
@@ -27,8 +27,8 @@ const MainSurvey = () => {
     useContext(ResultContext);
 
   const saveAnswers = {
-    setSubmit,
-    submit,
+    setAnswer,
+    answer,
     temp,
     setTemp,
   };
@@ -48,8 +48,6 @@ const MainSurvey = () => {
   }, []);
 
   const handleSubmit = async () => {
-    const answer = submit.filter((it) => it != 'temperature');
-
     setLoading(true);
 
     try {
@@ -78,13 +76,14 @@ const MainSurvey = () => {
   };
 
   return (
-    <div className='container w-screen h-screen'>
-      <div className='w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700'>
+    <div className="container w-screen h-screen">
+      <div className="w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700">
         <div
-          class='h-6 bg-custom-main rounded-full dark:bg-gray-300'
-          style={{ width: `${percent}%` }}></div>
+          class="h-6 bg-custom-main rounded-full dark:bg-gray-300"
+          style={{ width: `${percent}%` }}
+        ></div>
       </div>
-      <div className='m-auto'>
+      <div className="m-auto">
         <PercentContext.Provider value={changePercent}>
           <SaveAnswersContext.Provider value={saveAnswers}>
             {step == 0 ? (

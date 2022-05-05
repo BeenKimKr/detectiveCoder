@@ -3,6 +3,22 @@ import ResultModal from './ResultModal';
 import * as Api from '../../api';
 import './style.css';
 
+const useClickBtn = () => {
+  const [title, setTitle] = useState('행복지수');
+  const [select, setSelect] = useState('score');
+  const [offset, setOffset] = useState(12);
+  const [sort, setSort] = useState([]); // 결과 저장
+
+  const handleClick = (e) => {
+    setSelect(e.target.value);
+    setTitle(e.target.name);
+    setSort([]);
+    setOffset(12);
+  };
+
+  return { title, select, offset, sort, setSort, setOffset, handleClick };
+};
+
 const HPI = [
   { value: 'socialSupport', name: '사회복지' },
   { value: 'corruption', name: '청렴도' },
@@ -14,12 +30,10 @@ const HPI = [
 ];
 
 const AllCities = () => {
-  const [title, setTitle] = useState('행복지수');
-  const [select, setSelect] = useState('score');
-  const [offset, setOffset] = useState(12);
   const [modalOpen, setModalOpen] = useState(false); // Modal
-  const [sort, setSort] = useState([]); // 결과 저장
   const [rank, setRank] = useState([]);
+  const { title, select, offset, sort, handleClick, setSort, setOffset } =
+    useClickBtn();
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -31,13 +45,6 @@ const AllCities = () => {
   useEffect(() => {
     getData();
   }, [select, offset]);
-
-  const handleSelect = (e) => {
-    setSelect(e.target.value);
-    setTitle(e.target.name);
-    setSort([]);
-    setOffset(12);
-  };
 
   const handleScroll = () => {
     const scrollHeight = document.documentElement.scrollHeight;
@@ -51,7 +58,7 @@ const AllCities = () => {
   const getData = async () => {
     if (sort.length < 70) {
       try {
-        const res = await Api.get(`rank/sort/${select}/${offset}`); // 미국의 등수
+        const res = await Api.get(`rank/sort/${select}/${offset}`);
         const result = res.data;
         setSort([...sort, ...result]);
       } catch {
@@ -83,7 +90,7 @@ const AllCities = () => {
                 name={it.name}
                 key={index}
                 value={it.value}
-                onClick={handleSelect}
+                onClick={handleClick}
                 class="btn"
               >
                 {it.name}

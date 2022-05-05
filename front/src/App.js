@@ -20,12 +20,12 @@ function App() {
   const [user, setUser] = useState([]);
 
   const saveResult = {
-    // resultCountries,
-    // setResultCountries,
-    // resultHPIRank,
-    // setResultHPIRank,
-    // resultAmount,
-    // setResultAmount,
+    resultCountries,
+    setResultCountries,
+    resultHPIRank,
+    setResultHPIRank,
+    resultAmount,
+    setResultAmount,
     user,
     setUser,
   };
