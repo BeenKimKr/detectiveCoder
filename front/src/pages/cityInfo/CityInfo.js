@@ -202,7 +202,7 @@ const CityInfo = () => {
   };
 
   return (
-    <div className='container flex-col p-2.5'>
+    <div className='container flex-col p-2.5 bg-clouds'>
       <Nav />
       {true ? (
         <div>
@@ -271,23 +271,13 @@ const CityInfo = () => {
           />
         </div>
       </div>
-
-      <div className='flex flex-col lg:flex-row'>
-        {/* 삼항연산자 false 자리에 쿠키 확인 조건 넣으면 됨 */}
-        <div
-          className={
-            'flex justify-center items-center mb-3 lg:basis-1/2' +
-            (false ? ' blur-sm' : '')
-          }
-        >
+      {/* 삼항연산자 false 자리에 쿠키 확인 조건 넣으면 됨 */}
+      <div className={'flex flex-col lg:flex-row' + (false ? ' blur-sm' : '')}>
+        <div className='lg:basis-1/2 flex justify-center'>
           <WeatherChart resultAmount={resultAmount} />
         </div>
-        <div
-          className={
-            'flex justify-center items-center lg:basis-1/2' +
-            (false ? ' blur-sm' : '')
-          }
-        >
+
+        <div className='lg:basis-1/2 flex justify-center'>
           <HPIChart resultAmount={resultAmount} />
         </div>
       </div>
@@ -298,7 +288,8 @@ const CityInfo = () => {
         <div className='lg:basis-1/2 flex justify-center'>
           <WealChart resultHPIRank={resultHPIRank} />
         </div>
-      </div>;
+      </div>
+      ;
       <div className='flex space-x-4 justify-end'>
         <Button text='저장하기' type='main' onClick={handleSaveCountry} />
 

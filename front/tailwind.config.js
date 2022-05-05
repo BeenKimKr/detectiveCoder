@@ -14,6 +14,9 @@ module.exports = {
         fred: ['Fredoka One', 'sans-serif'],
         irop: ['Iropke Batang', 'sans-serif'],
       },
+      backgroundImage: {
+        clouds: "url('/public/imgs/clouds.jpeg')",
+      },
     },
     screens: {
       sm: '640px',
