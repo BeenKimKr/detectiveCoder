@@ -18,7 +18,7 @@ function classNames(...classes) {
 
 export default function Nav() {
   return (
-    <Disclosure as='nav' className='bg-transparent'>
+    <Disclosure as='nav' className=' bg-transparent font-fred font-custom-sub'>
       {({ open }) => (
         <>
           <div className='max-w-7xl mx-auto px-2 sm:px-6 lg:px-8'>
@@ -58,8 +58,8 @@ export default function Nav() {
                         className={classNames(
                           item.current
                             ? 'bg-gray-900 text-white'
-                            : 'text-gray-300 hover:bg-gray-700/5 hover:text-black ',
-                          'px-3 py-1 rounded-md text-sm font-medium items-center justify-center'
+                            : 'text-gray-300  hover:text-gray-300 hover:text-xl ',
+                          'px-3 py-1 rounded-md text-lg font-medium items-center justify-center'
                         )}
                         aria-current={item.current ? 'page' : undefined}
                       >
@@ -81,8 +81,8 @@ export default function Nav() {
                   href={item.href}
                   className={classNames(
                     item.current
-                      ? 'bg-gray-900 text-white'
-                      : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                      ? 'bg-custom-main text-white'
+                      : 'text-gray-300 hover:bg-custom-main hover:text-white',
                     'block px-3 py-2 rounded-md text-base font-medium'
                   )}
                   aria-current={item.current ? 'page' : undefined}
