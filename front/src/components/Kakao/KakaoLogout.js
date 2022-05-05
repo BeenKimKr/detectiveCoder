@@ -7,7 +7,7 @@ const KakaoLogout = () => {
     return;
   }
   Kakao.Auth.logout(function () {
-    alert('logout ok\naccess token -> ' + Kakao.Auth.getAccessToken());
+    alert('logout okaccess token -> ' + Kakao.Auth.getAccessToken());
   });
   return (
     <a href='#' onClick={KakaoLogout()}>

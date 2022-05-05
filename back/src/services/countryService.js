@@ -1,4 +1,5 @@
 const { Country } = require("../db");
+const { Bigmac } = require("../db");
 
 const countryService = {
   getAll: async () => {
@@ -7,6 +8,10 @@ const countryService = {
   },
   getOne: async (City) => {
     const data = await Country.findByCity(City);
+    return data;
+  },
+  getPrice: async (Country) => {
+    const data = await Bigmac.findByCountry(Country);
     return data;
   },
   sortData: async ({ temp, answer }) => {

@@ -42,7 +42,9 @@ const HPIChart = ({ resultAmount }) => {
 
   return (
     <div className="chart">
-      <span className="chartTitle">행복 수치를 결정하는 6가지 요인</span>
+      <span className="chartTitle font-irop">
+        행복 수치를 결정하는 6가지 요인
+      </span>
       <ResponsiveContainer width={400} height={400}>
         <BarChart data={data} layout="vertical">
           <XAxis type="number" />

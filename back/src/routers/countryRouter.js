@@ -81,6 +81,31 @@ countryRouter.get("/rank/:Country", async (req, res, next) => {
   }
 });
 
+/**
+ * @swagger
+ * paths:
+ *  /country/price/:Country:
+ *    get:
+ *      summary: Get price
+ *      tags: [Country]
+ *      responses:
+ *        "200":
+ *          description: get price selected by Country
+ *          content:
+ *            application/json:
+ *                schemas:
+ */
+countryRouter.get("/price/:Country", async (req, res, next) => {
+  try {
+    const Country = req.params.Country;
+    const data = await countryService.getPrice(Country);
+
+    res.status(200).json(data);
+  } catch (error) {
+    next(error);
+  }
+});
+
 countryRouter.post("/sort", async (req, res, next) => {
   try {
     res.header("Content-Type: application/json");
@@ -92,10 +117,9 @@ countryRouter.post("/sort", async (req, res, next) => {
       throw new Error(result.errorMessage);
     }
 
-    res.header("Content-Type: application/json");
     res.status(201).json(result);
-  } catch (error) {
-    next(error);
+  } catch (e) {
+    next(e);
   }
 });
 
