@@ -29,7 +29,14 @@ const renderActiveShape = (props) => {
 
   return (
     <g>
-      <text x={cx} y={cy} dy={8} textAnchor='middle' fill={color}>
+      <text
+        x={cx}
+        y={cy}
+        dy={8}
+        textAnchor='middle'
+        fill={color}
+        className='font-irop'
+      >
         {payload.name}
       </text>
       <Sector
@@ -61,6 +68,7 @@ const renderActiveShape = (props) => {
         y={ey}
         textAnchor={textAnchor}
         fill='#333'
+        className='font-noto'
       >{`${value} 위`}</text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
@@ -68,6 +76,7 @@ const renderActiveShape = (props) => {
         dy={18}
         textAnchor={textAnchor}
         fill='#999'
+        className='font-noto'
       >
         {`(Rate ${(percent * 100).toFixed(2)}%)`}
       </text>

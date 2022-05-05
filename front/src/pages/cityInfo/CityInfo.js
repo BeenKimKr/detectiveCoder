@@ -52,13 +52,15 @@ const CityInfo = () => {
       <Navmain />
       {true ? (
         <div>
-          <span className='title'>
-            {name}님께
+          <span className='flex text-xl lg:text-3xl font-irop'>
+            {name}님께{' '}
             {resultCountries[idx].Country === resultCountries[idx].City ? (
-              <p className='inputCity'>{resultCountries[idx].Country}</p>
+              <p className='inputCity text-xl lg:text-3xl font-fred mx-2'>
+                {resultCountries[idx].Country}
+              </p>
             ) : (
-              <p className='inputCity'>
-                {resultCountries[idx].Country} {resultCountries[idx].City}
+              <p className='inputCity text-xl lg:text-3xl font-fred mx-2'>
+                {resultCountries[idx].Country}-{resultCountries[idx].City}
               </p>
             )}
             을(를) 추천합니다.
@@ -81,6 +83,11 @@ const CityInfo = () => {
             src={flagUrl2nd}
             alt='2등 국기'
             onClick={handleClick}
+            title={
+              resultCountries[1].Country === resultCountries[1].City
+                ? resultCountries[1].Country
+                : `${resultCountries[1].Country}-${resultCountries[1].City}`
+            }
           />
           <img
             name='0'
@@ -89,6 +96,11 @@ const CityInfo = () => {
             src={flagUrl1st}
             alt='1등 국기'
             onClick={handleClick}
+            title={
+              resultCountries[0].Country === resultCountries[0].City
+                ? resultCountries[0].Country
+                : `${resultCountries[0].Country}-${resultCountries[0].City}`
+            }
           />
           <img
             name='2'
@@ -97,6 +109,11 @@ const CityInfo = () => {
             src={flagUrl3rd}
             alt='3등 국기'
             onClick={handleClick}
+            title={
+              resultCountries[2].Country === resultCountries[2].City
+                ? resultCountries[2].Country
+                : `${resultCountries[2].Country}-${resultCountries[2].City}`
+            }
           />
         </div>
       </div>

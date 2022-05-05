@@ -4,18 +4,8 @@
 font-family: 'Jua', sans-serif;
 font-family: 'Nanum Pen Script', cursive; */
 
-.title {
-  font-size: large;
-  font-family: 'Gaegu', cursive;
-  font-weight: 800;
-  font-size: 45px;
-  display: flex;
-}
-
 .inputCity {
-  padding-left: 13px;
   color: #55b4b7;
-  font-size: 45px;
 }
 
 .victoryStand {
