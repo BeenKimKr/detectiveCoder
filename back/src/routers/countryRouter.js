@@ -44,7 +44,6 @@ countryRouter.get("/all", async (req, res, next) => {
  *              schema:
  *                $ref: '#/components/schemas/Country'
  */
-
 countryRouter.get("/one/:City", async (req, res, next) => {
   try {
     const City = req.params.City;
@@ -86,24 +85,24 @@ countryRouter.post("/sort", async (req, res, next) => {
   try {
     res.header("Content-Type: application/json");
 
-    const temp = req.body.temp;
-    const answer = req.body.answer;
+    const { temp, answer } = req.body;
 
     const result = await surveyService.addSurvey({ temp, answer });
     if (answer.errorMessage) {
       throw new Error(result.errorMessage);
     }
 
+    res.header("Content-Type: application/json");
     res.status(201).json(result);
-  } catch (e) {
-    next(e);
+  } catch (error) {
+    next(error);
   }
 });
 
 /**
  * @swagger
  * paths:
- *  /country/sort/:id:
+ *  /country/sort:
  *    get:
  *      summary: Get sorted data(by id)
  *      tags: [Country]
@@ -115,23 +114,14 @@ countryRouter.post("/sort", async (req, res, next) => {
  *              schema:
  *                $ref: '#/components/schemas/Country'
  */
-
-// 개발용 path ('/sort'로 변경 예정, answer는 req.body로 넘겨받는다.)
 countryRouter.get("/sort", async (req, res, next) => {
   try {
-    // // const answer = req.body; (@권민님)
     let survey = await surveyService.getSurvey();
     const temp = Number(survey.temp);
     const answer = survey.answer;
-    const countryData = req.cookies.countryData ?? 0;
-    let data;
+    const countryData = req.cookies.countryData;
 
-    if (countryData === 0) {
-      data = await countryService.sortData({ temp, answer });
-      res.cookie("countryData", data, { maxAge: 3600 });
-    } else {
-      data = { ...countryData };
-    }
+    res.cookie("countryData", countryData, { maxAge: 3600000 });
     res.status(200).json(data);
   } catch (error) {
     next(error);
