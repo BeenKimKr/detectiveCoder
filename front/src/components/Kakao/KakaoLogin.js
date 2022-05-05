@@ -40,15 +40,16 @@ const Login = (props) => {
     axios
       .post('http://localhost:5001/users/auth/kakao', { accessToken: token })
       .then((res) => {
-        if (res.status == 201 || res.status == 200) {
-          const user = res.data;
+        if (res.status === 201 || res.status === 200) {
           window.localStorage.setItem(
             'token',
-            JSON.stringify({
-              access_token: res.data.jwt,
-            })
+            JSON.stringify(
+              res.data.token
+            )
           );
+          const user = res.data;
           console.log(window.localStorage.getItem('token'));
+          console.log(user.userInfo);
           window.alert(`${user.userInfo.name}님 환영합니당~!^^*`);
         } else {
           window.alert('로그인에 실패하였습니다.');
