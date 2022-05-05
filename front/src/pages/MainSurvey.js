@@ -1,11 +1,11 @@
 // 설문조사 페이지
-import React, { useState, createContext, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import SurveyContainer from "../components/survey/SurveyContainer";
-import Modal from "../components/modal/Modal";
-import SurveyTemp from "../components/survey/SurveyTemp";
-import * as Api from "../api";
-import { ResultContext } from "../App";
+import React, { useState, createContext, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import SurveyContainer from '../components/survey/SurveyContainer';
+import Modal from '../components/modal/Modal';
+import SurveyTemp from '../components/survey/SurveyTemp';
+import * as Api from '../api';
+import { ResultContext } from '../App';
 
 export const SaveAnswersContext = createContext();
 export const PercentContext = createContext();
@@ -42,11 +42,15 @@ const MainSurvey = () => {
     loading,
   };
 
+  useEffect(() => {
+    console.log(temp);
+  }, [temp]);
+
   const handleSubmit = async () => {
     setLoading(true);
 
     try {
-      await Api.post("country/sort", {
+      await Api.post('country/sort', {
         temp,
         answer,
       });
@@ -62,12 +66,12 @@ const MainSurvey = () => {
       setResultCountries(res.data);
       setResultHPIRank(rank.data);
       setResultAmount(amount.data);
-      setTimeout(() => navigate(`/cityInfo`), 3000);
+      setTimeout(() => navigate(`/cityInfo`), 1500);
     } catch (error) {
       console.log(error);
       if (error.response) {
         const { data } = error.response;
-        console.error("data : ", data);
+        console.error('data : ', data);
       }
     }
   };

@@ -4,21 +4,29 @@ button {
   @apply cursor-pointer;
 }
 
+.RangeContainer {
+  @apply flex flex-col  items-center relative pt-1 m-auto mt-20;
+}
+
 /* Info */
 .InfoContainer {
-  @apply grid grid-cols-2 rounded-lg bg-slate-50 my-5;
+  @apply rounded-lg;
 }
 
 .InfoCard {
-  @apply flex justify-around  h-10 w-72  mx-2 mb-2 pt-2 rounded;
+  @apply flex  justify-between  items-center h-16  w-96  mx-2 mb-2 pt-2 rounded;
 }
 
 .InfoTempContainer {
-  @apply mr-6;
+  @apply flex justify-between;
 }
 
 .InfoTempText {
-  @apply text-zinc-600 font-bold;
+  @apply text-zinc-600 font-bold ml-5;
+}
+
+.tempText {
+  @apply font-fred;
 }
 
 .InfoDescriptionText {
@@ -27,18 +35,6 @@ button {
 /* Rage */
 input {
   @apply accent-custom-main;
-}
-
-.RangeContainer {
-  @apply flex flex-col  w-auto  items-center relative pt-1 m-auto mt-32;
-}
-
-.TextContainer {
-  @apply flex mr-32 mb-3;
-}
-
-.TempText {
-  @apply h-auto w-10 text-center p-1 ml-64 mb-2 rounded-lg bg-custom-main text-white;
 }
 
 .ExplainText {
