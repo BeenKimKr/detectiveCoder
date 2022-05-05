@@ -6,10 +6,57 @@
   @apply h-auto aspect-video  rounded-t-2xl object-cover object-center;
 }
 
+.titleButtonContainer {
+  @apply bg-amber-100 w-full h-32  items-center   justify-center flex-col  mt-12;
+}
+
 .countryCardText {
-  @apply text-2xl font-medium text-slate-600 pb-2;
+  @apply text-xl  font-medium text-slate-600 pb-2;
+}
+
+.titleText {
+  @apply mt-20 font-mono text-xl mt-6  text-orange-400 font-bold;
 }
 
 .btn {
   @apply px-6  h-11 mr-2  bg-white  rounded-full  text-custom-main  font-bold cursor-pointer;
+}
+
+section {
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 600px;
+  border-radius: 0.3rem;
+  background-color: #fff;
+  animation: modal-show 0.3s;
+  overflow: hidden;
+}
+
+.modal .button {
+  @apply mb-5;
+}
+
+.modal.openModal {
+  display: flex;
+  align-items: center;
+  animation: modal-bg-show 0.3s;
+}
+
+@keyframes modal-show {
+  from {
+    opacity: 0;
+    margin-top: -50px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+@keyframes modal-bg-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

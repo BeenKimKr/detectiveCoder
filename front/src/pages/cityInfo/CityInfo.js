@@ -10,9 +10,9 @@ import KakaoShareButton from '../../components/KakaoShare';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 
-import * as Api from '../../api';
-import './style.css';
-import { ResultContext } from '../../App';
+import * as Api from "../../api";
+import "./style.css";
+import { ResultContext } from "../../App";
 
 // const CityInfo = () => {
 //   const [name, setName] = useState('명탐정');
@@ -157,7 +157,7 @@ import { ResultContext } from '../../App';
 // export default CityInfo;
 
 const CityInfo = () => {
-  const [name, setName] = useState('명탐정');
+  const [name, setName] = useState("명탐정");
   const [idx, setIdx] = useState(0);
   const {
     resultCountries,
@@ -172,7 +172,7 @@ const CityInfo = () => {
   const onDownloadBtn = () => {
     const card = cardRef.current;
     domtoimage.toBlob(card).then((blob) => {
-      saveAs(blob, 'card.jpg');
+      saveAs(blob, "card.jpg");
     });
   };
 
@@ -183,17 +183,19 @@ const CityInfo = () => {
   const handleClick = async (e) => {
     setIdx(e.target.name);
 
+    console.log(e.target.name);
     const country = resultCountries[e.target.name].Country;
     const city = resultCountries[e.target.name].City;
     const rank = await Api.get(`country/rank/${country}`);
     const amount = await Api.get(`country/one/${city}`);
-
+    console.log(rank.data);
+    console.log(amount.data);
     setResultHPIRank(rank.data);
     setResultAmount(amount.data);
 
     window.scrollTo({
       top: 450,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
 
@@ -206,14 +208,14 @@ const CityInfo = () => {
       <Nav />
       {true ? (
         <div>
-          <span className='flex text-xl lg:text-3xl font-irop'>
-            {name}님께{' '}
+          <span className="flex text-xl lg:text-3xl font-irop">
+            {name}님께{" "}
             {resultCountries[idx].Country === resultCountries[idx].City ? (
-              <p className='inputCity text-xl lg:text-3xl font-fred mx-2'>
+              <p className="inputCity text-xl lg:text-3xl font-fred mx-2">
                 {resultCountries[idx].Country}
               </p>
             ) : (
-              <p className='inputCity text-xl lg:text-3xl font-fred mx-2'>
+              <p className="inputCity text-xl lg:text-3xl font-fred mx-2">
                 {resultCountries[idx].Country}-{resultCountries[idx].City}
               </p>
             )}
@@ -224,18 +226,18 @@ const CityInfo = () => {
         <></>
       )}
       <div>
-        <div className='flex m-28 mx-auto justify-center'>
+        <div className="flex m-28 mx-auto justify-center">
           <img
-            className='absolute w-96'
-            src='/imgs/victoryStand.png'
-            alt='시상대'
+            className="absolute w-96"
+            src="/imgs/victoryStand.png"
+            alt="시상대"
           />
           <img
-            name='1'
-            className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
-            style={{ left: '-20px', top: '-40px' }}
+            name="1"
+            className="w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl"
+            style={{ left: "-20px", top: "-40px" }}
             src={flagUrl2nd}
-            alt='2등 국기'
+            alt="2등 국기"
             onClick={handleClick}
             title={
               resultCountries[1].Country === resultCountries[1].City
@@ -244,11 +246,11 @@ const CityInfo = () => {
             }
           />
           <img
-            name='0'
-            className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
-            style={{ left: '-5px', top: '-75px' }}
+            name="0"
+            className="w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl"
+            style={{ left: "-5px", top: "-75px" }}
             src={flagUrl1st}
-            alt='1등 국기'
+            alt="1등 국기"
             onClick={handleClick}
             title={
               resultCountries[0].Country === resultCountries[0].City
@@ -257,11 +259,11 @@ const CityInfo = () => {
             }
           />
           <img
-            name='2'
-            className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
-            style={{ left: '0px', top: '-20px' }}
+            name="2"
+            className="w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl"
+            style={{ left: "0px", top: "-20px" }}
             src={flagUrl3rd}
-            alt='3등 국기'
+            alt="3등 국기"
             onClick={handleClick}
             title={
               resultCountries[2].Country === resultCountries[2].City
@@ -284,7 +286,7 @@ const CityInfo = () => {
       <div className='flex space-x-4 justify-end'>
         <Button text='저장하기' type='main' onClick={handleSaveCountry} />
 
-        <Button className='downBtn' text='다운로드' onClick={onDownloadBtn} />
+        <Button className="downBtn" text="다운로드" onClick={onDownloadBtn} />
         <KakaoShareButton />
       </div>
     </div>

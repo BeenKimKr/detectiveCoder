@@ -82,15 +82,46 @@ countryRouter.get("/rank/:Country", async (req, res, next) => {
   }
 });
 
-countryRouter.post("/sort", async (req, res, next) => {
+/**
+ * @swagger
+ * paths:
+ *  /country/price/:Country:
+ *    get:
+ *      summary: Get price
+ *      tags: [Country]
+ *      responses:
+ *        "200":
+ *          description: get price selected by Country
+ *          content:
+ *            application/json:
+ *                schemas:
+ */
+countryRouter.get("/price/:Country", async (req, res, next) => {
   try {
-    const { id, temp, answer } = req.body;
-    const result = await surveyService.addSurvey({ id, temp, answer });
+    const Country = req.params.Country;
+    const data = await countryService.getPrice(Country);
 
-    res.header("Content-Type: application/json");
-    res.status(201).json(result);
+    res.status(200).json(data);
   } catch (error) {
     next(error);
+  }
+});
+
+countryRouter.post("/sort", async (req, res, next) => {
+  try {
+    res.header("Content-Type: application/json");
+
+    const temp = req.body.temp;
+    const answer = req.body.answer;
+
+    const result = await surveyService.addSurvey({ temp, answer });
+    if (answer.errorMessage) {
+      throw new Error(result.errorMessage);
+    }
+
+    res.status(201).json(result);
+  } catch (e) {
+    next(e);
   }
 });
 
@@ -109,14 +140,23 @@ countryRouter.post("/sort", async (req, res, next) => {
  *              schema:
  *                $ref: '#/components/schemas/Country'
  */
-countryRouter.get("/sort/:id", async (req, res, next) => {
-  try {
-    const id = req.params.id;
-    const survey = await surveyService.getSurvey({ id });
-    const { temp, answer } = survey;
-    const data = await countryService.sortData({ temp, answer });
 
-    res.cookie("countryData", data, { maxAge: 3600000 });
+// 개발용 path ('/sort'로 변경 예정, answer는 req.body로 넘겨받는다.)
+countryRouter.get("/sort", async (req, res, next) => {
+  try {
+    // // const answer = req.body; (@권민님)
+    let survey = await surveyService.getSurvey();
+    const temp = Number(survey.temp);
+    const answer = survey.answer;
+    let countryData = req.cookies.countryData ?? 0;
+    let data;
+
+    if (countryData === 0) {
+      data = await countryService.sortData({ temp, answer });
+      res.cookie("countryData", data, { maxAge: 3600 });
+    } else {
+      data = { ...countryData };
+    }
     res.status(200).json(data);
   } catch (error) {
     next(error);

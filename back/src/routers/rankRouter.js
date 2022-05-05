@@ -1,5 +1,5 @@
-const { Router } = require("express");
-const { rankService } = require("../services/rankService");
+const { Router } = require('express');
+const { rankService } = require('../services/rankService');
 const rankRouter = Router();
 
 /**
@@ -18,7 +18,7 @@ const rankRouter = Router();
  *                $ref: '#/components/schemas/Rank'
  */
 
-rankRouter.get("/all", async (req, res, next) => {
+rankRouter.get('/all', async (req, res, next) => {
   try {
     const data = await rankService.getAll();
 
@@ -44,7 +44,7 @@ rankRouter.get("/all", async (req, res, next) => {
  *                $ref: '#/components/schemas/Rank'
  */
 
-rankRouter.get("/one/:Country", async (req, res, next) => {
+rankRouter.get('/one/:Country', async (req, res, next) => {
   try {
     const Country = req.params.Country;
     const data = await rankService.getOne(Country);
@@ -74,7 +74,7 @@ rankRouter.get("/one/:Country", async (req, res, next) => {
 rankRouter.get("/sort/:column/:offset", async (req, res, next) => {
   try {
     const column = req.params.column;
-    const offset = req.params.offset;
+    const offset = Number(req.params.offset);
     const data = await rankService.sortAll(column, offset);
 
     res.status(200).json(data);

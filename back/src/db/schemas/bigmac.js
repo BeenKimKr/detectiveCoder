@@ -4,7 +4,7 @@ const { Schema, model } = require("mongoose");
  * @swagger
  *  components:
  *    schemas:
- *      Survey:
+ *      Bigmac:
  *        type: object
  *        required:
  *          - temp
@@ -15,21 +15,21 @@ const { Schema, model } = require("mongoose");
  *            description: temperature
  *          answer:
  *            type: Array
- *            description: Array of survey result
+ *            description: Array of Bigmac result
  *        example:
  *           id: '6Ffds790H-hiOB8fdGd70F7sLg_dfFD90FI82'
  *           temp: 20
  *           answer: ["GDP", "HLE", "price", "Freedom"]
  */
 
-const SurveySchema = new Schema(
+const BigmacSchema = new Schema(
   {
-    temp: {
-      type: Number,
+    Country: {
+      type: String,
       required: true,
     },
-    answer: {
-      type: Array,
+    price: {
+      type: Number,
       required: true,
     },
   },
@@ -38,6 +38,6 @@ const SurveySchema = new Schema(
   }
 );
 
-const SurveyModel = model("Survey", SurveySchema);
+const BigmacModel = model("Bigmac", BigmacSchema);
 
-module.exports = { SurveyModel };
+module.exports = { BigmacModel };

@@ -1,4 +1,5 @@
 const { Country } = require("../db");
+const { Bigmac } = require("../db");
 
 const countryService = {
   getAll: async () => {
@@ -7,6 +8,10 @@ const countryService = {
   },
   getOne: async (City) => {
     const data = await Country.findByCity(City);
+    return data;
+  },
+  getPrice: async (Country) => {
+    const data = await Bigmac.findByCountry(Country);
     return data;
   },
   sortData: async ({ temp, answer }) => {
@@ -27,7 +32,6 @@ const countryService = {
     }
     const columns = [temp, ...priority];
     // columns => [ 24, 'socialSupport', 'GDP', 'Freedom', 'HLE' ]
-
     const first = columns[1];
     const second = columns[2];
     const third = columns[3];
@@ -40,13 +44,13 @@ const countryService = {
     if (columns.includes("mean")) {
       for (let i = 0; i < dataFrame.length; i++) {
         let absTemp = Math.abs(temp - dataFrame[i]["mean"]);
-        tempDifArr.push(absTemp);
+        tempDifArr.push(Number(absTemp));
       }
 
       let maxTempDif = Math.max(...tempDifArr);
       for (let i = 0; i < tempDifArr.length; i++) {
         let tempNum = 1 - tempDifArr[i] / maxTempDif;
-        tempArr.push(tempNum);
+        tempArr.push(Number(tempNum));
       }
     }
     let scoreArr = [];
@@ -64,7 +68,7 @@ const countryService = {
       scoreMap["Ab"] = dataFrame[i]["Ab"];
       scoreMap["Country"] = dataFrame[i]["Country"];
       scoreMap["City"] = dataFrame[i]["City"];
-      scoreMap["value"] = f_score + s_score + t_score;
+      scoreMap["value"] = Number(f_score) + Number(s_score) + Number(t_score);
 
       scoreArr[i] = scoreMap;
     }
