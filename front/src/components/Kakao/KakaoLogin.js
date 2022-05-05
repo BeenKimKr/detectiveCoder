@@ -49,7 +49,7 @@ const Login = (props) => {
             })
           );
           console.log(window.localStorage.getItem('token'));
-          window.alert(`${user.userInfo.age.split('~')[0]}대 ${user.userInfo.name}님 환영합니당~!^^*`);
+          window.alert(`${user.userInfo.name}님 환영합니당~!^^*`);
         } else {
           window.alert('로그인에 실패하였습니다.');
         }
