@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 // import './card.css';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
-import CityInfo from './CityInfo';
 
 const Card = () => {
   const cardRef = useRef();

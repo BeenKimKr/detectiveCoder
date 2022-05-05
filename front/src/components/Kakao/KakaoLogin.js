@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import queryString from 'query-string';
 import axios from 'axios';
 import { CLIENT_ID, REDIRECT_URI } from './OAuth';
+import { ResultContext } from '../../App';
 
 const Login = (props) => {
   const kauthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const query = queryString.parse(window.location.search);
+  const { user, setUser } = useContext(ResultContext);
+
   useEffect(() => {
     if (query.code) {
       getKakaoTokenHandler(query.code.toString());
@@ -22,7 +25,6 @@ const Login = (props) => {
     const queryString = Object.keys(data)
       .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
       .join('&');
-    // console.log(queryString);
     axios
       .post('https://kauth.kakao.com/oauth/token', queryString, {
         headers: {
@@ -47,7 +49,7 @@ const Login = (props) => {
             })
           );
           console.log(window.localStorage.getItem('token'));
-          console.log(user);
+          window.alert(`${user.userInfo.name}님 환영합니당~!^^*`);
         } else {
           window.alert('로그인에 실패하였습니다.');
         }
@@ -57,7 +59,7 @@ const Login = (props) => {
   return (
     <>
       <a href={kauthUrl}>
-        <img src='kakao_login.png' id='kakao-login-btn' width='250px' />
+        <img src='/imgs/kakao_login.png' id='kakao-login-btn' />
       </a>
     </>
   );
