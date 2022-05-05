@@ -4,31 +4,67 @@ button {
   @apply cursor-pointer;
 }
 
-.Weather p {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 10px;
+/* Info */
+.InfoContainer {
+  @apply grid grid-cols-2 rounded-lg bg-slate-50 my-5;
 }
 
-.WeatherCard {
-  @apply p-5 bg-white rounded-lg border border-gray-200 shadow-md hover:bg-gray-100;
+.InfoCard {
+  @apply flex justify-around  h-10 w-72  mx-2 mb-2 pt-2 rounded;
 }
 
-.WeatherCard:focus {
-  @apply bg-gray-100;
+.InfoTempContainer {
+  @apply mr-6;
+}
+
+.InfoTempText {
+  @apply text-zinc-600 font-bold;
+}
+
+.InfoDescriptionText {
+}
+
+/* Rage */
+input {
+  @apply accent-custom-main;
+}
+
+.RangeContainer {
+  @apply flex flex-col  w-auto  items-center relative pt-1 m-auto mt-32;
+}
+
+.TextContainer {
+  @apply flex mr-32 mb-3;
+}
+
+.TempText {
+  @apply h-auto w-10 text-center p-1 ml-64 mb-2 rounded-lg bg-custom-main text-white;
+}
+
+.ExplainText {
+  @apply font-bold text-lg;
+}
+
+.TextBtn {
+  @apply ml-96 mr-5;
+}
+
+.RangeBar {
+  @apply appearance-none  w-3/4 h-3 mb-10  p-0   bg-slate-100  focus:outline-none ring-0 shadow-none;
+}
+
+/* loding */
+.loding {
+  @apply bg-black-rgba;
 }
 
 .AnswerContainer {
   /* @apply grid grid-cols-2 place-content-center; */
-  @apply grid place-content-center;
+  @apply grid place-content-center mt-32;
 }
 
 .AnswerCard {
   @apply p-6 w-96 h-20  mt-4 mx-52 text-center   bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-100;
-}
-
-.AnswerCard:focus {
-  @apply bg-gray-100;
 }
 
 .AnswerCard h5 {
