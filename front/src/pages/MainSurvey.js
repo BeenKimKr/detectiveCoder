@@ -73,8 +73,8 @@ const MainSurvey = () => {
   };
 
   return (
-    <div className="container w-screen h-screen  ">
-      <div class="w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700">
+    <div className="container w-screen h-screen">
+      <div className="w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700">
         <div
           class="h-6 bg-custom-main rounded-full dark:bg-gray-300"
           style={{ width: `${percent}%` }}
