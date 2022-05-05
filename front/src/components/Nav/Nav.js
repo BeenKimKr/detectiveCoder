@@ -5,8 +5,6 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import KakaoLogin from '../Kakao/KakaoLogin';
 // import KakaoShareButton from '../KakaoShare';
 
-import './Nav.css';
-
 const navigation = [
   { name: 'Home', href: '/Home', current: false },
   { name: 'All cities', href: '/allcities', current: false },
