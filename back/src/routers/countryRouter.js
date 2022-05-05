@@ -121,8 +121,7 @@ countryRouter.get("/sort", async (req, res, next) => {
   try {
     // // const answer = req.body; (@권민님)
     let survey = await surveyService.getSurvey();
-
-    const temp = survey.temp;
+    const temp = Number(survey.temp);
     const answer = survey.answer;
     const countryData = req.cookies.countryData ?? 0;
     let data;
