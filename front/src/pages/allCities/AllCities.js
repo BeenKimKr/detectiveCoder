@@ -99,6 +99,7 @@ const AllCities = () => {
           })}
         </div>
       </div>
+
       <div className="grid grid-cols-3 gap-4 mt-11" onScroll={handleScroll}>
         {/* 이미지 카드 */}
         {sort.map((it, index) => {
