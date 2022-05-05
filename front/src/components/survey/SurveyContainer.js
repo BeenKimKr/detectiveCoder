@@ -72,7 +72,7 @@ const SurveyContainer = () => {
           ></div>
         </div>
         <div className="AnswerContainer">
-          <span>{`${count} / 7`}</span>
+          <span className="countText">{`${count} / 7`}</span>
           {HPIQUESTIONS.filter((it) => it.id == tempArray[0]).map((x) => (
             <>
               <button

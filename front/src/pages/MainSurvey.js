@@ -17,7 +17,7 @@ export const PercentContext = createContext();
 const MainSurvey = () => {
   const navigate = useNavigate();
   const [answer, setAnswer] = useState([]);
-  const [temp, setTemp] = useState(24);
+  const [temp, setTemp] = useState('');
   const [step, setStep] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -40,7 +40,7 @@ const MainSurvey = () => {
   };
 
   useEffect(() => {
-    console.log(temp);
+    console.log('temp', temp);
   }, [temp]);
 
   const handleSubmit = async () => {

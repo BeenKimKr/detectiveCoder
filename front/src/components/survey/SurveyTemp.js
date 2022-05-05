@@ -7,7 +7,7 @@ const SurveyTemp = () => {
   const { setStep } = useContext(PercentContext);
 
   const onClick = (e) => {
-    setTemp(e.target.value);
+    setTemp(e.currentTarget.value);
     setStep(1);
   };
 
