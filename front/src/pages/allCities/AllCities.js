@@ -19,6 +19,22 @@ const useClickBtn = () => {
   return { title, select, offset, sort, setSort, setOffset, handleClick };
 };
 
+const useClickBtn = () => {
+  const [title, setTitle] = useState('행복지수');
+  const [select, setSelect] = useState('score');
+  const [offset, setOffset] = useState(12);
+  const [sort, setSort] = useState([]); // 결과 저장
+
+  const handleClick = (e) => {
+    setSelect(e.target.value);
+    setTitle(e.target.name);
+    setSort([]);
+    setOffset(12);
+  };
+
+  return { title, select, offset, sort, setSort, setOffset, handleClick };
+};
+
 const HPI = [
   { value: "socialSupport", name: "사회복지" },
   { value: "corruption", name: "청렴도" },
@@ -99,6 +115,7 @@ const AllCities = () => {
           })}
         </div>
       </div>
+
       <div className="grid grid-cols-3 gap-4 mt-11" onScroll={handleScroll}>
         {/* 이미지 카드 */}
         {sort.map((it, index) => {
