@@ -6,8 +6,8 @@ const Survey = {
     return createdNewSurvey;
   },
 
-  findById: async ({ id }) => {
-    const Survey = await SurveyModel.findOne({ id });
+  findLatest: async () => {
+    const Survey = await SurveyModel.findOne().sort({ createdAt: -1 });
     return Survey;
   },
 

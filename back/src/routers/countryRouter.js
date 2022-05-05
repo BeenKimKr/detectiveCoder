@@ -84,8 +84,15 @@ countryRouter.get("/rank/:Country", async (req, res, next) => {
 
 countryRouter.post("/sort", async (req, res, next) => {
   try {
-    const { id, temp, answer } = req.body;
-    const result = await surveyService.addSurvey({ id, temp, answer });
+    res.header("Content-Type: application/json");
+
+    const temp = req.body.temp;
+    const answer = req.body.answer;
+
+    const result = await surveyService.addSurvey({ temp, answer });
+    if (answer.errorMessage) {
+      throw new Error(result.errorMessage);
+    }
 
     res.header("Content-Type: application/json");
     res.status(201).json(result);
@@ -109,12 +116,16 @@ countryRouter.post("/sort", async (req, res, next) => {
  *              schema:
  *                $ref: '#/components/schemas/Country'
  */
-countryRouter.get("/sort/:id", async (req, res, next) => {
+
+// 개발용 path ('/sort'로 변경 예정, answer는 req.body로 넘겨받는다.)
+countryRouter.get("/sort", async (req, res, next) => {
   try {
-    const id = req.params.id;
-    const survey = await surveyService.getSurvey({ id });
-    const { temp, answer } = survey;
-    const data = await countryService.sortData({ temp, answer });
+    // // const answer = req.body; (@권민님)
+    let survey = await surveyService.getSurvey();
+    const temp = Number(survey.temp);
+    const answer = survey.answer;
+    const countryData = req.cookies.countryData ?? 0;
+    let data;
 
     res.cookie("countryData", data, { maxAge: 3600000 });
     res.status(200).json(data);
