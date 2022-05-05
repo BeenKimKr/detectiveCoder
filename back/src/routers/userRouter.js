@@ -75,7 +75,6 @@ userAuthRouter.put('/badge', login_required, async (req, res, next) => {
     // 있으면 검색 후 저장, 없으면 설문 먼저 진행하세요 띄우기
     const id = req.currentUserId;
     const { countryData } = req.cookies;
-
     const newBadge = await userAuthService.addBadge({ id, countryData });
 
     res.status(200).send(newBadge);
@@ -100,6 +99,7 @@ userAuthRouter.put('/badge', login_required, async (req, res, next) => {
 userAuthRouter.get('/badge', login_required, async (req, res, next) => {
   try {
     const id = req.currentUserId;
+
     const badge = await userAuthService.getBadge({ id });
 
     res.status(200).send(badge);

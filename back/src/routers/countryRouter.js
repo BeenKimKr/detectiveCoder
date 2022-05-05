@@ -116,18 +116,17 @@ countryRouter.post("/sort", async (req, res, next) => {
  */
 countryRouter.get("/sort", async (req, res, next) => {
   try {
-    let survey = await surveyService.getSurvey();
+    const survey = await surveyService.getSurvey();
     const temp = Number(survey.temp);
     const answer = survey.answer;
-    let countryData = req.cookies.countryData ?? 0;
-    let data;
+    const data = await countryService.sortData({ temp, answer });
 
-    if (countryData === 0) {
-      data = await countryService.sortData({ temp, answer });
-      res.cookie("countryData", data, { maxAge: 3600 });
-    } else {
-      data = { ...countryData };
+    if (req.cookies.countryData) {
+      res.clearCookie(countryData);
     }
+    res.cookie("countryData", data, {
+      maxAge: 3600000
+    });
     res.status(200).json(data);
   } catch (error) {
     next(error);
