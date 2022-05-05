@@ -1,0 +1,11 @@
+.badgeCard {
+  @apply flex w-40 h-56 bg-gray-50   justify-center rounded drop-shadow-xl;
+}
+
+.badgeImage {
+  @apply mt-5 flex w-36 h-36  items-center rounded-full ;
+}
+
+.textContainer {
+  @apply mt-3 ml-11 font-bold;
+}
