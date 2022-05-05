@@ -16,19 +16,18 @@ export const PercentContext = createContext();
 
 const MainSurvey = () => {
   const navigate = useNavigate();
-  const [submit, setSubmit] = useState([]);
+  const [answer, setAnswer] = useState([]);
   const [temp, setTemp] = useState(24);
   const [percent, setPercent] = useState(0);
   const [step, setStep] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [id, setId] = useState(0);
   const { setResultCountries, setResultHPIRank, setResultAmount } =
     useContext(ResultContext);
 
   const saveAnswers = {
-    setSubmit,
-    submit,
+    setAnswer,
+    answer,
     temp,
     setTemp,
   };
@@ -44,30 +43,30 @@ const MainSurvey = () => {
   };
 
   useEffect(() => {
-    setId(Math.floor(Math.random() * 101));
-  }, []);
+    console.log(temp);
+  }, [temp]);
 
   const handleSubmit = async () => {
-    const answer = submit.filter((it) => it != 'temperature');
-
     setLoading(true);
 
     try {
       await Api.post('country/sort', {
-        id,
         temp,
         answer,
       });
 
-      const res = await Api.get(`country/sort/${id}`); // 설문조사 결과 -> 미국
+      const res = await Api.get(`country/sort`); // 설문조사 결과 -> 미국
       const country = res.data[0].Country;
       const city = res.data[0].City;
       const rank = await Api.get(`country/rank/${country}`); // 미국의 등수
       const amount = await Api.get(`country/one/${city}`); // 미국의 차트 에 쓰이는 수치 -> 도시별 월별 기온 데이터!
+      console.log(res.data);
+      console.log(rank.data);
+      console.log(amount.data);
       setResultCountries(res.data);
       setResultHPIRank(rank.data);
       setResultAmount(amount.data);
-      setTimeout(() => navigate(`/cityInfo`), 3000);
+      setTimeout(() => navigate(`/cityInfo`), 1500);
     } catch (error) {
       console.log(error);
       if (error.response) {
@@ -78,8 +77,8 @@ const MainSurvey = () => {
   };
 
   return (
-    <div className='container w-screen h-screen  '>
-      <div class='w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700'>
+    <div className='container w-screen h-screen'>
+      <div className='w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700'>
         <div
           class='h-6 bg-custom-main rounded-full dark:bg-gray-300'
           style={{ width: `${percent}%` }}

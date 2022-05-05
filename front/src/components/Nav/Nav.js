@@ -18,7 +18,7 @@ function classNames(...classes) {
 
 export default function Nav() {
   return (
-    <Disclosure as='nav' className=' bg-transparent font-fred font-custom-sub'>
+    <Disclosure as='nav' className='bg-transparent font-fred font-custom-sub'>
       {({ open }) => (
         <>
           <div className='max-w-7xl mx-auto px-2 sm:px-6 lg:px-8'>

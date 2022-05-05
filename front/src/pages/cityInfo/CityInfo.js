@@ -298,10 +298,9 @@ const CityInfo = () => {
         <div className='lg:basis-1/2 flex justify-center'>
           <WealChart resultHPIRank={resultHPIRank} />
         </div>
-      </div>;
+      </div>
       <div className='flex space-x-4 justify-end'>
         <Button text='저장하기' type='main' onClick={handleSaveCountry} />
-
         <Button className='downBtn' text='다운로드' onClick={onDownloadBtn} />
         <KakaoShareButton />
       </div>

@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import React, { Fragment } from 'react';
+import React from 'react';
 // s
 import Nav from '../../components/Nav/Nav';
 import video from './Clouds.mp4';
@@ -12,7 +12,7 @@ const Home = () => {
       </div>
 
       <div className='absolute item-center m-3 z-30 p-5 text-2xl rounded-xl'>
-        <main className='lg:px-8  mx-auto max-w-7xl px-4 sm:mt-0 sm:px-6 md:mt-0 lg:mt-0 lg:px-8'>
+        <main className=' lg:px-8 mx-auto max-w-7xl px-4 sm:mt-0 sm:px-6 md:mt-0 lg:mt-0 lg:px-8'>
           <div className='sm:text-center lg:text-left'>
             <h1 className='font-noto text-4xl tracking-tight font-extrabold justify-center text-white sm:text-5xl md:text-6xl'>
               <span className=' xl:inline'>나의 소울시티를 찾아보세요!</span>{' '}
