@@ -12,11 +12,11 @@ import './style.css';
 
 const Bigmac = ({ resultAmount }) => {
   const data = [
-    { factor: 'KOR', price: 4.2, color: '#20B2AA' },
+    { factor: 'KOR', price: 4.2, color: '#FFA500' },
     {
       factor: resultAmount.Ab,
       price: (resultAmount.price * 10).toFixed(2),
-      color: '#fcc2d7',
+      color: '#FFA500',
     },
   ];
 
