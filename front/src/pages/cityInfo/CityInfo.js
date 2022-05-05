@@ -168,6 +168,14 @@ const CityInfo = () => {
     setResultAmount,
   } = useContext(ResultContext);
 
+  const cardRef = useRef();
+  const onDownloadBtn = () => {
+    const card = cardRef.current;
+    domtoimage.toBlob(card).then((blob) => {
+      saveAs(blob, 'card.jpg');
+    });
+  };
+
   const flagUrl1st = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[0].Ab}-flag.gif`;
   const flagUrl2nd = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[1].Ab}-flag.gif`;
   const flagUrl3rd = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[2].Ab}-flag.gif`;
@@ -293,6 +301,9 @@ const CityInfo = () => {
       </div>
       <div className='flex space-x-4 justify-end'>
         <Button text='저장하기' type='main' onClick={handleSaveCountry} />
+
+        <Button className='downBtn' text='다운로드' onClick={onDownloadBtn} />
+        <KakaoShareButton />
       </div>
     </div>
   );
