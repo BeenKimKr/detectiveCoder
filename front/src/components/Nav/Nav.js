@@ -3,14 +3,13 @@ import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import KakaoLogin from '../Kakao/KakaoLogin';
-
-import './Nav.css';
+// import KakaoShareButton from '../KakaoShare';
 
 const navigation = [
   { name: 'Home', href: '/Home', current: false },
   { name: 'All cities', href: '/allcities', current: false },
-  { name: <KakaoLogin /> },
-  { name: 'Naver Login', href: '#', current: false },
+  { name: <KakaoLogin />, current: false },
+  // { name: <KakaoLogout /> },
 ];
 
 function classNames(...classes) {
@@ -62,7 +61,8 @@ export default function Nav() {
                             : 'text-gray-300 hover:bg-gray-700/5 hover:text-black ',
                           'px-3 py-1 rounded-md text-sm font-medium items-center justify-center'
                         )}
-                        aria-current={item.current ? 'page' : undefined}>
+                        aria-current={item.current ? 'page' : undefined}
+                      >
                         {item.name}
                       </a>
                     ))}
@@ -85,7 +85,8 @@ export default function Nav() {
                       : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'block px-3 py-2 rounded-md text-base font-medium'
                   )}
-                  aria-current={item.current ? 'page' : undefined}>
+                  aria-current={item.current ? 'page' : undefined}
+                >
                   {item.name}
                 </Disclosure.Button>
               ))}

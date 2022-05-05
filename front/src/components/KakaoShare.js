@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+
 const KakaoShareButton = () => {
   useEffect(() => {
     createKakaoButton();
@@ -17,32 +18,26 @@ const KakaoShareButton = () => {
         container: '#kakao-link-btn',
         objectType: 'feed',
         content: {
-          title: '타이틀',
-          description: '#리액트 #카카오 #공유버튼',
-          imageUrl: 'IMAGE_URL', // i.e. process.env.FETCH_URL + '/logo.png'
+          title: 'COUNTRY GOGO',
+          description: '당신의 제 2의 고향을 찾아드립니다! #CityMBTI',
+          imageUrl:
+            'https://cdn.pixabay.com/photo/2016/11/23/15/32/pedestrians-1853552_1280.jpg',
           link: {
-            mobileWebUrl: window.location.href,
-            webUrl: window.location.href,
+            mobileWebUrl: 'http://elice-kdt-ai-4th-team16.elicecoding.com',
+            webUrl: 'http://elice-kdt-ai-4th-team16.elicecoding.com',
           },
         },
         social: {
-          likeCount: 77,
+          likeCount: 620,
           commentCount: 55,
-          sharedCount: 333,
+          sharedCount: 846,
         },
         buttons: [
           {
-            title: '웹으로 보기',
+            title: '나와 어울리는 도시는?',
             link: {
-              mobileWebUrl: window.location.href,
-              webUrl: window.location.href,
-            },
-          },
-          {
-            title: '앱으로 보기',
-            link: {
-              mobileWebUrl: window.location.href,
-              webUrl: window.location.href,
+              mobileWebUrl: 'http://elice-kdt-ai-4th-team16.elicecoding.com',
+              webUrl: 'http://elice-kdt-ai-4th-team16.elicecoding.com',
             },
           },
         ],
@@ -53,7 +48,7 @@ const KakaoShareButton = () => {
     <div className='kakao-share-button'>
       {/* Kakao share button */}
       <button id='kakao-link-btn'>
-        <img src='/icons/kakao.png' alt='kakao-share-icon' />
+        <img src='/imgs/kakaolink.png' alt='kakao-share-icon' />
       </button>
     </div>
   );

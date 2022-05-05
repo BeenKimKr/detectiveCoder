@@ -3,8 +3,8 @@
 .chart {
   text-align: center;
   height: 500px;
-  width: 500px;
-  padding: 30px;
+  width: 450px;
+  padding-top: 30px;
   background-color: #55b4b714;
   border-radius: 50px;
   font-weight: 800;
@@ -14,15 +14,25 @@
   text-align: center;
   height: 300px;
   width: 500px;
-  padding: 30px;
   background-color: #55b4b714;
   border-radius: 50px;
-  margin-top: 50px;
+  margin-top: 15px;
+  padding-top: 50px;
   font-weight: 800;
 }
 
+.wealChart {
+  text-align: center;
+  height: 300px;
+  width: 500px;
+  background-color: #55b4b714;
+  border-radius: 50px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-weight: 800;
+  padding-top: 10px;
+}
+
 .chartTitle {
-  font-family: 'Jua', sans-serif;
   font-size: larger;
-  margin-bottom: 10px;
 }
