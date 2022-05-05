@@ -7,7 +7,8 @@ const Survey = {
   },
 
   findLatest: async () => {
-    const Survey = await SurveyModel.findOne().sort({ dateCreated: -1 });
+    const Survey = await SurveyModel.findOne().sort({ createdAt: -1 });
+    console.log(Survey);
     return Survey;
   },
 
