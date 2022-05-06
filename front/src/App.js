@@ -9,13 +9,13 @@ import * as Api from './api';
 import './App.css';
 
 export const ResultContext = createContext();
-
+export const userContext = createContext();
 function App() {
   const [resultCountries, setResultCountries] = useState([]); //  필터링된 나라
   const [resultHPIRank, setResultHPIRank] = useState([]); //  HPI 등수
   const [resultAmount, setResultAmount] = useState([]); //  수치
   const [resultBigmacPrice, setResultBigmacPrice] = useState([]); //
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState('');
 
   const saveResult = {
     resultCountries,
@@ -26,9 +26,15 @@ function App() {
     setResultAmount,
     resultBigmacPrice,
     setResultBigmacPrice,
+
+    setUser,
+  };
+
+  const saveUser = {
     user,
     setUser,
   };
+  console.log(user);
   //   // useReducer 훅을 통해 userState 상태와 dispatch함수를 생성함.
   //   const [userState, dispatch] = useReducer(loginReducer, {
   //     user: null,
@@ -88,17 +94,19 @@ function App() {
 
   return (
     <>
-      <ResultContext.Provider value={saveResult}>
-        <Router>
-          <Routes>
-            <Route path='/main' element={<Home />} />
-            <Route path='/cityinfo' element={<CityInfo />} />
-            <Route path='/allcities' element={<AllCities />} />
-            <Route path='/mainsurvey' element={<MainSurvey />} />
-            <Route path='*' element={<Home />} />
-          </Routes>
-        </Router>
-      </ResultContext.Provider>
+      <userContext.Provider value={saveUser}>
+        <ResultContext.Provider value={saveResult}>
+          <Router>
+            <Routes>
+              <Route path='/main' element={<Home />} />
+              <Route path='/cityinfo' element={<CityInfo />} />
+              <Route path='/allcities' element={<AllCities />} />
+              <Route path='/mainsurvey' element={<MainSurvey />} />
+              <Route path='*' element={<Home />} />
+            </Routes>
+          </Router>
+        </ResultContext.Provider>
+      </userContext.Provider>
     </>
   );
 }

@@ -10,7 +10,7 @@ import { saveAs } from 'file-saver';
 
 import * as Api from '../../api';
 import './style.css';
-import { ResultContext } from '../../App';
+import { ResultContext, userContext } from '../../App';
 
 const CityInfo = () => {
   const [name, setName] = useState('명탐정');
@@ -25,7 +25,8 @@ const CityInfo = () => {
     resultBigmacPrice,
     setResultBigmacPrice,
   } = useContext(ResultContext);
-
+  const { user } = useContext(userContext);
+  console.log(user);
   const cardRef = useRef();
   const onDownloadBtn = () => {
     const card = cardRef.current;
@@ -46,7 +47,7 @@ const CityInfo = () => {
     const rank = await Api.get(`country/rank/${country}`);
     const amount = await Api.get(`country/one/${city}`);
     const bigmacPrice = await Api.get(`country/price/${country}`);
-
+    console.log(rank);
     setResultHPIRank(rank.data);
     setResultAmount(amount.data);
     setResultBigmacPrice(bigmacPrice.data);
