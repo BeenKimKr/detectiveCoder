@@ -8,6 +8,7 @@ import MainSurvey from './pages/MainSurvey';
 import AllCities from './pages/allCities/AllCities';
 import * as Api from './api';
 import './App.css';
+import Nav from './components/Nav/Nav';
 // 결과 전송
 export const ResultContext = createContext();
 
@@ -65,6 +66,7 @@ function App() {
         <UserStateContext.Provider value={userState}>
           <ResultContext.Provider value={saveResult}>
             <Router>
+              <Nav />
               <Routes>
                 <Route path="/main" element={<Home />} />
                 <Route path="/cityinfo" element={<CityInfo />} />

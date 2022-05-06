@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ResultModal from './ResultModal';
 import * as Api from '../../api';
 import './style.css';
+import Nav from '../../components/Nav/Nav';
 
 const useClickBtn = () => {
   const [title, setTitle] = useState('행복지수');
@@ -82,15 +83,15 @@ const AllCities = () => {
   }, [sort]);
 
   return (
-    <div className='container bg-white w-screen flex-row text-center'>
-      <div className='bg-sky-50  p-10 flex'>
-        <div className='ml-5'>
-          <select className='selectContainer' disabled>
+    <div className="container bg-white w-screen flex-row text-center">
+      <div className="bg-sky-50  p-10 flex">
+        <div className="ml-5">
+          <select className="selectContainer" disabled>
             <option>행복지수</option>
           </select>
         </div>
-        <div className='ml-5'>
-          <select class='selectContainer' onChange={handleChange}>
+        <div className="ml-5">
+          <select class="selectContainer" onChange={handleChange}>
             <option disabled selected>
               종합
             </option>
@@ -105,23 +106,23 @@ const AllCities = () => {
         </div>
       </div>
 
-      <div className='grid grid-cols-3 gap-4 mt-11' onScroll={handleScroll}>
+      <div className="grid grid-cols-3 gap-4 mt-11" onScroll={handleScroll}>
         {/* 이미지 카드 */}
         {sort.map((it, index) => {
           return (
             <button
-              className='countryCard'
+              className="countryCard"
               key={index}
               onClick={clickCard}
               value={it.Country}
             >
               <img
-                class='imgCard'
+                class="imgCard"
                 src={`https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${it.Ab}-flag.gif`}
               />
-              <div className='pt-3 pl-3'>
-                <span className='countryCardText'>{it.Country}</span>
-                <span class='rankText'>
+              <div className="pt-3 pl-3">
+                <span className="countryCardText">{it.Country}</span>
+                <span class="rankText">
                   {index === 0
                     ? '🥇'
                     : index === 1

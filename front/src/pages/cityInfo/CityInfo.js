@@ -1,5 +1,4 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
-import Nav from '../../components/Nav/Nav';
 import Button from '../../components/btn/CommonButton';
 import WeatherChart from '../../components/charts/WeatherChart';
 import Bigmac from '../../components/charts/Bigmac';
@@ -69,7 +68,6 @@ const CityInfo = () => {
 
   return (
     <div className="container flex-col p-2.5 bg-clouds">
-      <Nav />
       {/* true에  설문조사를 하고 나온 결과인지 아닌지를 구분하는 조건 넣어줘야 함*/}
       {true ? (
         <div>

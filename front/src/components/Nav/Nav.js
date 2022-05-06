@@ -11,11 +11,17 @@ const navigation = [
   // { name: <KakaoLogout /> },
 ];
 
+const kakao = [{ name: 'Logout', current: false }];
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
 export default function Nav() {
+  const logout = () => {
+    sessionStorage.removeItem('getToken');
+    alert('다음에 또 만나요👋');
+  };
   return (
     <Disclosure as="nav" className="bg-transparent font-fred font-custom-sub">
       {({ open }) => (
@@ -57,8 +63,24 @@ export default function Nav() {
                         className={classNames(
                           item.current
                             ? 'bg-gray-900 text-white'
-                            : 'text-gray-300  hover:text-gray-300 hover:text-xl ',
+                            : 'text-gray-300  hover:text-custom-main hover:text-xl ',
                           'px-3 py-1 rounded-md text-lg font-medium items-center justify-center'
+                        )}
+                        aria-current={item.current ? 'page' : undefined}
+                      >
+                        {item.name}
+                      </a>
+                    ))}
+                    {kakao.map((item) => (
+                      <a
+                        onClick={logout}
+                        key={item.name}
+                        href={item.href}
+                        className={classNames(
+                          item.current
+                            ? 'bg-gray-900 text-white cursor-pointer'
+                            : 'text-amber-400  cursor-pointer hover:text-amber-600 hover:text-xl ',
+                          'px-3 py-1 rounded-md cursor-pointer text-lg font-medium items-center justify-center'
                         )}
                         aria-current={item.current ? 'page' : undefined}
                       >
