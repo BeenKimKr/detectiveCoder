@@ -1,37 +1,37 @@
 // 설문조사 페이지
-import React, { useState, createContext, useReducer, useEffect } from 'react';
-import SurveyContainer from '../components/survey/SurveyContainer';
-import Modal from '../components/modal/Modal';
-import Spinner from '../components/Spinner';
-import SurveyTemp from '../components/survey/SurveyTemp';
+import React, { useState, createContext, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import SurveyContainer from "../components/survey/SurveyContainer";
+import Modal from "../components/modal/Modal";
+import SurveyTemp from "../components/survey/SurveyTemp";
+import * as Api from "../api";
+import { ResultContext } from "../App";
 
 export const SaveAnswersContext = createContext();
 export const PercentContext = createContext();
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'INPUT': {
-      return [...state, action.data];
-    }
-    default:
-      return state;
-  }
-};
+// const useUpdatePercent = () => {
+
+// };
 
 const MainSurvey = () => {
-  const [answer, answerDispatch] = useReducer(reducer, []);
-  const [submit, setSubmit] = useState([]);
+  const navigate = useNavigate();
+  const [answer, setAnswer] = useState([]);
+  const [temp, setTemp] = useState(24);
   const [percent, setPercent] = useState(0);
   const [step, setStep] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { setResultCountries, setResultHPIRank, setResultAmount } =
+    useContext(ResultContext);
 
   const saveAnswers = {
-    submit,
-    setSubmit,
-    answerDispatch,
+    setAnswer,
     answer,
+    temp,
+    setTemp,
   };
+
   const changePercent = {
     setModalOpen,
     percent,
@@ -42,33 +42,39 @@ const MainSurvey = () => {
     loading,
   };
 
-  useEffect(() => {
-    console.log(submit);
-  }, [submit]);
-
-  useEffect(() => {
-    console.log(answer);
-  }, [answer]); //코드 동작 확인하기 위한 코드입니다.
-
   const handleSubmit = async () => {
-    // const result = {};
-    // submit.forEach((x) => {
-    //   result[x] = (result[x] || 0) + 1;
-    // });
-
-    answerDispatch({ type: 'INPUT', data: submit });
     setLoading(true);
 
-    // await axios.post("", answer);
-    // 결과 페이지로  Post
-    // 아직 기온범위 구현  X.
+    try {
+      await Api.post("country/sort", {
+        temp,
+        answer,
+      });
+
+      const res = await Api.get(`country/sort`); // 설문조사 결과 -> 미국
+      const country = res.data[0].Country;
+      const city = res.data[0].City;
+      const rank = await Api.get(`country/rank/${country}`); // 미국의 등수
+      const amount = await Api.get(`country/one/${city}`); // 미국의 차트 에 쓰이는 수치 -> 도시별 월별 기온 데이터!
+      console.log(res.data);
+      console.log(rank.data);
+      console.log(amount.data);
+      setResultCountries(res.data);
+      setResultHPIRank(rank.data);
+      setResultAmount(amount.data);
+      setTimeout(() => navigate(`/cityInfo`), 3000);
+    } catch (error) {
+      console.log(error);
+      if (error.response) {
+        const { data } = error.response;
+        console.error("data : ", data);
+      }
+    }
   };
 
-  console.log(loading);
-
   return (
-    <div className="container w-screen h-screen  ">
-      <div class="w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700">
+    <div className="container w-screen h-screen">
+      <div className="w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700">
         <div
           class="h-6 bg-custom-main rounded-full dark:bg-gray-300"
           style={{ width: `${percent}%` }}
