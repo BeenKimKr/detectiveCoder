@@ -10,10 +10,6 @@ import { ResultContext } from '../App';
 export const SaveAnswersContext = createContext();
 export const PercentContext = createContext();
 
-// const useUpdatePercent = () => {
-
-// };
-
 const MainSurvey = () => {
   const navigate = useNavigate();
   const [answer, setAnswer] = useState([]);
@@ -80,8 +76,8 @@ const MainSurvey = () => {
   };
 
   return (
-    <div className='container w-screen h-screen'>
-      <div className='m-auto'>
+    <div className="container w-screen h-screen">
+      <div className="m-auto">
         <PercentContext.Provider value={changePercent}>
           <SaveAnswersContext.Provider value={saveAnswers}>
             {step == 0 ? (

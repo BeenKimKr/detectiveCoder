@@ -20,6 +20,7 @@ function App() {
   const [resultHPIRank, setResultHPIRank] = useState([]); //  HPI 등수
   const [resultAmount, setResultAmount] = useState([]); //  수치
   const [resultBigmacPrice, setResultBigmacPrice] = useState([]);
+  const [login, setLogin] = useState(false);
   const [userState, dispatch] = useReducer(loginReducer, {
     user: null,
   });
@@ -35,9 +36,9 @@ function App() {
     setResultBigmacPrice,
   };
 
-  const fetchCurrentUser = async (getToken) => {
+  const fetchCurrentUser = async (userToken) => {
     await Api.post('users/auth/kakao', {
-      accessToken: getToken,
+      accessToken: userToken,
     }).then((res) => {
       const { data } = res;
       console.log(data);
@@ -51,10 +52,10 @@ function App() {
 
   // useEffect함수를 통해 fetchCurrentUser 함수를 실행함.
   useEffect(() => {
-    const getToken = JSON.parse(window.sessionStorage.getItem('getToken'));
-    if (getToken) {
+    const userToken = JSON.parse(window.sessionStorage.getItem('userToken'));
+    if (userToken) {
       console.log('토큰존재');
-      fetchCurrentUser(getToken);
+      fetchCurrentUser(userToken);
     } else {
       console.log('토큰이없당');
     }

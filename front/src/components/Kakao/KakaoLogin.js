@@ -1,14 +1,15 @@
 import React, { useEffect, useContext } from 'react';
 import queryString from 'query-string';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { CLIENT_ID, REDIRECT_URI } from './OAuth';
-import { ResultContext, userContext } from '../../App';
 import { DispatchContext } from '../../App';
 
 const Login = (props) => {
   const kauthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
   const query = queryString.parse(window.location.search);
   const dispatch = useContext(DispatchContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (query.code) {
@@ -44,12 +45,13 @@ const Login = (props) => {
       .then((res) => {
         if (res.status === 201 || res.status === 200) {
           const { data } = res; // 받아온 데이터({token: {}, userInfo: {}})
-          window.sessionStorage.setItem('getToken', JSON.stringify(token));
+          window.sessionStorage.setItem('userToken', JSON.stringify(token));
           window.alert(`${data.userInfo.name}님 환영합니당~!^^*`);
           dispatch({
             type: 'LOGIN_SUCCESS',
             payload: data.userInfo,
           });
+          navigate('/cityInfo');
         } else {
           window.alert('로그인에 실패하였습니다.');
         }

@@ -30,7 +30,7 @@ const CityInfo = () => {
   const userState = useContext(UserStateContext);
 
   useEffect(() => {
-    if (window.sessionStorage.getToken) {
+    if (window.sessionStorage.userToken) {
       setName(userState.user.name);
     } else {
     }
@@ -156,7 +156,7 @@ const CityInfo = () => {
         </div>
       </div>
 
-      {window.sessionStorage.getToken ? (
+      {window.sessionStorage.userToken ? (
         ''
       ) : (
         <div className="flex justify-center mb-4">
@@ -166,7 +166,7 @@ const CityInfo = () => {
 
       <div
         className={
-          'flex flex-col' + (window.sessionStorage.getToken ? '' : ' blur-sm')
+          'flex flex-col' + (window.sessionStorage.userToken ? '' : ' blur-sm')
         }
       >
         <div className="flex justify-center">
@@ -181,6 +181,7 @@ const CityInfo = () => {
       </div>
       <div className="flex space-x-4 justify-end">
         <Button text="저장하기" type="main" onClick={handleSaveCountry} />
+
         <Button className="downBtn" text="다운로드" onClick={onDownloadBtn} />
         <KakaoShareButton />
       </div>

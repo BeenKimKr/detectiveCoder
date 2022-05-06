@@ -19,9 +19,10 @@ function classNames(...classes) {
 
 export default function Nav() {
   const logout = () => {
-    sessionStorage.removeItem('getToken');
+    sessionStorage.removeItem('userToken');
     alert('다음에 또 만나요👋');
   };
+
   return (
     <Disclosure as="nav" className="bg-transparent font-fred font-custom-sub">
       {({ open }) => (
