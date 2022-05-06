@@ -72,7 +72,7 @@ input {
 }
 
 .AnswerCard {
-  @apply p-6 w-96 h-20  mt-4 mx-52 text-center   bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-100;
+  @apply p-6 w-96 h-32 mt-4 mx-52 text-center bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-100;
 }
 
 .AnswerCard h5 {

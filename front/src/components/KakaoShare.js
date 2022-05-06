@@ -5,7 +5,8 @@ const KakaoShareButton = () => {
     createKakaoButton();
   }, []);
   const createKakaoButton = () => {
-    // kakao sdk script이 정상적으로 불러와졌으면 window.Kakao로 접근이 가능합니다
+    const sharedUrl = `${window.location.href}`;
+
     if (window.Kakao) {
       const kakao = window.Kakao;
       // 중복 initialization 방지
@@ -19,12 +20,12 @@ const KakaoShareButton = () => {
         objectType: 'feed',
         content: {
           title: 'COUNTRY GOGO',
-          description: '당신의 제 2의 고향을 찾아드립니다! #CityMBTI',
+          description: '당신의 제 2의 고향을 찾아드립니다! #CountryMBTI',
           imageUrl:
             'https://cdn.pixabay.com/photo/2016/11/23/15/32/pedestrians-1853552_1280.jpg',
           link: {
-            mobileWebUrl: 'http://elice-kdt-ai-4th-team16.elicecoding.com',
-            webUrl: 'http://elice-kdt-ai-4th-team16.elicecoding.com',
+            mobileWebUrl: sharedUrl,
+            webUrl: sharedUrl,
           },
         },
         social: {
@@ -34,10 +35,10 @@ const KakaoShareButton = () => {
         },
         buttons: [
           {
-            title: '나와 어울리는 도시는?',
+            title: '나와 어울리는 나라는?',
             link: {
-              mobileWebUrl: 'http://elice-kdt-ai-4th-team16.elicecoding.com',
-              webUrl: 'http://elice-kdt-ai-4th-team16.elicecoding.com',
+              mobileWebUrl: sharedUrl,
+              webUrl: sharedUrl,
             },
           },
         ],
