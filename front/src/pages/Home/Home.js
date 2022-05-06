@@ -11,12 +11,12 @@ const Home = () => {
         <Nav />
       </div>
 
-      <div className='absolute  item-center m-3 z-30 p-5 text-2xl rounded-xl'>
+      <div className='absolute w-full item-center mt-16 m-3 z-30 p-9 text-2xl rounded-xl'>
         <main className=' lg:px-8 mx-auto max-w-7xl px-4 sm:mt-0 sm:px-6 md:mt-0 lg:mt-0 lg:px-8'>
-          <div className='sm:text-center lg:text-left'>
+          <div className='sm:text-center lg:text-center'>
             <h1 className='font-noto text-4xl tracking-tight font-extrabold justify-center text-white sm:text-5xl md:text-6xl'>
-              <span className=' xl:inline'>나의 소울시티를 찾아보세요!</span>{' '}
-              <span className='block text-custom-main xl:inline font-fred'>
+              <span className='xl:inline'>당신에게 어울리는 나라는?</span>
+              <span className='block mt-4 text-custom-main xl:inline font-fred'>
                 COUNTRY GOGO
               </span>
             </h1>

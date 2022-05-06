@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ResultModal from './ResultModal';
+import Nav from '../../components/Nav/Nav';
 import * as Api from '../../api';
 import './style.css';
 
@@ -83,6 +84,7 @@ const AllCities = () => {
 
   return (
     <div className='container bg-white w-screen flex-row text-center'>
+      <Nav />
       <div className='bg-sky-50  p-10 flex'>
         <div className='ml-5'>
           <select className='selectContainer' disabled>

@@ -2,6 +2,7 @@
   "dependencies": {
     "dom-to-image": "^2.6.0",
     "file-saver": "^2.0.5",
+    "html2canvas": "^1.4.1",
     "spinner": "^0.3.4"
   }
 }

@@ -36,16 +36,19 @@ export default function Nav() {
               </div>
               <div className='flex-1 flex items-center justify-center sm:items-stretch sm:justify-start'>
                 <div className='flex-shrink-0 flex items-center'>
-                  <img
+                  {/* <img
                     className='block lg:hidden h-8 w-auto'
                     src='/imgs/CountryGOGO.png'
                     alt='CountryGOGO'
-                  />
-                  <img
+                  /> */}
+                  <a className='block lg:hidden h-8 w-auto'>COUNTRY GOGO</a>
+                  <a className='hidden lg:block h-8 w-auto'>COUNTRY GOGO</a>
+
+                  {/* <img
                     className='hidden lg:block h-8 w-auto'
                     src='/imgs/CountryGOGO.png'
                     alt='CountryGoGo'
-                  />
+                  /> */}
                 </div>
               </div>
               <div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
@@ -58,7 +61,7 @@ export default function Nav() {
                         className={classNames(
                           item.current
                             ? 'bg-gray-900 text-white'
-                            : 'text-gray-300  hover:text-gray-300 hover:text-xl ',
+                            : 'text-gray-300  hover:text-custom-main hover:text-xl ',
                           'px-3 py-1 rounded-md text-lg font-medium items-center justify-center'
                         )}
                         aria-current={item.current ? 'page' : undefined}
