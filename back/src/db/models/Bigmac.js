@@ -1,4 +1,4 @@
-const { BigmacModel } = require("../schemas/Bigmac");
+const { BigmacModel } = require("../schemas/bigmac");
 
 const Bigmac = {
   findByCountry: async (Country) => {
