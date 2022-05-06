@@ -15,7 +15,7 @@ function App() {
   const [resultHPIRank, setResultHPIRank] = useState([]); //  HPI 등수
   const [resultAmount, setResultAmount] = useState([]); //  수치
   const [resultBigmacPrice, setResultBigmacPrice] = useState([]); //
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState([]);
 
   const saveResult = {
     resultCountries,

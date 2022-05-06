@@ -52,7 +52,7 @@ const CityInfo = () => {
     setResultAmount(amount.data);
     setResultBigmacPrice(bigmacPrice.data);
   };
-
+  console.log('!!!!!!!!', window.sessionStorage.token);
   const handleSaveCountry = () => {
     // 뱃지로 저장하는 코드 들어올 자리
   };
@@ -127,11 +127,7 @@ const CityInfo = () => {
           />
         </div>
       </div>
-      <div
-        className={
-          'flex flex-col mb-16 font-noto text-2xl' + (false ? ' blur-sm' : '')
-        }
-      >
+      <div className='flex flex-col mb-16 font-noto text-2xl'>
         <div className='flex justify-center text-5xl mb-4 font-irop'>
           {resultCountries[idx].Country === resultCountries[idx].City
             ? resultCountries[idx].Country
@@ -150,16 +146,22 @@ const CityInfo = () => {
           지지 - {resultHPIRank.socialSupport}위 입니다.
         </div>
       </div>
-      <div className={'flex flex-col lg:flex-row' + (false ? ' blur-sm' : '')}>
-        <div className='lg:basis-1/2 flex justify-center'>
+
+      <div
+        className={
+          'flex flex-col' + (window.sessionStorage.token ? '' : ' blur-sm')
+        }
+      >
+        <div className='flex justify-center'>
           <WeatherChart resultAmount={resultAmount} />
         </div>
-        <div className='lg:basis-1/2 flex justify-center'>
+        <div className='flex justify-center'>
           <RadarChart resultAmount={resultAmount} />
         </div>
+        <div className='flex justify-center'>
+          <Bigmac resultBigmacPrice={resultBigmacPrice} />
+        </div>
       </div>
-
-      <Bigmac resultBigmacPrice={resultBigmacPrice} />
       <div className='flex space-x-4 justify-end'>
         <Button text='저장하기' type='main' onClick={handleSaveCountry} />
 
