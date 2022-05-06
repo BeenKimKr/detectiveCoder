@@ -4,21 +4,29 @@ button {
   @apply cursor-pointer;
 }
 
+.RangeContainer {
+  @apply flex flex-col  items-center relative pt-1 m-auto mt-20;
+}
+
 /* Info */
 .InfoContainer {
-  @apply grid grid-cols-2 rounded-lg bg-slate-50 my-5;
+  @apply rounded-lg;
 }
 
 .InfoCard {
-  @apply flex justify-around  h-10 w-72  mx-2 mb-2 pt-2 rounded;
+  @apply flex  justify-between  items-center h-16  w-96  mx-2 mb-2 pt-2 rounded;
 }
 
 .InfoTempContainer {
-  @apply mr-6;
+  @apply flex justify-between;
 }
 
 .InfoTempText {
-  @apply text-zinc-600 font-bold;
+  @apply text-zinc-600 font-bold ml-5;
+}
+
+.tempText {
+  @apply font-fred;
 }
 
 .InfoDescriptionText {
@@ -30,7 +38,7 @@ input {
 }
 
 .RangeContainer {
-  @apply flex flex-col  w-auto  items-center relative pt-1 m-auto mt-32;
+  @apply flex flex-col  items-center relative pt-1 m-auto mt-32 font-noto font-fred;
 }
 
 .TextContainer {
@@ -42,7 +50,7 @@ input {
 }
 
 .ExplainText {
-  @apply font-bold text-lg;
+  @apply font-bold text-lg font-irop;
 }
 
 .TextBtn {
@@ -64,9 +72,14 @@ input {
 }
 
 .AnswerCard {
-  @apply p-6 w-96 h-20  mt-4 mx-52 text-center   bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-100;
+  @apply p-6 w-96 h-32 mt-4 mx-52 text-center bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-100;
 }
 
 .AnswerCard h5 {
   @apply mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white;
+}
+
+/* Count */
+.countText {
+  @apply bg-custom-main text-white text-xl   font-bold text-center mr-2 px-2.5 py-0.5  w-20 h-11 rounded-full dark:bg-green-200 dark:text-green-900;
 }

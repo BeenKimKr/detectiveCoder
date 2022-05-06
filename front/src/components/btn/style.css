@@ -1,8 +1,9 @@
 .myBtn {
   @apply font-bold p-2 rounded;
 }
+
 .btn-main {
-  @apply bg-custom-main text-white;
+  @apply bg-custom-main text-white font-noto;
 }
 
 .btn-temp {

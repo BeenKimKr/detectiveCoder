@@ -3,10 +3,7 @@
 .chart {
   text-align: center;
   height: 500px;
-  width: 500px;
-  padding: 30px;
-  background-color: #55b4b714;
-  border-radius: 50px;
+  width: 450px;
   font-weight: 800;
 }
 
@@ -14,15 +11,16 @@
   text-align: center;
   height: 300px;
   width: 500px;
-  padding: 30px;
-  background-color: #55b4b714;
-  border-radius: 50px;
-  margin-top: 50px;
+  font-weight: 800;
+}
+
+.radarChart {
+  text-align: center;
+  height: 500px;
+  width: 450px;
   font-weight: 800;
 }
 
 .chartTitle {
-  font-family: 'Jua', sans-serif;
   font-size: larger;
-  margin-bottom: 10px;
 }

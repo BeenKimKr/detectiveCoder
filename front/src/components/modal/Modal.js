@@ -9,10 +9,10 @@ const Modal = (props) => {
   const { loading, setLoading } = useContext(PercentContext);
 
   return (
-    // 모달이 열릴때 openModal 클래스가 생성된다.
+    // 모달이 열릴때 openModal 클래스가 생성
     <div className={open ? 'openModal modal' : 'modal'}>
       <section>
-        {loading == true ? (
+        {loading ? (
           <div className="p-8">
             <span className="mb-2">결과를 분석중입니다.🔎</span>
             <div>
@@ -20,12 +20,10 @@ const Modal = (props) => {
             </div>
           </div>
         ) : (
-          <>
+          <div className="p-8">
             <main>테스트를 완료하였습니다😊</main>
-            <div className="button">
-              <CommonButton text={'결과 확인'} onClick={click} />
-            </div>
-          </>
+            <CommonButton text={'결과 확인'} onClick={click} />
+          </div>
         )}
       </section>
     </div>

@@ -1,27 +1,143 @@
-import React, { useState } from 'react';
-import Navmain from '../../components/Nav/Navmain';
-import ReactTooltip from 'react-tooltip'; // yarn add react-tooltip
-import Image from '@material-tailwind/react/Image';
+import React, { useEffect, useState } from 'react';
+import ResultModal from './ResultModal';
+import * as Api from '../../api';
 import './style.css';
 
-import MapChart from '../../components/MapChart';
+const useClickBtn = () => {
+  const [title, setTitle] = useState('행복지수');
+  const [select, setSelect] = useState('score');
+  const [offset, setOffset] = useState(12);
+  const [sort, setSort] = useState([]); // 결과 저장
+
+  const handleChange = (e) => {
+    setSelect(e.target.value);
+    setTitle(e.target.name);
+    setSort([]);
+    setOffset(12);
+  };
+
+  return { title, select, offset, sort, setSort, setOffset, handleChange };
+};
+
+const HPI = [
+  { value: 'socialSupport', name: '사회복지' },
+  { value: 'corruption', name: '청렴도' },
+  { value: 'Freedom', name: '자유' },
+  { value: 'price', name: '물가' },
+  { value: 'GDP', name: 'GDP' },
+  { value: 'Generosity', name: '관대함' },
+  { value: 'HLE', name: '기대수명' },
+];
 
 const AllCities = () => {
-  const [content, setContent] = useState('');
+  const [modalOpen, setModalOpen] = useState(false); // Modal
+  const [data, setData] = useState([]);
+  const { title, select, offset, sort, handleChange, setSort, setOffset } =
+    useClickBtn();
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    getData();
+  }, [select, offset]);
+
+  const handleScroll = () => {
+    const scrollHeight = document.documentElement.scrollHeight;
+    const scrollTop = document.documentElement.scrollTop;
+    const clientHeight = document.documentElement.clientHeight;
+    if (scrollTop + clientHeight >= scrollHeight) {
+      setOffset((prev) => prev + 3);
+    }
+  };
+
+  const getData = async () => {
+    if (sort.length < 70) {
+      try {
+        const res = await Api.get(`rank/sort/${select}/${offset}`);
+        const result = res.data;
+        setSort([...sort, ...result]);
+      } catch {
+        console.log('error');
+      }
+    }
+  };
+
+  const clickCard = async (e) => {
+    const res = await Api.get(`country/rank/${e.currentTarget.value}`);
+    setData(res.data);
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  useEffect(() => {
+    console.log(sort);
+  }, [sort]);
+
   return (
-    <div className='container h-screen w-screen'>
-      <Navmain />
-      <MapChart setTooltipContent={setContent} />
-      <ReactTooltip place='right'>
-        {content}
-        <Image
-          className='w-64 h-64 rounded-full shadow-lg'
-          src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Flag_of_Germany.svg/383px-Flag_of_Germany.svg.png'
-          rounded={true}
-          raised={false}
-          alt='국기 사진'
-        />
-      </ReactTooltip>
+    <div className='container bg-white w-screen flex-row text-center'>
+      <div className='bg-sky-50  p-10 flex'>
+        <div className='ml-5'>
+          <select className='selectContainer' disabled>
+            <option>행복지수</option>
+          </select>
+        </div>
+        <div className='ml-5'>
+          <select class='selectContainer' onChange={handleChange}>
+            <option disabled selected>
+              종합
+            </option>
+            {HPI.map((it, index) => {
+              return (
+                <option name={it.name} key={index} value={it.value}>
+                  {it.name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      </div>
+
+      <div className='grid grid-cols-3 gap-4 mt-11' onScroll={handleScroll}>
+        {/* 이미지 카드 */}
+        {sort.map((it, index) => {
+          return (
+            <button
+              className='countryCard'
+              key={index}
+              onClick={clickCard}
+              value={it.Country}
+            >
+              <img
+                class='imgCard'
+                src={`https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${it.Ab}-flag.gif`}
+              />
+              <div className='pt-3 pl-3'>
+                <span className='countryCardText'>{it.Country}</span>
+                <span class='rankText'>
+                  {index === 0
+                    ? '🥇'
+                    : index === 1
+                    ? '🥈'
+                    : index === 2
+                    ? '🥉'
+                    : `${index + 1}`}
+                </span>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+      {modalOpen && (
+        <ResultModal open={modalOpen} close={closeModal} data={data} />
+      )}
     </div>
   );
 };

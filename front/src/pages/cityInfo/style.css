@@ -1,22 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Jua&family=Nanum+Pen+Script&display=swap');
 
-.title {
-  font-size: large;
-  font-family: 'Gaegu', cursive;
-  font-weight: 800;
-  font-size: 45px;
-  display: flex;
-}
+/* font-family: 'Gaegu', cursive;
+font-family: 'Jua', sans-serif;
+font-family: 'Nanum Pen Script', cursive; */
 
 .inputCity {
-  padding-left: 13px;
   color: #55b4b7;
-  font-size: 45px;
 }
 
-.cityInfo {
-  font-family: 'Jua', sans-serif;
-  font-size: 30px;
-  flex-basis: 70%;
-  margin-left: 20px;
+.victoryStand {
+  size: 80px;
+}
+
+.flagHover {
+  transition: all 0.2s linear;
+}
+
+.flagHover:hover {
+  transform: scale(1.2);
 }
