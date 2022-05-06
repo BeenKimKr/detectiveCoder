@@ -4,7 +4,7 @@ import { loginReducer } from './reducer';
 import Home from './pages/Home/Home';
 import CityInfo from './pages/cityInfo/CityInfo';
 import MainSurvey from './pages/MainSurvey';
-import axios from 'axios';
+
 import AllCities from './pages/allCities/AllCities';
 import * as Api from './api';
 import './App.css';
@@ -34,27 +34,29 @@ function App() {
     setResultBigmacPrice,
   };
 
-  const fetchCurrentUser = async () => {
-    // 이전에 발급받은 토큰이 있다면, 이를 가지고 유저 정보를 받아옴.
-    const getToken = JSON.parse(window.sessionStorage.getItem('getToken'));
-    axios
-      .post('http://localhost:5001/users/auth/kakao', {
-        accessToken: getToken,
-      })
-      .then((res) => {
-        const { data } = res;
-        console.log(data);
-        console.log(data.userInfo);
-        dispatch({
-          type: 'LOGIN_SUCCESS',
-          payload: data.userInfo,
-        });
+  const fetchCurrentUser = async (getToken) => {
+    await Api.post('users/auth/kakao', {
+      accessToken: getToken,
+    }).then((res) => {
+      const { data } = res;
+      console.log(data);
+      console.log(data.userInfo);
+      dispatch({
+        type: 'LOGIN_SUCCESS',
+        payload: data.userInfo,
       });
+    });
   };
 
   // useEffect함수를 통해 fetchCurrentUser 함수를 실행함.
   useEffect(() => {
-    fetchCurrentUser();
+    const getToken = JSON.parse(window.sessionStorage.getItem('getToken'));
+    if (getToken) {
+      console.log('토큰존재');
+      fetchCurrentUser(getToken);
+    } else {
+      console.log('토큰이없당');
+    }
   }, []);
 
   return (

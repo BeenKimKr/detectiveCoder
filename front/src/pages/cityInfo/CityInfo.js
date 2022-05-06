@@ -1,24 +1,26 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import Nav from '../../components/Nav/Nav';
 import Button from '../../components/btn/CommonButton';
 import WeatherChart from '../../components/charts/WeatherChart';
 import Bigmac from '../../components/charts/Bigmac';
 import RadarChart from '../../components/charts/RadarChart';
+import KakaoLogin from '../../components/Kakao/KakaoLogin';
 import KakaoShareButton from '../../components/KakaoShare';
 import domtoimage from 'dom-to-image';
 import { saveAs } from 'file-saver';
 
-import * as Api from '../../api';
-import './style.css';
-import { ResultContext } from '../../App';
-import { UserStateContext } from '../../App';
+import { ResultContext, UserStateContext } from '../../App';
 
+import * as Api from '../../api';
+
+import './style.css';
+
+// 나라(도시) 결과 보여주는 페이지
 const CityInfo = () => {
   const [name, setName] = useState('명탐정');
   const [idx, setIdx] = useState(0);
   const {
     resultCountries,
-    setResultCountries,
     resultHPIRank,
     setResultHPIRank,
     resultAmount,
@@ -27,7 +29,14 @@ const CityInfo = () => {
     setResultBigmacPrice,
   } = useContext(ResultContext);
   const userState = useContext(UserStateContext);
-  console.log(userState);
+
+  useEffect(() => {
+    if (window.sessionStorage.getToken) {
+      setName(userState.user.name);
+    } else {
+    }
+  }, [userState]);
+
   const cardRef = useRef();
   const onDownloadBtn = () => {
     const card = cardRef.current;
@@ -61,6 +70,7 @@ const CityInfo = () => {
   return (
     <div className="container flex-col p-2.5 bg-clouds">
       <Nav />
+      {/* true에  설문조사를 하고 나온 결과인지 아닌지를 구분하는 조건 넣어줘야 함*/}
       {true ? (
         <div>
           <span className="flex text-xl lg:text-3xl font-irop">
@@ -128,11 +138,7 @@ const CityInfo = () => {
           />
         </div>
       </div>
-      <div
-        className={
-          'flex flex-col mb-16 font-noto text-2xl' + (false ? ' blur-sm' : '')
-        }
-      >
+      <div className="flex flex-col mb-16 font-noto text-2xl">
         <div className="flex justify-center text-5xl mb-4 font-irop">
           {resultCountries[idx].Country === resultCountries[idx].City
             ? resultCountries[idx].Country
@@ -142,28 +148,41 @@ const CityInfo = () => {
           {resultCountries[idx].Country === resultCountries[idx].City
             ? resultCountries[idx].Country
             : `${resultCountries[idx].Country}-${resultCountries[idx].City}`}{' '}
-          1년 평균 최소 기온은 {resultAmount.min.toFixed(0)}(°C)이며 평균 최대
-          기온은 {resultAmount.max.toFixed(0)}(°C)로 평균적으로{' '}
-          {resultAmount.mean.toFixed(0)}(°C)입니다. 행복지수는 146개국 중
-          59번째입니다. 자유 - {resultHPIRank.Freedom}위, GDP -{' '}
+          의 연평균 최소 기온은 {resultAmount.min.toFixed(0)}°C, 최대 기온은{' '}
+          {resultAmount.max.toFixed(0)}°C로 평균 {resultAmount.mean.toFixed(0)}
+          °C입니다. 6가지(자유 - {resultHPIRank.Freedom}위, GDP -{' '}
           {resultHPIRank.GDP}위, 관용 - {resultHPIRank.Generosity}위, 기대수명 -{' '}
           {resultHPIRank.HLE}위, 부정부패 - {resultHPIRank.corruption}위, 사회적
-          지지 - {resultHPIRank.socialSupport}위 입니다.
+          지지 - {resultHPIRank.socialSupport}위) 항목을 토대로 68개국 중{' '}
+          {resultHPIRank.score}위에 해당하는 행복지수를 갖는 나라입니다.
         </div>
       </div>
-      <div className={'flex flex-col lg:flex-row' + (false ? ' blur-sm' : '')}>
-        <div className="lg:basis-1/2 flex justify-center">
+
+      {window.sessionStorage.getToken ? (
+        ''
+      ) : (
+        <div className="flex justify-center mb-4">
+          <KakaoLogin />
+        </div>
+      )}
+
+      <div
+        className={
+          'flex flex-col' + (window.sessionStorage.getToken ? '' : ' blur-sm')
+        }
+      >
+        <div className="flex justify-center">
           <WeatherChart resultAmount={resultAmount} />
         </div>
-        <div className="lg:basis-1/2 flex justify-center">
+        <div className="flex justify-center mb-8">
           <RadarChart resultAmount={resultAmount} />
         </div>
+        <div className="flex justify-center">
+          <Bigmac resultBigmacPrice={resultBigmacPrice} />
+        </div>
       </div>
-
-      <Bigmac resultBigmacPrice={resultBigmacPrice} />
       <div className="flex space-x-4 justify-end">
         <Button text="저장하기" type="main" onClick={handleSaveCountry} />
-
         <Button className="downBtn" text="다운로드" onClick={onDownloadBtn} />
         <KakaoShareButton />
       </div>

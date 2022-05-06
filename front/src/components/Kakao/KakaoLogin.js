@@ -59,7 +59,11 @@ const Login = (props) => {
   return (
     <>
       <a href={kauthUrl}>
-        <img src="/imgs/kakao_login.png" id="kakao-login-btn" />
+        <img
+          src="/imgs/kakao_login_medium_wide.png"
+          alt="kakao"
+          id="kakao-login-btn"
+        />
       </a>
     </>
   );
