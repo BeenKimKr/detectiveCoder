@@ -1,7 +1,7 @@
-const { Router } = require("express");
-const { countryService } = require("../services/countryService.js");
-const { surveyService } = require("../services/surveyService.js");
-const { rankService } = require("../services/rankService");
+const { Router } = require('express');
+const { countryService } = require('../services/countryService.js');
+const { surveyService } = require('../services/surveyService.js');
+const { rankService } = require('../services/rankService');
 const countryRouter = Router();
 
 /**
@@ -19,7 +19,7 @@ const countryRouter = Router();
  *              schema:
  *                $ref: '#/components/schemas/Country'
  */
-countryRouter.get("/all", async (req, res, next) => {
+countryRouter.get('/all', async (req, res, next) => {
   try {
     const data = await countryService.getAll();
 
@@ -45,7 +45,7 @@ countryRouter.get("/all", async (req, res, next) => {
  *                $ref: '#/components/schemas/Country'
  */
 
-countryRouter.get("/one/:City", async (req, res, next) => {
+countryRouter.get('/one/:City', async (req, res, next) => {
   try {
     const City = req.params.City;
     const data = await countryService.getOne(City);
@@ -71,7 +71,7 @@ countryRouter.get("/one/:City", async (req, res, next) => {
  *                schemas:
  */
 //rankRouter에 /one 주소랑 중복기능
-countryRouter.get("/rank/:Country", async (req, res, next) => {
+countryRouter.get('/rank/:Country', async (req, res, next) => {
   try {
     const Country = req.params.Country;
     const data = await rankService.getOne(Country);
@@ -82,9 +82,9 @@ countryRouter.get("/rank/:Country", async (req, res, next) => {
   }
 });
 
-countryRouter.post("/sort", async (req, res, next) => {
+countryRouter.post('/sort', async (req, res, next) => {
   try {
-    res.header("Content-Type: application/json");
+    res.header('Content-Type: application/json');
 
     const temp = req.body.temp;
     const answer = req.body.answer;
@@ -94,9 +94,10 @@ countryRouter.post("/sort", async (req, res, next) => {
       throw new Error(result.errorMessage);
     }
 
+    res.header('Content-Type: application/json');
     res.status(201).json(result);
-  } catch (e) {
-    next(e);
+  } catch (error) {
+    next(error);
   }
 });
 
@@ -117,7 +118,7 @@ countryRouter.post("/sort", async (req, res, next) => {
  */
 
 // 개발용 path ('/sort'로 변경 예정, answer는 req.body로 넘겨받는다.)
-countryRouter.get("/sort", async (req, res, next) => {
+countryRouter.get('/sort', async (req, res, next) => {
   try {
     // // const answer = req.body; (@권민님)
     let survey = await surveyService.getSurvey();
@@ -128,7 +129,7 @@ countryRouter.get("/sort", async (req, res, next) => {
 
     if (countryData === 0) {
       data = await countryService.sortData({ temp, answer });
-      res.cookie("countryData", data, { maxAge: 3600 });
+      res.cookie('countryData', data, { maxAge: 3600 });
     } else {
       data = { ...countryData };
     }
