@@ -30,7 +30,7 @@ input {
 }
 
 .RangeContainer {
-  @apply flex flex-col  w-auto  items-center relative pt-1 m-auto mt-32;
+  @apply flex flex-col  items-center relative pt-1 m-auto mt-32 font-noto font-fred;
 }
 
 .TextContainer {
@@ -42,7 +42,7 @@ input {
 }
 
 .ExplainText {
-  @apply font-bold text-lg;
+  @apply font-bold text-lg font-irop;
 }
 
 .TextBtn {

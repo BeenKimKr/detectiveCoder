@@ -9,6 +9,11 @@ module.exports = {
         'custom-sub-hover': '#868e96',
         'black-rgba': 'rgba(0, 0, 0, 0.54)',
       },
+      fontFamily: {
+        noto: ['Noto Sans KR', 'sans-serif'],
+        fred: ['Fredoka One', 'sans-serif'],
+        irop: ['Iropke Batang', 'sans-serif'],
+      },
     },
     screens: {
       sm: '640px',
@@ -17,10 +22,9 @@ module.exports = {
       md: '768px',
       // => @media (min-width: 768px) { ... }
 
-      // lg: '1024px',
-      // // => @media (min-width: 1024px) { ... }
+      lg: '1024px',
+      // => @media (min-width: 1024px) { ... }
     },
-
     container: {
       center: true,
     },
