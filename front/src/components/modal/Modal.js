@@ -9,7 +9,7 @@ const Modal = (props) => {
   const { loading, setLoading } = useContext(PercentContext);
 
   return (
-    // 모달이 열릴때 openModal 클래스가 생성된다.
+    // 모달이 열릴때 openModal 클래스가 생성
     <div className={open ? 'openModal modal' : 'modal'}>
       <section>
         {loading ? (

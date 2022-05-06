@@ -17,8 +17,7 @@ export const PercentContext = createContext();
 const MainSurvey = () => {
   const navigate = useNavigate();
   const [answer, setAnswer] = useState([]);
-  const [temp, setTemp] = useState(24);
-  const [percent, setPercent] = useState(0);
+  const [temp, setTemp] = useState('');
   const [step, setStep] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -38,13 +37,15 @@ const MainSurvey = () => {
 
   const changePercent = {
     setModalOpen,
-    percent,
-    setPercent,
     step,
     setStep,
     setLoading,
     loading,
   };
+
+  useEffect(() => {
+    console.log('temp', temp);
+  }, [temp]);
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -67,8 +68,7 @@ const MainSurvey = () => {
       setResultCountries(res.data);
       setResultHPIRank(rank.data);
       setResultAmount(amount.data);
-      setResultBigmacPrice(bigmacPrice.data);
-      setTimeout(() => navigate(`/cityInfo`), 3000);
+      setTimeout(() => navigate(`/cityInfo`), 1500);
     } catch (error) {
       console.log(error);
       if (error.response) {
@@ -79,14 +79,8 @@ const MainSurvey = () => {
   };
 
   return (
-    <div className='container w-screen h-screen'>
-      <div className='w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700'>
-        <div
-          class='h-6 bg-custom-main rounded-full dark:bg-gray-300'
-          style={{ width: `${percent}%` }}
-        ></div>
-      </div>
-      <div className='m-auto'>
+    <div className="container w-screen h-screen">
+      <div className="m-auto">
         <PercentContext.Provider value={changePercent}>
           <SaveAnswersContext.Provider value={saveAnswers}>
             {step == 0 ? (
