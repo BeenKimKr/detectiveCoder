@@ -10,7 +10,8 @@ import { saveAs } from 'file-saver';
 
 import * as Api from '../../api';
 import './style.css';
-import { ResultContext, userContext } from '../../App';
+import { ResultContext } from '../../App';
+import { UserStateContext } from '../../App';
 
 const CityInfo = () => {
   const [name, setName] = useState('명탐정');
@@ -25,8 +26,8 @@ const CityInfo = () => {
     resultBigmacPrice,
     setResultBigmacPrice,
   } = useContext(ResultContext);
-  const { user } = useContext(userContext);
-  console.log(user);
+  const userState = useContext(UserStateContext);
+  console.log(userState);
   const cardRef = useRef();
   const onDownloadBtn = () => {
     const card = cardRef.current;
@@ -58,18 +59,18 @@ const CityInfo = () => {
   };
 
   return (
-    <div className='container flex-col p-2.5 bg-clouds'>
+    <div className="container flex-col p-2.5 bg-clouds">
       <Nav />
       {true ? (
         <div>
-          <span className='flex text-xl lg:text-3xl font-irop'>
+          <span className="flex text-xl lg:text-3xl font-irop">
             {name}님께{' '}
             {resultCountries[idx].Country === resultCountries[idx].City ? (
-              <p className='inputCity text-xl lg:text-3xl font-fred mx-2'>
+              <p className="inputCity text-xl lg:text-3xl font-fred mx-2">
                 {resultCountries[idx].Country}
               </p>
             ) : (
-              <p className='inputCity text-xl lg:text-3xl font-fred mx-2'>
+              <p className="inputCity text-xl lg:text-3xl font-fred mx-2">
                 {resultCountries[idx].Country}-{resultCountries[idx].City}
               </p>
             )}
@@ -80,18 +81,18 @@ const CityInfo = () => {
         <></>
       )}
       <div>
-        <div className='flex m-28 mx-auto justify-center'>
+        <div className="flex m-28 mx-auto justify-center">
           <img
-            className='absolute w-96'
-            src='/imgs/victoryStand.png'
-            alt='시상대'
+            className="absolute w-96"
+            src="/imgs/victoryStand.png"
+            alt="시상대"
           />
           <img
-            name='1'
-            className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
+            name="1"
+            className="w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl"
             style={{ left: '-20px', top: '-40px' }}
             src={flagUrl2nd}
-            alt='2등 국기'
+            alt="2등 국기"
             onClick={handleClick}
             title={
               resultCountries[1].Country === resultCountries[1].City
@@ -100,11 +101,11 @@ const CityInfo = () => {
             }
           />
           <img
-            name='0'
-            className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
+            name="0"
+            className="w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl"
             style={{ left: '-5px', top: '-75px' }}
             src={flagUrl1st}
-            alt='1등 국기'
+            alt="1등 국기"
             onClick={handleClick}
             title={
               resultCountries[0].Country === resultCountries[0].City
@@ -113,11 +114,11 @@ const CityInfo = () => {
             }
           />
           <img
-            name='2'
-            className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
+            name="2"
+            className="w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl"
             style={{ left: '0px', top: '-20px' }}
             src={flagUrl3rd}
-            alt='3등 국기'
+            alt="3등 국기"
             onClick={handleClick}
             title={
               resultCountries[2].Country === resultCountries[2].City
@@ -132,12 +133,12 @@ const CityInfo = () => {
           'flex flex-col mb-16 font-noto text-2xl' + (false ? ' blur-sm' : '')
         }
       >
-        <div className='flex justify-center text-5xl mb-4 font-irop'>
+        <div className="flex justify-center text-5xl mb-4 font-irop">
           {resultCountries[idx].Country === resultCountries[idx].City
             ? resultCountries[idx].Country
             : `${resultCountries[idx].Country}-${resultCountries[idx].City}`}
         </div>
-        <div className='flex justify-center mx-32 lg:mx-64'>
+        <div className="flex justify-center mx-32 lg:mx-64">
           {resultCountries[idx].Country === resultCountries[idx].City
             ? resultCountries[idx].Country
             : `${resultCountries[idx].Country}-${resultCountries[idx].City}`}{' '}
@@ -151,19 +152,19 @@ const CityInfo = () => {
         </div>
       </div>
       <div className={'flex flex-col lg:flex-row' + (false ? ' blur-sm' : '')}>
-        <div className='lg:basis-1/2 flex justify-center'>
+        <div className="lg:basis-1/2 flex justify-center">
           <WeatherChart resultAmount={resultAmount} />
         </div>
-        <div className='lg:basis-1/2 flex justify-center'>
+        <div className="lg:basis-1/2 flex justify-center">
           <RadarChart resultAmount={resultAmount} />
         </div>
       </div>
 
       <Bigmac resultBigmacPrice={resultBigmacPrice} />
-      <div className='flex space-x-4 justify-end'>
-        <Button text='저장하기' type='main' onClick={handleSaveCountry} />
+      <div className="flex space-x-4 justify-end">
+        <Button text="저장하기" type="main" onClick={handleSaveCountry} />
 
-        <Button className='downBtn' text='다운로드' onClick={onDownloadBtn} />
+        <Button className="downBtn" text="다운로드" onClick={onDownloadBtn} />
         <KakaoShareButton />
       </div>
     </div>
