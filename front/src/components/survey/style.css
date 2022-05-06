@@ -37,8 +37,20 @@ input {
   @apply accent-custom-main;
 }
 
+.RangeContainer {
+  @apply flex flex-col  items-center relative pt-1 m-auto mt-32 font-noto font-fred;
+}
+
+.TextContainer {
+  @apply flex mr-32 mb-3;
+}
+
+.TempText {
+  @apply h-auto w-10 text-center p-1 ml-64 mb-2 rounded-lg bg-custom-main text-white;
+}
+
 .ExplainText {
-  @apply font-bold text-lg;
+  @apply font-bold text-lg font-irop;
 }
 
 .TextBtn {

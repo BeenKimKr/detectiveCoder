@@ -21,8 +21,12 @@ const MainSurvey = () => {
   const [step, setStep] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { setResultCountries, setResultHPIRank, setResultAmount } =
-    useContext(ResultContext);
+  const {
+    setResultCountries,
+    setResultHPIRank,
+    setResultAmount,
+    setResultBigmacPrice,
+  } = useContext(ResultContext);
 
   const saveAnswers = {
     setAnswer,
@@ -57,6 +61,7 @@ const MainSurvey = () => {
       const city = res.data[0].City;
       const rank = await Api.get(`country/rank/${country}`); // 미국의 등수
       const amount = await Api.get(`country/one/${city}`); // 미국의 차트 에 쓰이는 수치 -> 도시별 월별 기온 데이터!
+      const bigmacPrice = await Api.get(`country/price/${country}`);
       console.log(res.data);
       console.log(rank.data);
       console.log(amount.data);

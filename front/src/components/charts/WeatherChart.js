@@ -16,14 +16,14 @@ const WeatherChart = ({ resultAmount }) => {
     { month: '11월', value: resultAmount.nov },
     { month: '12월', value: resultAmount.dec },
   ];
-  console.log(resultAmount);
+
   return (
     <div className="chart">
       <span className="chartTitle font-irop">월별 평균 기온(°C)</span>
       <ResponsiveContainer width={400} height={400}>
         <BarChart width={150} height={40} data={data}>
-          <Bar dataKey="value" fill="#74c0fc" />
-          <XAxis dataKey="month" />
+          <Bar dataKey='value' fill='#DB7093' />
+          <XAxis dataKey='month' />
           <YAxis />
         </BarChart>
       </ResponsiveContainer>
