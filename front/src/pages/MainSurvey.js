@@ -68,6 +68,7 @@ const MainSurvey = () => {
       setResultCountries(res.data);
       setResultHPIRank(rank.data);
       setResultAmount(amount.data);
+      setResultBigmacPrice(bigmacPrice.data);
       setTimeout(() => navigate(`/cityInfo`), 1500);
     } catch (error) {
       console.log(error);
@@ -79,8 +80,8 @@ const MainSurvey = () => {
   };
 
   return (
-    <div className="container w-screen h-screen">
-      <div className="m-auto">
+    <div className='container w-screen h-screen'>
+      <div className='m-auto'>
         <PercentContext.Provider value={changePercent}>
           <SaveAnswersContext.Provider value={saveAnswers}>
             {step == 0 ? (

@@ -11,6 +11,7 @@ import {
 import './style.css';
 
 const Bigmac = ({ resultBigmacPrice }) => {
+  console.log(resultBigmacPrice);
   const data = [
     { factor: 'South Korea', price: 4900, color: '#FFA500' },
     {
