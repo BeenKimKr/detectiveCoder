@@ -4,6 +4,7 @@
     "file-saver": "^2.0.5",
     "html2canvas": "^1.4.1",
     "memo": "^1.0.1",
+    "react-kakao-login": "^2.1.0",
     "spinner": "^0.3.4"
   }
 }
