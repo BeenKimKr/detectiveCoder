@@ -1,6 +1,6 @@
-const { User } = require('../db');
-const { getProfile } = require('../utils/kakaoAuth');
-const jwt = require('jsonwebtoken');
+const { User } = require("../db");
+const { getProfile } = require("../utils/kakaoAuth");
+const jwt = require("jsonwebtoken");
 
 const userAuthService = {
   getKakaoUser: async ({ accessToken }) => {
@@ -9,7 +9,7 @@ const userAuthService = {
     const userId = userProfile.id;
     const exUser = await User.findById({ id: userId });
 
-    const secretKey = process.env.JWT_SECRET_KEY || 'jwt-secret-key';
+    const secretKey = process.env.JWT_SECRET_KEY || "jwt-secret-key";
     const token = jwt.sign({ userId }, secretKey);
 
     if (exUser) {
@@ -17,7 +17,7 @@ const userAuthService = {
     } else {
       const userInfo = {
         id: userId,
-        provider: 'kakao',
+        provider: "kakao",
         name: userProfile.kakao_account.profile.nickname,
         email: userProfile.kakao_account.email,
         gender: userProfile.kakao_account.gender,
@@ -33,7 +33,7 @@ const userAuthService = {
     const isDataDeleted = await User.deleteById({ id });
 
     if (!isDataDeleted) {
-      throw new Error('사용자 정보가 없습니다. 다시 시도해주세요.');
+      throw new Error("사용자 정보가 없습니다. 다시 시도해주세요.");
     }
     return { status: "ok" };
   },
@@ -41,10 +41,10 @@ const userAuthService = {
   addBadge: async ({ id, countryData }) => {
     const user = await User.findById({ id });
     if (!user) {
-      throw new Error('유저 정보가 존재하지 않습니다. 로그인을 진행해주세요.');
+      throw new Error("유저 정보가 존재하지 않습니다. 로그인을 진행해주세요.");
     }
     if (countryData === null) {
-      throw new Error('저장된 설문 결과가 없습니다. 설문을 먼저 진행해주세요.');
+      throw new Error("저장된 설문 결과가 없습니다. 설문을 먼저 진행해주세요.");
     }
     const badge = { ...user.badge, ...countryData };
     const updateObject = { badge };
@@ -57,13 +57,12 @@ const userAuthService = {
   getBadge: async ({ id }) => {
     const user = await User.findById({ id });
     if (!user) {
-      throw new Error('유저 정보가 존재하지 않습니다.');
+      throw new Error("유저 정보가 존재하지 않습니다.");
     }
 
     const badge = user.badge;
     return badge;
   },
-
 };
 
 module.exports = { userAuthService };

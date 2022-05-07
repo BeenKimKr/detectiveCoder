@@ -33,9 +33,9 @@ const renderActiveShape = (props) => {
         x={cx}
         y={cy}
         dy={8}
-        textAnchor="middle"
+        textAnchor='middle'
         fill={color}
-        className="font-irop"
+        className='font-irop'
       >
         {payload.name}
       </text>
@@ -60,23 +60,23 @@ const renderActiveShape = (props) => {
       <path
         d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
         stroke={color}
-        fill="none"
+        fill='none'
       />
-      <circle cx={ex} cy={ey} r={2} fill={color} stroke="none" />
+      <circle cx={ex} cy={ey} r={2} fill={color} stroke='none' />
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
         textAnchor={textAnchor}
-        fill="#333"
-        className="font-noto"
+        fill='#333'
+        className='font-noto'
       >{`${value} 위`}</text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
         dy={18}
         textAnchor={textAnchor}
-        fill="#999"
-        className="font-noto"
+        fill='#999'
+        className='font-noto'
       >
         {`(Rate ${(percent * 100).toFixed(2)}%)`}
       </text>
@@ -131,7 +131,7 @@ export default function App({ resultHPIRank }) {
     },
   ];
   return (
-    <PieChart className="wealChart" width={500} height={300}>
+    <PieChart className='wealChart' width={500} height={300}>
       <Pie
         activeIndex={activeIndex}
         activeShape={renderActiveShape}
@@ -140,9 +140,9 @@ export default function App({ resultHPIRank }) {
         cy={130}
         innerRadius={60}
         outerRadius={80}
-        fill="#8884d8"
+        fill='#8884d8'
         // dataKey='a'
-        datakey="value"
+        datakey='value'
         onMouseEnter={onPieEnter}
       />
     </PieChart>

@@ -9,7 +9,7 @@ const KakaoLogout = () => {
   };
 
   return (
-    <a href="#" onClick={onClick}>
+    <a href='#' onClick={onClick}>
       로그아웃
     </a>
   );

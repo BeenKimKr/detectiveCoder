@@ -3,7 +3,7 @@
 }
 
 .badgeImage {
-  @apply mt-5 flex w-36 h-36  items-center rounded-full ;
+  @apply mt-5 flex w-36 h-36  items-center rounded-full;
 }
 
 .textContainer {

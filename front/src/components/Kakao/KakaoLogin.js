@@ -35,13 +35,13 @@ const Login = ({ setUserToken, setName }) => {
       render={({ onClick }) => {
         return (
           <a
-            href='/home'
+            href='/'
             onClick={(e) => {
               e.preventDefault();
               onClick();
             }}
           >
-            Kakao
+            kakao
           </a>
         );
       }}

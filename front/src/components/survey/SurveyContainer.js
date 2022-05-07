@@ -65,18 +65,18 @@ const SurveyContainer = () => {
   return (
     <>
       <div>
-        <div className="w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700">
+        <div className='w-full h-6 bg-gray-200 rounded-full dark:bg-gray-700'>
           <div
-            class="h-6 bg-custom-main rounded-full dark:bg-gray-300"
+            class='h-6 bg-custom-main rounded-full dark:bg-gray-300'
             style={{ width: `${percent}%` }}
           ></div>
         </div>
-        <div className="AnswerContainer">
-          <span className="countText">{`${count} / 7`}</span>
+        <div className='AnswerContainer'>
+          <span className='countText'>{`${count} / 7`}</span>
           {HPIQUESTIONS.filter((it) => it.id == tempArray[0]).map((x) => (
             <>
               <button
-                className="AnswerCard"
+                className='AnswerCard'
                 value={tempArray[0]}
                 onClick={handleClickAnswer}
               >
@@ -87,7 +87,7 @@ const SurveyContainer = () => {
           {HPIQUESTIONS.filter((it) => it.id == tempArray[1]).map((x) => (
             <>
               <button
-                className="AnswerCard"
+                className='AnswerCard'
                 value={tempArray[1]}
                 onClick={handleClickAnswer}
               >

@@ -1,15 +1,15 @@
-const request = require('request');
+const request = require("request");
 
 const getProfile = (accessToken) => {
   return new Promise((resolve, reject) => {
     request(
       {
         headers: {
-          'Authorization': `Bearer ${accessToken}`,
-          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
         },
-        url: 'https://kapi.kakao.com/v2/user/me',
-        method: 'GET',
+        url: "https://kapi.kakao.com/v2/user/me",
+        method: "GET",
       },
       (error, response, body) => {
         if (!error && response.statusCode === 200) {

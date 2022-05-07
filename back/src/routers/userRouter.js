@@ -1,6 +1,6 @@
-const { Router } = require('express');
-const { userAuthService } = require('../services/userService');
-const { login_required } = require('../middlewares/login_required');
+const { Router } = require("express");
+const { userAuthService } = require("../services/userService");
+const { login_required } = require("../middlewares/login_required");
 
 /**
  * @swagger
@@ -46,7 +46,7 @@ userAuthRouter.post("/auth/kakao", async (req, res, next) => {
  *          schema:
  *            $ref: '#/components/schemas/User'
  */
-userAuthRouter.delete('/:id', async (req, res, next) => {
+userAuthRouter.delete("/:id", async (req, res, next) => {
   try {
     const id = req.params.id;
     const deletionStatus = await userAuthService.deleteUser({ id });
@@ -69,7 +69,7 @@ userAuthRouter.delete('/:id', async (req, res, next) => {
  *          schema:
  *            $ref: '#/components/schemas/User'
  */
-userAuthRouter.put('/badge', login_required, async (req, res, next) => {
+userAuthRouter.put("/badge", login_required, async (req, res, next) => {
   try {
     // 쿠키에 나라데이터 확인
     // 있으면 검색 후 저장, 없으면 설문 먼저 진행하세요 띄우기
@@ -97,7 +97,7 @@ userAuthRouter.put('/badge', login_required, async (req, res, next) => {
  *          schema:
  *            $ref: '#/components/schemas/User'
  */
-userAuthRouter.get('/badge', login_required, async (req, res, next) => {
+userAuthRouter.get("/badge", login_required, async (req, res, next) => {
   try {
     const id = req.currentUserId;
     const badge = await userAuthService.getBadge({ id });

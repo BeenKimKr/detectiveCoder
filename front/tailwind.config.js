@@ -15,7 +15,7 @@ module.exports = {
         irop: ['Iropke Batang', 'sans-serif'],
       },
       backgroundImage: {
-        clouds: "url('/public/imgs/clouds.jpeg')",
+        clouds: 'url('/public/imgs/clouds.jpeg')',
       },
     },
     screens: {

@@ -18,12 +18,12 @@ const WeatherChart = ({ resultAmount }) => {
   ];
 
   return (
-    <div className="chart">
-      <span className="chartTitle font-irop">월별 평균 기온(°C)</span>
+    <div className='chart'>
+      <span className='chartTitle font-irop'>월별 평균 기온(°C)</span>
       <ResponsiveContainer width={400} height={400}>
         <BarChart width={150} height={40} data={data}>
-          <Bar dataKey="value" fill="#DB7093" />
-          <XAxis dataKey="month" />
+          <Bar dataKey='value' fill='#DB7093' />
+          <XAxis dataKey='month' />
           <YAxis />
         </BarChart>
       </ResponsiveContainer>
