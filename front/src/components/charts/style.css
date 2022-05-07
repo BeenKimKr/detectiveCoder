@@ -4,22 +4,14 @@
   text-align: center;
   height: 450px;
   width: 500px;
-  font-weight: 800;
 }
-
+.weatherChart {
+  text-align: center;
+  height: 400px;
+  width: 500px;
+}
 .bigmacChart {
   text-align: center;
   height: 250px;
-  width: 400px;
-}
-
-.radarChart {
-  text-align: center;
-  height: 450px;
   width: 500px;
-  font-weight: 800;
-}
-
-.chartTitle {
-  font-size: larger;
 }

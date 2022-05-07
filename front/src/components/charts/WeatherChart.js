@@ -27,15 +27,15 @@ export default function App({ resultAmount, deliverTemp }) {
   ];
 
   return (
-    <div style={{ width: 500, height: 300 }}>
+    <div className='weatherChart font-bold font-irop'>
       <ResponsiveContainer>
         <ComposedChart width={400} height={400} data={data}>
-          <CartesianGrid stroke="#f5f5f5" />
-          <XAxis dataKey="name" scale="band" />
+          <CartesianGrid stroke='#f5f5f5' />
+          <XAxis dataKey='name' scale='band' />
           <YAxis />
           <Legend />
-          <Bar dataKey="평균" barSize={20} fill="#DB7093" />
-          <Line type="monotone" dataKey="선호" stroke="#ff7300" />
+          <Bar dataKey='평균' barSize={20} fill='#DB7093' />
+          <Line type='monotone' dataKey='선호' stroke='#ff7300' />
         </ComposedChart>
       </ResponsiveContainer>
     </div>
