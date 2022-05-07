@@ -2,10 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import WeatherChart from '../../components/charts/WeatherChart';
 import Bigmac from '../../components/charts/Bigmac';
 import RadarChart from '../../components/charts/RadarChart';
-import KakaoLogin from '../../components/Kakao/KakaoLogin';
-import KakaoShareButton from '../../components/KakaoShare';
 import Nav from '../../components/Nav/Nav';
-import { ResultContext, UserStateContext } from '../../App';
+import { ResultContext } from '../../App'; // , UserStateContext
 
 import * as Api from '../../api';
 import { useNavigate } from 'react-router-dom';
@@ -17,8 +15,7 @@ const CityInfo = () => {
   const [name, setName] = useState('명탐정');
   const [idx, setIdx] = useState(0);
 
-  const [userToken, setUserToken] = useState(window.sessionStorage.userToken);
-  console.log(userToken);
+  // const [userToken, setUserToken] = useState(window.sessionStorage.userToken);
   const {
     resultCountries,
     resultHPIRank,
@@ -30,14 +27,14 @@ const CityInfo = () => {
     deliverTemp,
   } = useContext(ResultContext);
 
-  const userState = useContext(UserStateContext);
+  // const userState = useContext(UserStateContext);
 
-  useEffect(() => {
-    if (window.sessionStorage.userToken) {
-      setName(userState.user.name);
-      console.log(userState);
-    }
-  }, [userState]);
+  // useEffect(() => {
+  //   if (window.sessionStorage.userToken) {
+  //     setName(userState.user.name);
+  //     console.log(userState);
+  //   }
+  // }, [userState]);
 
   useEffect(() => {
     window.addEventListener('beforeunload', alertUser);
@@ -70,7 +67,8 @@ const CityInfo = () => {
 
   return (
     <div className='container flex-col p-2.5 bg-clouds'>
-      <Nav userToken={userToken} />
+      {/* <Nav userToken={userToken} /> */}
+      <Nav />
       {/* true에  설문조사를 하고 나온 결과인지 아닌지를 구분하는 조건 넣어줘야 함*/}
       {true ? (
         <div>
@@ -159,15 +157,16 @@ const CityInfo = () => {
         </div>
       </div>
 
-      {userToken ? (
+      {/* {userToken ? (
         ''
       ) : (
         <div className='flex justify-center mb-4'>
           <KakaoLogin setUserToken={setUserToken} setName={setName} />
         </div>
-      )}
+      )} */}
 
-      <div className={'flex flex-col' + (userToken ? '' : ' blur-sm')}>
+      {/* 별점 입력하는 조건 넣어주면 됨 */}
+      <div className={'flex flex-col' + (false ? '' : ' blur-sm')}>
         <div className='flex justify-center'>
           <WeatherChart resultAmount={resultAmount} deliverTemp={deliverTemp} />
         </div>
@@ -180,10 +179,6 @@ const CityInfo = () => {
             resultBigmacPrice={resultBigmacPrice}
           />
         </div>
-      </div>
-
-      <div className='flex justify-end'>
-        <KakaoShareButton />
       </div>
     </div>
   );
