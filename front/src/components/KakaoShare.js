@@ -5,7 +5,7 @@ const KakaoShareButton = () => {
     createKakaoButton();
   }, []);
   const createKakaoButton = () => {
-    const sharedUrl = `${window.location.href}`;
+    const sharedUrl = 'elice-kdt-ai-4th-team16.elicecoding.com/main';
 
     if (window.Kakao) {
       const kakao = window.Kakao;
