@@ -1,24 +1,26 @@
-import React, { useState, useContext, useRef } from 'react';
-import Nav from '../../components/Nav/Nav';
+import React, { useState, useContext, useRef, useEffect } from 'react';
 import Button from '../../components/btn/CommonButton';
 import WeatherChart from '../../components/charts/WeatherChart';
 import Bigmac from '../../components/charts/Bigmac';
 import RadarChart from '../../components/charts/RadarChart';
+import KakaoLogin from '../../components/Kakao/KakaoLogin';
 import KakaoShareButton from '../../components/KakaoShare';
-// import domtoimage from 'dom-to-image';
-// import { saveAs } from 'file-saver';
-import html2canvas from 'html2canvas';
+import domtoimage from 'dom-to-image';
+import { saveAs } from 'file-saver';
+// import html2canvas from 'html2canvas';
+
+import { ResultContext, UserStateContext } from '../../App';
 
 import * as Api from '../../api';
-import './style.css';
-import { ResultContext, userContext } from '../../App';
 
+import './style.css';
+
+// 나라(도시) 결과 보여주는 페이지
 const CityInfo = () => {
   const [name, setName] = useState('명탐정');
   const [idx, setIdx] = useState(0);
   const {
     resultCountries,
-    setResultCountries,
     resultHPIRank,
     setResultHPIRank,
     resultAmount,
@@ -26,8 +28,16 @@ const CityInfo = () => {
     resultBigmacPrice,
     setResultBigmacPrice,
   } = useContext(ResultContext);
-  const { user } = useContext(userContext);
-  // console.log(user);
+
+  const userState = useContext(UserStateContext);
+
+  useEffect(() => {
+    if (window.sessionStorage.userToken) {
+      setName(userState.user.name);
+    } else {
+    }
+  }, [userState]);
+
   // const cardRef = useRef();
   // const onDownloadBtn = () => {
   //   const card = cardRef.current;
@@ -58,144 +68,147 @@ const CityInfo = () => {
   //   // 뱃지로 저장하는 코드 들어올 자리
   // };
 
-  const onHtmlToPng = () => {
-    const onCapture = () => {
-      console.log('onCapture');
-      html2canvas(document.querySelector('#capture')).then((canvas) => {
-        document.body.appendChild(
-          canvas.toDataURL('image/jpeg'),
-          'image-download.png'
-        );
-      });
-    };
-    const onSaveAs = (uri, filename) => {
-      console.log('onSaveAs');
-      const link = document.createElement('a');
-      document.body.appendChild(link);
-      link.href = uri;
-      link.click();
-      document.body.removeChild(link);
-    };
-  };
+  // const onHtmlToPng = () => {
+  //   const onCapture = () => {
+  //     console.log('onCapture');
+  //     html2canvas(document.querySelector('#capture')).then((canvas) => {
+  //       document.body.appendChild(
+  //         canvas.toDataURL('image/jpeg'),
+  //         'image-download.png'
+  //       );
+  //     });
+  //   };
+  //   const onSaveAs = (uri, filename) => {
+  //     console.log('onSaveAs');
+  //     const link = document.createElement('a');
+  //     document.body.appendChild(link);
+  //     link.href = uri;
+  //     link.click();
+  //     document.body.removeChild(link);
+  //   };
+  // };
 
   return (
     <div className='container flex-col p-2.5 bg-clouds'>
-      <Nav />
-      <div id='capture'>
-        {true ? (
-          <div>
-            <span className='flex text-xl lg:text-3xl font-irop'>
-              {name}님께{' '}
-              {resultCountries[idx].Country === resultCountries[idx].City ? (
-                <p className='inputCity text-xl lg:text-3xl font-fred mx-2'>
-                  {resultCountries[idx].Country}
-                </p>
-              ) : (
-                <p className='inputCity text-xl lg:text-3xl font-fred mx-2'>
-                  {resultCountries[idx].Country}-{resultCountries[idx].City}
-                </p>
-              )}
-              을(를) 추천합니다.
-            </span>
-          </div>
-        ) : (
-          <></>
-        )}
+      {/* true에  설문조사를 하고 나온 결과인지 아닌지를 구분하는 조건 넣어줘야 함*/}
+      {true ? (
         <div>
-          <div className='flex m-28 mx-auto justify-center'>
-            <img
-              className='absolute w-96'
-              src='/imgs/victoryStand.png'
-              alt='시상대'
-            />
-            <img
-              name='1'
-              className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
-              style={{ left: '-20px', top: '-40px' }}
-              src={flagUrl2nd}
-              alt='2등 국기'
-              onClick={handleClick}
-              title={
-                resultCountries[1].Country === resultCountries[1].City
-                  ? resultCountries[1].Country
-                  : `${resultCountries[1].Country}-${resultCountries[1].City}`
-              }
-            />
-            <img
-              name='0'
-              className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
-              style={{ left: '-5px', top: '-75px' }}
-              src={flagUrl1st}
-              alt='1등 국기'
-              onClick={handleClick}
-              title={
-                resultCountries[0].Country === resultCountries[0].City
-                  ? resultCountries[0].Country
-                  : `${resultCountries[0].Country}-${resultCountries[0].City}`
-              }
-            />
-            <img
-              name='2'
-              className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
-              style={{ left: '0px', top: '-20px' }}
-              src={flagUrl3rd}
-              alt='3등 국기'
-              onClick={handleClick}
-              title={
-                resultCountries[2].Country === resultCountries[2].City
-                  ? resultCountries[2].Country
-                  : `${resultCountries[2].Country}-${resultCountries[2].City}`
-              }
-            />
-          </div>
+          <span className='flex text-xl lg:text-3xl font-irop'>
+            {name}님께{' '}
+            {resultCountries[idx].Country === resultCountries[idx].City ? (
+              <p className='inputCity text-xl lg:text-3xl font-fred mx-2'>
+                {resultCountries[idx].Country}
+              </p>
+            ) : (
+              <p className='inputCity text-xl lg:text-3xl font-fred mx-2'>
+                {resultCountries[idx].Country}-{resultCountries[idx].City}
+              </p>
+            )}
+            을(를) 추천합니다.
+          </span>
         </div>
-        <div
-          className={
-            'flex flex-col mb-16 font-noto text-2xl' + (false ? ' blur-sm' : '')
-          }
-        >
-          <div className='flex justify-center text-5xl mb-4 font-irop'>
-            {resultCountries[idx].Country === resultCountries[idx].City
-              ? resultCountries[idx].Country
-              : `${resultCountries[idx].Country}-${resultCountries[idx].City}`}
-          </div>
-          <div className='flex justify-center mx-32 lg:mx-64'>
-            {resultCountries[idx].Country === resultCountries[idx].City
-              ? resultCountries[idx].Country
-              : `${resultCountries[idx].Country}-${resultCountries[idx].City}`}{' '}
-            1년 평균 최소 기온은 {resultAmount.min.toFixed(0)}(°C)이며 평균 최대
-            기온은 {resultAmount.max.toFixed(0)}(°C)로 평균적으로{' '}
-            {resultAmount.mean.toFixed(0)}(°C)입니다. 행복지수는 146개국 중
-            59번째입니다. 자유 - {resultHPIRank.Freedom}위, GDP -{' '}
-            {resultHPIRank.GDP}위, 관용 - {resultHPIRank.Generosity}위, 기대수명
-            - {resultHPIRank.HLE}위, 부정부패 - {resultHPIRank.corruption}위,
-            사회적 지지 - {resultHPIRank.socialSupport}위 입니다.
-          </div>
+      ) : (
+        <></>
+      )}
+      <div>
+        <div className='flex m-28 mx-auto justify-center'>
+          <img
+            className='absolute w-96'
+            src='/imgs/victoryStand.png'
+            alt='시상대'
+          />
+          <img
+            name='1'
+            className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
+            style={{ left: '-20px', top: '-40px' }}
+            src={flagUrl2nd}
+            alt='2등 국기'
+            onClick={handleClick}
+            title={
+              resultCountries[1].Country === resultCountries[1].City
+                ? resultCountries[1].Country
+                : `${resultCountries[1].Country}-${resultCountries[1].City}`
+            }
+          />
+          <img
+            name='0'
+            className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
+            style={{ left: '-5px', top: '-75px' }}
+            src={flagUrl1st}
+            alt='1등 국기'
+            onClick={handleClick}
+            title={
+              resultCountries[0].Country === resultCountries[0].City
+                ? resultCountries[0].Country
+                : `${resultCountries[0].Country}-${resultCountries[0].City}`
+            }
+          />
+          <img
+            name='2'
+            className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
+            style={{ left: '0px', top: '-20px' }}
+            src={flagUrl3rd}
+            alt='3등 국기'
+            onClick={handleClick}
+            title={
+              resultCountries[2].Country === resultCountries[2].City
+                ? resultCountries[2].Country
+                : `${resultCountries[2].Country}-${resultCountries[2].City}`
+            }
+          />
         </div>
-        <div
-          className={'flex flex-col lg:flex-row' + (false ? ' blur-sm' : '')}
-        >
-          <div className='lg:basis-1/2 flex justify-center'>
-            <WeatherChart resultAmount={resultAmount} />
-          </div>
-          <div className='lg:basis-1/2 flex justify-center'>
-            <RadarChart resultAmount={resultAmount} />
-          </div>
+      </div>
+      <div className='flex flex-col mb-16 font-noto text-2xl'>
+        <div className='flex justify-center text-5xl mb-4 font-irop'>
+          {resultCountries[idx].Country === resultCountries[idx].City
+            ? resultCountries[idx].Country
+            : `${resultCountries[idx].Country}-${resultCountries[idx].City}`}
         </div>
-        <div>
-          <Bigmac resultBigmacPrice={resultBigmacPrice} />
+        <div className='flex justify-center mx-32 lg:mx-64'>
+          {resultCountries[idx].Country === resultCountries[idx].City
+            ? resultCountries[idx].Country
+            : `${resultCountries[idx].Country}-${resultCountries[idx].City}`}{' '}
+          의 연평균 최소 기온은 {resultAmount.min.toFixed(0)}°C, 최대 기온은{' '}
+          {resultAmount.max.toFixed(0)}°C로 평균 {resultAmount.mean.toFixed(0)}
+          °C입니다. 6가지(자유 - {resultHPIRank.Freedom}위, GDP -{' '}
+          {resultHPIRank.GDP}위, 관용 - {resultHPIRank.Generosity}위, 기대수명 -{' '}
+          {resultHPIRank.HLE}위, 부정부패 - {resultHPIRank.corruption}위, 사회적
+          지지 - {resultHPIRank.socialSupport}위) 항목을 토대로 68개국 중{' '}
+          {resultHPIRank.score}위에 해당하는 행복지수를 갖는 나라입니다.
         </div>
       </div>
 
-      <div className='flex space-x-4 justify-end'>
-        {/* <Button text='저장하기' type='main' onClick={handleSaveCountry} />
+      {window.sessionStorage.userToken ? (
+        ''
+      ) : (
+        <div className='flex justify-center mb-4'>
+          <KakaoLogin />
+        </div>
+      )}
 
-        <Button className='downBtn' text='다운로드' onClick={onDownloadBtn} /> */}
-        <Button text='다운로드' onClick={onHtmlToPng} />
+      <div
+        className={
+          'flex flex-col' + (window.sessionStorage.userToken ? '' : ' blur-sm')
+        }
+      >
+        <div className='flex justify-center'>
+          <WeatherChart resultAmount={resultAmount} />
+        </div>
+        <div className='flex justify-center mb-8'>
+          <RadarChart resultAmount={resultAmount} />
+        </div>
+        <div className='flex justify-center'>
+          <Bigmac resultBigmacPrice={resultBigmacPrice} />
+        </div>
+      </div>
+      <div className='flex space-x-4 justify-end'>
+        {/* <Button text='저장하기' type='main' onClick={handleSaveCountry} /> */}
+
+        {/* <Button className='downBtn' text='다운로드' onClick={onDownloadBtn} /> */}
         <KakaoShareButton />
       </div>
     </div>
   );
 };
 
-export default CityInfo;
+export default React.memo(CityInfo);

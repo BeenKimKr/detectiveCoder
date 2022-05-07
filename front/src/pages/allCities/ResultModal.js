@@ -1,13 +1,13 @@
 import React from 'react';
 
 const elements = [
-  { element: '자유도', rank: '63위', word: 'Freedom' },
+  { element: '자유도', rank: '64위', word: 'Freedom' },
   { element: 'GDP', rank: '24위', word: 'GDP' },
   { element: '관대함', rank: '36위', word: 'Generosity' },
   { element: '기대수명', rank: '7위', word: 'HLE' },
-  { element: '청렴도', rank: '2위', word: 'corruption' },
-  { element: '물가', rank: '27위', word: 'price' },
-  { element: '사회복지', rank: '3위', word: 'socialSupport' },
+  { element: '청렴도', rank: '30위', word: 'corruption' },
+  { element: '물가', rank: '35위', word: 'price' },
+  { element: '사회복지', rank: '63위', word: 'socialSupport' },
 ];
 
 const ResultModal = (props) => {

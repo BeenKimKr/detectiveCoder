@@ -13,13 +13,13 @@ const SurveyTemp = () => {
 
   return (
     <>
-      <div className='RangeContainer'>
-        <div className='tempText'>
-          <span className='font-fred'>
+      <div className="RangeContainer">
+        <div className="tempText">
+          <span className="font-fred">
             외출할 때 어떤 옷을 입고 싶나요? 👚🧣
           </span>
         </div>
-        <div className='InfoContainer'>
+        <div className="InfoContainer">
           {WEATHER.map((it, index) => (
             <>
               <button
@@ -28,9 +28,9 @@ const SurveyTemp = () => {
                 value={it.avg}
                 onClick={onClick}
               >
-                <div className='InfoTempContainer'>
-                  <p className='InfoTempText'>{it.name}</p>
-                  <p className='InfoTempText'>{it.description}</p>
+                <div className="InfoTempContainer">
+                  <p className="InfoTempText">{it.name}</p>
+                  <p className="InfoTempText">{it.description}</p>
                 </div>
               </button>
             </>

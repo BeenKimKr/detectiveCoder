@@ -2,15 +2,14 @@ import React from 'react';
 
 const { Kakao } = window;
 const KakaoLogout = () => {
-  if (!Kakao.Auth.getAccessToken()) {
-    alert('Not logged in.');
-    return;
-  }
-  Kakao.Auth.logout(function () {
-    alert('logout okaccess token -> ' + Kakao.Auth.getAccessToken());
-  });
+  const onClick = () => {
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('userInfo');
+    alert('다음에 또 만나요👋');
+  };
+
   return (
-    <a href='#' onClick={KakaoLogout()}>
+    <a href="#" onClick={onClick}>
       로그아웃
     </a>
   );
