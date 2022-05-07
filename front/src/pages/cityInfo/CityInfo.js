@@ -8,13 +8,15 @@ import Nav from '../../components/Nav/Nav';
 import { ResultContext, UserStateContext } from '../../App';
 
 import * as Api from '../../api';
-
+import { useNavigate } from 'react-router-dom';
 import './style.css';
 
 // 나라(도시) 결과 보여주는 페이지
 const CityInfo = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState('명탐정');
   const [idx, setIdx] = useState(0);
+
   const [userToken, setUserToken] = useState(window.sessionStorage.userToken);
   console.log(userToken);
   const {
@@ -30,13 +32,24 @@ const CityInfo = () => {
   } = useContext(ResultContext);
 
   const userState = useContext(UserStateContext);
-  console.log(deliverTemp);
+
   useEffect(() => {
     if (window.sessionStorage.userToken) {
       setName(userState.user.name);
       console.log(userState);
     }
   }, [userState]);
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', alertUser);
+    return () => {
+      window.removeEventListener('beforeunload', alertUser);
+    };
+  }, []);
+  const alertUser = (e) => {
+    e.preventDefault();
+    e.returnValue = '';
+  };
 
   const flagUrl1st = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[0].Ab}-flag.gif`;
   const flagUrl2nd = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[1].Ab}-flag.gif`;
@@ -163,13 +176,14 @@ const CityInfo = () => {
           <RadarChart resultAmount={resultAmount} />
         </div>
         <div className="flex justify-center">
-          <Bigmac resultBigmacPrice={resultBigmacPrice} />
+          <Bigmac
+            resultBigmacPrice={resultBigmacPrice}
+            deliverTemp={deliverTemp}
+          />
         </div>
       </div>
-      <div className="flex space-x-4 justify-end">
-        {/* <Button text='저장하기' type='main' onClick={handleSaveCountry} /> */}
 
-        {/* <Button className='downBtn' text='다운로드' onClick={onDownloadBtn} /> */}
+      <div className="flex space-x-4 justify-end">
         <KakaoShareButton />
       </div>
     </div>
