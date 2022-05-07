@@ -2,8 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import WeatherChart from '../../components/charts/WeatherChart';
 import Bigmac from '../../components/charts/Bigmac';
 import RadarChart from '../../components/charts/RadarChart';
-import KakaoLogin from '../../components/Kakao/KakaoLogin';
 import KakaoShareButton from '../../components/KakaoShare';
+import Comment from '../comment.js/Comment';
 import Nav from '../../components/Nav/Nav';
 import { ResultContext, UserStateContext } from '../../App';
 
@@ -14,6 +14,7 @@ import './style.css';
 // 나라(도시) 결과 보여주는 페이지
 const CityInfo = () => {
   const [name, setName] = useState('명탐정');
+  const [checkSubmit, setCheckSubmit] = useState(false);
   const [idx, setIdx] = useState(0);
   const [userToken, setUserToken] = useState(window.sessionStorage.userToken);
   console.log(userToken);
@@ -145,11 +146,11 @@ const CityInfo = () => {
         </div>
       </div>
 
-      {userToken ? (
+      {checkSubmit ? (
         ''
       ) : (
         <div className="flex justify-center mb-4">
-          <KakaoLogin setUserToken={setUserToken} setName={setName} />
+          <Comment setCheckSubmit={setCheckSubmit} />
         </div>
       )}
 
