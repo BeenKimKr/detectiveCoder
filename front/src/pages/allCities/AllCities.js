@@ -83,24 +83,24 @@ const AllCities = () => {
   }, [sort]);
 
   return (
-    <div className="container bg-white w-screen flex-row text-center ">
+    <div className='container bg-white w-screen flex-row text-center '>
       <Nav />
-      <div className="bg-sky-50  p-10 flex-row ">
-        <div className="text-left ml-7  mb-3 flex">
-          <p className="font-jua text-xl text-sky-500 ">
+      <div className='bg-sky-50  p-10 flex-row '>
+        <div className='text-left ml-7  mb-3 flex'>
+          <p className='font-jua text-xl text-sky-500 '>
             {' '}
             행복지수별 나라랭킹을 볼 수 있습니다.🥇
           </p>
         </div>
-        <div className="flex">
-          <div className="ml-5">
-            <div className="mainContainer ">
-              <p className="mt-2 text-blue-400 font-jua">행복지수</p>
+        <div className='flex'>
+          <div className='ml-5'>
+            <div className='mainContainer '>
+              <p className='mt-2 text-blue-400 font-jua'>행복지수</p>
             </div>
           </div>
-          <div className="ml-5">
+          <div className='ml-5'>
             <select
-              class="selectContainer font-jua text-custom-sub-hover"
+              class='selectContainer font-jua text-custom-sub-hover'
               onChange={handleChange}
             >
               <option disabled selected>
@@ -118,23 +118,23 @@ const AllCities = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-4 mt-11" onScroll={handleScroll}>
+      <div className='grid grid-cols-3 gap-4 mt-11' onScroll={handleScroll}>
         {/* 이미지 카드 */}
         {sort.map((it, index) => {
           return (
             <button
-              className="countryCard"
+              className='countryCard'
               key={index}
               onClick={clickCard}
               value={it.Country}
             >
               <img
-                class="imgCard"
+                class='imgCard'
                 src={`https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${it.Ab}-flag.gif`}
               />
-              <div className="pt-3 pl-3">
-                <span className="countryCardText">{it.Country}</span>
-                <span class="rankText">
+              <div className='pt-3 pl-3'>
+                <span className='countryCardText'>{it.Country}</span>
+                <span class='rankText'>
                   {index === 0
                     ? '🥇'
                     : index === 1
