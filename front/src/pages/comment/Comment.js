@@ -10,7 +10,7 @@ const Rating = [
 ];
 
 const Comment = ({ setCheckSubmit }) => {
-  const [score, setScore] = useState('');
+  const [score, setScore] = useState('1');
   const [comment, setComment] = useState('');
 
   const handleChange = (e) => {

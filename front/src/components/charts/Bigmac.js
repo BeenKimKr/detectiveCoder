@@ -21,21 +21,21 @@ const Bigmac = ({ resultBigmacPrice, resultAmount }) => {
   ];
 
   return (
-    <div className='bigmacChart'>
-      <span className='font-irop font-bold'>🍔 빅맥으로 알아보는 물가(₩)</span>
+    <div className="bigmacChart">
+      <span className="font-irop font-bold">🍔 빅맥으로 알아보는 물가(₩)</span>
       <ResponsiveContainer
-        className='flex justify-center'
+        className="flex justify-center"
         width={450}
         height={200}
       >
-        <BarChart data={data} layout='vertical'>
-          <XAxis type='number' />
-          <YAxis yAxisId={0} dataKey='factor' type='category' />
-          <YAxis dataKey='max' yAxisId={1} hide />
+        <BarChart data={data} layout="vertical">
+          <XAxis type="number" />
+          <YAxis yAxisId={0} dataKey="factor" type="category" />
+          <YAxis dataKey="max" yAxisId={1} hide />
           <Tooltip wrapperStyle={{ width: 200, backgroundColor: '#ccc' }} />
-          <Bar dataKey='price' minPointSize={2} barSize={24}>
+          <Bar dataKey="price" minPointSize={2} barSize={24}>
             {data.map((d, idx) => {
-              return <Cell type='monotone' key={d.factor} fill={d.color} />;
+              return <Cell type="monotone" key={d.factor} fill={d.color} />;
             })}
           </Bar>
         </BarChart>

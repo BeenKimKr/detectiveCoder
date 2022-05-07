@@ -16,8 +16,7 @@ const CityInfo = () => {
   const [name, setName] = useState('명탐정');
   const [checkSubmit, setCheckSubmit] = useState(false);
   const [idx, setIdx] = useState(0);
-  const [userToken, setUserToken] = useState(window.sessionStorage.userToken);
-  console.log(userToken);
+
   const {
     resultCountries,
     resultHPIRank,
@@ -57,7 +56,7 @@ const CityInfo = () => {
 
   return (
     <div className="container flex-col p-2.5 bg-clouds">
-      <Nav userToken={userToken} />
+      <Nav userToken={'userToken'} />
       {/* true에  설문조사를 하고 나온 결과인지 아닌지를 구분하는 조건 넣어줘야 함*/}
       {true ? (
         <div>
@@ -154,7 +153,7 @@ const CityInfo = () => {
         </div>
       )}
 
-      <div className={'flex flex-col' + (userToken ? '' : ' blur-sm')}>
+      <div className={'flex flex-col' + (checkSubmit ? '' : ' blur-sm')}>
         <div className="flex justify-center">
           <WeatherChart resultAmount={resultAmount} />
         </div>
@@ -166,9 +165,6 @@ const CityInfo = () => {
         </div>
       </div>
       <div className="flex space-x-4 justify-end">
-        {/* <Button text='저장하기' type='main' onClick={handleSaveCountry} /> */}
-
-        {/* <Button className='downBtn' text='다운로드' onClick={onDownloadBtn} /> */}
         <KakaoShareButton />
       </div>
     </div>
