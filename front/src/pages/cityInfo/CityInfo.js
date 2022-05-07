@@ -25,16 +25,9 @@ const CityInfo = () => {
     setResultAmount,
     resultBigmacPrice,
     setResultBigmacPrice,
+    deliverTemp,
+    setDeliverTemp,
   } = useContext(ResultContext);
-
-  const userState = useContext(UserStateContext);
-
-  useEffect(() => {
-    if (window.sessionStorage.userToken) {
-      setName(userState.user.name);
-      console.log(userState);
-    }
-  }, [userState]);
 
   const flagUrl1st = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[0].Ab}-flag.gif`;
   const flagUrl2nd = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[1].Ab}-flag.gif`;

@@ -18,7 +18,7 @@ const Comment = ({ setCheckSubmit }) => {
   };
 
   const handleSubmit = async (e) => {
-    await Api.post('comment/', {
+    await Api.post('comment', {
       score,
       comment,
     });
