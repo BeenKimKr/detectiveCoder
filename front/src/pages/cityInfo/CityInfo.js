@@ -2,20 +2,22 @@ import React, { useState, useContext, useEffect } from 'react';
 import WeatherChart from '../../components/charts/WeatherChart';
 import Bigmac from '../../components/charts/Bigmac';
 import RadarChart from '../../components/charts/RadarChart';
+import KakaoShareButton from '../../components/KakaoShare';
+import Comment from '../comment/Comment';
 import Nav from '../../components/Nav/Nav';
-import { ResultContext } from '../../App'; // , UserStateContext
+import { ResultContext, UserStateContext } from '../../App';
 
 import * as Api from '../../api';
-import { useNavigate } from 'react-router-dom';
+
 import './style.css';
 
 // 나라(도시) 결과 보여주는 페이지
 const CityInfo = () => {
-  const navigate = useNavigate();
   const [name, setName] = useState('명탐정');
+  const [checkSubmit, setCheckSubmit] = useState(false);
   const [idx, setIdx] = useState(0);
-
-  // const [userToken, setUserToken] = useState(window.sessionStorage.userToken);
+  const [userToken, setUserToken] = useState(window.sessionStorage.userToken);
+  console.log(userToken);
   const {
     resultCountries,
     resultHPIRank,
@@ -24,28 +26,16 @@ const CityInfo = () => {
     setResultAmount,
     resultBigmacPrice,
     setResultBigmacPrice,
-    deliverTemp,
   } = useContext(ResultContext);
 
-  // const userState = useContext(UserStateContext);
-
-  // useEffect(() => {
-  //   if (window.sessionStorage.userToken) {
-  //     setName(userState.user.name);
-  //     console.log(userState);
-  //   }
-  // }, [userState]);
+  const userState = useContext(UserStateContext);
 
   useEffect(() => {
-    window.addEventListener('beforeunload', alertUser);
-    return () => {
-      window.removeEventListener('beforeunload', alertUser);
-    };
-  }, []);
-  const alertUser = (e) => {
-    e.preventDefault();
-    e.returnValue = '';
-  };
+    if (window.sessionStorage.userToken) {
+      setName(userState.user.name);
+      console.log(userState);
+    }
+  }, [userState]);
 
   const flagUrl1st = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[0].Ab}-flag.gif`;
   const flagUrl2nd = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[1].Ab}-flag.gif`;
@@ -66,20 +56,19 @@ const CityInfo = () => {
   };
 
   return (
-    <div className='container flex-col p-2.5 bg-clouds'>
-      {/* <Nav userToken={userToken} /> */}
-      <Nav />
+    <div className="container flex-col p-2.5 bg-clouds">
+      <Nav userToken={userToken} />
       {/* true에  설문조사를 하고 나온 결과인지 아닌지를 구분하는 조건 넣어줘야 함*/}
       {true ? (
         <div>
-          <span className='flex text-xl lg:text-3xl font-bold ml-6 font-noto'>
+          <span className="flex text-xl lg:text-3xl font-bold ml-6 font-noto">
             {name}님께{' '}
             {resultCountries[idx].Country === resultCountries[idx].City ? (
-              <p className='inputCity text-xl lg:text-3xl font-fred mx-2'>
+              <p className="inputCity text-xl lg:text-3xl font-fred mx-2">
                 {resultCountries[idx].Country}
               </p>
             ) : (
-              <p className='inputCity text-xl lg:text-3xl font-fred mx-2'>
+              <p className="inputCity text-xl lg:text-3xl font-fred mx-2">
                 {resultCountries[idx].Country}-{resultCountries[idx].City}
               </p>
             )}
@@ -90,18 +79,18 @@ const CityInfo = () => {
         <></>
       )}
       <div>
-        <div className='flex m-28 justify-center'>
+        <div className="flex m-28 mx-auto justify-center">
           <img
-            className='absolute w-96'
-            src='/imgs/victoryStand.png'
-            alt='시상대'
+            className="absolute w-96"
+            src="/imgs/victoryStand.png"
+            alt="시상대"
           />
           <img
-            name='1'
-            className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
+            name="1"
+            className="w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl"
             style={{ left: '-20px', top: '-40px' }}
             src={flagUrl2nd}
-            alt='2등 국기'
+            alt="2등 국기"
             onClick={handleClick}
             title={
               resultCountries[1].Country === resultCountries[1].City
@@ -110,11 +99,11 @@ const CityInfo = () => {
             }
           />
           <img
-            name='0'
-            className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
+            name="0"
+            className="w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl"
             style={{ left: '-5px', top: '-75px' }}
             src={flagUrl1st}
-            alt='1등 국기'
+            alt="1등 국기"
             onClick={handleClick}
             title={
               resultCountries[0].Country === resultCountries[0].City
@@ -123,11 +112,11 @@ const CityInfo = () => {
             }
           />
           <img
-            name='2'
-            className='w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl'
+            name="2"
+            className="w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl"
             style={{ left: '0px', top: '-20px' }}
             src={flagUrl3rd}
-            alt='3등 국기'
+            alt="3등 국기"
             onClick={handleClick}
             title={
               resultCountries[2].Country === resultCountries[2].City
@@ -137,13 +126,13 @@ const CityInfo = () => {
           />
         </div>
       </div>
-      <div className='flex flex-col mb-16 font-noto text-2xl'>
-        <div className='flex justify-center text-5xl mb-4 font-irop'>
+      <div className="flex flex-col mb-16 font-noto text-2xl">
+        <div className="flex justify-center text-5xl mb-4 font-irop">
           {resultCountries[idx].Country === resultCountries[idx].City
             ? resultCountries[idx].Country
             : `${resultCountries[idx].Country}-${resultCountries[idx].City}`}
         </div>
-        <div className='flex justify-center mx-32 lg:mx-64'>
+        <div className="flex justify-center mx-32 lg:mx-64">
           {resultCountries[idx].Country === resultCountries[idx].City
             ? resultCountries[idx].Country
             : `${resultCountries[idx].Country}-${resultCountries[idx].City}`}{' '}
@@ -157,28 +146,30 @@ const CityInfo = () => {
         </div>
       </div>
 
-      {/* {userToken ? (
+      {checkSubmit ? (
         ''
       ) : (
-        <div className='flex justify-center mb-4'>
-          <KakaoLogin setUserToken={setUserToken} setName={setName} />
+        <div className="flex justify-center mb-4">
+          <Comment setCheckSubmit={setCheckSubmit} />
         </div>
-      )} */}
+      )}
 
-      {/* 별점 입력하는 조건 넣어주면 됨 */}
-      <div className={'flex flex-col' + (true ? '' : ' blur-sm')}>
-        <div className='flex justify-center'>
-          <WeatherChart resultAmount={resultAmount} deliverTemp={deliverTemp} />
+      <div className={'flex flex-col' + (userToken ? '' : ' blur-sm')}>
+        <div className="flex justify-center">
+          <WeatherChart resultAmount={resultAmount} />
         </div>
-        <div className='flex justify-center mb-8'>
+        <div className="flex justify-center mb-8">
           <RadarChart resultAmount={resultAmount} />
         </div>
-        <div className='flex justify-center'>
-          <Bigmac
-            resultAmount={resultAmount}
-            resultBigmacPrice={resultBigmacPrice}
-          />
+        <div className="flex justify-center">
+          <Bigmac resultBigmacPrice={resultBigmacPrice} />
         </div>
+      </div>
+      <div className="flex space-x-4 justify-end">
+        {/* <Button text='저장하기' type='main' onClick={handleSaveCountry} /> */}
+
+        {/* <Button className='downBtn' text='다운로드' onClick={onDownloadBtn} /> */}
+        <KakaoShareButton />
       </div>
     </div>
   );
