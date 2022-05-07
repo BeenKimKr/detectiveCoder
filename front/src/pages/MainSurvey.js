@@ -23,6 +23,7 @@ const MainSurvey = () => {
     setResultHPIRank,
     setResultAmount,
     setResultBigmacPrice,
+    setDeliverTemp,
   } = useContext(ResultContext);
 
   const saveAnswers = {
@@ -42,6 +43,7 @@ const MainSurvey = () => {
 
   useEffect(() => {
     console.log('temp', temp);
+    setDeliverTemp(temp);
   }, [temp]);
 
   const closeTempModal = () => {

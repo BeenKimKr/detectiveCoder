@@ -25,10 +25,12 @@ const CityInfo = () => {
     setResultAmount,
     resultBigmacPrice,
     setResultBigmacPrice,
+    deliverTemp,
+    setDeliverTemp,
   } = useContext(ResultContext);
 
   const userState = useContext(UserStateContext);
-
+  console.log(deliverTemp);
   useEffect(() => {
     if (window.sessionStorage.userToken) {
       setName(userState.user.name);
