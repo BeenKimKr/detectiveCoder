@@ -56,7 +56,7 @@ const CityInfo = () => {
 
   return (
     <div className="container flex-col p-2.5 bg-clouds">
-      <Nav />
+      <Nav userToken={userToken} />
       {/* true에  설문조사를 하고 나온 결과인지 아닌지를 구분하는 조건 넣어줘야 함*/}
       {true ? (
         <div>
@@ -160,7 +160,7 @@ const CityInfo = () => {
         <div className="flex justify-center mb-8">
           <RadarChart resultAmount={resultAmount} />
         </div>
-        <div className="flex justify-center mr-8">
+        <div className="flex justify-center">
           <Bigmac resultBigmacPrice={resultBigmacPrice} />
         </div>
       </div>

@@ -1,9 +1,8 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
-import KakaoLogin from '../Kakao/KakaoLogin';
-// import KakaoShareButton from '../KakaoShare';
 
 const navigation = [
   { name: 'Home', href: '/Home', current: false },
@@ -11,16 +10,18 @@ const navigation = [
   // { name: <KakaoLogout /> },
 ];
 
-// const kakao = [{ name: 'Team', current: false }];
+const kakao = [{ name: 'Logout', current: false }];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Nav() {
-  const logout = () => {
+export default function Nav({ userToken }) {
+  const navigate = useNavigate();
+  const clickLogout = () => {
     sessionStorage.removeItem('userToken');
-    alert('팀소개 페');
+    alert('로그아웃이 완료되었습니다😊');
+    navigate('/home');
   };
 
   return (
@@ -63,28 +64,29 @@ export default function Nav() {
                         {item.name}
                       </a>
                     ))}
-                    {/* {kakao.map((item) => (
-                      <a
-                        onClick={logout}
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? 'bg-gray-900 text-white cursor-pointer'
-                            : 'text-amber-400  cursor-pointer hover:text-amber-600 hover:text-xl ',
-                          'px-3 py-1 rounded-md cursor-pointer text-lg font-medium items-center justify-center'
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))} */}
+                    {userToken
+                      ? kakao.map((item) => (
+                          <a
+                            onClick={clickLogout}
+                            key={item.name}
+                            href={item.href}
+                            className={classNames(
+                              item.current
+                                ? 'bg-gray-900 text-white'
+                                : 'text-amber-400  cursor-pointer hover:text-xl text-amber-500 ',
+                              'px-3 py-1 rounded-md text-lg font-medium items-center justify-center'
+                            )}
+                            aria-current={item.current ? 'page' : undefined}
+                          >
+                            {item.name}
+                          </a>
+                        ))
+                      : ''}
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navigation.map((item) => (
