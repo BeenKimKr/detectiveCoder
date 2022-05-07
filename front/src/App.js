@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import CityInfo from './pages/cityInfo/CityInfo';
 import MainSurvey from './pages/MainSurvey';
+// import KakaoLogin from './components/Kakao/KakaoLogin';
 
 import AllCities from './pages/allCities/AllCities';
 import * as Api from './api';
@@ -101,6 +102,7 @@ function App() {
               <Route path='/cityinfo' element={<CityInfo />} />
               <Route path='/allcities' element={<AllCities />} />
               <Route path='/mainsurvey' element={<MainSurvey />} />
+              {/* <Route path='/cityinfo' eliment={<KakaoLogin />} /> */}
               <Route path='*' element={<Home />} />
             </Routes>
           </Router>
