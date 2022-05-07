@@ -27,9 +27,15 @@ const Home = () => {
         <div className=" ml-48 items-center  sm:mt-8 sm:flex justify-center ">
           <a
             href="/mainsurvey"
-            className="font-noto font-bold flex items-center justify-center px-8 py-3 border border-transparent  rounded-md text-white bg-custom-main hover:bg-custom-main-hover md:py-4 md:text-lg md:px-10"
+            className="font-noto font-bold flex items-center justify-center px-8 border border-transparent  rounded-md text-white bg-custom-main hover:bg-custom-main-hover md:py-4 md:text-lg md:px-10"
           >
-            나와 맞는 도시 찾기!
+            나와 맞는 도시 찾기
+            <img
+              src={
+                process.env.PUBLIC_URL + '/imgs/free-icon-travel-4652340.png'
+              }
+              className="w-10 h-10 mt-1  ml-2"
+            />
           </a>
         </div>
       </div>

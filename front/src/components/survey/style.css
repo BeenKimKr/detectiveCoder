@@ -14,7 +14,7 @@ button {
 }
 
 .InfoCard {
-  @apply flex  justify-between  items-center h-16  w-96  mx-2 mb-2 pt-2 rounded;
+  @apply flex  justify-between  items-center h-16  w-96  mx-2 mb-2 pt-2 rounded  hover:border-4 border-custom-main;
 }
 
 .InfoTempContainer {

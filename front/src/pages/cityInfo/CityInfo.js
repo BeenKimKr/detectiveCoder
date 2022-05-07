@@ -13,6 +13,7 @@ import { ResultContext, UserStateContext } from '../../App';
 import * as Api from '../../api';
 
 import './style.css';
+import Nav from '../../components/Nav/Nav';
 
 // 나라(도시) 결과 보여주는 페이지
 const CityInfo = () => {
@@ -68,6 +69,7 @@ const CityInfo = () => {
 
   return (
     <div className="container flex-col p-2.5 bg-clouds">
+      <Nav />
       {/* true에  설문조사를 하고 나온 결과인지 아닌지를 구분하는 조건 넣어줘야 함*/}
       {true ? (
         <div>

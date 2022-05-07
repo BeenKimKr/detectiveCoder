@@ -11,7 +11,7 @@ const navigation = [
   // { name: <KakaoLogout /> },
 ];
 
-const kakao = [{ name: 'Team', current: false }];
+// const kakao = [{ name: 'Team', current: false }];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -42,7 +42,7 @@ export default function Nav() {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center text-custom-main-hover">
-                  <a>Country GOGO✈️</a>
+                  <a>Country GOGO</a>
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -63,7 +63,7 @@ export default function Nav() {
                         {item.name}
                       </a>
                     ))}
-                    {kakao.map((item) => (
+                    {/* {kakao.map((item) => (
                       <a
                         onClick={logout}
                         key={item.name}
@@ -78,7 +78,7 @@ export default function Nav() {
                       >
                         {item.name}
                       </a>
-                    ))}
+                    ))} */}
                   </div>
                 </div>
               </div>
