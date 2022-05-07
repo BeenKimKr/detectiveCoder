@@ -17,14 +17,20 @@ const Bigmac = ({ resultBigmacPrice }) => {
     {
       factor: resultBigmacPrice.Country,
       price: resultBigmacPrice.price.toFixed(0),
-      color: '#FFA500',
+      color: '#80ca9c',
     },
   ];
 
   return (
     <div className="bigmacChart">
-      <span className="chartTitle font-irop">🍔 빅맥으로 알아보는 물가(₩)</span>
-      <ResponsiveContainer className="flex ml-5" width={400} height={150}>
+      <span className="chartTitle font-irop font-bold">
+        🍔 빅맥으로 알아보는 물가(₩)
+      </span>
+      <ResponsiveContainer
+        className="flex ml-10 justify-center"
+        width={350}
+        height={150}
+      >
         <BarChart data={data} layout="vertical">
           <XAxis type="number" />
           <YAxis yAxisId={0} dataKey="factor" type="category" />

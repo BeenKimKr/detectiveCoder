@@ -16,18 +16,16 @@ const Home = () => {
                 COUNTRY GOGO
               </span>
             </h1>
-            <p className=" font-irop mt-3 object-cover   text-white sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg: text-left">
-              오래 기다리셨습니다! 코로나의 장기화로 해외여행에 대한 갈망이
-              증가하며, 최근 해외여행을 준비하는 여행객들이 많아지고 있습니다!
-              어디로 떠나야할지 망설이지 마세요! 당신과 맞는 도시를
-              추천해드립니다.😊
-            </p>
+            <div className=" font-noto font-bold mt-3 object-cover ml-0  text-white sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg: text-left">
+              <p className="text-xl">어디로 떠나야할지 망설이지 마세요! </p>
+              <p> 당신과 맞는 도시를 추천해드립니다.</p>
+            </div>
           </div>
         </main>
         <div className=" ml-48 items-center  sm:mt-8 sm:flex justify-center ">
           <a
             href="/mainsurvey"
-            className="font-noto font-bold flex items-center justify-center px-8 border border-transparent  rounded-md text-white bg-custom-main hover:bg-custom-main-hover md:py-4 md:text-lg md:px-10"
+            className="font-noto font-bold flex items-center justify-center px-8 border  border-white  rounded-md text-white   md:text-lg md:px-10"
           >
             나와 맞는 도시 찾기
             <img

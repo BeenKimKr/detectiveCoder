@@ -1,24 +1,22 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
-import Button from '../../components/btn/CommonButton';
+import React, { useState, useContext, useEffect } from 'react';
 import WeatherChart from '../../components/charts/WeatherChart';
 import Bigmac from '../../components/charts/Bigmac';
 import RadarChart from '../../components/charts/RadarChart';
 import KakaoLogin from '../../components/Kakao/KakaoLogin';
 import KakaoShareButton from '../../components/KakaoShare';
-import domtoimage from 'dom-to-image';
-import { saveAs } from 'file-saver';
-
+import Nav from '../../components/Nav/Nav';
 import { ResultContext, UserStateContext } from '../../App';
 
 import * as Api from '../../api';
 
 import './style.css';
-import Nav from '../../components/Nav/Nav';
 
 // 나라(도시) 결과 보여주는 페이지
 const CityInfo = () => {
   const [name, setName] = useState('명탐정');
   const [idx, setIdx] = useState(0);
+  const [userToken, setUserToken] = useState(window.sessionStorage.userToken);
+  console.log(userToken);
   const {
     resultCountries,
     resultHPIRank,
@@ -28,22 +26,15 @@ const CityInfo = () => {
     resultBigmacPrice,
     setResultBigmacPrice,
   } = useContext(ResultContext);
+
   const userState = useContext(UserStateContext);
 
   useEffect(() => {
     if (window.sessionStorage.userToken) {
       setName(userState.user.name);
-    } else {
+      console.log(userState);
     }
   }, [userState]);
-
-  const cardRef = useRef();
-  const onDownloadBtn = () => {
-    const card = cardRef.current;
-    domtoimage.toBlob(card).then((blob) => {
-      saveAs(blob, 'card.jpg');
-    });
-  };
 
   const flagUrl1st = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[0].Ab}-flag.gif`;
   const flagUrl2nd = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[1].Ab}-flag.gif`;
@@ -63,17 +54,13 @@ const CityInfo = () => {
     setResultBigmacPrice(bigmacPrice.data);
   };
 
-  const handleSaveCountry = () => {
-    // 뱃지로 저장하는 코드 들어올 자리
-  };
-
   return (
     <div className="container flex-col p-2.5 bg-clouds">
       <Nav />
       {/* true에  설문조사를 하고 나온 결과인지 아닌지를 구분하는 조건 넣어줘야 함*/}
       {true ? (
         <div>
-          <span className="flex text-xl lg:text-3xl font-irop">
+          <span className="flex text-xl lg:text-3xl font-bold ml-6 font-noto">
             {name}님께{' '}
             {resultCountries[idx].Country === resultCountries[idx].City ? (
               <p className="inputCity text-xl lg:text-3xl font-fred mx-2">
@@ -158,29 +145,29 @@ const CityInfo = () => {
         </div>
       </div>
 
-      {/* {window.sessionStorage.userToken ? (
+      {userToken ? (
         ''
       ) : (
         <div className="flex justify-center mb-4">
-          <KakaoLogin />
+          <KakaoLogin setUserToken={setUserToken} setName={setName} />
         </div>
-      )} */}
+      )}
 
-      <div className={'flex flex-col'}>
+      <div className={'flex flex-col' + (userToken ? '' : ' blur-sm')}>
         <div className="flex justify-center">
           <WeatherChart resultAmount={resultAmount} />
         </div>
         <div className="flex justify-center mb-8">
           <RadarChart resultAmount={resultAmount} />
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center mr-8">
           <Bigmac resultBigmacPrice={resultBigmacPrice} />
         </div>
       </div>
       <div className="flex space-x-4 justify-end">
-        <Button text="저장하기" type="main" onClick={handleSaveCountry} />
+        {/* <Button text='저장하기' type='main' onClick={handleSaveCountry} /> */}
 
-        <Button className="downBtn" text="다운로드" onClick={onDownloadBtn} />
+        {/* <Button className='downBtn' text='다운로드' onClick={onDownloadBtn} /> */}
         <KakaoShareButton />
       </div>
     </div>
