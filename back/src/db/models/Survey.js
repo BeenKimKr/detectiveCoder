@@ -1,4 +1,4 @@
-const { SurveyModel } = require("../schemas/survey");
+const { SurveyModel } = require('../schemas/survey');
 
 const Survey = {
   create: async ({ newSurvey }) => {

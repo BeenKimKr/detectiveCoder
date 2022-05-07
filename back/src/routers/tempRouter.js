@@ -1,5 +1,5 @@
-const { Router } = require("express");
-const { tempService } = require("../services/tempService.js");
+const { Router } = require('express');
+const { tempService } = require('../services/tempService.js');
 const tempRouter = Router();
 
 /**
@@ -10,7 +10,7 @@ const tempRouter = Router();
  *      summary: Get data
  *      tags: [Temp]
  *      responses:
- *        "200":
+ *        '200':
  *          description: get all data
  *          content:
  *            application/json:
@@ -18,7 +18,7 @@ const tempRouter = Router();
  *                $ref: '#/components/schemas/Temp'
  */
 
-tempRouter.get("/all", async (req, res, next) => {
+tempRouter.get('/all', async (req, res, next) => {
   try {
     const data = await tempService.getData();
 
@@ -31,19 +31,25 @@ tempRouter.get("/all", async (req, res, next) => {
 /**
  * @swagger
  * paths:
- *  /temp/:column:
+ *  /temp/{column}:
  *    get:
  *      summary: Get sorted data(by column)
  *      tags: [Temp]
+ *      parameters:
+ *        - in: path
+ *          name: column
+ *          required: true
+ *          type: string
+ *          description: The name of column
  *      responses:
- *        "200":
+ *        '200':
  *          description: Get sorted data(by column)
  *          content:
  *            application/json:
  *              schema:
  *                $ref: '#/components/schemas/Temp'
  */
-tempRouter.get("/:column", async (req, res, next) => {
+tempRouter.get('/:column', async (req, res, next) => {
   try {
     const column = req.params.column;
     console.log(column);

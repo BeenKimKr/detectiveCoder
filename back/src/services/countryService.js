@@ -1,5 +1,5 @@
-const { Country } = require("../db");
-const { Bigmac } = require("../db");
+const { Country } = require('../db');
+const { Bigmac } = require('../db');
 
 const countryService = {
   getAll: async () => {
@@ -41,9 +41,9 @@ const countryService = {
 
     let tempDifArr = [];
     let tempArr = [];
-    if (columns.includes("mean")) {
+    if (columns.includes('mean')) {
       for (let i = 0; i < dataFrame.length; i++) {
-        let absTemp = Math.abs(temp - dataFrame[i]["mean"]);
+        let absTemp = Math.abs(temp - dataFrame[i]['mean']);
         tempDifArr.push(Number(absTemp));
       }
 
@@ -57,18 +57,18 @@ const countryService = {
 
     for (let i = 0; i < dataFrame.length; i++) {
       const f_score =
-        first === "mean" ? tempArr[i] * 2 : dataFrame[i][first] * 2;
+        first === 'mean' ? tempArr[i] * 2 : dataFrame[i][first] * 2;
       const s_score =
-        second === "mean" ? tempArr[i] * 1.8 : dataFrame[i][second] * 1.8;
+        second === 'mean' ? tempArr[i] * 1.8 : dataFrame[i][second] * 1.8;
       const t_score =
-        (third === "mean" ? tempArr[i] * 1.6 : dataFrame[i][third] * 1.6) +
-        (third_ === "mean" ? tempArr[i] * 1.6 : dataFrame[i][third_] * 1.6);
+        (third === 'mean' ? tempArr[i] * 1.6 : dataFrame[i][third] * 1.6) +
+        (third_ === 'mean' ? tempArr[i] * 1.6 : dataFrame[i][third_] * 1.6);
 
       scoreMap = {};
-      scoreMap["Ab"] = dataFrame[i]["Ab"];
-      scoreMap["Country"] = dataFrame[i]["Country"];
-      scoreMap["City"] = dataFrame[i]["City"];
-      scoreMap["value"] = Number(f_score) + Number(s_score) + Number(t_score);
+      scoreMap['Ab'] = dataFrame[i]['Ab'];
+      scoreMap['Country'] = dataFrame[i]['Country'];
+      scoreMap['City'] = dataFrame[i]['City'];
+      scoreMap['value'] = Number(f_score) + Number(s_score) + Number(t_score);
 
       scoreArr[i] = scoreMap;
     }

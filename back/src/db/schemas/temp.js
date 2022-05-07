@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
 
 /**
  * @swagger
@@ -90,9 +90,9 @@ const { Schema, model } = require("mongoose");
  *            type: Number
  *            description: 도시별 12월 평균기온
  *        example:
- *           _id: "626b916bc1aeb7c566f8f577"
- *           City: "Abu Dhabi"
- *           Country: "United Arab Emirates"
+ *           _id: '626b916bc1aeb7c566f8f577'
+ *           City: 'Abu Dhabi'
+ *           Country: 'United Arab Emirates'
  *           apr: 28.373668430335105
  *           aug: 36.093411845024754
  *           dec: 21.30759515275644
@@ -201,6 +201,6 @@ const TempSchema = new Schema(
   }
 );
 
-const TempModel = model("Temp", TempSchema);
+const TempModel = model('Temp', TempSchema);
 
 module.exports = { TempModel };
