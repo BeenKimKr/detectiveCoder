@@ -9,10 +9,10 @@ import Team from './pages/Home/Teampage';
 import AllCities from './pages/allCities/AllCities';
 import * as Api from './api';
 import './App.css';
+import GuestBook from './pages/Home/GuestBook';
 // 결과 전송
 export const ResultContext = createContext();
 
-export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
   const [resultAmount, setResultAmount] = useState([]); //  수치
   const [resultBigmacPrice, setResultBigmacPrice] = useState([]);
   const [deliverTemp, setDeliverTemp] = useState('');
+
   const [userState, dispatch] = useReducer(loginReducer, {
     user: null,
   });
@@ -66,20 +67,19 @@ function App() {
   return (
     <>
       <DispatchContext.Provider value={dispatch}>
-        <UserStateContext.Provider value={userState}>
-          <ResultContext.Provider value={saveResult}>
-            <Router>
-              <Routes>
-                <Route path='/main' element={<Home />} />
-                <Route path='/cityinfo' element={<CityInfo />} />
-                <Route path='/allcities' element={<AllCities />} />
-                <Route path='/mainsurvey' element={<MainSurvey />} />
-                <Route path='/team' element={<Team />} />
-                <Route path='*' element={<Home />} />
-              </Routes>
-            </Router>
-          </ResultContext.Provider>
-        </UserStateContext.Provider>
+        <ResultContext.Provider value={saveResult}>
+          <Router>
+            <Routes>
+              <Route path="/main" element={<Home />} />
+              <Route path="/cityinfo" element={<CityInfo />} />
+              <Route path="/allcities" element={<AllCities />} />
+              <Route path="/mainsurvey" element={<MainSurvey />} />
+              <Route path="/guestbook" element={<GuestBook />} />
+              <Route path="/team" element={<Team />} />
+              <Route path="*" element={<Home />} />
+            </Routes>
+          </Router>
+        </ResultContext.Provider>
       </DispatchContext.Provider>
     </>
   );

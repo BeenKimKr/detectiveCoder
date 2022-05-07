@@ -1,8 +1,8 @@
 /* This example requires Tailwind CSS v2.0+ */
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import video from './Clouds.mp4';
 import Nav from '../../components/Nav/Nav';
-import GuestBook from './GuestBook';
+import * as Api from '../../api';
 
 const Home = () => {
   return (
@@ -44,9 +44,6 @@ const Home = () => {
             <source src={video} type="video/mp4" />
           </video>
         </div>
-      </div>
-      <div>
-        <GuestBook />
       </div>
       <footer class=" text-center p-4 bg-white rounded-lg shadow md:items-center md:justify-between md:p-6 dark:bg-gray-800">
         <span class="text-sm text-gray-500 text-center sm:text-center dark:text-gray-400">
