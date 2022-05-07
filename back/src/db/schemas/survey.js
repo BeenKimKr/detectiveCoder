@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
 
 /**
  * @swagger
@@ -19,7 +19,7 @@ const { Schema, model } = require("mongoose");
  *        example:
  *           id: '6Ffds790H-hiOB8fdGd70F7sLg_dfFD90FI82'
  *           temp: 20
- *           answer: ["GDP", "HLE", "price", "Freedom"]
+ *           answer: ['GDP', 'HLE', 'price', 'Freedom']
  */
 
 const SurveySchema = new Schema(
@@ -38,6 +38,6 @@ const SurveySchema = new Schema(
   }
 );
 
-const SurveyModel = model("Survey", SurveySchema);
+const SurveyModel = model('Survey', SurveySchema);
 
 module.exports = { SurveyModel };

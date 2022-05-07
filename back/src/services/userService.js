@@ -35,7 +35,7 @@ const userAuthService = {
     if (!isDataDeleted) {
       throw new Error('사용자 정보가 없습니다. 다시 시도해주세요.');
     }
-    return { status: "ok" };
+    return { status: 'ok' };
   },
 
   addBadge: async ({ id, countryData }) => {
