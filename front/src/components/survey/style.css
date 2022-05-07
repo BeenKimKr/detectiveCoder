@@ -4,21 +4,29 @@ button {
   @apply cursor-pointer;
 }
 
+.RangeContainer {
+  @apply flex flex-col  items-center relative pt-1 m-auto mt-20;
+}
+
 /* Info */
 .InfoContainer {
-  @apply grid grid-cols-2 rounded-lg bg-slate-50 my-5;
+  @apply rounded-lg;
 }
 
 .InfoCard {
-  @apply flex justify-around  h-10 w-72  mx-2 mb-2 pt-2 rounded;
+  @apply flex  justify-between  items-center h-16  w-96  mx-2 mb-2 pt-2 rounded  hover:border-4 border-custom-main;
 }
 
 .InfoTempContainer {
-  @apply mr-6;
+  @apply flex justify-between;
 }
 
 .InfoTempText {
-  @apply text-zinc-600 font-bold;
+  @apply text-zinc-600 font-bold ml-5;
+}
+
+.tempText {
+  @apply font-fred;
 }
 
 .InfoDescriptionText {
@@ -30,7 +38,7 @@ input {
 }
 
 .RangeContainer {
-  @apply flex flex-col  items-center relative pt-1 m-auto mt-32 font-noto font-fred;
+  @apply flex flex-col  items-center relative pt-1 m-auto  font-noto font-fred;
 }
 
 .TextContainer {
@@ -58,15 +66,72 @@ input {
   @apply bg-black-rgba;
 }
 
+/* Count */
+.countText {
+  @apply bg-custom-main text-white text-xl   font-bold text-center mr-2 px-2.5 py-0.5  w-20 h-11 rounded-full dark:bg-green-200 dark:text-green-900;
+}
+
 .AnswerContainer {
   /* @apply grid grid-cols-2 place-content-center; */
   @apply grid place-content-center mt-32;
 }
 
 .AnswerCard {
-  @apply p-6 w-96 h-20  mt-4 mx-52 text-center   bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-100;
+  @apply p-6 h-32 mt-4  text-center bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-100;
 }
 
 .AnswerCard h5 {
   @apply mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white;
+}
+
+.modal {
+  @apply hidden fixed inset-0  text-center text-lg  font-bold bg-black-rgba;
+}
+
+/* .modal > section {
+    @apply w-9/12  max-w-md m-auto  rounded-md bg-white overflow-hidden;
+  }
+   modal-show 부분을 테일윈드로 적용 X*/
+
+.tempModal > section {
+  width: 90%;
+  max-width: 450px;
+  margin: 0 auto;
+  border-radius: 0.3rem;
+  background-color: #fff;
+  animation: modal-show 0.3s;
+  overflow: hidden;
+}
+
+.tempModal .button {
+  @apply mb-5;
+}
+
+.tempModal > section > main {
+  @apply p-10;
+}
+
+.tempModal.openModal {
+  display: flex;
+  align-items: center;
+  animation: modal-bg-show 0.3s;
+}
+
+@keyframes modal-show {
+  from {
+    opacity: 0;
+    margin-top: -50px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+@keyframes modal-bg-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

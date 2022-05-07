@@ -1,20 +1,28 @@
-import React, { useState, createContext } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home/Home";
-import CityInfo from "./pages/cityInfo/CityInfo";
-import MainSurvey from "./pages/MainSurvey";
-
-import AllCities from "./pages/allCities/AllCities";
-import * as Api from "./api";
-import "./App.css";
-
+import React, { useState, useReducer, useEffect, createContext } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { loginReducer } from './reducer';
+import Home from './pages/Home/Home';
+import CityInfo from './pages/cityInfo/CityInfo';
+import MainSurvey from './pages/MainSurvey';
+import Nav from './components/Nav/Nav';
+import AllCities from './pages/allCities/AllCities';
+import * as Api from './api';
+import './App.css';
+// 결과 전송
 export const ResultContext = createContext();
+
+export const UserStateContext = createContext(null);
+export const DispatchContext = createContext(null);
 
 function App() {
   const [resultCountries, setResultCountries] = useState([]); //  필터링된 나라
   const [resultHPIRank, setResultHPIRank] = useState([]); //  HPI 등수
   const [resultAmount, setResultAmount] = useState([]); //  수치
-  const [user, setUser] = useState([]);
+  const [resultBigmacPrice, setResultBigmacPrice] = useState([]);
+  const [login, setLogin] = useState(false);
+  const [userState, dispatch] = useReducer(loginReducer, {
+    user: null,
+  });
 
   const saveResult = {
     resultCountries,
@@ -23,23 +31,52 @@ function App() {
     setResultHPIRank,
     resultAmount,
     setResultAmount,
-    user,
-    setUser,
+    resultBigmacPrice,
+    setResultBigmacPrice,
   };
+
+  const fetchCurrentUser = async (userToken) => {
+    await Api.post('users/auth/kakao', {
+      accessToken: userToken,
+    }).then((res) => {
+      const { data } = res;
+      console.log(data);
+      console.log(data.userInfo);
+      dispatch({
+        type: 'LOGIN_SUCCESS',
+        payload: data.userInfo,
+      });
+    });
+  };
+
+  // useEffect함수를 통해 fetchCurrentUser 함수를 실행함.
+  useEffect(() => {
+    const userToken = JSON.parse(window.sessionStorage.getItem('userToken'));
+    if (userToken) {
+      console.log('토큰존재');
+      fetchCurrentUser(userToken);
+    } else {
+      console.log('토큰이없당');
+    }
+  }, []);
 
   return (
     <>
-      <ResultContext.Provider value={saveResult}>
-        <Router>
-          <Routes>
-            <Route path="/main" element={<Home />} />
-            <Route path="/cityinfo" element={<CityInfo />} />
-            <Route path="/allcities" element={<AllCities />} />
-            <Route path="/mainsurvey" element={<MainSurvey />} />
-            <Route path="*" element={<Home />} />
-          </Routes>
-        </Router>
-      </ResultContext.Provider>
+      <DispatchContext.Provider value={dispatch}>
+        <UserStateContext.Provider value={userState}>
+          <ResultContext.Provider value={saveResult}>
+            <Router>
+              <Routes>
+                <Route path="/main" element={<Home />} />
+                <Route path="/cityinfo" element={<CityInfo />} />
+                <Route path="/allcities" element={<AllCities />} />
+                <Route path="/mainsurvey" element={<MainSurvey />} />
+                <Route path="*" element={<Home />} />
+              </Routes>
+            </Router>
+          </ResultContext.Provider>
+        </UserStateContext.Provider>
+      </DispatchContext.Provider>
     </>
   );
 }

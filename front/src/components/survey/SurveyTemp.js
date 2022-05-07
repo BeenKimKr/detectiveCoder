@@ -1,66 +1,56 @@
-import React, { useState, useContext } from 'react';
-import CommonButton from '../btn/CommonButton';
+import React, { useContext } from 'react';
 import { SaveAnswersContext, PercentContext } from '../../pages/MainSurvey';
 import { WEATHER } from './text/WEATHER';
 
-const SurveyTemp = () => {
-  const [open, setOpen] = useState(false);
+const SurveyTemp = (props) => {
+  const { open, close, setTempModal } = props;
+
   const { setTemp, temp } = useContext(SaveAnswersContext);
   const { setStep } = useContext(PercentContext);
 
-  const onTempChange = (e) => {
-    setTemp(e.target.value);
-  };
-
-  const onClick = () => {
+  const onClick = (e) => {
+    setTemp(e.currentTarget.value);
+    setTempModal(false);
     setStep(1);
   };
 
   return (
     <>
-      <div className='RangeContainer'>
-        <CommonButton
-          type={'temp'}
-          text={'기온별 옷차림이 궁금하다면? Click🔎'}
-          onClick={() => {
-            setOpen(!open);
-          }}
-        />
-        <div className='InfoContainer'>
-          {open && (
-            <>
+      <div className={open ? 'openModal modal ' : 'modal'}>
+        <section className="w-11/12">
+          <div className="RangeContainer ">
+            <div className="tempText flex">
+              <img
+                src={
+                  process.env.PUBLIC_URL +
+                  '/imgs/premium-icon-temperature-2652881.png'
+                }
+                className="w-12 h-12 mt-4 mr-2"
+              />
+              <p className="font-jua object-cover text-xl text-custom-main text-left mt-3 mb-3 ">
+                잠깐 외출할 때 어떤 옷을 입고 싶나요? <br />
+                선호하는 기온을 결과에 반영합니다.
+              </p>
+            </div>
+            <div className="InfoContainer">
               {WEATHER.map((it, index) => (
                 <>
-                  <div className={`InfoCard ${it.color}`} key={index}>
-                    <div className='InfoTempContainer'>
-                      <p className='InfoTempText'>{it.name}</p>
+                  <button
+                    className={`InfoCard ${it.color}`}
+                    key={index}
+                    value={it.avg}
+                    onClick={onClick}
+                  >
+                    <div className="InfoTempContainer">
+                      <p className="InfoTempText">{it.name}</p>
+                      <p className="InfoTempText">{it.description}</p>
                     </div>
-                    <div className='InfoDescriptionContainer'>
-                      <p className='InfoDescriptionText'>{it.description}</p>
-                    </div>
-                  </div>
+                  </button>
                 </>
               ))}
-            </>
-          )}
-        </div>
-        <div className='TextContainer'>
-          <span className='ExplainText'>
-            선호하는 평균기온을 선택해주세요.😊 <br /> 선호하는 평균기온을
-            고려하여 어울리는 나라를 추천해드립니다.
-          </span>
-        </div>
-        <input
-          type='range'
-          className='RangeBar'
-          min='0'
-          max='24'
-          step='0.1'
-          onChange={onTempChange}
-        />
-        <div className='TextBtn'>
-          <CommonButton text={`${temp}도 선택`} onClick={onClick} />
-        </div>
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );

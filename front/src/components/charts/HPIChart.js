@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   BarChart,
   Bar,
@@ -7,36 +7,36 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-} from "recharts";
-import "./style.css";
+} from 'recharts';
+import './style.css';
 
 const HPIChart = ({ resultAmount }) => {
   const data = [
-    { factor: "GDP", value: resultAmount.GDP.toFixed(2), color: "#ffc9c9" },
+    { factor: 'GDP', value: resultAmount.GDP.toFixed(2), color: '#20B2AA' },
     {
-      factor: "사회적 지원",
+      factor: '사회적 지원',
       value: resultAmount.socialSupport.toFixed(2),
-      color: "#fcc2d7",
+      color: '#20B2AA',
     },
     {
-      factor: "기대 수명",
+      factor: '기대 수명',
       value: resultAmount.HLE.toFixed(2),
-      color: "#eebefa",
+      color: '#20B2AA',
     },
     {
-      factor: "자유도",
+      factor: '자유도',
       value: resultAmount.Freedom.toFixed(2),
-      color: "#d0bfff",
+      color: '#20B2AA',
     },
     {
-      factor: "관대함",
+      factor: '관대함',
       value: resultAmount.Generosity.toFixed(2),
-      color: "#bac8ff",
+      color: '#20B2AA',
     },
     {
-      factor: "부패에 대한 인식",
+      factor: '부패에 대한 인식',
       value: resultAmount.corruption.toFixed(2),
-      color: "#a5d8ff",
+      color: '#20B2AA',
     },
   ];
 
@@ -50,7 +50,7 @@ const HPIChart = ({ resultAmount }) => {
           <XAxis type="number" />
           <YAxis width={130} yAxisId={0} dataKey="factor" type="category" />
           <YAxis dataKey="max" yAxisId={1} hide />
-          <Tooltip wrapperStyle={{ width: 200, backgroundColor: "#ccc" }} />
+          <Tooltip wrapperStyle={{ width: 200, backgroundColor: '#ccc' }} />
           <Bar dataKey="value" minPointSize={2} barSize={32}>
             {data.map((d, idx) => {
               return (

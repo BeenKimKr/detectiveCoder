@@ -1,180 +1,40 @@
-import React, { useState, useContext, useRef } from "react";
-import Nav from "../../components/Nav/Nav";
-import WealChart from "../../components/charts/WealChart";
-import Button from "../../components/btn/CommonButton";
-import WeatherChart from "../../components/charts/WeatherChart";
-import HPIChart from "../../components/charts/HPIChart";
-import Bigmac from "../../components/charts/Bigmac";
+import React, { useState, useContext, useEffect } from 'react';
+import WeatherChart from '../../components/charts/WeatherChart';
+import Bigmac from '../../components/charts/Bigmac';
+import RadarChart from '../../components/charts/RadarChart';
+import KakaoLogin from '../../components/Kakao/KakaoLogin';
+import KakaoShareButton from '../../components/KakaoShare';
+import Nav from '../../components/Nav/Nav';
+import { ResultContext, UserStateContext } from '../../App';
 
-import KakaoShareButton from "../../components/KakaoShare";
-import domtoimage from "dom-to-image";
-import { saveAs } from "file-saver";
+import * as Api from '../../api';
 
-import * as Api from "../../api";
-import "./style.css";
-import { ResultContext } from "../../App";
+import './style.css';
 
-// const CityInfo = () => {
-//   const [name, setName] = useState('명탐정');
-//   const [idx, setIdx] = useState(0);
-//   const {
-//     resultCountries,
-//     setResultCountries,
-//     resultHPIRank,
-//     setResultHPIRank,
-//     resultAmount,
-//     setResultAmount,
-//   } = useContext(ResultContext);
-
-//   const cardRef = useRef();
-//   const onDownloadBtn = () => {
-//     const card = cardRef.current;
-//     domtoimage.toBlob(card).then((blob) => {
-//       saveAs(blob, 'card.png');
-//     });
-//   };
-
-//   const flagUrl1st = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[0].Ab}-flag.gif`;
-//   const flagUrl2nd = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[1].Ab}-flag.gif`;
-//   const flagUrl3rd = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[2].Ab}-flag.gif`;
-
-//   const handleClick = async (e) => {
-//     setIdx(e.target.name);
-
-//     const country = resultCountries[e.target.name].Country;
-//     const city = resultCountries[e.target.name].City;
-//     const rank = await Api.get(`country/rank/${country}`);
-//     const amount = await Api.get(`country/one/${city}`);
-
-//     setResultHPIRank(rank.data);
-//     setResultAmount(amount.data);
-
-//     window.scrollTo({
-//       top: 450,
-//       behavior: 'smooth',
-//     });
-//   };
-
-//   const handleClickHome = () => {
-//     // 뱃지로 저장하는 코드 들어올 자리
-//     window.location.href = '/main';
-//   };
-
-//   return (
-//     <div className='container flex-col p-2.5'>
-//       <Nav />
-
-//       <div ref={cardRef} className='card my-8'>
-//         {true ? (
-//           <div>
-//             <span className='title'>
-//               {name}님께
-//               {resultCountries[idx].Country === resultCountries[idx].City ? (
-//                 <p className='inputCity'>{resultCountries[idx].Country}</p>
-//               ) : (
-//                 <p className='inputCity'>
-//                   {resultCountries[idx].Country} {resultCountries[idx].City}
-//                 </p>
-//               )}
-//               을(를) 추천합니다.
-//             </span>
-//           </div>
-//         ) : (
-//           <></>
-//         )}
-//         <div>
-//           <div className='flex m-28 mx-auto justify-center'>
-//             <img
-//               className='absolute w-96'
-//               src='/imgs/victoryStand.png'
-//               alt='시상대'
-//             />
-//             <img
-//               name='1'
-//               className='w-28 h-28 rounded-full relative'
-//               style={{ left: '-20px', top: '-40px' }}
-//               src={flagUrl2nd}
-//               alt='2등 국기'
-//               onClick={handleClick}
-//             />
-//             <img
-//               name='0'
-//               className='w-28 h-28 rounded-full relative'
-//               style={{ left: '-5px', top: '-75px' }}
-//               src={flagUrl1st}
-//               alt='1등 국기'
-//               onClick={handleClick}
-//             />
-//             <img
-//               name='2'
-//               className='w-28 h-28 rounded-full relative'
-//               style={{ left: '0px', top: '-20px' }}
-//               src={flagUrl3rd}
-//               alt='3등 국기'
-//               onClick={handleClick}
-//             />
-//           </div>
-//         </div>
-//         <div className='flex flex-col lg:flex-row'>
-//           <div
-//             className={
-//               'flex justify-center items-center mb-3 lg:basis-1/2' +
-//               (false ? ' blur-sm' : '')
-//             }
-//           >
-//             <WeatherChart resultAmount={resultAmount} />
-//           </div>
-//           <div
-//             className={
-//               'flex justify-center items-center lg:basis-1/2' +
-//               (false ? ' blur-sm' : '')
-//             }
-//           >
-//             <HPIChart resultAmount={resultAmount} />
-//           </div>
-//         </div>
-//         <div
-//           className={'flex flex-col lg:flex-row' + (false ? ' blur-sm' : '')}
-//         >
-//           <div className='lg:basis-1/2 flex justify-center'>
-//             <Bigmac resultAmount={resultAmount} />
-//           </div>
-//           <div className='lg:basis-1/2 flex justify-center'>
-//             <WealChart resultHPIRank={resultHPIRank} />
-//           </div>
-//         </div>
-//       </div>
-//       <div className='flex space-x-4 justify-end'>
-//         <Button text='도시뱃지만들기!' type='main' onClick={handleClickHome} />
-
-//         <Button className='downBtn' text='이미지저장' onClick={onDownloadBtn} />
-//         <KakaoShareButton />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default CityInfo;
-
+// 나라(도시) 결과 보여주는 페이지
 const CityInfo = () => {
-  const [name, setName] = useState("명탐정");
+  const [name, setName] = useState('명탐정');
   const [idx, setIdx] = useState(0);
+  const [userToken, setUserToken] = useState(window.sessionStorage.userToken);
+  console.log(userToken);
   const {
     resultCountries,
-    setResultCountries,
     resultHPIRank,
     setResultHPIRank,
     resultAmount,
     setResultAmount,
+    resultBigmacPrice,
+    setResultBigmacPrice,
   } = useContext(ResultContext);
 
-  const cardRef = useRef();
-  const onDownloadBtn = () => {
-    const card = cardRef.current;
-    domtoimage.toBlob(card).then((blob) => {
-      saveAs(blob, "card.jpg");
-    });
-  };
+  const userState = useContext(UserStateContext);
+
+  useEffect(() => {
+    if (window.sessionStorage.userToken) {
+      setName(userState.user.name);
+      console.log(userState);
+    }
+  }, [userState]);
 
   const flagUrl1st = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[0].Ab}-flag.gif`;
   const flagUrl2nd = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[1].Ab}-flag.gif`;
@@ -183,33 +43,25 @@ const CityInfo = () => {
   const handleClick = async (e) => {
     setIdx(e.target.name);
 
-    console.log(e.target.name);
     const country = resultCountries[e.target.name].Country;
     const city = resultCountries[e.target.name].City;
     const rank = await Api.get(`country/rank/${country}`);
     const amount = await Api.get(`country/one/${city}`);
-    console.log(rank.data);
-    console.log(amount.data);
+    const bigmacPrice = await Api.get(`country/price/${country}`);
+
     setResultHPIRank(rank.data);
     setResultAmount(amount.data);
-
-    window.scrollTo({
-      top: 450,
-      behavior: "smooth",
-    });
-  };
-
-  const handleSaveCountry = () => {
-    // 뱃지로 저장하는 코드 들어올 자리
+    setResultBigmacPrice(bigmacPrice.data);
   };
 
   return (
-    <div className="container flex-col p-2.5">
-      <Nav />
+    <div className="container flex-col p-2.5 bg-clouds">
+      <Nav userToken={userToken} />
+      {/* true에  설문조사를 하고 나온 결과인지 아닌지를 구분하는 조건 넣어줘야 함*/}
       {true ? (
         <div>
-          <span className="flex text-xl lg:text-3xl font-irop">
-            {name}님께{" "}
+          <span className="flex text-xl lg:text-3xl font-bold ml-6 font-noto">
+            {name}님께{' '}
             {resultCountries[idx].Country === resultCountries[idx].City ? (
               <p className="inputCity text-xl lg:text-3xl font-fred mx-2">
                 {resultCountries[idx].Country}
@@ -235,7 +87,7 @@ const CityInfo = () => {
           <img
             name="1"
             className="w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl"
-            style={{ left: "-20px", top: "-40px" }}
+            style={{ left: '-20px', top: '-40px' }}
             src={flagUrl2nd}
             alt="2등 국기"
             onClick={handleClick}
@@ -248,7 +100,7 @@ const CityInfo = () => {
           <img
             name="0"
             className="w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl"
-            style={{ left: "-5px", top: "-75px" }}
+            style={{ left: '-5px', top: '-75px' }}
             src={flagUrl1st}
             alt="1등 국기"
             onClick={handleClick}
@@ -261,7 +113,7 @@ const CityInfo = () => {
           <img
             name="2"
             className="w-28 h-28 rounded-full relative flagHover cursor-pointer shadow-xl"
-            style={{ left: "0px", top: "-20px" }}
+            style={{ left: '0px', top: '-20px' }}
             src={flagUrl3rd}
             alt="3등 국기"
             onClick={handleClick}
@@ -273,38 +125,49 @@ const CityInfo = () => {
           />
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row">
-        {/* 삼항연산자 false 자리에 쿠키 확인 조건 넣으면 됨 */}
-        <div
-          className={
-            "flex justify-center items-center mb-3 lg:basis-1/2" +
-            (false ? " blur-sm" : "")
-          }
-        >
+      <div className="flex flex-col mb-16 font-noto text-2xl">
+        <div className="flex justify-center text-5xl mb-4 font-irop">
+          {resultCountries[idx].Country === resultCountries[idx].City
+            ? resultCountries[idx].Country
+            : `${resultCountries[idx].Country}-${resultCountries[idx].City}`}
+        </div>
+        <div className="flex justify-center mx-32 lg:mx-64">
+          {resultCountries[idx].Country === resultCountries[idx].City
+            ? resultCountries[idx].Country
+            : `${resultCountries[idx].Country}-${resultCountries[idx].City}`}{' '}
+          의 연평균 최소 기온은 {resultAmount.min.toFixed(0)}°C, 최대 기온은{' '}
+          {resultAmount.max.toFixed(0)}°C로 평균 {resultAmount.mean.toFixed(0)}
+          °C입니다. 6가지(자유 - {resultHPIRank.Freedom}위, GDP -{' '}
+          {resultHPIRank.GDP}위, 관용 - {resultHPIRank.Generosity}위, 기대수명 -{' '}
+          {resultHPIRank.HLE}위, 부정부패 - {resultHPIRank.corruption}위, 사회적
+          지지 - {resultHPIRank.socialSupport}위) 항목을 토대로 68개국 중{' '}
+          {resultHPIRank.score}위에 해당하는 행복지수를 갖는 나라입니다.
+        </div>
+      </div>
+
+      {userToken ? (
+        ''
+      ) : (
+        <div className="flex justify-center mb-4">
+          <KakaoLogin setUserToken={setUserToken} setName={setName} />
+        </div>
+      )}
+
+      <div className={'flex flex-col' + (userToken ? '' : ' blur-sm')}>
+        <div className="flex justify-center">
           <WeatherChart resultAmount={resultAmount} />
         </div>
-        <div
-          className={
-            "flex justify-center items-center lg:basis-1/2" +
-            (false ? " blur-sm" : "")
-          }
-        >
-          <HPIChart resultAmount={resultAmount} />
+        <div className="flex justify-center mb-8">
+          <RadarChart resultAmount={resultAmount} />
+        </div>
+        <div className="flex justify-center">
+          <Bigmac resultBigmacPrice={resultBigmacPrice} />
         </div>
       </div>
-      <div className={"flex flex-col lg:flex-row" + (false ? " blur-sm" : "")}>
-        <div className="lg:basis-1/2 flex justify-center">
-          <Bigmac resultAmount={resultAmount} />
-        </div>
-        <div className="lg:basis-1/2 flex justify-center">
-          <WealChart resultHPIRank={resultHPIRank} />
-        </div>
-      </div>
-      ;
       <div className="flex space-x-4 justify-end">
-        <Button text="저장하기" type="main" onClick={handleSaveCountry} />
+        {/* <Button text='저장하기' type='main' onClick={handleSaveCountry} /> */}
 
-        <Button className="downBtn" text="다운로드" onClick={onDownloadBtn} />
+        {/* <Button className='downBtn' text='다운로드' onClick={onDownloadBtn} /> */}
         <KakaoShareButton />
       </div>
     </div>

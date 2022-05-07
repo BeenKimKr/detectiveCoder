@@ -1,67 +1,54 @@
-import React, { useEffect, useContext } from 'react';
-import queryString from 'query-string';
-import axios from 'axios';
-import { CLIENT_ID, REDIRECT_URI } from './OAuth';
-import { ResultContext } from '../../App';
+import React from 'react';
+import { CLIENT_ID } from './OAuth';
+import KaKaoLogin from 'react-kakao-login';
 
-const Login = (props) => {
-  const kauthUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code`;
-  const query = queryString.parse(window.location.search);
-  const { user, setUser } = useContext(ResultContext);
+const Login = ({ setUserToken, setName }) => {
+  const onSuccess = (e) => {
+    alert(`${e.profile.properties.nickname}😊 로그인에 성공하였습니다.`);
+    console.log(e);
+    sessionStorage.setItem(
+      'userToken',
+      JSON.stringify(e.response.access_token)
+    );
+    console.log(e.response.access_token);
 
-  useEffect(() => {
-    if (query.code) {
-      getKakaoTokenHandler(query.code.toString());
-    }
-  }, []);
-  const getKakaoTokenHandler = async (code) => {
-    const data = {
-      grant_type: 'authorization_code',
-      client_id: CLIENT_ID,
-      redirect_uri: REDIRECT_URI,
-      code: code,
-      client_secret: 'vxS2rzKh5KlmNaH1J3aZeumA93mTTmUI',
-    };
-    const queryString = Object.keys(data)
-      .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
-      .join('&');
-    axios
-      .post('https://kauth.kakao.com/oauth/token', queryString, {
-        headers: {
-          'Content-type': 'application/x-www-form-urlencoded;charset=utf-8',
-        },
-      })
-      .then((res) => {
-        sendKakaoTokenToServer(res.data.access_token);
-      });
+    setUserToken(sessionStorage.getItem('userToken'));
+    setName(e.profile.properties.nickname);
+    console.log(e.profile.properties.nickname);
   };
-  //일반 로그인
-  const sendKakaoTokenToServer = (token) => {
-    axios
-      .post('http://localhost:5001/users/auth/kakao', { accessToken: token })
-      .then((res) => {
-        if (res.status === 201 || res.status === 200) {
-          const { data } = res; // 받아온 데이터({token: {}, userInfo: {}})
-          setUser(data.userInfo);
-          window.sessionStorage.setItem(
-            'token',
-            JSON.stringify(
-              data.token
-            )
-          );
-          window.alert(`${data.userInfo.name}님 환영합니당~!^^*`);
-        } else {
-          window.alert('로그인에 실패하였습니다.');
-        }
-      });
+
+  const onFail = (e) => {
+    alert('로그인에 실패하였습니다.');
+    console.log(e);
+  };
+
+  const onLogout = () => {
+    sessionStorage.removeItem('userToken');
   };
 
   return (
-    <>
-      <a href={kauthUrl}>
-        <img src='/imgs/kakao_login.png' id='kakao-login-btn' />
-      </a>
-    </>
+    <KaKaoLogin
+      token={CLIENT_ID}
+      onSuccess={onSuccess}
+      onFail={onFail}
+      onLogout={onLogout}
+      render={({ onClick }) => {
+        return (
+          <a
+            href="/home"
+            onClick={(e) => {
+              e.preventDefault();
+              onClick();
+            }}
+          >
+            <img
+              src={process.env.PUBLIC_URL + '/imgs/kakao_login_medium_wide.png'}
+              alt="kakao"
+            />
+          </a>
+        );
+      }}
+    />
   );
 };
 

@@ -1,44 +1,45 @@
-import React, { useEffect, useState } from "react";
-import ResultModal from "./ResultModal";
-import * as Api from "../../api";
-import "./style.css";
+import React, { useEffect, useState } from 'react';
+import ResultModal from './ResultModal';
+import * as Api from '../../api';
+import './style.css';
+import Nav from '../../components/Nav/Nav';
 
 const useClickBtn = () => {
-  const [title, setTitle] = useState("행복지수");
-  const [select, setSelect] = useState("score");
+  const [title, setTitle] = useState('행복지수');
+  const [select, setSelect] = useState('score');
   const [offset, setOffset] = useState(12);
   const [sort, setSort] = useState([]); // 결과 저장
 
-  const handleClick = (e) => {
+  const handleChange = (e) => {
     setSelect(e.target.value);
     setTitle(e.target.name);
     setSort([]);
     setOffset(12);
   };
 
-  return { title, select, offset, sort, setSort, setOffset, handleClick };
+  return { title, select, offset, sort, setSort, setOffset, handleChange };
 };
 
 const HPI = [
-  { value: "socialSupport", name: "사회복지" },
-  { value: "corruption", name: "청렴도" },
-  { value: "Freedom", name: "자유" },
-  { value: "price", name: "물가" },
-  { value: "GDP", name: "GDP" },
-  { value: "Generosity", name: "관대함" },
-  { value: "HLE", name: "기대수명" },
+  { value: 'socialSupport', name: '사회복지' },
+  { value: 'corruption', name: '청렴도' },
+  { value: 'Freedom', name: '자유' },
+  { value: 'price', name: '물가' },
+  { value: 'GDP', name: 'GDP' },
+  { value: 'Generosity', name: '관대함' },
+  { value: 'HLE', name: '기대수명' },
 ];
 
 const AllCities = () => {
   const [modalOpen, setModalOpen] = useState(false); // Modal
-  const [rank, setRank] = useState([]);
-  const { title, select, offset, sort, handleClick, setSort, setOffset } =
+  const [data, setData] = useState([]);
+  const { title, select, offset, sort, handleChange, setSort, setOffset } =
     useClickBtn();
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -62,16 +63,19 @@ const AllCities = () => {
         const result = res.data;
         setSort([...sort, ...result]);
       } catch {
-        console.log("error");
+        console.log('error');
       }
     }
   };
 
   const clickCard = async (e) => {
     const res = await Api.get(`country/rank/${e.currentTarget.value}`);
-    console.log(res.data);
-    setRank(res.data);
+    setData(res.data);
     setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   useEffect(() => {
@@ -79,24 +83,38 @@ const AllCities = () => {
   }, [sort]);
 
   return (
-    <div className="container bg-white w-screen flex-row text-center">
-      <div className="titleButtonContainer">
-        <span className="titleText">{`${title} 순으로 보기.`}</span>
-        <div className="mt-5">
-          {HPI.map((it, index) => {
-            return (
-              <button
-                disabled={select === it.value}
-                name={it.name}
-                key={index}
-                value={it.value}
-                onClick={handleClick}
-                class="btn"
-              >
-                {it.name}
-              </button>
-            );
-          })}
+    <div className="container bg-white w-screen flex-row text-center ">
+      <Nav />
+      <div className="bg-sky-50  p-10 flex-row ">
+        <div className="text-left ml-7  mb-3 flex">
+          <p className="font-jua text-xl text-sky-500 ">
+            {' '}
+            행복지수별 나라랭킹을 볼 수 있습니다.🥇
+          </p>
+        </div>
+        <div className="flex">
+          <div className="ml-5">
+            <div className="mainContainer ">
+              <p className="mt-2 text-blue-400 font-jua">행복지수</p>
+            </div>
+          </div>
+          <div className="ml-5">
+            <select
+              class="selectContainer font-jua text-custom-sub-hover"
+              onChange={handleChange}
+            >
+              <option disabled selected>
+                종합
+              </option>
+              {HPI.map((it, index) => {
+                return (
+                  <option name={it.name} key={index} value={it.value}>
+                    {it.name}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
         </div>
       </div>
 
@@ -114,22 +132,25 @@ const AllCities = () => {
                 class="imgCard"
                 src={`https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${it.Ab}-flag.gif`}
               />
-              <div className="p-4">
-                <span className="countryCardText">
+              <div className="pt-3 pl-3">
+                <span className="countryCardText">{it.Country}</span>
+                <span class="rankText">
                   {index === 0
-                    ? `${it.Country}🥇`
+                    ? '🥇'
                     : index === 1
-                    ? `${it.Country}🥈`
+                    ? '🥈'
                     : index === 2
-                    ? `${it.Country}🥉`
-                    : `${it.Country}`}
+                    ? '🥉'
+                    : `${index + 1}`}
                 </span>
               </div>
             </button>
           );
         })}
       </div>
-      {modalOpen && <ResultModal open={modalOpen} rank={rank} />}
+      {modalOpen && (
+        <ResultModal open={modalOpen} close={closeModal} data={data} />
+      )}
     </div>
   );
 };

@@ -1,5 +1,5 @@
 .countryCard {
-  @apply mx-auto flex w-44 h-40 flex-col bg-white rounded-2xl shadow-xl shadow-slate-300/60;
+  @apply mx-auto flex w-52 h-44 flex-col bg-white rounded-2xl shadow-xl shadow-slate-300/60;
 }
 
 .imgCard {
@@ -11,7 +11,11 @@
 }
 
 .countryCardText {
-  @apply text-xl  font-medium text-slate-600 pb-2;
+  @apply text-sm  font-medium  text-slate-600 pb-2 text-center font-fred;
+}
+
+.rankText {
+  @apply text-sm inline-block py-2.5 px-2.5  ml-3  leading-none text-center whitespace-nowrap align-baseline font-bold bg-white drop-shadow-lg text-custom-main rounded-full;
 }
 
 .titleText {
@@ -19,27 +23,16 @@
 }
 
 .btn {
-  @apply px-6  h-11 mr-2  bg-white  rounded-full  text-custom-main  font-bold cursor-pointer;
+  @apply px-6  h-11 mr-2  bg-white  rounded-full  text-custom-main  font-bold font-noto cursor-pointer;
 }
 
-section {
-  margin-left: 10px;
-  margin-right: 10px;
-  height: 600px;
-  border-radius: 0.3rem;
-  background-color: #fff;
-  animation: modal-show 0.3s;
-  overflow: hidden;
+/* Select */
+.selectContainer {
+  @apply w-36 h-14 p-2  rounded-full text-center font-bold text-xl;
 }
 
-.modal .button {
-  @apply mb-5;
-}
-
-.modal.openModal {
-  display: flex;
-  align-items: center;
-  animation: modal-bg-show 0.3s;
+.mainContainer {
+  @apply w-36 h-14 p-2  rounded-full text-center font-bold text-xl bg-white;
 }
 
 @keyframes modal-show {

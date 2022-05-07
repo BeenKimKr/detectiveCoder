@@ -13,6 +13,10 @@ module.exports = {
         noto: ['Noto Sans KR', 'sans-serif'],
         fred: ['Fredoka One', 'sans-serif'],
         irop: ['Iropke Batang', 'sans-serif'],
+        jua: ['Jua', 'sans-serif'],
+      },
+      backgroundImage: {
+        clouds: "url('/public/imgs/clouds.jpeg')",
       },
     },
     screens: {
