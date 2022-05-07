@@ -2,7 +2,7 @@ import React from 'react';
 import { CLIENT_ID } from './OAuth';
 import KaKaoLogin from 'react-kakao-login';
 
-const Login = () => {
+const Login = ({ setUserToken }) => {
   const onSuccess = (e) => {
     alert(`${e.profile.properties.nickname}😊 로그인에 성공하였습니다.`);
     console.log(e);
@@ -11,6 +11,7 @@ const Login = () => {
       JSON.stringify(e.response.access_token)
     );
     console.log(e.response.access_token);
+    setUserToken(sessionStorage.getItem('userToken'));
   };
 
   const onFail = (e) => {
@@ -18,12 +19,16 @@ const Login = () => {
     console.log(e);
   };
 
+  const onLogout = () => {
+    sessionStorage.removeItem('userToken');
+  };
+
   return (
     <KaKaoLogin
       token={CLIENT_ID}
       onSuccess={onSuccess}
       onFail={onFail}
-      onLogout={console.info}
+      onLogout={onLogout}
       render={({ onClick }) => {
         return (
           <a

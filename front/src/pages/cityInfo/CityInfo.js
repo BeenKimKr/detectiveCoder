@@ -1,13 +1,10 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
-import Button from '../../components/btn/CommonButton';
+// import Button from '../../components/btn/CommonButton';
 import WeatherChart from '../../components/charts/WeatherChart';
 import Bigmac from '../../components/charts/Bigmac';
 import RadarChart from '../../components/charts/RadarChart';
 import KakaoLogin from '../../components/Kakao/KakaoLogin';
 import KakaoShareButton from '../../components/KakaoShare';
-import domtoimage from 'dom-to-image';
-import { saveAs } from 'file-saver';
-// import html2canvas from 'html2canvas';
 
 import { ResultContext, UserStateContext } from '../../App';
 
@@ -19,6 +16,8 @@ import './style.css';
 const CityInfo = () => {
   const [name, setName] = useState('명탐정');
   const [idx, setIdx] = useState(0);
+  const [userToken, setUserToken] = useState(window.sessionStorage.userToken);
+  console.log(userToken);
   const {
     resultCountries,
     resultHPIRank,
@@ -30,21 +29,12 @@ const CityInfo = () => {
   } = useContext(ResultContext);
 
   const userState = useContext(UserStateContext);
-
+  console.log(userState);
   useEffect(() => {
     if (window.sessionStorage.userToken) {
       setName(userState.user.name);
-    } else {
     }
   }, [userState]);
-
-  // const cardRef = useRef();
-  // const onDownloadBtn = () => {
-  //   const card = cardRef.current;
-  //   domtoimage.toBlob(card).then((blob) => {
-  //     saveAs(blob, 'card.jpg');
-  //   });
-  // };
 
   const flagUrl1st = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[0].Ab}-flag.gif`;
   const flagUrl2nd = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[1].Ab}-flag.gif`;
@@ -63,30 +53,6 @@ const CityInfo = () => {
     setResultAmount(amount.data);
     setResultBigmacPrice(bigmacPrice.data);
   };
-
-  // const handleSaveCountry = () => {
-  //   // 뱃지로 저장하는 코드 들어올 자리
-  // };
-
-  // const onHtmlToPng = () => {
-  //   const onCapture = () => {
-  //     console.log('onCapture');
-  //     html2canvas(document.querySelector('#capture')).then((canvas) => {
-  //       document.body.appendChild(
-  //         canvas.toDataURL('image/jpeg'),
-  //         'image-download.png'
-  //       );
-  //     });
-  //   };
-  //   const onSaveAs = (uri, filename) => {
-  //     console.log('onSaveAs');
-  //     const link = document.createElement('a');
-  //     document.body.appendChild(link);
-  //     link.href = uri;
-  //     link.click();
-  //     document.body.removeChild(link);
-  //   };
-  // };
 
   return (
     <div className='container flex-col p-2.5 bg-clouds'>
@@ -178,19 +144,15 @@ const CityInfo = () => {
         </div>
       </div>
 
-      {window.sessionStorage.userToken ? (
+      {userToken ? (
         ''
       ) : (
         <div className='flex justify-center mb-4'>
-          <KakaoLogin />
+          <KakaoLogin setUserToken={setUserToken} />
         </div>
       )}
 
-      <div
-        className={
-          'flex flex-col' + (window.sessionStorage.userToken ? '' : ' blur-sm')
-        }
-      >
+      <div className={'flex flex-col' + (userToken ? '' : ' blur-sm')}>
         <div className='flex justify-center'>
           <WeatherChart resultAmount={resultAmount} />
         </div>
@@ -211,4 +173,4 @@ const CityInfo = () => {
   );
 };
 
-export default React.memo(CityInfo);
+export default CityInfo;
