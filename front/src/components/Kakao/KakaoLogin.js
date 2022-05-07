@@ -43,18 +43,14 @@ const Login = (props) => {
     axios
       .post('http://localhost:5001/users/auth/kakao', { accessToken: token })
       .then((res) => {
-        if (res.status === 201 || res.status === 200) {
-          const { data } = res; // 받아온 데이터({token: {}, userInfo: {}})
-          window.sessionStorage.setItem('userToken', JSON.stringify(token));
-          window.alert(`${data.userInfo.name}님 환영합니당~!^^*`);
-          dispatch({
-            type: 'LOGIN_SUCCESS',
-            payload: data.userInfo,
-          });
-          navigate('/cityInfo');
-        } else {
-          window.alert('로그인에 실패하였습니다.');
-        }
+        const { data } = res; // 받아온 데이터({token: {}, userInfo: {}})
+        console.log(res.data);
+        window.sessionStorage.setItem('userToken', JSON.stringify(token));
+        window.alert(`${data.userInfo.name}님 환영합니당~!^^*`);
+        dispatch({
+          type: 'LOGIN_SUCCESS',
+          payload: data.userInfo,
+        });
       });
   };
 

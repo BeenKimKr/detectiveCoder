@@ -11,7 +11,7 @@ const navigation = [
   // { name: <KakaoLogout /> },
 ];
 
-const kakao = [{ name: 'Logout', current: false }];
+const kakao = [{ name: 'Team', current: false }];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -20,7 +20,7 @@ function classNames(...classes) {
 export default function Nav() {
   const logout = () => {
     sessionStorage.removeItem('userToken');
-    alert('다음에 또 만나요👋');
+    alert('팀소개 페');
   };
 
   return (
@@ -41,17 +41,8 @@ export default function Nav() {
                 </Disclosure.Button>
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                <div className="flex-shrink-0 flex items-center">
-                  <img
-                    className="block lg:hidden h-8 w-auto"
-                    src="/imgs/CountryGOGO.png"
-                    alt="CountryGOGO"
-                  />
-                  <img
-                    className="hidden lg:block h-8 w-auto"
-                    src="/imgs/CountryGOGO.png"
-                    alt="CountryGoGo"
-                  />
+                <div className="flex-shrink-0 flex items-center text-custom-main-hover">
+                  <a>Country GOGO✈️</a>
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">

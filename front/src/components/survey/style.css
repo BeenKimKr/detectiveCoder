@@ -66,20 +66,20 @@ input {
   @apply bg-black-rgba;
 }
 
+/* Count */
+.countText {
+  @apply bg-custom-main text-white text-xl   font-bold text-center mr-2 px-2.5 py-0.5  w-20 h-11 rounded-full dark:bg-green-200 dark:text-green-900;
+}
+
 .AnswerContainer {
   /* @apply grid grid-cols-2 place-content-center; */
   @apply grid place-content-center mt-32;
 }
 
 .AnswerCard {
-  @apply p-6 w-96 h-32 mt-4 mx-52 text-center bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-100;
+  @apply p-6 h-32 mt-4  text-center bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-100;
 }
 
 .AnswerCard h5 {
   @apply mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white;
-}
-
-/* Count */
-.countText {
-  @apply bg-custom-main text-white text-xl   font-bold text-center mr-2 px-2.5 py-0.5  w-20 h-11 rounded-full dark:bg-green-200 dark:text-green-900;
 }

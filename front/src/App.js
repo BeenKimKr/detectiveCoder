@@ -4,11 +4,10 @@ import { loginReducer } from './reducer';
 import Home from './pages/Home/Home';
 import CityInfo from './pages/cityInfo/CityInfo';
 import MainSurvey from './pages/MainSurvey';
-
+import Nav from './components/Nav/Nav';
 import AllCities from './pages/allCities/AllCities';
 import * as Api from './api';
 import './App.css';
-import Nav from './components/Nav/Nav';
 // 결과 전송
 export const ResultContext = createContext();
 
@@ -67,7 +66,6 @@ function App() {
         <UserStateContext.Provider value={userState}>
           <ResultContext.Provider value={saveResult}>
             <Router>
-              <Nav />
               <Routes>
                 <Route path="/main" element={<Home />} />
                 <Route path="/cityinfo" element={<CityInfo />} />

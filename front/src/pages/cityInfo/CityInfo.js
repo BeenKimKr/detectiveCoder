@@ -156,19 +156,15 @@ const CityInfo = () => {
         </div>
       </div>
 
-      {window.sessionStorage.userToken ? (
+      {/* {window.sessionStorage.userToken ? (
         ''
       ) : (
         <div className="flex justify-center mb-4">
           <KakaoLogin />
         </div>
-      )}
+      )} */}
 
-      <div
-        className={
-          'flex flex-col' + (window.sessionStorage.userToken ? '' : ' blur-sm')
-        }
-      >
+      <div className={'flex flex-col'}>
         <div className="flex justify-center">
           <WeatherChart resultAmount={resultAmount} />
         </div>

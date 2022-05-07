@@ -1,10 +1,12 @@
 /* This example requires Tailwind CSS v2.0+ */
 import React from 'react';
 import video from './Clouds.mp4';
+import Nav from '../../components/Nav/Nav';
 
 const Home = () => {
   return (
     <div className="container relative flex-col items-center justify-center h-screen w-screen mb-12 overflow-hidden">
+      <Nav />
       <div className="absolute justify-center item-center m-5 z-30 p-5 text-2xl rounded-xl">
         <main className=" lg:px-8 mx-auto max-w-7xl px-4 sm:mt-0 sm:px-6 md:mt-0 lg:mt-0 lg:px-8">
           <div className="sm:text-center lg:text-left">
