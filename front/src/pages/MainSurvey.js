@@ -15,6 +15,7 @@ const MainSurvey = () => {
   const [answer, setAnswer] = useState([]);
   const [temp, setTemp] = useState('');
   const [step, setStep] = useState(0);
+  const [tempModal, setTempModal] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const {
@@ -42,6 +43,11 @@ const MainSurvey = () => {
   useEffect(() => {
     console.log('temp', temp);
   }, [temp]);
+
+  const closeTempModal = () => {
+    setTempModal(false);
+    navigate('/home');
+  };
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -80,8 +86,12 @@ const MainSurvey = () => {
       <div className="m-auto">
         <PercentContext.Provider value={changePercent}>
           <SaveAnswersContext.Provider value={saveAnswers}>
-            {step == 0 ? (
-              <SurveyTemp />
+            {step === 0 ? (
+              <SurveyTemp
+                open={tempModal}
+                close={closeTempModal}
+                setTempModal={setTempModal}
+              />
             ) : (
               <>
                 <SurveyContainer />

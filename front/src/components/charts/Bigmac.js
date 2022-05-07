@@ -23,7 +23,7 @@ const Bigmac = ({ resultBigmacPrice }) => {
 
   return (
     <div className="bigmacChart">
-      <span className="chartTitle font-irop">빅맥으로 알아보는 물가($)</span>
+      <span className="chartTitle font-irop">🍔 빅맥으로 알아보는 물가(₩)</span>
       <ResponsiveContainer className="flex ml-5" width={400} height={150}>
         <BarChart data={data} layout="vertical">
           <XAxis type="number" />

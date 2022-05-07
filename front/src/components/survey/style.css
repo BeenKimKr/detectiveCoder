@@ -38,7 +38,7 @@ input {
 }
 
 .RangeContainer {
-  @apply flex flex-col  items-center relative pt-1 m-auto mt-32 font-noto font-fred;
+  @apply flex flex-col  items-center relative pt-1 m-auto  font-noto font-fred;
 }
 
 .TextContainer {
@@ -82,4 +82,56 @@ input {
 
 .AnswerCard h5 {
   @apply mb-2 text-base font-bold tracking-tight text-gray-900 dark:text-white;
+}
+
+.modal {
+  @apply hidden fixed inset-0  text-center text-lg  font-bold bg-black-rgba;
+}
+
+/* .modal > section {
+    @apply w-9/12  max-w-md m-auto  rounded-md bg-white overflow-hidden;
+  }
+   modal-show 부분을 테일윈드로 적용 X*/
+
+.tempModal > section {
+  width: 90%;
+  max-width: 450px;
+  margin: 0 auto;
+  border-radius: 0.3rem;
+  background-color: #fff;
+  animation: modal-show 0.3s;
+  overflow: hidden;
+}
+
+.tempModal .button {
+  @apply mb-5;
+}
+
+.tempModal > section > main {
+  @apply p-10;
+}
+
+.tempModal.openModal {
+  display: flex;
+  align-items: center;
+  animation: modal-bg-show 0.3s;
+}
+
+@keyframes modal-show {
+  from {
+    opacity: 0;
+    margin-top: -50px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+@keyframes modal-bg-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

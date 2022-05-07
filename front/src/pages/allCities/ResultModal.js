@@ -14,7 +14,7 @@ const ResultModal = (props) => {
   const { open, close, data } = props;
   return (
     <div className={open ? 'openModal modal ' : 'modal'}>
-      <section className="w-11/12">
+      <section className="w-11/12 ">
         <button onClick={close} className="ml-96 mt-2">
           ✖️
         </button>
