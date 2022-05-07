@@ -49,7 +49,7 @@ export default function App({ resultAmount }) {
   ];
   return (
     <RadarChart
-      className="radarChart"
+      className='chart font-bold font-irop'
       cx={225}
       cy={225}
       outerRadius={150}
@@ -58,20 +58,20 @@ export default function App({ resultAmount }) {
       data={data}
     >
       <PolarGrid />
-      <PolarAngleAxis dataKey="subject" />
+      <PolarAngleAxis dataKey='subject' />
       <PolarRadiusAxis angle={30} domain={[0, 1]} />
       <Radar
-        name="South Korea"
-        dataKey="A"
-        stroke="#8884d8"
-        fill="#8884d8"
+        name='South Korea'
+        dataKey='A'
+        stroke='#8884d8'
+        fill='#8884d8'
         fillOpacity={0.6}
       />
       <Radar
         name={resultAmount.Country}
-        dataKey="B"
-        stroke="#82ca9d"
-        fill="#82ca9d"
+        dataKey='B'
+        stroke='#82ca9d'
+        fill='#82ca9d'
         fillOpacity={0.6}
       />
       <Legend />

@@ -23,6 +23,7 @@ const MainSurvey = () => {
     setResultHPIRank,
     setResultAmount,
     setResultBigmacPrice,
+    setDeliverTemp,
   } = useContext(ResultContext);
 
   const saveAnswers = {
@@ -42,6 +43,7 @@ const MainSurvey = () => {
 
   useEffect(() => {
     console.log('temp', temp);
+    setDeliverTemp(temp);
   }, [temp]);
 
   const closeTempModal = () => {
@@ -82,8 +84,8 @@ const MainSurvey = () => {
   };
 
   return (
-    <div className="container w-screen h-screen">
-      <div className="m-auto">
+    <div className='container w-screen h-screen bg-clouds'>
+      <div className='m-auto'>
         <PercentContext.Provider value={changePercent}>
           <SaveAnswersContext.Provider value={saveAnswers}>
             {step === 0 ? (
@@ -94,7 +96,7 @@ const MainSurvey = () => {
               />
             ) : (
               <>
-                <SurveyContainer />
+                <SurveyContainer className='flex content-center' />
                 <Modal open={modalOpen} click={handleSubmit} />
               </>
             )}

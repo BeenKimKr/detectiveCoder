@@ -1,34 +1,43 @@
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from 'recharts';
+import {
+  ResponsiveContainer,
+  ComposedChart,
+  Line,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Legend,
+} from 'recharts';
 
-const WeatherChart = ({ resultAmount }) => {
+export default function App({ resultAmount, deliverTemp }) {
   const data = [
-    { month: '1월', value: resultAmount.jan },
-    { month: '2월', value: resultAmount.feb },
-    { month: '3월', value: resultAmount.mar },
-    { month: '4월', value: resultAmount.apr },
-    { month: '5월', value: resultAmount.may },
-    { month: '6월', value: resultAmount.jun },
-    { month: '7월', value: resultAmount.jul },
-    { month: '8월', value: resultAmount.aug },
-    { month: '9월', value: resultAmount.sep },
-    { month: '10월', value: resultAmount.oct },
-    { month: '11월', value: resultAmount.nov },
-    { month: '12월', value: resultAmount.dec },
+    { name: '1월', 선호: deliverTemp, 평균: resultAmount.jan },
+    { name: '2월', 선호: deliverTemp, 평균: resultAmount.feb },
+    { name: '3월', 선호: deliverTemp, 평균: resultAmount.mar },
+    { name: '4월', 선호: deliverTemp, 평균: resultAmount.apr },
+    { name: '6월', 선호: deliverTemp, 평균: resultAmount.jun },
+    { name: '7월', 선호: deliverTemp, 평균: resultAmount.jul },
+    { name: '5월', 선호: deliverTemp, 평균: resultAmount.may },
+    { name: '8월', 선호: deliverTemp, 평균: resultAmount.aug },
+    { name: '9월', 선호: deliverTemp, 평균: resultAmount.sep },
+    { name: '10월', 선호: deliverTemp, 평균: resultAmount.oct },
+    { name: '11월', 선호: deliverTemp, 평균: resultAmount.nov },
+    { name: '12월', 선호: deliverTemp, 평균: resultAmount.dec },
   ];
 
   return (
-    <div className="chart">
-      <span className="chartTitle font-irop">월별 평균 기온(°C)</span>
-      <ResponsiveContainer width={400} height={400}>
-        <BarChart width={150} height={40} data={data}>
-          <Bar dataKey="value" fill="#DB7093" />
-          <XAxis dataKey="month" />
+    <div className='weatherChart font-bold font-irop'>
+      <ResponsiveContainer>
+        <ComposedChart width={400} height={400} data={data}>
+          <CartesianGrid stroke='#f5f5f5' />
+          <XAxis dataKey='name' scale='band' />
           <YAxis />
-        </BarChart>
+          <Legend />
+          <Bar dataKey='평균' barSize={20} fill='#DB7093' />
+          <Line type='monotone' dataKey='선호' stroke='#ff7300' />
+        </ComposedChart>
       </ResponsiveContainer>
     </div>
   );
-};
-
-export default WeatherChart;
+}

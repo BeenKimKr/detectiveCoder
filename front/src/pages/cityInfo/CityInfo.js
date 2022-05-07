@@ -2,20 +2,20 @@ import React, { useState, useContext, useEffect } from 'react';
 import WeatherChart from '../../components/charts/WeatherChart';
 import Bigmac from '../../components/charts/Bigmac';
 import RadarChart from '../../components/charts/RadarChart';
-import KakaoShareButton from '../../components/KakaoShare';
 import Nav from '../../components/Nav/Nav';
-import { ResultContext, UserStateContext } from '../../App';
+import { ResultContext } from '../../App'; // , UserStateContext
 
 import * as Api from '../../api';
-
+import { useNavigate } from 'react-router-dom';
 import './style.css';
 
 // 나라(도시) 결과 보여주는 페이지
 const CityInfo = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState('명탐정');
   const [idx, setIdx] = useState(0);
-  const [userToken, setUserToken] = useState(window.sessionStorage.userToken);
-  console.log(userToken);
+
+  // const [userToken, setUserToken] = useState(window.sessionStorage.userToken);
   const {
     resultCountries,
     resultHPIRank,
@@ -24,16 +24,28 @@ const CityInfo = () => {
     setResultAmount,
     resultBigmacPrice,
     setResultBigmacPrice,
+    deliverTemp,
   } = useContext(ResultContext);
 
-  const userState = useContext(UserStateContext);
+  // const userState = useContext(UserStateContext);
+
+  // useEffect(() => {
+  //   if (window.sessionStorage.userToken) {
+  //     setName(userState.user.name);
+  //     console.log(userState);
+  //   }
+  // }, [userState]);
 
   useEffect(() => {
-    if (window.sessionStorage.userToken) {
-      setName(userState.user.name);
-      console.log(userState);
-    }
-  }, [userState]);
+    window.addEventListener('beforeunload', alertUser);
+    return () => {
+      window.removeEventListener('beforeunload', alertUser);
+    };
+  }, []);
+  const alertUser = (e) => {
+    e.preventDefault();
+    e.returnValue = '';
+  };
 
   const flagUrl1st = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[0].Ab}-flag.gif`;
   const flagUrl2nd = `https://team-detective-coder-bucket.s3.ap-northeast-2.amazonaws.com/flags_img/${resultCountries[1].Ab}-flag.gif`;
@@ -54,8 +66,9 @@ const CityInfo = () => {
   };
 
   return (
-    <div className='container flex-col p-2.5 bg-clouds '>
-      <Nav userToken={userToken} />
+    <div className='container flex-col p-2.5 bg-clouds'>
+      {/* <Nav userToken={userToken} /> */}
+      <Nav />
       {/* true에  설문조사를 하고 나온 결과인지 아닌지를 구분하는 조건 넣어줘야 함*/}
       {true ? (
         <div>
@@ -77,7 +90,7 @@ const CityInfo = () => {
         <></>
       )}
       <div>
-        <div className='flex m-28 mx-auto justify-center'>
+        <div className='flex m-28 justify-center'>
           <img
             className='absolute w-96'
             src='/imgs/victoryStand.png'
@@ -124,7 +137,7 @@ const CityInfo = () => {
           />
         </div>
       </div>
-      <div className='flex flex-col mb-16 font-noto text-2xl font-fred'>
+      <div className='flex flex-col mb-16 font-noto text-2xl'>
         <div className='flex justify-center text-5xl mb-4 font-irop'>
           {resultCountries[idx].Country === resultCountries[idx].City
             ? resultCountries[idx].Country
@@ -144,30 +157,28 @@ const CityInfo = () => {
         </div>
       </div>
 
-      {userToken ? (
+      {/* {userToken ? (
         ''
       ) : (
         <div className='flex justify-center mb-4'>
-          {/* <KakaoLogin setUserToken={setUserToken} setName={setName} /> */}
+          <KakaoLogin setUserToken={setUserToken} setName={setName} />
         </div>
-      )}
+      )} */}
 
-      <div className={'flex flex-col' + (userToken ? '' : ' blur-sm')}>
+      {/* 별점 입력하는 조건 넣어주면 됨 */}
+      <div className={'flex flex-col' + (false ? '' : ' blur-sm')}>
         <div className='flex justify-center'>
-          <WeatherChart resultAmount={resultAmount} />
+          <WeatherChart resultAmount={resultAmount} deliverTemp={deliverTemp} />
         </div>
         <div className='flex justify-center mb-8'>
           <RadarChart resultAmount={resultAmount} />
         </div>
         <div className='flex justify-center'>
-          <Bigmac resultBigmacPrice={resultBigmacPrice} />
+          <Bigmac
+            resultAmount={resultAmount}
+            resultBigmacPrice={resultBigmacPrice}
+          />
         </div>
-      </div>
-      <div className='flex space-x-4 justify-end'>
-        {/* <Button text='저장하기' type='main' onClick={handleSaveCountry} /> */}
-
-        {/* <Button className='downBtn' text='다운로드' onClick={onDownloadBtn} /> */}
-        <KakaoShareButton />
       </div>
     </div>
   );

@@ -20,12 +20,14 @@ function App() {
   const [resultHPIRank, setResultHPIRank] = useState([]); //  HPI 등수
   const [resultAmount, setResultAmount] = useState([]); //  수치
   const [resultBigmacPrice, setResultBigmacPrice] = useState([]);
-  const [login, setLogin] = useState(false);
+  const [deliverTemp, setDeliverTemp] = useState('');
   const [userState, dispatch] = useReducer(loginReducer, {
     user: null,
   });
 
   const saveResult = {
+    deliverTemp,
+    setDeliverTemp,
     resultCountries,
     setResultCountries,
     resultHPIRank,
