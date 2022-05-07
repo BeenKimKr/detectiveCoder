@@ -1,13 +1,13 @@
-const swaggerUi = require("swagger-ui-express");
-const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
 
 const options = {
   swaggerDefinition: {
-    openapi: "3.0.0",
+    openapi: '3.0.0',
     info: {
-      title: "CountryGoGo API",
-      version: "1.0.0",
-      description: "CountryGoGo API with express",
+      title: 'CountryGoGo API',
+      version: '1.0.0',
+      description: 'CountryGoGo API with express',
     },
     servers: [
       {
@@ -15,7 +15,7 @@ const options = {
       },
     ],
   },
-  apis: ["./src/db/schemas/*.js", "./src/routers/*.js"],
+  apis: ['./src/db/schemas/*.js', './src/routers/*.js'],
 };
 
 const specs = swaggerJsdoc(options);

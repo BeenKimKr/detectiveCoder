@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
 
 /**
  * @swagger
@@ -126,9 +126,9 @@ const { Schema, model } = require("mongoose");
  *            type: Number
  *            description: 도시별 12월 평균기온
  *        example:
- *           _id: "6268f9e0414ae765ad3379b1"
- *           City: "Fairbanks"
- *           Country: "US"
+ *           _id: '6268f9e0414ae765ad3379b1'
+ *           City: 'Fairbanks'
+ *           Country: 'US'
  *           Freedom: 0.837
  *           GDP: 11.023
  *           Generosity: 0.098
@@ -281,6 +281,6 @@ const CountrySchema = new Schema(
   }
 );
 
-const CountryModel = model("Country", CountrySchema);
+const CountryModel = model('Country', CountrySchema);
 
 module.exports = { CountryModel };

@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
 
 /**
  * @swagger
@@ -50,9 +50,9 @@ const { Schema, model } = require("mongoose");
  *            description: 국가별 부패의 결여(청렴도) 순위
  
  *        example:
- *           _id: "6268f9e0414ae765ad3379b1"
- *           City: "Fairbanks"
- *           Rank: "US"
+ *           _id: '6268f9e0414ae765ad3379b1'
+ *           City: 'Fairbanks'
+ *           Rank: 'US'
  *           Freedom: 2
  *           GDP: 11
  *           Generosity: 5
@@ -111,6 +111,6 @@ const RankSchema = new Schema(
   }
 );
 
-const RankModel = model("Rank", RankSchema);
+const RankModel = model('Rank', RankSchema);
 
 module.exports = { RankModel };

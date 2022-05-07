@@ -1,4 +1,4 @@
-const { RankModel } = require("../schemas/rank");
+const { RankModel } = require('../schemas/rank');
 
 const Rank = {
   findAll: async () => {
@@ -6,7 +6,7 @@ const Rank = {
     return result;
   },
   findByCountry: async (Country) => {
-    const result = await RankModel.findOne({ Country: Country });
+    const result = await RankModel.findOne({ Country });
     return result;
   },
   findByColumn: async (column) => {

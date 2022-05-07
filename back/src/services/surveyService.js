@@ -1,4 +1,4 @@
-const { Survey } = require("../db");
+const { Survey } = require('../db');
 
 const surveyService = {
   addSurvey: async ({ temp, answer }) => {
