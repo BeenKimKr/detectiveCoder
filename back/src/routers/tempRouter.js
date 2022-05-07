@@ -31,10 +31,16 @@ tempRouter.get("/all", async (req, res, next) => {
 /**
  * @swagger
  * paths:
- *  /temp/:column:
+ *  /temp/{column}:
  *    get:
  *      summary: Get sorted data(by column)
  *      tags: [Temp]
+ *      parameters:
+ *        - in: path
+ *          name: column
+ *          required: true
+ *          type: string
+ *          description: The name of column
  *      responses:
  *        "200":
  *          description: Get sorted data(by column)

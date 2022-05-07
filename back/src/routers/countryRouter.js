@@ -32,10 +32,16 @@ countryRouter.get("/all", async (req, res, next) => {
 /**
  * @swagger
  * paths:
- *  /country/one/:City:
+ *  /country/one/{City}:
  *    get:
  *      summary: Get one data
  *      tags: [Country]
+ *      parameters:
+ *        - in: path
+ *          name: City
+ *          required: true
+ *          type: string
+ *          description: The name of City
  *      responses:
  *        "200":
  *          description: get one data selected by City
@@ -58,10 +64,16 @@ countryRouter.get("/one/:City", async (req, res, next) => {
 /**
  * @swagger
  * paths:
- *  /country/rank/:Country:
+ *  /country/rank/{Country}:
  *    get:
  *      summary: Get rank
  *      tags: [Country]
+ *      parameters:
+ *        - in: path
+ *          name: Country
+ *          required: true
+ *          type: string
+ *          description: The name of Country
  *      responses:
  *        "200":
  *          description: get rank selected by Country
@@ -84,10 +96,16 @@ countryRouter.get("/rank/:Country", async (req, res, next) => {
 /**
  * @swagger
  * paths:
- *  /country/price/:Country:
+ *  /country/price/{Country}:
  *    get:
  *      summary: Get price
  *      tags: [Country]
+ *      parameters:
+ *        - in: path
+ *          name: Country
+ *          required: true
+ *          type: string
+ *          description: The name of Country
  *      responses:
  *        "200":
  *          description: get price selected by Country

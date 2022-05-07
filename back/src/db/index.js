@@ -5,7 +5,7 @@ const { Survey } = require("./models/Survey");
 const { Rank } = require("./models/Rank");
 const { Bigmac } = require("./models/Bigmac");
 
-const DB_URL = process.env.MONGODB_URL || "mongo_url";
+const DB_URL = process.env.MONGODB_URL;
 
 mongoose.connect(DB_URL);
 const db = mongoose.connection;

@@ -13,7 +13,7 @@ const userAuthRouter = Router();
 /**
  * @swagger
  * paths:
- *  /auth/kakao:
+ *  /users/auth/kakao:
  *    post:
  *      summary: Authorize user
  *      tags: [Users]
@@ -36,10 +36,16 @@ userAuthRouter.post("/auth/kakao", async (req, res, next) => {
 /**
  * @swagger
  * paths:
- *  /users:
+ *  /users/{id}:
  *    delete:
  *      summary: Delete user info
  *      tags: [Users]
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          required: true
+ *          type: string
+ *          description: The user ID
  *      responses:
  *        "200":
  *          description: Delete user info
@@ -59,7 +65,7 @@ userAuthRouter.delete('/:id', async (req, res, next) => {
 /**
  * @swagger
  * paths:
- *  /badge:
+ *  /users/badge:
  *    put:
  *      summary: Fix Badge Array
  *      tags: [Users]
@@ -86,7 +92,7 @@ userAuthRouter.put('/badge', login_required, async (req, res, next) => {
 /**
  * @swagger
  * paths:
- *  /badge:
+ *  /users/badge:
  *    get:
  *      summary: Get Badge Array
  *      tags: [Users]
