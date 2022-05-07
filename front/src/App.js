@@ -4,7 +4,8 @@ import { loginReducer } from './reducer';
 import Home from './pages/Home/Home';
 import CityInfo from './pages/cityInfo/CityInfo';
 import MainSurvey from './pages/MainSurvey';
-import Nav from './components/Nav/Nav';
+
+import Team from './pages/Home/Teampage';
 import AllCities from './pages/allCities/AllCities';
 import * as Api from './api';
 import './App.css';
@@ -67,11 +68,12 @@ function App() {
           <ResultContext.Provider value={saveResult}>
             <Router>
               <Routes>
-                <Route path="/main" element={<Home />} />
-                <Route path="/cityinfo" element={<CityInfo />} />
-                <Route path="/allcities" element={<AllCities />} />
-                <Route path="/mainsurvey" element={<MainSurvey />} />
-                <Route path="*" element={<Home />} />
+                <Route path='/main' element={<Home />} />
+                <Route path='/cityinfo' element={<CityInfo />} />
+                <Route path='/allcities' element={<AllCities />} />
+                <Route path='/mainsurvey' element={<MainSurvey />} />
+                <Route path='/team' element={<Team />} />
+                <Route path='*' element={<Home />} />
               </Routes>
             </Router>
           </ResultContext.Provider>
