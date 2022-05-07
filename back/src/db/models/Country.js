@@ -1,4 +1,4 @@
-const { CountryModel } = require("../schemas/country");
+const { CountryModel } = require('../schemas/country');
 
 const Country = {
   findAll: async () => {
@@ -17,7 +17,7 @@ const Country = {
     const third_ = columns[4];
 
     const dataFrame = await CountryModel.find({})
-      .where("mean")
+      .where('mean')
       .gt(temp - 4)
       .lt(temp + 4)
       .select(`Ab Country City ${first} ${second} ${third} ${third_}`);

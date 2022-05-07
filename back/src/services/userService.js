@@ -35,7 +35,7 @@ const userAuthService = {
     if (!isDataDeleted) {
       throw new Error('사용자 정보가 없습니다. 다시 시도해주세요.');
     }
-    return { status: "ok" };
+    return { status: 'ok' };
   },
 
   addBadge: async ({ id, countryData }) => {
@@ -46,9 +46,9 @@ const userAuthService = {
     if (countryData === null) {
       throw new Error('저장된 설문 결과가 없습니다. 설문을 먼저 진행해주세요.');
     }
-    const badge = { ...user.badge, ...countryData };
+
+    const badge = [...user.badge, { ...countryData }];
     const updateObject = { badge };
-    console.log(updateObject);
     const updatedUser = await User.update({ id, updateObject });
     const updatedBadge = updatedUser.badge;
     return updatedBadge;

@@ -2,22 +2,21 @@
 
 .chart {
   text-align: center;
-  height: 500px;
-  width: 450px;
+  height: 450px;
+  width: 500px;
   font-weight: 800;
 }
 
 .bigmacChart {
   text-align: center;
-  height: 300px;
-  width: 500px;
-  font-weight: 800;
+  height: 250px;
+  width: 400px;
 }
 
 .radarChart {
   text-align: center;
-  height: 500px;
-  width: 450px;
+  height: 450px;
+  width: 500px;
   font-weight: 800;
 }
 

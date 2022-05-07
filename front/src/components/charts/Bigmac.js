@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import {
   BarChart,
   Bar,
@@ -17,23 +17,29 @@ const Bigmac = ({ resultBigmacPrice }) => {
     {
       factor: resultBigmacPrice.Country,
       price: resultBigmacPrice.price.toFixed(0),
-      color: '#FFA500',
+      color: '#80ca9c',
     },
   ];
 
   return (
-    <div className='bigmacChart'>
-      <span className='chartTitle font-irop'>빅맥으로 알아보는 물가($)</span>
-      <ResponsiveContainer width={400} height={150}>
-        <BarChart data={data} layout='vertical'>
-          <XAxis type='number' />
-          <YAxis yAxisId={0} dataKey='factor' type='category' />
-          <YAxis dataKey='max' yAxisId={1} hide />
+    <div className="bigmacChart">
+      <span className="chartTitle font-irop font-bold">
+        🍔 빅맥으로 알아보는 물가(₩)
+      </span>
+      <ResponsiveContainer
+        className="flex ml-10 justify-center"
+        width={350}
+        height={150}
+      >
+        <BarChart data={data} layout="vertical">
+          <XAxis type="number" />
+          <YAxis yAxisId={0} dataKey="factor" type="category" />
+          <YAxis dataKey="max" yAxisId={1} hide />
           <Tooltip wrapperStyle={{ width: 200, backgroundColor: '#ccc' }} />
-          <Bar dataKey='price' minPointSize={2} barSize={24}>
+          <Bar dataKey="price" minPointSize={2} barSize={24}>
             {data.map((d, idx) => {
               return (
-                <Cell Cell type='monotone' key={d.factor} fill={d.color} />
+                <Cell Cell type="monotone" key={d.factor} fill={d.color} />
               );
             })}
           </Bar>
