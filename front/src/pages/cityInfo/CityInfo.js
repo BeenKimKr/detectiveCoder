@@ -166,7 +166,7 @@ const CityInfo = () => {
       )} */}
 
       {/* 별점 입력하는 조건 넣어주면 됨 */}
-      <div className={'flex flex-col' + (false ? '' : ' blur-sm')}>
+      <div className={'flex flex-col' + (true ? '' : ' blur-sm')}>
         <div className='flex justify-center'>
           <WeatherChart resultAmount={resultAmount} deliverTemp={deliverTemp} />
         </div>

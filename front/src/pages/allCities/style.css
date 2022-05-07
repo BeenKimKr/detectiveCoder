@@ -1,0 +1,55 @@
+.countryCard {
+  @apply mx-auto flex w-52 h-44 flex-col bg-white rounded-2xl shadow-xl shadow-slate-300/60;
+}
+
+.imgCard {
+  @apply h-auto aspect-video  rounded-t-2xl object-cover object-center;
+}
+
+.titleButtonContainer {
+  @apply bg-amber-100 w-full h-32  items-center   justify-center flex-col  mt-12;
+}
+
+.countryCardText {
+  @apply text-sm  font-medium  text-slate-600 pb-2 text-center font-fred;
+}
+
+.rankText {
+  @apply text-sm inline-block py-2.5 px-2.5  ml-3  leading-none text-center whitespace-nowrap align-baseline font-bold bg-white drop-shadow-lg text-custom-main rounded-full;
+}
+
+.titleText {
+  @apply mt-20 font-mono text-xl mt-6  text-orange-400 font-bold;
+}
+
+.btn {
+  @apply px-6  h-11 mr-2  bg-white  rounded-full  text-custom-main  font-bold font-noto cursor-pointer;
+}
+
+/* Select */
+.selectContainer {
+  @apply w-36 h-14 p-2  rounded-full text-center font-bold text-xl;
+}
+
+.mainContainer {
+  @apply w-36 h-14 p-2  rounded-full text-center font-bold text-xl bg-white;
+}
+
+@keyframes modal-show {
+  from {
+    opacity: 0;
+    margin-top: -50px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+  }
+}
+@keyframes modal-bg-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

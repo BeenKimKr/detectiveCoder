@@ -12,7 +12,7 @@ const products = [
   {
     id: 2,
     name: '프론트엔드',
-    href: '#',
+    href: 'https://github.com/Nayeon97',
     price: '김나연',
     imageSrc: '/imgs/kny.png',
   },
@@ -35,7 +35,7 @@ const products = [
     name: '백엔드',
     href: '#',
     price: '이태성',
-    imageSrc: '#',
+    imageSrc: '/imgs/its.png',
   },
   {
     id: 6,
