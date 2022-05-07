@@ -170,16 +170,13 @@ const CityInfo = () => {
 
       <div className={'flex flex-col' + (userToken ? '' : ' blur-sm')}>
         <div className="flex justify-center">
-          <WeatherChart resultAmount={resultAmount} />
+          <WeatherChart resultAmount={resultAmount} deliverTemp={deliverTemp} />
         </div>
         <div className="flex justify-center mb-8">
           <RadarChart resultAmount={resultAmount} />
         </div>
         <div className="flex justify-center">
-          <Bigmac
-            resultBigmacPrice={resultBigmacPrice}
-            deliverTemp={deliverTemp}
-          />
+          <Bigmac resultBigmacPrice={resultBigmacPrice} />
         </div>
       </div>
 
