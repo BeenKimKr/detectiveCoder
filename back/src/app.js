@@ -1,8 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const cookieParser = require('cookie-parser');
 const { swaggerUi, specs } = require('./utils/swagger');
-const { userAuthRouter } = require('./routers/userRouter');
+const { commentRouter } = require('./routers/commentRouter');
 const { countryRouter } = require('./routers/countryRouter');
 const { rankRouter } = require('./routers/rankRouter');
 
@@ -11,7 +10,6 @@ const { errorMiddleware } = require('./middlewares/errorMiddleware');
 const app = express();
 
 app.use(cors());
-app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
@@ -25,7 +23,7 @@ app.get('/', (req, res) => {
   res.send('main page');
 });
 
-app.use('/users', userAuthRouter);
+app.use('/comment', commentRouter);
 app.use('/country', countryRouter);
 app.use('/rank', rankRouter);
 app.use(errorMiddleware);
