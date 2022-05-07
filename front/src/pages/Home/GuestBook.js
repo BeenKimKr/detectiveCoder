@@ -8,7 +8,7 @@ const GuestBook = () => {
   }, []);
 
   const getItem = async () => {
-    const res = await Api.get(`comment/`);
+    const res = await Api.get(`comment`);
     setCommentList(res.data);
     console.log(commentList);
   };
@@ -28,12 +28,12 @@ const GuestBook = () => {
                 {'index' === 1
                   ? '⭐️'
                   : 'index' === 2
-                  ? '⭐️⭐️'
-                  : 'index' === 3
-                  ? '⭐️⭐️⭐️'
-                  : 'index' === 4
-                  ? '⭐️⭐️⭐️⭐️'
-                  : '⭐️⭐️⭐️⭐️⭐️'}
+                    ? '⭐️⭐️'
+                    : 'index' === 3
+                      ? '⭐️⭐️⭐️'
+                      : 'index' === 4
+                        ? '⭐️⭐️⭐️⭐️'
+                        : '⭐️⭐️⭐️⭐️⭐️'}
               </span>
               <span class="flex-1 ml-3 whitespace-nowrap">방명록입니다.</span>
               <span class="flex-1 ml-3 whitespace-nowrap">시간(날짜)ㄴ</span>
