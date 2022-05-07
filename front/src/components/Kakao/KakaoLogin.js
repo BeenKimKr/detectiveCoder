@@ -6,6 +6,11 @@ const Login = () => {
   const onSuccess = (e) => {
     alert(`${e.profile.properties.nickname}😊 로그인에 성공하였습니다.`);
     console.log(e);
+    sessionStorage.setItem(
+      'userToken',
+      JSON.stringify(e.response.access_token)
+    );
+    console.log(e.response.access_token);
   };
 
   const onFail = (e) => {
