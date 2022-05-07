@@ -2,11 +2,12 @@
 import React from 'react';
 import video from './Clouds.mp4';
 import Nav from '../../components/Nav/Nav';
+import GuestBook from './GuestBook';
 
 const Home = () => {
   return (
     <>
-      <div className="container relative flex-col items-center justify-center h-screen w-screen mb-12 overflow-hidden">
+      <div className="container relative flex-col items-center justify-center w-screen mb-12 overflow-hidden">
         <Nav />
         <div className="absolute justify-center item-center m-5 z-30 p-5 text-2xl rounded-xl">
           <main className=" lg:px-8 mx-auto max-w-7xl px-4 sm:mt-0 sm:px-6 md:mt-0 lg:mt-0 lg:px-8">
@@ -38,12 +39,14 @@ const Home = () => {
             </a>
           </div>
         </div>
-
         <div className="z-10 w-auto min-w-full min-h-full max-w-none">
           <video muted autoPlay loop>
             <source src={video} type="video/mp4" />
           </video>
         </div>
+      </div>
+      <div>
+        <GuestBook />
       </div>
       <footer class=" text-center p-4 bg-white rounded-lg shadow md:items-center md:justify-between md:p-6 dark:bg-gray-800">
         <span class="text-sm text-gray-500 text-center sm:text-center dark:text-gray-400">
