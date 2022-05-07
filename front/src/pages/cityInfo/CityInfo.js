@@ -29,10 +29,11 @@ const CityInfo = () => {
   } = useContext(ResultContext);
 
   const userState = useContext(UserStateContext);
-  console.log(userState);
+
   useEffect(() => {
     if (window.sessionStorage.userToken) {
       setName(userState.user.name);
+      console.log(userState);
     }
   }, [userState]);
 
@@ -148,7 +149,7 @@ const CityInfo = () => {
         ''
       ) : (
         <div className='flex justify-center mb-4'>
-          <KakaoLogin setUserToken={setUserToken} />
+          <KakaoLogin setUserToken={setUserToken} setName={setName} />
         </div>
       )}
 

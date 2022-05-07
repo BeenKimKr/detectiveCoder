@@ -20,7 +20,7 @@ const KakaoShareButton = () => {
         objectType: 'feed',
         content: {
           title: 'COUNTRY GOGO',
-          description: '당신의 제 2의 고향을 찾아드립니다! #CountryMBTI',
+          description: '당신의 제 2의 고향을 찾아드립니다! \n #CountryMBTI #',
           imageUrl:
             'https://cdn.pixabay.com/photo/2016/11/23/15/32/pedestrians-1853552_1280.jpg',
           link: {
@@ -35,7 +35,7 @@ const KakaoShareButton = () => {
         },
         buttons: [
           {
-            title: '나와 어울리는 나라는?',
+            title: '나와 어울리는 도시는?',
             link: {
               mobileWebUrl: sharedUrl,
               webUrl: sharedUrl,
@@ -46,10 +46,10 @@ const KakaoShareButton = () => {
     }
   };
   return (
-    <div className="kakao-share-button">
+    <div className='kakao-share-button'>
       {/* Kakao share button */}
-      <button id="kakao-link-btn">
-        <img src="/imgs/kakaolink.png" alt="kakao-share-icon" />
+      <button id='kakao-link-btn'>
+        <img src='/imgs/kakaolink.png' alt='kakao-share-icon' />
       </button>
     </div>
   );
