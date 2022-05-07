@@ -1,4 +1,4 @@
-const { Temp } = require("../db");
+const { Temp } = require('../db');
 
 const tempService = {
   getData: async () => {

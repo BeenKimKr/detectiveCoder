@@ -1,4 +1,4 @@
-const { TempModel } = require("../schemas/temp");
+const { TempModel } = require('../schemas/temp');
 
 const Temp = {
   findAll: async () => {
