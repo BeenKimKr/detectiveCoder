@@ -42,7 +42,6 @@ const MainSurvey = () => {
   };
 
   useEffect(() => {
-    console.log('temp', temp);
     setDeliverTemp(temp);
   }, [temp]);
 
@@ -66,9 +65,6 @@ const MainSurvey = () => {
       const rank = await Api.get(`country/rank/${country}`); // 미국의 등수
       const amount = await Api.get(`country/one/${city}`); // 미국의 차트 에 쓰이는 수치 -> 도시별 월별 기온 데이터!
       const bigmacPrice = await Api.get(`country/price/${country}`);
-      console.log(res.data);
-      console.log(rank.data);
-      console.log(amount.data);
       setResultCountries(res.data);
       setResultHPIRank(rank.data);
       setResultAmount(amount.data);
