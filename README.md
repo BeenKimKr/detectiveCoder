@@ -2,12 +2,15 @@
 - 안녕하세요, EliceAI트랙 16팀 **명탐정 코더**의 서비스 **Country GOGO**입니다!🎉
 - **Country GOGO**는 설문을 통해 얻은 사용자의 성향을 바탕으로 국가별 행복지수 데이터를 분석하고,<br/>자신의 성향에 맞는 국가 및 도시를 추천하는 서비스입니다.
 
-## Service url
+## Deploy
 - 현재 Elice에서 배포 중입니다. 추후 재배포 예정입니다.
 - URL
   - http://elice-kdt-ai-4th-team16.elicecoding.com/
 
 ## 프로젝트 구성 안내
+
+### 0. 프로젝트 Notion
+  - https://www.notion.so/1d701a9be74b4cc2b00bb8152e647188
 
 ### 1. 프로젝트 소개
   - 활용한 data set(Kaggle)
