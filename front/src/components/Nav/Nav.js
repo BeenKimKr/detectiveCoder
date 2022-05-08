@@ -6,7 +6,7 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import Team from '../../pages/Home/Teampage';
 
 const navigation = [
-  { name: 'Home', href: '/mains', current: false },
+  { name: 'Home', href: '/main', current: false },
   { name: 'All cities', href: '/allcities', current: false },
   { name: 'Team', href: '/Team', current: false },
 ];
