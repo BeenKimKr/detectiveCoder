@@ -6,8 +6,8 @@ import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline';
 import Team from '../../pages/Home/Teampage';
 
 const navigation = [
+  { name: 'Home', href: '/mains', current: false },
   { name: 'All cities', href: '/allcities', current: false },
-  { name: 'Board', href: '/guestbook', current: false },
   { name: 'Team', href: '/Team', current: false },
 ];
 
@@ -37,7 +37,7 @@ export default function Nav({ userToken }) {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center text-custom-main-hover">
-                  <a>Country GOGO</a>
+                  <a href="/main">Country GOGO</a>
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">

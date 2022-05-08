@@ -47,6 +47,17 @@ const CityInfo = () => {
     setResultBigmacPrice(bigmacPrice.data);
   };
 
+  useEffect(() => {
+    window.addEventListener('beforeunload', alertUser);
+    return () => {
+      window.removeEventListener('beforeunload', alertUser);
+    };
+  }, []);
+  const alertUser = (e) => {
+    e.preventDefault();
+    e.returnValue = '';
+  };
+
   return (
     <div className="container flex-col p-2.5 bg-clouds">
       <Nav userToken={'userToken'} />
@@ -148,7 +159,7 @@ const CityInfo = () => {
 
       <div className={'flex flex-col' + (checkSubmit ? '' : ' blur-sm')}>
         <div className="flex justify-center">
-          <WeatherChart resultAmount={resultAmount} />
+          <WeatherChart resultAmount={resultAmount} deliverTemp={deliverTemp} />
         </div>
         <div className="flex justify-center mb-8">
           <RadarChart resultAmount={resultAmount} />

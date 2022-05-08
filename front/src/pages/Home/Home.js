@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import video from './Clouds.mp4';
 import Nav from '../../components/Nav/Nav';
 import * as Api from '../../api';
+import GuestBook from './GuestBook';
 
 const Home = () => {
   return (
@@ -39,10 +40,13 @@ const Home = () => {
             </a>
           </div>
         </div>
-        <div className="z-10 w-auto min-w-full min-h-full max-w-none">
+        <div className="z-10 w-auto  max-w-none">
           <video muted autoPlay loop>
             <source src={video} type="video/mp4" />
           </video>
+        </div>
+        <div>
+          <GuestBook />
         </div>
       </div>
       <footer class=" text-center p-4 bg-white rounded-lg shadow md:items-center md:justify-between md:p-6 dark:bg-gray-800">
