@@ -13,7 +13,7 @@ import './style.css';
 
 // 나라(도시) 결과 보여주는 페이지
 const CityInfo = () => {
-  const [name, setName] = useState('명탐정');
+  const [name, setName] = useState('Country GoGo');
   const [checkSubmit, setCheckSubmit] = useState(false);
   const [idx, setIdx] = useState(0);
 
@@ -65,7 +65,7 @@ const CityInfo = () => {
       {true ? (
         <div>
           <span className="flex text-xl lg:text-3xl font-bold ml-6 font-noto">
-            {name}님께{' '}
+            {name}는{' '}
             {resultCountries[idx].Country === resultCountries[idx].City ? (
               <p className="inputCity text-xl lg:text-3xl font-fred mx-2">
                 {resultCountries[idx].Country}

@@ -19,7 +19,7 @@ const GuestBook = () => {
       <div className="container relative flex-col items-center justify-center w-screen  h-96 scroll-auto overflow-auto ">
         <div className="  p-10 mx-10  mt-3 rounded">
           <div class="flex justify-between items-center mb-4 ">
-            <h5 class="text-xl font-bold leading-none text-custom-main dark:text-white">
+            <h5 class="text-xl font-bold leading-none text-custom-main dark:text-custom-main">
               방명록✏️
             </h5>
           </div>
@@ -36,12 +36,12 @@ const GuestBook = () => {
                         {it.score === 1
                           ? '⭐️'
                           : it.score === 2
-                          ? '⭐️⭐️'
-                          : it.score === 3
-                          ? '⭐️⭐️⭐️'
-                          : it.score === 4
-                          ? '⭐️⭐️⭐️⭐️'
-                          : '⭐️⭐️⭐️⭐️⭐️'}
+                            ? '⭐️⭐️'
+                            : it.score === 3
+                              ? '⭐️⭐️⭐️'
+                              : it.score === 4
+                                ? '⭐️⭐️⭐️⭐️'
+                                : '⭐️⭐️⭐️⭐️⭐️'}
                       </span>
                       <span class="flex-1 ml-9 whitespace-nowrap">
                         {it.comment}
