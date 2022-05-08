@@ -62,8 +62,8 @@ const AllCities = () => {
         const res = await Api.get(`rank/sort/${select}/${offset}`);
         const result = res.data;
         setSort([...sort, ...result]);
-      } catch {
-        console.log('error');
+      } catch (error) {
+        console.log(error);
       }
     }
   };
@@ -79,7 +79,6 @@ const AllCities = () => {
   };
 
   useEffect(() => {
-    console.log(sort);
   }, [sort]);
 
   return (
@@ -138,10 +137,10 @@ const AllCities = () => {
                   {index === 0
                     ? '🥇'
                     : index === 1
-                    ? '🥈'
-                    : index === 2
-                    ? '🥉'
-                    : `${index + 1}`}
+                      ? '🥈'
+                      : index === 2
+                        ? '🥉'
+                        : `${index + 1}`}
                 </span>
               </div>
             </button>

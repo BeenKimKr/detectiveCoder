@@ -6,7 +6,6 @@ const GuestBook = () => {
   useEffect(() => {
     try {
       Api.get('comment').then((res) => {
-        console.log(res.data);
         setCommentList(res.data);
       });
     } catch (error) {

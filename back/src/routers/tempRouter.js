@@ -52,7 +52,6 @@ tempRouter.get('/all', async (req, res, next) => {
 tempRouter.get('/:column', async (req, res, next) => {
   try {
     const column = req.params.column;
-    console.log(column);
     const data = await tempService.sortData(column);
 
     res.status(200).json(data);

@@ -3,7 +3,6 @@ const { Temp } = require('../db');
 const tempService = {
   getData: async () => {
     const data = await Temp.findAll();
-    console.log(data);
     return data;
   },
   sortData: async (column) => {
