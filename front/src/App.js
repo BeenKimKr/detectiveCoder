@@ -1,9 +1,8 @@
-import React, { useState, useReducer, useEffect, createContext } from 'react';
+import React, { useState, createContext } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home/Home';
 import CityInfo from './pages/cityInfo/CityInfo';
 import MainSurvey from './pages/MainSurvey';
-
 import Team from './pages/Home/Teampage';
 import AllCities from './pages/allCities/AllCities';
 import * as Api from './api';

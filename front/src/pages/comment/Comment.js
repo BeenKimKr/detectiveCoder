@@ -10,7 +10,8 @@ const Rating = [
 ];
 
 const Comment = ({ setCheckSubmit }) => {
-  const [score, setScore] = useState('1');
+  const [score, setScore] = useState('');
+  const [open, setOpen] = useState(false);
   const [comment, setComment] = useState('');
 
   const handleChange = (e) => {
@@ -18,20 +19,28 @@ const Comment = ({ setCheckSubmit }) => {
   };
 
   const handleSubmit = async (e) => {
-    await Api.post('comment', {
-      score,
-      comment,
-    });
-    setCheckSubmit(true);
+    if (score.length !== 0 && comment.length !== 0) {
+      await Api.post('comment', {
+        score,
+        comment,
+      });
+      setCheckSubmit(true);
+    } else {
+      setOpen(true);
+    }
   };
 
   return (
     <>
       <div className="mx-auto flex w-96 h-96 flex-col justify-center items-center bg-white rounded-2xl shadow-xl shadow-slate-300/60">
-        <h1 className="font-jua mr-28 text-custom-main-hover">
-          간단한 방명록을 남겨주세요.😊
-        </h1>
+        <div className="font-jua mr-8 text-custom-main-hover ">
+          <p>자세한 결과를 확인하려면,</p>
+          <p>별점과 한 줄 평(50자 이내)을 남겨주세요.😊</p>
+        </div>
         <select class="h-12 w-28 mt-6  mr-48 " onChange={handleChange}>
+          <option disabled selected>
+            평점
+          </option>
           {Rating.map((it, index) => {
             return (
               <option name={it.name} key={index} value={it.value}>
@@ -42,7 +51,7 @@ const Comment = ({ setCheckSubmit }) => {
         </select>
         <div class="">
           <textarea
-            maxlength="60"
+            maxlength="50"
             type="text"
             id="large-input"
             onChange={(e) => setComment(e.target.value)}
@@ -56,6 +65,11 @@ const Comment = ({ setCheckSubmit }) => {
         >
           전송
         </button>
+        {open && (
+          <p className="font-jua  text-rose-400">
+            별점과 한 줄 평을 남겨주세요.🥲
+          </p>
+        )}
       </div>
     </>
   );

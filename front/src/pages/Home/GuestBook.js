@@ -1,27 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import * as Api from '../../api';
-import Nav from '../../components/Nav/Nav';
 
 const GuestBook = () => {
   const [commentList, setCommentList] = useState([]);
-
   useEffect(() => {
     try {
-      const res = Api.get('comment');
-      setCommentList(res.data);
+      Api.get('comment').then((res) => {
+        console.log(res.data);
+        setCommentList(res.data);
+      });
     } catch (error) {
       console.log(error);
     }
-  }, [setCommentList, commentList]);
-
-  console.log(commentList);
+  }, []);
 
   return (
     <>
-      <div className="container relative flex-col items-center justify-center w-screen mb-12 overflow-hidden ">
-        <Nav />
-        <div className="bg-sky-50  p-10 mx-32 mt-32 rounded">
-          <div class="flex justify-between items-center mb-4 bg-sky-50">
+      <div className="container relative flex-col items-center justify-center w-screen  h-96 scroll-auto overflow-auto ">
+        <div className="  p-10 mx-10  mt-3 rounded">
+          <div class="flex justify-between items-center mb-4 ">
             <h5 class="text-xl font-bold leading-none text-custom-main dark:text-white">
               방명록✏️
             </h5>
@@ -31,21 +28,38 @@ const GuestBook = () => {
               role="list"
               class="divide-y divide-gray-200 dark:divide-gray-700"
             >
-              <li class="py-3 sm:py-4 bg-slate-50">
-                <span class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-base font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
-                  {'index' === 1
-                    ? '⭐️'
-                    : 'index' === 2
-                      ? '⭐️⭐️'
-                      : 'index' === 3
-                        ? '⭐️⭐️⭐️'
-                        : 'index' === 4
+              {commentList.map((it) => {
+                return (
+                  <>
+                    <li class="py-1   mb-2 sm:py-4 bg-slate-50 font-jua text-ellipsis overflow-hidden">
+                      <span class="inline-flex items-center justify-center px-2 py-0.5 ml-3 text-base font-medium text-gray-500 bg-gray-200 rounded dark:bg-gray-700 dark:text-gray-400">
+                        {it.score === 1
+                          ? '⭐️'
+                          : it.score === 2
+                          ? '⭐️⭐️'
+                          : it.score === 3
+                          ? '⭐️⭐️⭐️'
+                          : it.score === 4
                           ? '⭐️⭐️⭐️⭐️'
                           : '⭐️⭐️⭐️⭐️⭐️'}
-                </span>
-                <span class="flex-1 ml-3 whitespace-nowrap">방명록입니다.</span>
-                <span class="flex-1 ml-3 whitespace-nowrap">시간(날짜)ㄴ</span>
-              </li>
+                      </span>
+                      <span class="flex-1 ml-9 whitespace-nowrap">
+                        {it.comment}
+                      </span>
+                      <span class="flex-1 ml-3 whitespace-nowrap float-right text-custom-sub-hover mr-2">
+                        ⏰{' '}
+                        {`${it.time.slice(0, 4)}.${it.time.slice(
+                          4,
+                          6
+                        )}.${it.time.slice(6, 8)}     ${it.time.slice(
+                          8,
+                          10
+                        )}:${it.time.slice(10, 12)}`}
+                      </span>
+                    </li>
+                  </>
+                );
+              })}
             </ul>
           </div>
         </div>
