@@ -2,7 +2,7 @@ const { Comment } = require('../db');
 
 const commentService = {
   addComment: async ({ score, comment }) => {
-    const timezoneOffset = new Date().getTimezoneOffset() * 60000 + 32400000;
+    const timezoneOffset = new Date().getTimezoneOffset() * 60000 - 32400000;
     const timeNow = new Date(Date.now() - timezoneOffset);
     const year = `${timeNow.getFullYear()}`;
     const month = ('0' + `${1 + timeNow.getMonth()}`).slice(-2);
